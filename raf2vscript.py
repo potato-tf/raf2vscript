@@ -228,7 +228,7 @@ def convert_proptype(prop, propval, arrayval):
 def convert_raf_keyvalues(value):
 	# print(value.split(','))
 	global giveitem
-	if 'addoutput' in value or 'AddOutput' in value:
+	if 'addoutput' in value.lower():
 		splitval = value.split(':')
 	else:
 		splitval = value.split(',')
