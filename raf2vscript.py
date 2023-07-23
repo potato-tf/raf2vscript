@@ -53,7 +53,6 @@ def read_file(filename):
 
 def process_line(line):
     # Remove line comments starting with //
-	# print(line.split())
 	line = line.split('//', 1)[0]
 	line = f'{line}\n'
     # Remove inline comments starting with //
@@ -167,20 +166,6 @@ convertedkeys = [
 ]
 
 def convert_proptype(prop, propval, arrayval):
-	# DO NOT USE
-	# if prop.startswith('m_sz') or prop.startswith('m_isz'):
-	# 	proptype = 'String'
-
-	# elif prop.startswith('m_h'):
-	# 	proptype = 'Entity'
-	
-	# elif prop.startswith('m_i') or prop.startswith('m_n'):
-	# 	proptype = 'Int'
-	
-	# elif prop.startswith('m_fl'):
-	# 	proptype = 'Float'
-
-	# else:
 
 	print(COLOR['CYAN'], 'Enter Property Type for', COLOR['ENDC'], COLOR['GREEN'], f'{prop}',COLOR['ENDC'])
 	print(COLOR['CYAN'],'Acceptable values:',COLOR['ENDC'],COLOR['GREEN'], 'str, int, fl, ent, bool, vec', COLOR['ENDC'])
@@ -232,8 +217,6 @@ def convert_raf_keyvalues(value):
 		splitval = value.split(':')
 	else:
 		splitval = value.split(',')
-	# print(splitval)
-	# if not '$setclientprop' in splitval[1].lower() or not '$setprop' in splitval[1].lower: splitval[1] = splitval[1].lower()
 
 	# convert global $PlaySoundToSelf inputs to tf_gamerules PlayVORed
 	# TODO: implement point_clientcommand play inputs or something else for !activator/player specific sounds
@@ -329,7 +312,7 @@ def convert_raf_keyvalues(value):
 		print(COLOR['HEADER'], 'Enter ? for an example input',COLOR['ENDC'])
 		formatval = input('Format: Classname ? Index ? Wearable Model: ')
 		if formatval == '?':
-			print(COLOR['CYAN'],'Example input (the bat outta hell):',COLOR['ENDC'],COLOR['GREEN'], 'tf_weapon_bottle ? 939 ? null', COLOR['ENDC'])
+			print(COLOR['CYAN'],'Example input (the bat outta hell for demo):',COLOR['ENDC'],COLOR['GREEN'], 'tf_weapon_bottle ? 939 ? null', COLOR['ENDC'])
 			print(COLOR['CYAN'],'Example tf_wearable input (cozy camper):',COLOR['ENDC'],COLOR['GREEN'], 'tf_wearable ? 642 ? models/workshop/player/items/sniper/xms_sniper_commandobackpack/xms_sniper_commandobackpack.mdl', COLOR['ENDC'])
 			formatval = input('Format: Classname ? Index ? Wearable Model: ')
 		formatval = formatval.split('?')
@@ -365,7 +348,6 @@ def convert_raf_keyvalues(value):
 
 j, b, g = 1, 1, 1
 oldname = ''
-
 #format rafmod to spawnentityfromtable
 def format_entities(lines, entity_name):
 	brushname = f'{entity_name}_brush'
@@ -381,21 +363,14 @@ def format_entities(lines, entity_name):
 			else:
 				if len(parts) > 0 and not any(lines[2].startswith(prefix) for prefix in entprefixes):
 					parts = line.split()
-					# print(parts)
 					key, value = parts[0], parts[1]
-					# value = ' '.join(parts[1:])
-					# print(key, value)
 			if key == '}': continue
 			properties[key] = value
-			# print(f'{key} : {value}')
 			lowerkey = key.lower()
 			if '\\' in value: value.replace('\\','/')
 			
 			# there's bound to be more kv's that start with 'on' that will fuck this up, just blacklist them as they appear
 			if (lowerkey.startswith('on') or lowerkey.startswith('outvalue')) and not any(lowerkey.startswith(blacklist) for blacklist in blacklisted):
-				# if any(lowervalue.startswith(k) for k in convertedkeys):
-				# if any(lowervalue.startswith(k) for k in convertedkeys):
-				# if '$' in value:
 				if any(k in value.lower() for k in convertedkeys):
 					# print(value)
 					value = convert_raf_keyvalues(value)
@@ -428,7 +403,6 @@ def format_entities(lines, entity_name):
 					except ValueError:
 						formatted_properties.append(f'{key} = "{value}"')
 		except: pass
-			# print(COLOR['GREEN'], 'Converting', COLOR['ENDC'], COLOR['YELLOW'], entity_name, COLOR['ENDC'])
 	j = 1
 	# if len(entity_name) < 1: continue
 
@@ -570,11 +544,6 @@ def convert_entities():
 							relayline[2] = f'"OnTrigger" "{lines[2].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
 						# print(relayline)
 
-					# if '$' in relayline[2]:
-					# 	print(relayline[2])
-					# 	relayline[2] = convert_raf_keyvalues(relayline[2])
-					# 	print(relayline[2])
-					# 	input('')
 					lines = relayline
 						# input('')
 
@@ -597,7 +566,6 @@ def convert_entities():
 				# Remove the entity name line
 			# convert_spawntemplates(lines)
 	except Exception as IndexError:
-		# print(COLOR['RED'],f'Conversion complete! press enter to write entities to file',COLOR['ENDC'])
 		print(COLOR['CYAN'],f'Writing entities to file...',COLOR['ENDC'])
 		entity_list.append(f'\n}}\n')
 		name_list.append('END OF FILE')
@@ -625,7 +593,6 @@ def write_ents_to_file():
 	for e in entity_list:
 		print(COLOR['GREEN'],'Writing',COLOR['ENDC'],COLOR['CYAN'],name_list[i],COLOR['ENDC'],COLOR['GREEN'],'to file...',COLOR['ENDC'])
 		script.write(e)
-		# print(COLOR['GREEN'], f'writing {name_list[i]} to file')
 		i += 1
 		if 'INVALID' in e: invalidprop = True
 	script.close()
