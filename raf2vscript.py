@@ -257,10 +257,6 @@ def convert_raf_keyvalues(value):
 		# print(color)
 		# input('')
 
-	#convert $DisplayText to ClientPrint
-	elif 'player' in splitval[0].lower() and '$displaytextcenter' in splitval[1].lower():
-		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
-
 	#convert $SetKey to AddOutput (probably won't work everywhere)
 	elif '$setkey' in splitval[1].lower():
 		splitkey = splitval[1].split('$')
