@@ -29,7 +29,7 @@ filename = input('').strip()
 
 properties = {}
 
-formatted_properties, entity_list, name_list, extralines = [], [], [], []
+formatted_properties, entity_list, name_list, extralines, log = [], [], [], [], []
 giveitem = False
 
 funcname = ''
