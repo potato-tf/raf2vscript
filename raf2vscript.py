@@ -350,15 +350,17 @@ def format_entities(lines, entity_name):
 	brushent = False
 	global j, b, g
 
-	for _, line in enumerate(lines):
+	for line in lines:
 		try:
 			# if line.split('"')[0] == '}':
-			if '"' in line:
+			if line.count('"') == 4:
 				parts = line.split('"')
 				key, value = parts[1::2]
 			else:
+				print(line)
 				if len(parts) > 0 and not any(lines[2].startswith(prefix) for prefix in entprefixes):
 					parts = line.split()
+					print(line)
 					key, value = parts[0], parts[1]
 			if key == '}': continue
 			properties[key] = value
@@ -397,7 +399,10 @@ def format_entities(lines, entity_name):
 					try:
 						formatted_properties.append(f'{key} = {float(value)}')
 					except ValueError:
-						formatted_properties.append(f'{key} = "{value}"')
+						if '"' in value:
+							formatted_properties.append(f'{key} = {value}')
+						else:
+							formatted_properties.append(f'{key} = "{value}"')
 		except: pass
 	j = 1
 	# if len(entity_name) < 1: continue
@@ -453,7 +458,7 @@ def convert_entities():
 					lines = lines[1:]
 
 				if lines[0].lower().startswith('pointtemplates'):
-					print(lines)
+					# print(lines)
 					lines = lines[2:]
 
 				if lines[0].startswith('{'):
@@ -472,6 +477,7 @@ def convert_entities():
 					lines = lines[3:]
 
 				# Get the entity name
+				# do not remove the space
 				if lines[0].endswith(' {'):
 					lines[0] = lines[0].removesuffix('{')
 
