@@ -1,5 +1,6 @@
 import os
 import time
+import re
 
 os.system('')  # enables ansi escape characters in terminal
 
@@ -13,7 +14,7 @@ COLOR = {
     "ENDC": '\033[0m',
 }
 
-path = os.getcwd
+path = os.getcwd()
 
 print(COLOR['HEADER'],'HOW TO USE:', COLOR['ENDC'])
 print(COLOR['GREEN'],'================================================================================', COLOR['ENDC'])
@@ -27,18 +28,96 @@ print(COLOR['RED'],'(DO NOT ENTER THE UNMODIFIED POPFILE)',COLOR['ENDC'])
 
 filename = input('').strip()
 
+if filename.endswith('.pop'):
+	filename = filename.removesuffix('.pop')
+
+filename = f'{filename}.pop'
+
 properties = {}
 
-formatted_properties, entity_list, name_list, extralines, log = [], [], [], [], []
+formatted_properties, entity_list, name_list, extralines, log, func_list = [], [], [], [], [], []
 giveitem = False
-
 funcname = ''
 
-def read_file(filename):
-	if '.pop' in filename:
-		filename = filename.split('.pop', 1)[0]
+entprefixes = [ 
+	'ai',
+	'ambient_generic',
+	'archer', 
+	'assault_', 
+	'bot_', 
+	'color_correction', 
+	'cycler', 
+	'dynamic_prop', 
+	'entity', 
+	'env_', 
+	'filter_', 
+	'func_', 
+	'game_', 
+	'gibshooter', 
+	'halloween_', 
+	'hammer_updateignorelist', 
+	'hightower_', 
+	'info', 
+	'item_', 
+	'keyframe_', 
+	'light_', 
+	'logic_', 
+	'mapobj_cart_dispenser',
+	'math_', 
+	'momentary_', 
+	'move_', 
+	'npc_', 
+	'obj_',
+	'path_',
+	'phys',
+	'point_',
+	'prop_',
+	'script_',
+	'shadow_',
+	'sky_',
+	'tanktrain_',
+	'team_',
+	'test_traceline',
+	'tf_',
+	'training',
+	'trigger_',
+	'vgui_',
+	'water_lod_control',
+	'wheel_of_doom',
+	'world',
+	'$'
+]
 
-	filename = f'{filename}.pop'
+outputs = [
+	'onspawnoutput',
+	'onparentkilledoutput'
+]
+
+blacklisted = [
+	'onlyvelocitycheck',
+]
+convertedkeys = [
+	'$playsoundtoself',
+	'$displaytextchat',
+	'$displaytextcenter',
+	'$addcond',
+	'$removecond',
+	'$addplayerattribute',
+	'$removeplayerattribute',
+	'$setprop',
+	'$setclientprop',
+	'$addcurrency',
+	'$removecurrency',
+	'$setmodeloverride',
+	'$teleporttoentity',
+	'$setkey',
+	'$giveitem',
+	'$awardandgiveextraitem'
+]
+# Define a regular expression pattern to match key-value pairs
+pattern = r'(\S+)\s+([^\n]+)'
+
+def read_file(filename):
 
 	file_path = os.path.join(os.getcwd(), filename)
 	
@@ -90,80 +169,24 @@ text_list = [text.replace('\t', '') for text in text_list]
 # print(text_list)
 # Create a dictionary to store the properties
 
-entprefixes = [ 
-	'ai',
-	'ambient_generic',
-	'archer', 
-	'assault_', 
-	'bot_', 
-	'color_correction', 
-	'cycler', 
-	'dynamic_prop', 
-	'entity', 
-	'env_', 
-	'filter_', 
-	'func_', 
-	'game_', 
-	'gibshooter', 
-	'halloween_', 
-	'hammer_updateignorelist', 
-	'hightower_', 
-	'info', 
-	'item_', 
-	'keyframe_', 
-	'light_', 
-	'logic_', 
-	'mapobj_cart_dispenser',
-	'math_', 
-	'momentary_', 
-	'move_', 
-	'npc_', 
-	'obj_',
-	'path_',
-	'phys',
-	'point_',
-	'prop_',
-	'script_',
-	'shadow_',
-	'sky_',
-	'tanktrain_',
-	'team_',
-	'test_traceline',
-	'tf_',
-	'training',
-	'trigger_',
-	'vgui_',
-	'water_lod_control',
-	'wheel_of_doom',
-	'world'
-]
+# fuck it, just format things the way we want to
+# def wrap_in_quotes(match):
+# 	key, value = match.groups()
+	
+# 	if not key.startswith('"') and not key.endswith('"'):
+# 		key = f'"{key}"'
+# 	if not value.startswith('"') and not value.endswith('"'):
+# 		value = f'"{value}"'
+	
+# 	return f'{key} {value}'
 
-outputs = [
-	'onspawnoutput',
-	'onparentkilledoutput'
-]
+# with open(filename, 'r') as file:
+#     input = file.read()
 
-blacklisted = [
-	'onlyvelocitycheck',
-]
-convertedkeys = [
-	'$playsoundtoself',
-	'$displaytextchat',
-	'$displaytextcenter',
-	'$addcond',
-	'$removecond',
-	'$addplayerattribute',
-	'$removeplayerattribute',
-	'$setprop',
-	'$setclientprop',
-	'$addcurrency',
-	'$removecurrency',
-	'$setmodeloverride',
-	'$teleporttoentity',
-	'$setkey',
-	'$giveitem',
-	'$awardandgiveextraitem'
-]
+# quoted = re.sub(pattern, wrap_in_quotes, input)
+
+# with open(filename, 'w') as file:
+#     file.write(quoted)
 
 def convert_proptype(prop, propval, arrayval):
 
@@ -353,15 +376,23 @@ def format_entities(lines, entity_name):
 	for line in lines:
 		try:
 			# if line.split('"')[0] == '}':
+			#simple split if everything is quoted
 			if line.count('"') == 4:
 				parts = line.split('"')
 				key, value = parts[1::2]
 			else:
-				print(line)
+				# print(line)
+				parts = line.split(maxsplit=1)
+
 				if len(parts) > 0 and not any(lines[2].startswith(prefix) for prefix in entprefixes):
-					parts = line.split()
-					print(line)
+					# print(line)
 					key, value = parts[0], parts[1]
+					# if 'mins' in parts or 'maxs' in parts or 'movedir' in parts:
+					# 	value = f'{parts[1]}, {parts[2]}, {parts[3]}'
+					# 	print(parts)
+					# else:
+					# 	value = parts[1]
+
 			if key == '}': continue
 			properties[key] = value
 			lowerkey = key.lower()
@@ -374,17 +405,21 @@ def format_entities(lines, entity_name):
 					value = convert_raf_keyvalues(value)
 					# print(value)
 
-				formatted_properties.append(f'"{key}#{j}": "{value}"')
+				formatted_properties.append(f'"{key}#{j}": "{value.strip('"')}"')
 
 				j += 1
 			
 			else:
 				if 'mins' in key: 
 					brushent = True
-					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value}")'
-				if 'maxs' in key: 
+					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
+				if 'maxs' in key:
 					brushent = True
-					brushsizemax = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value}")'
+					brushsizemax = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
+				if (entity_name.startswith('trigger_') or entity_name.startswith('func_')) and not ('mins' in key or 'maxs' in key):
+					brushent = True
+					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
+					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
 				if key.startswith('origin'):
 					splitval = value.split(' ')
 					value = f'Vector({splitval[0]}, {splitval[1]}, {splitval[2]})'
@@ -411,7 +446,7 @@ def format_entities(lines, entity_name):
 	if not brushent:
 		if funcname != oldname and funcname != '':
 			oldname = funcname
-			spawnfunc = f'}}\n::{funcname} <- function(origin, angles)\n{{\n'
+			spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
 			output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
 		else:
 			output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
@@ -435,9 +470,9 @@ def format_entities(lines, entity_name):
 
 def convert_spawntemplates(lines):
 	for line in lines:
-		if line[0].startswith("SpawnTemplate"):
-			print(line[0])
-
+		if "SpawnTemplate" in line:
+			func_list.append(f'{line.split()[1].strip('"')}()')
+		
 #convert OnSpawnOutput/OnParentKilledOutput to relays
 def convert_entities():
 	o, p = 1, 1
@@ -566,7 +601,7 @@ def convert_entities():
 					format_entities(lines, entity_name)
 				# print(lines)
 				# Remove the entity name line
-			# convert_spawntemplates(lines)
+			convert_spawntemplates(lines)
 	except Exception as IndexError:
 		print(COLOR['CYAN'],f'Writing entities to file...',COLOR['ENDC'])
 		entity_list.append(f'\n}}\n')
@@ -589,7 +624,7 @@ def write_ents_to_file():
 	if giveitem:
 		# func = '::GiveWeapon <- function(player, classname, itemid, model)\n{\n\tif (model != null && (classname == \"tf_wearable\" || classname == \"tf_wearable_demoshield\" || classname == \"tf_wearable_razorback\"))\n\t{\n\t\tlocal wearable = Entities.CreateByClassname(classname);\n\t\tNetProps.SetPropInt(wearable, \"m_nModelIndex\", PrecacheModel(model));\n\t\tNetProps.SetPropBool(wearable, \"m_bValidatedAttachedEntity\", true);\n\t\tNetProps.SetPropBool(wearable, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tNetProps.SetPropEntity(wearable, \"m_hOwnerEntity\", player);\n\t\twearable.SetOwner(player);\n\t\twearable.DispatchSpawn();\n\t\tEntFireByHandle(wearable, \"SetParent\", \"!activator\", 0.0, player, player);\n\t\tNetProps.SetPropInt(wearable, \"m_fEffects\", 129);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != wearable.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", wearable, i);\n\t\t\tbreak;\n\t\t}\n\t\treturn wearable;\n\t} else {\n\t\tlocal weapon = Entities.CreateByClassname(classname);\n\t\tSetPropInt(weapon, \"m_AttributeManager.m_Item.m_iItemDefinitionIndex\", itemid);\n\t\tSetPropBool(weapon, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tSetPropBool(weapon, \"m_bValidatedAttachedEntity\", true);\n\t\tEntities.DispatchSpawn(weapon);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != weapon.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", weapon, i);\n\t\t\tbreak;\n\t\t}\n\t\tplayer.Weapon_Equip(weapon);\n\t}\n\treturn weapon;\n}'
 		func = '::GiveWeapon <- function(player, classname, itemid, model)\n{\n\tif (model != null && (classname == \"tf_wearable\" || classname == \"tf_wearable_demoshield\" || classname == \"tf_wearable_razorback\"))\n\t{\n\t\tlocal wearable = Entities.CreateByClassname(classname);\n\t\tNetProps.SetPropInt(wearable, \"m_nModelIndex\", PrecacheModel(model));\n\t\tNetProps.SetPropBool(wearable, \"m_bValidatedAttachedEntity\", true);\n\t\tNetProps.SetPropBool(wearable, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tNetProps.SetPropEntity(wearable, \"m_hOwnerEntity\", player);\n\t\twearable.SetOwner(player);\n\t\twearable.DispatchSpawn();\n\t\tEntFireByHandle(wearable, \"SetParent\", \"!activator\", 0.0, player, player);\n\t\tNetProps.SetPropInt(wearable, \"m_fEffects\", 129);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != wearable.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", wearable, i);\n\t\t\tbreak;\n\t\t}\n\t\treturn wearable;\n\t} else {\n\t\tlocal weapon = Entities.CreateByClassname(classname);\n\t\tSetPropInt(weapon, \"m_AttributeManager.m_Item.m_iItemDefinitionIndex\", itemid);\n\t\tSetPropBool(weapon, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tSetPropBool(weapon, \"m_bValidatedAttachedEntity\", true);\n\t\tEntities.DispatchSpawn(weapon);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != weapon.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", weapon, i);\n\t\t\tbreak;\n\t\t}\n\t\tplayer.Weapon_Equip(weapon);\n\t}\n\treturn weapon;\n'
-	# this function does not have tf_wearable compatibility
+	# this function does not have tf_wearable compatibilitorigin =y
 	# func = '::GiveWeapon <- function(player, classname, itemid)\n{\n\t\t// local clientcommand = Entities.CreateByClassname(\"point_clientcommand\");\n\n\tlocal weapon = Entities.CreateByClassname(classname);\n\n\tSetPropInt(weapon, \"m_AttributeManager.m_Item.m_iItemDefinitionIndex\", itemid);\n\tSetPropBool(weapon, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\tSetPropBool(weapon, \"m_bValidatedAttachedEntity\", true);\n\tEntities.DispatchSpawn(weapon);\n\n\tfor (local i = 0; i < 7; i++)\n\t{\n\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\n\t\tif (heldWeapon == null)\n\t\t\tcontinue;\n\t\tif (heldWeapon.GetSlot() != weapon.GetSlot())\n\t\t\tcontinue;\n\n\t\theldWeapon.Destroy();\n\t\tSetPropEntityArray(player, \"m_hMyWeapons\", weapon, i);\n\t\tbreak;\n\t}\n\tplayer.Weapon_Equip(weapon);\n\n\treturn weapon;\n}'
 		script.write(func)
 	for e in entity_list:
@@ -597,6 +632,17 @@ def write_ents_to_file():
 		script.write(e)
 		i += 1
 		if 'INVALID' in e: invalidprop = True
+	
+	spawnall = input('Write all SpawnTemplate functions? Y/N: ')
+	if 'Y' in spawnall.upper():
+		for spawnfunc in func_list:
+			script.write(f'\n{spawnfunc}')
+	else:
+		for spawnfunc in func_list:
+			spawn = input(f'Write {spawnfunc} to file? Y/N: ')
+			if not 'Y' in spawn.upper(): continue
+			script.write(f'\n{spawnfunc}')
+
 	script.close()
 	print(COLOR['GREEN'],'File written!',COLOR['ENDC'],COLOR['YELLOW'],len(name_list) - 1,COLOR['ENDC'],COLOR['GREEN'],'Entities Converted',COLOR['ENDC'])
 

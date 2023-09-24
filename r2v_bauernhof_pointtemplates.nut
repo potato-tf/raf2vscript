@@ -1,5 +1,50 @@
+::GiveWeapon <- function(player, classname, itemid, model)
+{
+	if (model != null && (classname == "tf_wearable" || classname == "tf_wearable_demoshield" || classname == "tf_wearable_razorback"))
+	{
+		local wearable = Entities.CreateByClassname(classname);
+		NetProps.SetPropInt(wearable, "m_nModelIndex", PrecacheModel(model));
+		NetProps.SetPropBool(wearable, "m_bValidatedAttachedEntity", true);
+		NetProps.SetPropBool(wearable, "m_AttributeManager.m_Item.m_bInitialized", true);
+		NetProps.SetPropEntity(wearable, "m_hOwnerEntity", player);
+		wearable.SetOwner(player);
+		wearable.DispatchSpawn();
+		EntFireByHandle(wearable, "SetParent", "!activator", 0.0, player, player);
+		NetProps.SetPropInt(wearable, "m_fEffects", 129);
+		for (local i = 0; i < 7; i++)
+		{
+			local heldWeapon = GetPropEntityArray(player, "m_hMyWeapons", i);
+			if (heldWeapon == null) 
+				continue;
+			if (heldWeapon.GetSlot() != wearable.GetSlot()) 
+				continue;
+			heldWeapon.Destroy();
+			SetPropEntityArray(player, "m_hMyWeapons", wearable, i);
+			break;
+		}
+		return wearable;
+	} else {
+		local weapon = Entities.CreateByClassname(classname);
+		SetPropInt(weapon, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", itemid);
+		SetPropBool(weapon, "m_AttributeManager.m_Item.m_bInitialized", true);
+		SetPropBool(weapon, "m_bValidatedAttachedEntity", true);
+		Entities.DispatchSpawn(weapon);
+		for (local i = 0; i < 7; i++)
+		{
+			local heldWeapon = GetPropEntityArray(player, "m_hMyWeapons", i);
+			if (heldWeapon == null) 
+				continue;
+			if (heldWeapon.GetSlot() != weapon.GetSlot()) 
+				continue;
+			heldWeapon.Destroy();
+			SetPropEntityArray(player, "m_hMyWeapons", weapon, i);
+			break;
+		}
+		player.Weapon_Equip(weapon);
+	}
+	return weapon;
 }
-::corelogic <- function(origin, angles)
+::corelogic <- function()
 {
 	local logic_auto1 = SpawnEntityFromTable("logic_auto", {
 	    targetname = "mainrelay",
@@ -46,7 +91,7 @@
 		logic_auto1.SetAngles(angles)
 
 	local tf_point_nav_interface2 = SpawnEntityFromTable("tf_point_nav_interface", {
-	    
+	    targetname = "navman"
 	})
 
 	if(origin != null)
@@ -54,72 +99,105 @@
 	if(angles != null)
 		tf_point_nav_interface2.SetAngles(angles)
 
-	local func_button3 = SpawnEntityFromTable("func_button", {
-	    
+	local func_button_brush1 = SpawnEntityFromTable("func_button", {
+	    origin = Vector("2168, 40, 13604"),
+	    mins = "-12 -10 -6",
+	    maxs = "24 10 6",
+	    rendermode = 10,
+	    movedir = "0 180 0",
+	    spawnflags = 513,
+	    damagefilter = "filter_redteam",
+	    speed = 5,
+	    wait = 20,
+	    sounds = 3,
+	    targetname = "revive_button",
+	    "OnPressed#1": "popscript,$revivelogic,!activator,0,-1"
+	})
+	func_button_brush1.KeyValueFromInt("solid", 2)
+	func_button_brush1.KeyValueFromString("mins", "0, 0, 0")
+	func_button_brush1.KeyValueFromString("maxs", "24 10 6")
+
+	if(origin != null)
+		func_button_brush1.SetOrigin(origin)
+	if(angles != null)
+		func_button_brush1.SetAngles(angles)
+
+	local game_forcerespawn3 = SpawnEntityFromTable("game_forcerespawn", {
+	    targetname = "respawner"
 	})
 
 	if(origin != null)
-		func_button3.SetOrigin(origin)
+		game_forcerespawn3.SetOrigin(origin)
 	if(angles != null)
-		func_button3.SetAngles(angles)
+		game_forcerespawn3.SetAngles(angles)
 
-	local game_forcerespawn4 = SpawnEntityFromTable("game_forcerespawn", {
-	    
-	})
-
-	if(origin != null)
-		game_forcerespawn4.SetOrigin(origin)
-	if(angles != null)
-		game_forcerespawn4.SetAngles(angles)
-
-	local logic_relay5 = SpawnEntityFromTable("logic_relay", {
+	local logic_relay4 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "respawn_relay",
 	    "OnTrigger#1": "respawner,ForceTeamRespawn,2,0,-1"
 	})
 
 	if(origin != null)
-		logic_relay5.SetOrigin(origin)
+		logic_relay4.SetOrigin(origin)
 	if(angles != null)
-		logic_relay5.SetAngles(angles)
+		logic_relay4.SetAngles(angles)
 
-	local trigger_hurt6 = SpawnEntityFromTable("trigger_hurt", {
-	    
+	local trigger_hurt_brush2 = SpawnEntityFromTable("trigger_hurt", {
+	    damage = 4500,
+	    spawnflags = 1,
+	    mins = "-9999 -9999 -9999",
+	    maxs = "9999 9999 9999",
+	    startdisabled = 1,
+	    targetname = "hologram_nuke_hurt",
+	    filtername = "filter_notred",
+	    origin = Vector("0, 0, 0")
+	})
+	trigger_hurt_brush2.KeyValueFromInt("solid", 2)
+	trigger_hurt_brush2.KeyValueFromString("mins", "0, 0, 0")
+	trigger_hurt_brush2.KeyValueFromString("maxs", "9999 9999 9999")
+
+	if(origin != null)
+		trigger_hurt_brush2.SetOrigin(origin)
+	if(angles != null)
+		trigger_hurt_brush2.SetAngles(angles)
+
+	local filter_activator_tfteam5 = SpawnEntityFromTable("filter_activator_tfteam", {
+	    targetname = "filter_notred",
+	    teamnum = 2,
+	    negated = 1
 	})
 
 	if(origin != null)
-		trigger_hurt6.SetOrigin(origin)
+		filter_activator_tfteam5.SetOrigin(origin)
 	if(angles != null)
-		trigger_hurt6.SetAngles(angles)
+		filter_activator_tfteam5.SetAngles(angles)
 
-	local filter_activator_tfteam7 = SpawnEntityFromTable("filter_activator_tfteam", {
-	    
+	local logic_relay6 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "wave_output_clear",
+	    "OnTrigger#1": "player,$RemoveOutput,$OnDamageReceived,0,-1",
+	    "OnTrigger#2": "player,$RemoveOutput,$OnDeath,0,-1",
+	    "OnTrigger#3": "fog_controller,SetStartDist,600,,-1",
+	    "OnTrigger#4": "fog_controller,SetEndDist,4000,,-1",
+	    "OnTrigger#5": "fog_controller,SetColor,0 0 0,,-1",
+	    "OnTrigger#6": "tf_objective_resource,RunScriptCode,NetProps.SetPropInt(self, `m_nMannVsMachineWaveCount`, 0),,-1"
 	})
 
 	if(origin != null)
-		filter_activator_tfteam7.SetOrigin(origin)
+		logic_relay6.SetOrigin(origin)
 	if(angles != null)
-		filter_activator_tfteam7.SetAngles(angles)
+		logic_relay6.SetAngles(angles)
 
-	local logic_relay8 = SpawnEntityFromTable("logic_relay", {
-	    
-	})
-
-	if(origin != null)
-		logic_relay8.SetOrigin(origin)
-	if(angles != null)
-		logic_relay8.SetAngles(angles)
-
-	local math_counter9 = SpawnEntityFromTable("math_counter", {
+	local math_counter7 = SpawnEntityFromTable("math_counter", {
 	    targetname = "roundscleared",
 	    "startvalue" = 0,
 	    "outValue#1": "survivalcheck,SetValueCompare,,0,-1"
 	})
 
 	if(origin != null)
-		math_counter9.SetOrigin(origin)
+		math_counter7.SetOrigin(origin)
 	if(angles != null)
-		math_counter9.SetAngles(angles)
+		math_counter7.SetAngles(angles)
 
-	local logic_compare10 = SpawnEntityFromTable("logic_compare", {
+	local logic_compare8 = SpawnEntityFromTable("logic_compare", {
 	    targetname = "survivalcheck",
 	    "initialValue" = 0,
 	    "CompareValue" = 4,
@@ -130,60 +208,153 @@
 	})
 
 	if(origin != null)
-		logic_compare10.SetOrigin(origin)
+		logic_compare8.SetOrigin(origin)
 	if(angles != null)
-		logic_compare10.SetAngles(angles)
+		logic_compare8.SetAngles(angles)
 
-	local prop_dynamic11 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local prop_dynamic9 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/player/demo.mdl",
+	    disableshadows = 1,
+	    solid = 0,
+	    targetname = "ee_demo",
+	    defaultanim = "crouch_LOSER",
+	    origin = Vector("-428, 2300, -2"),
+	    angles = QAngle("0, 315, 0")
 	})
 
 	if(origin != null)
-		prop_dynamic11.SetOrigin(origin)
+		prop_dynamic9.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic11.SetAngles(angles)
+		prop_dynamic9.SetAngles(angles)
 
-	local prop_dynamic_ornament12 = SpawnEntityFromTable("prop_dynamic_ornament", {
-	    
+	local prop_dynamic_ornament10 = SpawnEntityFromTable("prop_dynamic_ornament", {
+	    targetname = "ee_bool",
+	    spawnflags = 256,
+	    model = "models\weapons\c_models\c_bottle\c_bottle.mdl",
+	    disableshadows = 1,
+	    startdisabled = 1,
+	    origin = Vector("-428, 2300, -2"),
+	    lightingorigin = "ee_demo",
+	    InitialOwner = "ee_demo"
 	})
 
 	if(origin != null)
-		prop_dynamic_ornament12.SetOrigin(origin)
+		prop_dynamic_ornament10.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic_ornament12.SetAngles(angles)
+		prop_dynamic_ornament10.SetAngles(angles)
 
-	local prop_dynamic_ornament13 = SpawnEntityFromTable("prop_dynamic_ornament", {
-	    
+	local prop_dynamic_ornament11 = SpawnEntityFromTable("prop_dynamic_ornament", {
+	    targetname = "ee_shiv",
+	    spawnflags = 256,
+	    model = "models/workshop_partner/weapons/c_models/c_prinny_knife/c_prinny_knife.mdl",
+	    disableshadows = 1,
+	    startdisabled = 0,
+	    origin = Vector("-428, 2300, -2"),
+	    lightingorigin = "ee_demo",
+	    InitialOwner = "ee_demo"
 	})
 
 	if(origin != null)
-		prop_dynamic_ornament13.SetOrigin(origin)
+		prop_dynamic_ornament11.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic_ornament13.SetAngles(angles)
+		prop_dynamic_ornament11.SetAngles(angles)
 
-	local func_flagdetectionzone14 = SpawnEntityFromTable("func_flagdetectionzone", {
-	    
+	local func_flagdetectionzone_brush3 = SpawnEntityFromTable("func_flagdetectionzone", {
+	    startdisabled = 0,
+	    targetname = "ee_detector",
+	    mins = "-5 -5 -24",
+	    maxs = "5 5 24",
+	    origin = Vector("-413, 2282, 22"),
+	    "OnStartTouchFlag#1": "ee_beerflag,ForceResetAndDisableSilent,,-1",
+	    "OnStartTouchFlag#2": "ee_beerflag,Kill,,1,-1",
+	    "OnStartTouchFlag#3": "ee_demo,SetAnimation,taunt03,0,-1",
+	    "OnStartTouchFlag#4": "ee_bool,Enable,,0,-1",
+	    "OnStartTouchFlag#5": "ee_shiv,Disable,,0,-1",
+	    "OnStartTouchFlag#6": "ee_bool,Kill,,4,-1",
+	    "OnStartTouchFlag#7": "ee_shiv,Enable,,4,-1",
+	    "OnStartTouchFlag#8": "ee_demo,SetAnimation,taunt04,4,-1",
+	    "OnStartTouchFlag#9": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,6.5,-1",
+	    "OnStartTouchFlag#10": "popscript,$GiveSuperShank,!activator,6.5,-1",
+	    "OnStartTouchFlag#11": "!activator,RunScriptCode,ClientPrint(self, 4, `Tavish has given you his Super Shank!`),6.5,-1",
+	    "OnStartTouchFlag#12": "ee_shiv,Kill,,7,-1",
+	    "OnStartTouchFlag#13": "ee_demo,SetAnimation,taunt_woohoo,7,-1",
+	    "OnStartTouchFlag#14": "ee_demo,Kill,,8,-1"
+	})
+	func_flagdetectionzone_brush3.KeyValueFromInt("solid", 2)
+	func_flagdetectionzone_brush3.KeyValueFromString("mins", "0, 0, 0")
+	func_flagdetectionzone_brush3.KeyValueFromString("maxs", "5 5 24")
+
+	if(origin != null)
+		func_flagdetectionzone_brush3.SetOrigin(origin)
+	if(angles != null)
+		func_flagdetectionzone_brush3.SetAngles(angles)
+
+	local item_teamflag12 = SpawnEntityFromTable("item_teamflag", {
+	    targetname = "ee_beerflag",
+	    startdisabled = 1,
+	    flag_model = "models/player/items/taunts/beer_crate/beer_crate.mdl",
+	    origin = Vector("2029, 333, 101"),
+	    returntime = 60000,
+	    "OnPickup#1": "!self,setteam,3,,-1",
+	    "OnDrop#2": "!self,ForceResetAndDisableSilent,,-1",
+	    "OnDrop#3": "!self,Kill,,1,-1"
 	})
 
 	if(origin != null)
-		func_flagdetectionzone14.SetOrigin(origin)
+		item_teamflag12.SetOrigin(origin)
 	if(angles != null)
-		func_flagdetectionzone14.SetAngles(angles)
-
-	local item_teamflag15 = SpawnEntityFromTable("item_teamflag", {
-	    
-	})
-
-	if(origin != null)
-		item_teamflag15.SetOrigin(origin)
-	if(angles != null)
-		item_teamflag15.SetAngles(angles)
+		item_teamflag12.SetAngles(angles)
 
 }
-::Spawn_things <- function(origin, angles)
+::Spawn_things <- function()
 {
+	local prop_dynamic13 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props/mvm_shadows/spawnroom.mdl",
+	    disableshadows = 1,
+	    solid = 6,
+	    origin = Vector("320, -32, 32"),
+	    angles = QAngle("0, 270, 0")
+	})
+
+	if(origin != null)
+		prop_dynamic13.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic13.SetAngles(angles)
+
+	local prop_dynamic14 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_gameplay/door_grate003_bottom.mdl",
+	    disableshadows = 1,
+	    solid = 6,
+	    origin = Vector("133, 0, -6"),
+	    angles = QAngle("90, 0, 0")
+	})
+
+	if(origin != null)
+		prop_dynamic14.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic14.SetAngles(angles)
+
+	local prop_dynamic15 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_gameplay/door_grate003_bottom.mdl",
+	    disableshadows = 1,
+	    solid = 6,
+	    origin = Vector("59, 0, -6"),
+	    angles = QAngle("90, 180, 0")
+	})
+
+	if(origin != null)
+		prop_dynamic15.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic15.SetAngles(angles)
+
 	local prop_dynamic16 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	    model = "models/props_viaduct_event/fog_plane03.mdl",
+	    disableshadows = 1,
+	    solid = 0,
+	    modelscale = 2,
+	    rendercolor = "103 103 103",
+	    origin = Vector("-838, -2608, 1634"),
+	    angles = QAngle("0, 0, -180")
 	})
 
 	if(origin != null)
@@ -192,7 +363,13 @@
 		prop_dynamic16.SetAngles(angles)
 
 	local prop_dynamic17 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	    model = "models/props_viaduct_event/fog_plane03.mdl",
+	    disableshadows = 1,
+	    solid = 0,
+	    modelscale = 2,
+	    rendercolor = "103 103 103",
+	    origin = Vector("-854, 2690, 1634"),
+	    angles = QAngle("0, 0, -180")
 	})
 
 	if(origin != null)
@@ -200,124 +377,149 @@
 	if(angles != null)
 		prop_dynamic17.SetAngles(angles)
 
-	local prop_dynamic18 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local func_forcefield_brush4 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-240 -608 -8",
+	    maxs = "240 608 8",
+	    origin = Vector("256, 16, 768")
+	})
+	func_forcefield_brush4.KeyValueFromInt("solid", 2)
+	func_forcefield_brush4.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush4.KeyValueFromString("maxs", "240 608 8")
+
+	if(origin != null)
+		func_forcefield_brush4.SetOrigin(origin)
+	if(angles != null)
+		func_forcefield_brush4.SetAngles(angles)
+
+	local trigger_teleport_brush5 = SpawnEntityFromTable("trigger_teleport", {
+	    StartDisabled = 1,
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    target = "warp_target",
+	    targetname = "red_spawn_warp",
+	    mins = "-232 -448 -16",
+	    maxs = "232 448 3000",
+	    origin = Vector("264, -96, 0")
+	})
+	trigger_teleport_brush5.KeyValueFromInt("solid", 2)
+	trigger_teleport_brush5.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush5.KeyValueFromString("maxs", "232 448 3000")
+
+	if(origin != null)
+		trigger_teleport_brush5.SetOrigin(origin)
+	if(angles != null)
+		trigger_teleport_brush5.SetAngles(angles)
+
+	local func_forcefield_brush6 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-240 -192 -284",
+	    maxs = "240 192 284",
+	    origin = Vector("256, -400, 492")
+	})
+	func_forcefield_brush6.KeyValueFromInt("solid", 2)
+	func_forcefield_brush6.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush6.KeyValueFromString("maxs", "240 192 284")
+
+	if(origin != null)
+		func_forcefield_brush6.SetOrigin(origin)
+	if(angles != null)
+		func_forcefield_brush6.SetAngles(angles)
+
+	local func_forcefield_brush7 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-240 -136 -16",
+	    maxs = "240 136 3000",
+	    origin = Vector("256, 488, 224")
+	})
+	func_forcefield_brush7.KeyValueFromInt("solid", 2)
+	func_forcefield_brush7.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush7.KeyValueFromString("maxs", "240 136 3000")
+
+	if(origin != null)
+		func_forcefield_brush7.SetOrigin(origin)
+	if(angles != null)
+		func_forcefield_brush7.SetAngles(angles)
+
+	local info_teleport_destination18 = SpawnEntityFromTable("info_teleport_destination", {
+	    targetname = "warp_target",
+	    angles = QAngle("0, 270, 0"),
+	    origin = Vector("322, -629, 40")
 	})
 
 	if(origin != null)
-		prop_dynamic18.SetOrigin(origin)
+		info_teleport_destination18.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic18.SetAngles(angles)
+		info_teleport_destination18.SetAngles(angles)
 
-	local prop_dynamic19 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local info_teleport_destination19 = SpawnEntityFromTable("info_teleport_destination", {
+	    targetname = "warp_target",
+	    angles = QAngle("0, 90, 0"),
+	    origin = Vector("258, 428, 40")
 	})
 
 	if(origin != null)
-		prop_dynamic19.SetOrigin(origin)
+		info_teleport_destination19.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic19.SetAngles(angles)
+		info_teleport_destination19.SetAngles(angles)
 
-	local prop_dynamic20 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local ambient_generic20 = SpawnEntityFromTable("ambient_generic", {
+	    health = 8,
+	    message = "ambient\atmosphere\thunder1.wav",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "atmos_1"
 	})
 
 	if(origin != null)
-		prop_dynamic20.SetOrigin(origin)
+		ambient_generic20.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic20.SetAngles(angles)
+		ambient_generic20.SetAngles(angles)
 
-	local func_forcefield21 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local ambient_generic21 = SpawnEntityFromTable("ambient_generic", {
+	    health = 8,
+	    message = "ambient\atmosphere\thunder2.wav",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "atmos_2"
 	})
 
 	if(origin != null)
-		func_forcefield21.SetOrigin(origin)
+		ambient_generic21.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield21.SetAngles(angles)
+		ambient_generic21.SetAngles(angles)
 
-	local trigger_teleport22 = SpawnEntityFromTable("trigger_teleport", {
-	    
+	local ambient_generic22 = SpawnEntityFromTable("ambient_generic", {
+	    health = 8,
+	    message = "ambient\atmosphere\thunder3.wav",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "atmos_3"
 	})
 
 	if(origin != null)
-		trigger_teleport22.SetOrigin(origin)
+		ambient_generic22.SetOrigin(origin)
 	if(angles != null)
-		trigger_teleport22.SetAngles(angles)
+		ambient_generic22.SetAngles(angles)
 
-	local func_forcefield23 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local ambient_generic23 = SpawnEntityFromTable("ambient_generic", {
+	    health = 8,
+	    message = "ambient\wind_gust2.wav",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "atmos_4"
 	})
 
 	if(origin != null)
-		func_forcefield23.SetOrigin(origin)
+		ambient_generic23.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield23.SetAngles(angles)
+		ambient_generic23.SetAngles(angles)
 
-	local func_forcefield24 = SpawnEntityFromTable("func_forcefield", {
-	    
-	})
-
-	if(origin != null)
-		func_forcefield24.SetOrigin(origin)
-	if(angles != null)
-		func_forcefield24.SetAngles(angles)
-
-	local info_teleport_destination25 = SpawnEntityFromTable("info_teleport_destination", {
-	    
-	})
-
-	if(origin != null)
-		info_teleport_destination25.SetOrigin(origin)
-	if(angles != null)
-		info_teleport_destination25.SetAngles(angles)
-
-	local info_teleport_destination26 = SpawnEntityFromTable("info_teleport_destination", {
-	    
-	})
-
-	if(origin != null)
-		info_teleport_destination26.SetOrigin(origin)
-	if(angles != null)
-		info_teleport_destination26.SetAngles(angles)
-
-	local ambient_generic27 = SpawnEntityFromTable("ambient_generic", {
-	    
-	})
-
-	if(origin != null)
-		ambient_generic27.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic27.SetAngles(angles)
-
-	local ambient_generic28 = SpawnEntityFromTable("ambient_generic", {
-	    
-	})
-
-	if(origin != null)
-		ambient_generic28.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic28.SetAngles(angles)
-
-	local ambient_generic29 = SpawnEntityFromTable("ambient_generic", {
-	    
-	})
-
-	if(origin != null)
-		ambient_generic29.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic29.SetAngles(angles)
-
-	local ambient_generic30 = SpawnEntityFromTable("ambient_generic", {
-	    
-	})
-
-	if(origin != null)
-		ambient_generic30.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic30.SetAngles(angles)
-
-	local logic_case31 = SpawnEntityFromTable("logic_case", {
+	local logic_case24 = SpawnEntityFromTable("logic_case", {
+	    targetname = "thunderpick",
 	    "OnCase01#1": "atmos_1,PlaySound,,0,-1",
 	    "OnCase02#2": "atmos_2,PlaySound,,0,-1",
 	    "OnCase03#3": "atmos_3,PlaySound,,0,-1",
@@ -325,20 +527,24 @@
 	})
 
 	if(origin != null)
-		logic_case31.SetOrigin(origin)
+		logic_case24.SetOrigin(origin)
 	if(angles != null)
-		logic_case31.SetAngles(angles)
+		logic_case24.SetAngles(angles)
 
-	local logic_timer32 = SpawnEntityFromTable("logic_timer", {
+	local logic_timer25 = SpawnEntityFromTable("logic_timer", {
+	    userandomtime = 1,
+	    lowerrandombound = 10,
+	    upperrandombound = 25,
 	    "OnTimer#1": "thunderpick,PickRandom,,0,-1"
 	})
 
 	if(origin != null)
-		logic_timer32.SetOrigin(origin)
+		logic_timer25.SetOrigin(origin)
 	if(angles != null)
-		logic_timer32.SetAngles(angles)
+		logic_timer25.SetAngles(angles)
 
-	local logic_relay33 = SpawnEntityFromTable("logic_relay", {
+	local logic_relay26 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "stage_start",
 	    "OnTrigger#1": "powerup_timer,Enable,,0,-1",
 	    "OnTrigger#2": "roundcounter,add,1,0,-1",
 	    "OnTrigger#3": "realtimer,trigger,,0,-1",
@@ -349,99 +555,122 @@
 	})
 
 	if(origin != null)
-		logic_relay33.SetOrigin(origin)
+		logic_relay26.SetOrigin(origin)
 	if(angles != null)
-		logic_relay33.SetAngles(angles)
+		logic_relay26.SetAngles(angles)
 
-	local logic_relay34 = SpawnEntityFromTable("logic_relay", {
+	local logic_relay27 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "stage_start_finale",
 	    "OnTrigger#1": "finale_snd,PlaySound,,0,-1"
 	})
 
 	if(origin != null)
-		logic_relay34.SetOrigin(origin)
+		logic_relay27.SetOrigin(origin)
 	if(angles != null)
-		logic_relay34.SetAngles(angles)
+		logic_relay27.SetAngles(angles)
+
+	local logic_relay28 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "stage_clear",
+	    "OnTrigger#1": "roundclear_snd,PlaySound,,-1",
+	    "OnTrigger#2": "relay_enemycount_reset,Trigger,,-1",
+	    "OnTrigger#3": "medicbonus_relay,Trigger,,-1",
+	    "OnTrigger#4": "respawner,ForceTeamRespawn,2,0.7,-1",
+	    "OnTrigger#5": "realtimer,trigger,,0.23,-1",
+	    "OnTrigger#6": "powerup_timer,Disable,,0,-1",
+	    "OnTrigger#7": "hologram_*,Disable,,0,-1",
+	    "OnTrigger#8": "plate,skin,0,0,-1",
+	    "OnTrigger#9": "roundscleared,Add,1,0,0"
+	})
+
+	if(origin != null)
+		logic_relay28.SetOrigin(origin)
+	if(angles != null)
+		logic_relay28.SetAngles(angles)
+
+	local logic_relay29 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "stage_clear_finale",
+	    "OnTrigger#1": "roundclear_snd,PlaySound,,-1",
+	    "OnTrigger#2": "relay_enemycount_reset,Trigger,,-1",
+	    "OnTrigger#3": "medicbonus_relay,Trigger,,-1",
+	    "OnTrigger#4": "respawner,ForceTeamRespawn,2,0.7,-1",
+	    "OnTrigger#5": "realtimer,trigger,,0.23,-1",
+	    "OnTrigger#6": "powerup_timer,Disable,,0,-1",
+	    "OnTrigger#7": "hologram_*,Disable,,0,-1",
+	    "OnTrigger#8": "plate,skin,0,0,-1",
+	    "OnTrigger#9": "roundscleared,Add,1,0,0"
+	})
+
+	if(origin != null)
+		logic_relay29.SetOrigin(origin)
+	if(angles != null)
+		logic_relay29.SetAngles(angles)
+
+	local logic_relay30 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "medicbonus_relay"
+	})
+
+	if(origin != null)
+		logic_relay30.SetOrigin(origin)
+	if(angles != null)
+		logic_relay30.SetAngles(angles)
+
+	local prop_dynamic31 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_viaduct_event/underworld_sky01.mdl",
+	    targetname = "bossfog_dome",
+	    disableshadows = 1,
+	    startdisabled = 1,
+	    solid = 0,
+	    scale = 1,
+	    angles = QAngle("0, 90, 0"),
+	    origin = Vector("0, 0, 0")
+	})
+
+	if(origin != null)
+		prop_dynamic31.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic31.SetAngles(angles)
+
+	local env_fog_controller32 = SpawnEntityFromTable("env_fog_controller", {
+	    targetname = "fog_bossround",
+	    fogcolor = "129 130 180",
+	    fogcolor2 = "131 132 177",
+	    fogenable = 1,
+	    fogstart = -1000.0,
+	    fogend = 9000
+	})
+
+	if(origin != null)
+		env_fog_controller32.SetOrigin(origin)
+	if(angles != null)
+		env_fog_controller32.SetAngles(angles)
+
+	local env_fade33 = SpawnEntityFromTable("env_fade", {
+	    targetname = "bossfog_fadein",
+	    duration = 5,
+	    rendercolor = "34 38 33",
+	    renderamt = 255
+	})
+
+	if(origin != null)
+		env_fade33.SetOrigin(origin)
+	if(angles != null)
+		env_fade33.SetAngles(angles)
+
+	local env_fade34 = SpawnEntityFromTable("env_fade", {
+	    targetname = "bossfog_fadeout",
+	    duration = 5,
+	    rendercolor = "34 38 33",
+	    spawnflags = 1,
+	    renderamt = 255
+	})
+
+	if(origin != null)
+		env_fade34.SetOrigin(origin)
+	if(angles != null)
+		env_fade34.SetAngles(angles)
 
 	local logic_relay35 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "roundclear_snd,PlaySound,,-1",
-	    "OnTrigger#2": "relay_enemycount_reset,Trigger,,-1",
-	    "OnTrigger#3": "medicbonus_relay,Trigger,,-1",
-	    "OnTrigger#4": "respawner,ForceTeamRespawn,2,0.7,-1",
-	    "OnTrigger#5": "realtimer,trigger,,0.23,-1",
-	    "OnTrigger#6": "powerup_timer,Disable,,0,-1",
-	    "OnTrigger#7": "hologram_*,Disable,,0,-1",
-	    "OnTrigger#8": "plate,skin,0,0,-1",
-	    "OnTrigger#9": "roundscleared,Add,1,0,0"
-	})
-
-	if(origin != null)
-		logic_relay35.SetOrigin(origin)
-	if(angles != null)
-		logic_relay35.SetAngles(angles)
-
-	local logic_relay36 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "roundclear_snd,PlaySound,,-1",
-	    "OnTrigger#2": "relay_enemycount_reset,Trigger,,-1",
-	    "OnTrigger#3": "medicbonus_relay,Trigger,,-1",
-	    "OnTrigger#4": "respawner,ForceTeamRespawn,2,0.7,-1",
-	    "OnTrigger#5": "realtimer,trigger,,0.23,-1",
-	    "OnTrigger#6": "powerup_timer,Disable,,0,-1",
-	    "OnTrigger#7": "hologram_*,Disable,,0,-1",
-	    "OnTrigger#8": "plate,skin,0,0,-1",
-	    "OnTrigger#9": "roundscleared,Add,1,0,0"
-	})
-
-	if(origin != null)
-		logic_relay36.SetOrigin(origin)
-	if(angles != null)
-		logic_relay36.SetAngles(angles)
-
-	local logic_relay37 = SpawnEntityFromTable("logic_relay", {
-	    
-	})
-
-	if(origin != null)
-		logic_relay37.SetOrigin(origin)
-	if(angles != null)
-		logic_relay37.SetAngles(angles)
-
-	local prop_dynamic38 = SpawnEntityFromTable("prop_dynamic", {
-	    
-	})
-
-	if(origin != null)
-		prop_dynamic38.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic38.SetAngles(angles)
-
-	local env_fog_controller39 = SpawnEntityFromTable("env_fog_controller", {
-	    
-	})
-
-	if(origin != null)
-		env_fog_controller39.SetOrigin(origin)
-	if(angles != null)
-		env_fog_controller39.SetAngles(angles)
-
-	local env_fade40 = SpawnEntityFromTable("env_fade", {
-	    
-	})
-
-	if(origin != null)
-		env_fade40.SetOrigin(origin)
-	if(angles != null)
-		env_fade40.SetAngles(angles)
-
-	local env_fade41 = SpawnEntityFromTable("env_fade", {
-	    
-	})
-
-	if(origin != null)
-		env_fade41.SetOrigin(origin)
-	if(angles != null)
-		env_fade41.SetAngles(angles)
-
-	local logic_relay42 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "bossstage_start",
 	    "OnTrigger#1": "door_red_large_win_*,Close,,0,-1",
 	    "OnTrigger#2": "red_spawn_warp,Enable,,0,-1",
 	    "OnTrigger#3": "roundcounter,add,1,0,-1",
@@ -464,11 +693,12 @@
 	})
 
 	if(origin != null)
-		logic_relay42.SetOrigin(origin)
+		logic_relay35.SetOrigin(origin)
 	if(angles != null)
-		logic_relay42.SetAngles(angles)
+		logic_relay35.SetAngles(angles)
 
-	local logic_relay43 = SpawnEntityFromTable("logic_relay", {
+	local logic_relay36 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "bossstage_start_tread",
 	    "OnTrigger#1": "door_red_large_win_*,Close,,0,-1",
 	    "OnTrigger#2": "red_spawn_warp,Enable,,0,-1",
 	    "OnTrigger#3": "roundcounter,add,1,0,-1",
@@ -488,11 +718,12 @@
 	})
 
 	if(origin != null)
-		logic_relay43.SetOrigin(origin)
+		logic_relay36.SetOrigin(origin)
 	if(angles != null)
-		logic_relay43.SetAngles(angles)
+		logic_relay36.SetAngles(angles)
 
-	local logic_relay44 = SpawnEntityFromTable("logic_relay", {
+	local logic_relay37 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "bossstage_clear",
 	    "OnTrigger#1": "tf_gamerules,PlayVORed,#*shadows/bossround_end.mp3,0,-1",
 	    "OnTrigger#2": "relay_enemycount_reset,Trigger,,-1",
 	    "OnTrigger#3": "medicbonus_relay,Trigger,,-1",
@@ -518,113 +749,182 @@
 	})
 
 	if(origin != null)
-		logic_relay44.SetOrigin(origin)
+		logic_relay37.SetOrigin(origin)
 	if(angles != null)
-		logic_relay44.SetAngles(angles)
+		logic_relay37.SetAngles(angles)
 
-	local logic_branch45 = SpawnEntityFromTable("logic_branch", {
-	    
+	local logic_branch38 = SpawnEntityFromTable("logic_branch", {
+	    targetname = "tgun_check",
+	    InitialValue = 0,
+	    "OnFalse#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnFalse#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnFalse#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_ULTRARARE,0.6,-1",
+	    "OnFalse#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received an Ãœberweapon: The Thunder Gun!`),0,-1",
+	    "OnFalse#5": "tgun_check,Toggle,,-1",
+	    "OnTrue#6": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnTrue#7": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnTrue#8": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnTrue#9": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1"
 	})
 
 	if(origin != null)
-		logic_branch45.SetOrigin(origin)
+		logic_branch38.SetOrigin(origin)
 	if(angles != null)
-		logic_branch45.SetAngles(angles)
+		logic_branch38.SetAngles(angles)
 
-	local prop_dynamic46 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local prop_dynamic39 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_forest/wood_stairs96.mdl",
+	    disableshadows = 1,
+	    solid = 6,
+	    angles = QAngle("0, 180, 0"),
+	    origin = Vector("928, 1544, 96")
 	})
 
 	if(origin != null)
-		prop_dynamic46.SetOrigin(origin)
+		prop_dynamic39.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic46.SetAngles(angles)
+		prop_dynamic39.SetAngles(angles)
 
-	local prop_dynamic47 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local prop_dynamic40 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_forest/wood_stairs96.mdl",
+	    disableshadows = 1,
+	    solid = 6,
+	    angles = QAngle("0, 180, 0"),
+	    origin = Vector("-571, 1924, 87")
 	})
 
 	if(origin != null)
-		prop_dynamic47.SetOrigin(origin)
+		prop_dynamic40.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic47.SetAngles(angles)
+		prop_dynamic40.SetAngles(angles)
 
-	local prop_dynamic48 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local prop_dynamic41 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_forest/wood_stairs96.mdl",
+	    disableshadows = 1,
+	    solid = 6,
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("-568, 1914, 87")
 	})
 
 	if(origin != null)
-		prop_dynamic48.SetOrigin(origin)
+		prop_dynamic41.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic48.SetAngles(angles)
+		prop_dynamic41.SetAngles(angles)
 
-	local prop_dynamic49 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local prop_dynamic42 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_forest/wood_stairs96.mdl",
+	    disableshadows = 1,
+	    solid = 6,
+	    angles = QAngle("0, 12, 0"),
+	    origin = Vector("-1483, -1834, 60")
 	})
 
 	if(origin != null)
-		prop_dynamic49.SetOrigin(origin)
+		prop_dynamic42.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic49.SetAngles(angles)
+		prop_dynamic42.SetAngles(angles)
 
-	local prop_dynamic50 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local prop_dynamic43 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_forest/wood_stairs96.mdl",
+	    disableshadows = 1,
+	    solid = 6,
+	    angles = QAngle("0, 192, 0"),
+	    origin = Vector("-1492, -1827, 60")
 	})
 
 	if(origin != null)
-		prop_dynamic50.SetOrigin(origin)
+		prop_dynamic43.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic50.SetAngles(angles)
+		prop_dynamic43.SetAngles(angles)
 
 }
-::Plate_Big <- function(origin, angles)
+::Plate_Big <- function()
 {
-	local prop_dynamic51 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local func_rotating_brush8 = SpawnEntityFromTable("func_rotating", {
+	    spawnflags = 65,
+	    maxspeed = 48,
+	    solidbsp = 0,
+	    rendermode = 10,
+	    targetname = "powerup_spinner",
+	    origin = Vector("-540, -0, -164")
+	})
+	func_rotating_brush8.KeyValueFromInt("solid", 2)
+	func_rotating_brush8.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush8.KeyValueFromString("maxspeed", "48")
+
+	if(origin != null)
+		func_rotating_brush8.SetOrigin(origin)
+	if(angles != null)
+		func_rotating_brush8.SetAngles(angles)
+
+	local prop_dynamic44 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_gameplay/cap_point_base.mdl",
+	    targetname = "plate",
+	    origin = Vector("-540, -0, -182"),
+	    disableshadows = 1,
+	    solid = 6
 	})
 
 	if(origin != null)
-		prop_dynamic51.SetOrigin(origin)
+		prop_dynamic44.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic51.SetAngles(angles)
+		prop_dynamic44.SetAngles(angles)
 
-	local func_rotating52 = SpawnEntityFromTable("func_rotating", {
-	    
+	local prop_dynamic45 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models/props_trainyard/cart_bomb_separate.mdl",
+	    disableshadows = 1,
+	    solid = 0,
+	    targetname = "hologram_nuke",
+	    rendermode = 1,
+	    renderfx = 15,
+	    startdisabled = 1,
+	    rendercolor = "255 0 0",
+	    parentname = "powerup_spinner",
+	    angles = QAngle("0, 90, 0"),
+	    origin = Vector("-540, -0, -128")
 	})
 
 	if(origin != null)
-		func_rotating52.SetOrigin(origin)
+		prop_dynamic45.SetOrigin(origin)
 	if(angles != null)
-		func_rotating52.SetAngles(angles)
+		prop_dynamic45.SetAngles(angles)
 
-	local prop_dynamic53 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local env_shake46 = SpawnEntityFromTable("env_shake", {
+	    amplitude = 16,
+	    duration = 3,
+	    frequency = 40,
+	    radius = 48,
+	    spawnflags = 1,
+	    targetname = "nuke_shake"
 	})
 
 	if(origin != null)
-		prop_dynamic53.SetOrigin(origin)
+		env_shake46.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic53.SetAngles(angles)
+		env_shake46.SetAngles(angles)
 
-	local env_shake54 = SpawnEntityFromTable("env_shake", {
-	    
+	local env_fade47 = SpawnEntityFromTable("env_fade", {
+	    targetname = "nuke_fade",
+	    duration = 1.3,
+	    spawnflags = 1,
+	    rendercolor = "255 255 255"
 	})
 
 	if(origin != null)
-		env_shake54.SetOrigin(origin)
+		env_fade47.SetOrigin(origin)
 	if(angles != null)
-		env_shake54.SetAngles(angles)
+		env_fade47.SetAngles(angles)
 
-	local env_fade55 = SpawnEntityFromTable("env_fade", {
-	    
-	})
-
-	if(origin != null)
-		env_fade55.SetOrigin(origin)
-	if(angles != null)
-		env_fade55.SetAngles(angles)
-
-	local trigger_add_tf_player_condition56 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
+	local trigger_add_tf_player_condition_brush9 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
+	    targetname = "hologram_nuke",
+	    duration = 1,
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    StartDisabled = 1,
+	    condition = 23,
+	    origin = Vector("-540, 2, -128"),
+	    mins = "-26 -26 -26",
+	    maxs = "26 26 26",
 	    "OnStartTouchAll#1": "hologram_nuke,Disable,,-1",
 	    "OnStartTouchAll#2": "hologram_nuke_snd,PlaySound,,-1",
 	    "OnStartTouchAll#3": "nuke_shake,StartShake,,-1",
@@ -636,31 +936,60 @@
 	    "OnStartTouchAll#9": "plate,skin,0,-1",
 	    "OnStartTouchAll#10": "!activator,RunScriptCode,self.AddCurrency(400),3,-1"
 	})
+	trigger_add_tf_player_condition_brush9.KeyValueFromInt("solid", 2)
+	trigger_add_tf_player_condition_brush9.KeyValueFromString("mins", "-26 -26 -26")
+	trigger_add_tf_player_condition_brush9.KeyValueFromString("maxs", "26 26 26")
 
 	if(origin != null)
-		trigger_add_tf_player_condition56.SetOrigin(origin)
+		trigger_add_tf_player_condition_brush9.SetOrigin(origin)
 	if(angles != null)
-		trigger_add_tf_player_condition56.SetAngles(angles)
+		trigger_add_tf_player_condition_brush9.SetAngles(angles)
 
-	local ambient_generic57 = SpawnEntityFromTable("ambient_generic", {
-	    
+	local ambient_generic48 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = ")misc/doomsday_missile_explosion.wav",
+	    radius = 20,
+	    pitch = 100,
+	    spawnflags = 49,
+	    targetname = "hologram_nuke_snd"
 	})
 
 	if(origin != null)
-		ambient_generic57.SetOrigin(origin)
+		ambient_generic48.SetOrigin(origin)
 	if(angles != null)
-		ambient_generic57.SetAngles(angles)
+		ambient_generic48.SetAngles(angles)
 
-	local prop_dynamic58 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local prop_dynamic49 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models\props_mvm\mvm_human_skull.mdl",
+	    disableshadows = 1,
+	    skin = 1,
+	    solid = 0,
+	    modelscale = 3,
+	    targetname = "hologram_instakill",
+	    rendermode = 1,
+	    renderfx = 15,
+	    startdisabled = 1,
+	    parentname = "powerup_spinner",
+	    rendercolor = "255 0 0",
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("-540, -0, -134")
 	})
 
 	if(origin != null)
-		prop_dynamic58.SetOrigin(origin)
+		prop_dynamic49.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic58.SetAngles(angles)
+		prop_dynamic49.SetAngles(angles)
 
-	local trigger_add_tf_player_condition59 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
+	local trigger_add_tf_player_condition_brush10 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
+	    targetname = "hologram_instakill",
+	    duration = 1,
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    StartDisabled = 1,
+	    condition = 23,
+	    origin = Vector("-540, 2, -128"),
+	    mins = "-26 -26 -26",
+	    maxs = "26 26 26",
 	    "OnStartTouchAll#1": "hologram_instakill,Disable,,-1",
 	    "OnStartTouchAll#2": "powerup_timer,Enable,,-1",
 	    "OnStartTouchAll#3": "plate,skin,0,-1",
@@ -672,22 +1001,46 @@
 	    "OnStartTouchAll#9": "!activator,RunScriptCode,self.RemoveCustomAttribute(`dmg current health`),30,-1",
 	    "OnStartTouchAll#10": "!activator,RunScriptCode,self.RemoveCond(56),30,-1"
 	})
+	trigger_add_tf_player_condition_brush10.KeyValueFromInt("solid", 2)
+	trigger_add_tf_player_condition_brush10.KeyValueFromString("mins", "-26 -26 -26")
+	trigger_add_tf_player_condition_brush10.KeyValueFromString("maxs", "26 26 26")
 
 	if(origin != null)
-		trigger_add_tf_player_condition59.SetOrigin(origin)
+		trigger_add_tf_player_condition_brush10.SetOrigin(origin)
 	if(angles != null)
-		trigger_add_tf_player_condition59.SetAngles(angles)
+		trigger_add_tf_player_condition_brush10.SetAngles(angles)
 
-	local prop_dynamic60 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local prop_dynamic50 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models\props_gameplay\resupply_locker.mdl",
+	    disableshadows = 1,
+	    skin = 1,
+	    solid = 0,
+	    modelscale = 1,
+	    targetname = "hologram_maxammo",
+	    rendermode = 1,
+	    renderfx = 15,
+	    startdisabled = 1,
+	    parentname = "powerup_spinner",
+	    rendercolor = "255 0 0",
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("-540, -0, -134")
 	})
 
 	if(origin != null)
-		prop_dynamic60.SetOrigin(origin)
+		prop_dynamic50.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic60.SetAngles(angles)
+		prop_dynamic50.SetAngles(angles)
 
-	local trigger_add_tf_player_condition61 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
+	local trigger_add_tf_player_condition_brush11 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
+	    targetname = "hologram_maxammo",
+	    duration = 1,
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    StartDisabled = 1,
+	    condition = 23,
+	    origin = Vector("-540, 2, -128"),
+	    mins = "-26 -26 -26",
+	    maxs = "26 26 26",
 	    "OnStartTouchAll#1": "hologram_maxammo,Disable,,-1",
 	    "OnStartTouchAll#2": "powerup_timer,Enable,,-1",
 	    "OnStartTouchAll#3": "plate,skin,0,-1",
@@ -696,22 +1049,46 @@
 	    "OnStartTouchAll#6": "!activator,$PlaySoundToSelf,shadows/powerup_resupply_01.mp3,1,-1",
 	    "OnStartTouchAll#7": "!activator,$RefillAmmo,,-1"
 	})
+	trigger_add_tf_player_condition_brush11.KeyValueFromInt("solid", 2)
+	trigger_add_tf_player_condition_brush11.KeyValueFromString("mins", "-26 -26 -26")
+	trigger_add_tf_player_condition_brush11.KeyValueFromString("maxs", "26 26 26")
 
 	if(origin != null)
-		trigger_add_tf_player_condition61.SetOrigin(origin)
+		trigger_add_tf_player_condition_brush11.SetOrigin(origin)
 	if(angles != null)
-		trigger_add_tf_player_condition61.SetAngles(angles)
+		trigger_add_tf_player_condition_brush11.SetAngles(angles)
 
-	local prop_dynamic62 = SpawnEntityFromTable("prop_dynamic", {
-	    
+	local prop_dynamic51 = SpawnEntityFromTable("prop_dynamic", {
+	    model = "models\items\currencypack_large.mdl",
+	    disableshadows = 1,
+	    skin = 1,
+	    solid = 0,
+	    modelscale = 1,
+	    targetname = "hologram_money",
+	    rendermode = 1,
+	    renderfx = 15,
+	    startdisabled = 1,
+	    parentname = "powerup_spinner",
+	    rendercolor = "255 0 0",
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("-540, -0, -134")
 	})
 
 	if(origin != null)
-		prop_dynamic62.SetOrigin(origin)
+		prop_dynamic51.SetOrigin(origin)
 	if(angles != null)
-		prop_dynamic62.SetAngles(angles)
+		prop_dynamic51.SetAngles(angles)
 
-	local trigger_add_tf_player_condition63 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
+	local trigger_add_tf_player_condition_brush12 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
+	    targetname = "hologram_money",
+	    duration = 1,
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    StartDisabled = 1,
+	    condition = 23,
+	    origin = Vector("-540, 2, -128"),
+	    mins = "-26 -26 -26",
+	    maxs = "26 26 26",
 	    "OnStartTouchAll#1": "hologram_money,Disable,,-1",
 	    "OnStartTouchAll#2": "powerup_timer,Enable,,-1",
 	    "OnStartTouchAll#3": "plate,skin,0,-1",
@@ -720,22 +1097,35 @@
 	    "OnStartTouchAll#6": "!activator,$PlaySoundToSelf,shadows/powerup_money_01.mp3,1,-1",
 	    "OnStartTouchAll#7": "!activator,RunScriptCode,self.AddCurrency(2000),-1"
 	})
+	trigger_add_tf_player_condition_brush12.KeyValueFromInt("solid", 2)
+	trigger_add_tf_player_condition_brush12.KeyValueFromString("mins", "-26 -26 -26")
+	trigger_add_tf_player_condition_brush12.KeyValueFromString("maxs", "26 26 26")
 
 	if(origin != null)
-		trigger_add_tf_player_condition63.SetOrigin(origin)
+		trigger_add_tf_player_condition_brush12.SetOrigin(origin)
 	if(angles != null)
-		trigger_add_tf_player_condition63.SetAngles(angles)
+		trigger_add_tf_player_condition_brush12.SetAngles(angles)
 
-	local ambient_generic64 = SpawnEntityFromTable("ambient_generic", {
-	    
+	local ambient_generic52 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "powerup_snd",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 8000,
+	    pitch = 80,
+	    message = ")weapons\buffed_on.wav"
 	})
 
 	if(origin != null)
-		ambient_generic64.SetOrigin(origin)
+		ambient_generic52.SetOrigin(origin)
 	if(angles != null)
-		ambient_generic64.SetAngles(angles)
+		ambient_generic52.SetAngles(angles)
 
-	local logic_timer65 = SpawnEntityFromTable("logic_timer", {
+	local logic_timer53 = SpawnEntityFromTable("logic_timer", {
+	    targetname = "powerup_timer",
+	    StartDisabled = 1,
+	    UseRandomTime = 1,
+	    LowerRandomBound = 60,
+	    UpperRandomBound = 85,
 	    "OnTimer#1": "powerup_case,PickRandomShuffle,,-1",
 	    "OnTimer#2": "powerup_timer,Disable,,-1",
 	    "OnTimer#3": "powerup_snd,PlaySound,,-1",
@@ -743,11 +1133,12 @@
 	})
 
 	if(origin != null)
-		logic_timer65.SetOrigin(origin)
+		logic_timer53.SetOrigin(origin)
 	if(angles != null)
-		logic_timer65.SetAngles(angles)
+		logic_timer53.SetAngles(angles)
 
-	local logic_case66 = SpawnEntityFromTable("logic_case", {
+	local logic_case54 = SpawnEntityFromTable("logic_case", {
+	    targetname = "powerup_case",
 	    "OnCase01#1": "hologram_instakill,Enable,,0,-1",
 	    "OnCase02#2": "hologram_money,Enable,,0,-1",
 	    "OnCase03#3": "hologram_maxammo,Enable,,0,-1",
@@ -755,616 +1146,1204 @@
 	})
 
 	if(origin != null)
-		logic_case66.SetOrigin(origin)
+		logic_case54.SetOrigin(origin)
 	if(angles != null)
-		logic_case66.SetAngles(angles)
+		logic_case54.SetAngles(angles)
 
 }
-::BuildingBlocks <- function(origin, angles)
+::BuildingBlocks <- function()
 {
-	local func_nobuild67 = SpawnEntityFromTable("func_nobuild", {
-	    
+	local func_nobuild_brush13 = SpawnEntityFromTable("func_nobuild", {
+	    AllowDispenser = 0,
+	    AllowSentry = 0,
+	    AllowTeleporters = 0,
+	    StartDisabled = 0,
+	    Teamnum = 2,
+	    mins = "-42 -160 -99",
+	    maxs = "42 160 99",
+	    origin = Vector("698, 488, 63")
 	})
+	func_nobuild_brush13.KeyValueFromInt("solid", 2)
+	func_nobuild_brush13.KeyValueFromString("mins", "0, 0, 0")
+	func_nobuild_brush13.KeyValueFromString("maxs", "42 160 99")
 
 	if(origin != null)
-		func_nobuild67.SetOrigin(origin)
+		func_nobuild_brush13.SetOrigin(origin)
 	if(angles != null)
-		func_nobuild67.SetAngles(angles)
+		func_nobuild_brush13.SetAngles(angles)
 
-	local func_nobuild68 = SpawnEntityFromTable("func_nobuild", {
-	    
+	local func_nobuild_brush14 = SpawnEntityFromTable("func_nobuild", {
+	    AllowDispenser = 0,
+	    AllowSentry = 0,
+	    AllowTeleporters = 0,
+	    StartDisabled = 0,
+	    Teamnum = 2,
+	    mins = "-70 -58 -99",
+	    maxs = "70 58 99",
+	    origin = Vector("914, 98, 63")
 	})
+	func_nobuild_brush14.KeyValueFromInt("solid", 2)
+	func_nobuild_brush14.KeyValueFromString("mins", "0, 0, 0")
+	func_nobuild_brush14.KeyValueFromString("maxs", "70 58 99")
 
 	if(origin != null)
-		func_nobuild68.SetOrigin(origin)
+		func_nobuild_brush14.SetOrigin(origin)
 	if(angles != null)
-		func_nobuild68.SetAngles(angles)
+		func_nobuild_brush14.SetAngles(angles)
 
-	local func_nobuild69 = SpawnEntityFromTable("func_nobuild", {
-	    
+	local func_nobuild_brush15 = SpawnEntityFromTable("func_nobuild", {
+	    AllowDispenser = 0,
+	    AllowSentry = 0,
+	    AllowTeleporters = 0,
+	    StartDisabled = 0,
+	    Teamnum = 2,
+	    mins = "-62 -214 -99",
+	    maxs = "62 214 99",
+	    origin = Vector("1046, -58, 63")
 	})
+	func_nobuild_brush15.KeyValueFromInt("solid", 2)
+	func_nobuild_brush15.KeyValueFromString("mins", "0, 0, 0")
+	func_nobuild_brush15.KeyValueFromString("maxs", "62 214 99")
 
 	if(origin != null)
-		func_nobuild69.SetOrigin(origin)
+		func_nobuild_brush15.SetOrigin(origin)
 	if(angles != null)
-		func_nobuild69.SetAngles(angles)
+		func_nobuild_brush15.SetAngles(angles)
 
-	local func_nobuild70 = SpawnEntityFromTable("func_nobuild", {
-	    
+	local func_nobuild_brush16 = SpawnEntityFromTable("func_nobuild", {
+	    AllowDispenser = 0,
+	    AllowSentry = 0,
+	    AllowTeleporters = 0,
+	    StartDisabled = 0,
+	    Teamnum = 2,
+	    mins = "-20 -48 -99",
+	    maxs = "20 48 99",
+	    origin = Vector("964, -224, 63")
 	})
+	func_nobuild_brush16.KeyValueFromInt("solid", 2)
+	func_nobuild_brush16.KeyValueFromString("mins", "0, 0, 0")
+	func_nobuild_brush16.KeyValueFromString("maxs", "20 48 99")
 
 	if(origin != null)
-		func_nobuild70.SetOrigin(origin)
+		func_nobuild_brush16.SetOrigin(origin)
 	if(angles != null)
-		func_nobuild70.SetAngles(angles)
+		func_nobuild_brush16.SetAngles(angles)
 
-	local func_nobuild71 = SpawnEntityFromTable("func_nobuild", {
-	    
+	local func_nobuild_brush17 = SpawnEntityFromTable("func_nobuild", {
+	    AllowDispenser = 0,
+	    AllowSentry = 0,
+	    AllowTeleporters = 0,
+	    StartDisabled = 0,
+	    Teamnum = 2,
+	    mins = "-110 -157 -99",
+	    maxs = "110 157 99",
+	    origin = Vector("969, -928, 63")
 	})
+	func_nobuild_brush17.KeyValueFromInt("solid", 2)
+	func_nobuild_brush17.KeyValueFromString("mins", "0, 0, 0")
+	func_nobuild_brush17.KeyValueFromString("maxs", "110 157 99")
 
 	if(origin != null)
-		func_nobuild71.SetOrigin(origin)
+		func_nobuild_brush17.SetOrigin(origin)
 	if(angles != null)
-		func_nobuild71.SetAngles(angles)
+		func_nobuild_brush17.SetAngles(angles)
 
-	local func_nobuild72 = SpawnEntityFromTable("func_nobuild", {
-	    
+	local func_nobuild_brush18 = SpawnEntityFromTable("func_nobuild", {
+	    AllowDispenser = 0,
+	    AllowSentry = 0,
+	    AllowTeleporters = 0,
+	    StartDisabled = 0,
+	    Teamnum = 2,
+	    mins = "-157 -38 -99",
+	    maxs = "157 38 99",
+	    origin = Vector("-465, -560, 92")
 	})
+	func_nobuild_brush18.KeyValueFromInt("solid", 2)
+	func_nobuild_brush18.KeyValueFromString("mins", "0, 0, 0")
+	func_nobuild_brush18.KeyValueFromString("maxs", "157 38 99")
 
 	if(origin != null)
-		func_nobuild72.SetOrigin(origin)
+		func_nobuild_brush18.SetOrigin(origin)
 	if(angles != null)
-		func_nobuild72.SetAngles(angles)
+		func_nobuild_brush18.SetAngles(angles)
 
-	local func_nobuild73 = SpawnEntityFromTable("func_nobuild", {
-	    
+	local func_nobuild_brush19 = SpawnEntityFromTable("func_nobuild", {
+	    AllowDispenser = 0,
+	    AllowSentry = 0,
+	    AllowTeleporters = 0,
+	    StartDisabled = 0,
+	    Teamnum = 2,
+	    mins = "-59 -59 -61",
+	    maxs = "59 59 61",
+	    origin = Vector("-1525, -1141, 59")
 	})
+	func_nobuild_brush19.KeyValueFromInt("solid", 2)
+	func_nobuild_brush19.KeyValueFromString("mins", "0, 0, 0")
+	func_nobuild_brush19.KeyValueFromString("maxs", "59 59 61")
 
 	if(origin != null)
-		func_nobuild73.SetOrigin(origin)
+		func_nobuild_brush19.SetOrigin(origin)
 	if(angles != null)
-		func_nobuild73.SetAngles(angles)
+		func_nobuild_brush19.SetAngles(angles)
 
-	local func_nav_avoid74 = SpawnEntityFromTable("func_nav_avoid", {
-	    
+	local func_nav_avoid_brush20 = SpawnEntityFromTable("func_nav_avoid", {
+	    tags = "bigguyalert",
+	    mins = "-106 -288 -26",
+	    maxs = "106 288 26",
+	    origin = Vector("-738, -1622, 18")
 	})
+	func_nav_avoid_brush20.KeyValueFromInt("solid", 2)
+	func_nav_avoid_brush20.KeyValueFromString("mins", "0, 0, 0")
+	func_nav_avoid_brush20.KeyValueFromString("maxs", "106 288 26")
 
 	if(origin != null)
-		func_nav_avoid74.SetOrigin(origin)
+		func_nav_avoid_brush20.SetOrigin(origin)
 	if(angles != null)
-		func_nav_avoid74.SetAngles(angles)
+		func_nav_avoid_brush20.SetAngles(angles)
 
-	local func_nav_avoid75 = SpawnEntityFromTable("func_nav_avoid", {
-	    
+	local func_nav_avoid_brush21 = SpawnEntityFromTable("func_nav_avoid", {
+	    tags = "bigguyalert",
+	    mins = "-84 -68 -48",
+	    maxs = "84 68 48",
+	    origin = Vector("-556, -1916, 50")
 	})
+	func_nav_avoid_brush21.KeyValueFromInt("solid", 2)
+	func_nav_avoid_brush21.KeyValueFromString("mins", "0, 0, 0")
+	func_nav_avoid_brush21.KeyValueFromString("maxs", "84 68 48")
 
 	if(origin != null)
-		func_nav_avoid75.SetOrigin(origin)
+		func_nav_avoid_brush21.SetOrigin(origin)
 	if(angles != null)
-		func_nav_avoid75.SetAngles(angles)
+		func_nav_avoid_brush21.SetAngles(angles)
 
-	local func_nav_avoid76 = SpawnEntityFromTable("func_nav_avoid", {
-	    
+	local func_nav_avoid_brush22 = SpawnEntityFromTable("func_nav_avoid", {
+	    tags = "bigguyalert",
+	    mins = "-384 -68 -48",
+	    maxs = "384 68 48",
+	    origin = Vector("-912, -1788, 45")
 	})
+	func_nav_avoid_brush22.KeyValueFromInt("solid", 2)
+	func_nav_avoid_brush22.KeyValueFromString("mins", "0, 0, 0")
+	func_nav_avoid_brush22.KeyValueFromString("maxs", "384 68 48")
 
 	if(origin != null)
-		func_nav_avoid76.SetOrigin(origin)
+		func_nav_avoid_brush22.SetOrigin(origin)
 	if(angles != null)
-		func_nav_avoid76.SetAngles(angles)
+		func_nav_avoid_brush22.SetAngles(angles)
 
-	local func_nav_avoid77 = SpawnEntityFromTable("func_nav_avoid", {
-	    
+	local func_nav_avoid_brush23 = SpawnEntityFromTable("func_nav_avoid", {
+	    tags = "bigguyalert",
+	    mins = "-116 -24 -72",
+	    maxs = "166 24 72",
+	    origin = Vector("-220, 1842, 144")
 	})
+	func_nav_avoid_brush23.KeyValueFromInt("solid", 2)
+	func_nav_avoid_brush23.KeyValueFromString("mins", "0, 0, 0")
+	func_nav_avoid_brush23.KeyValueFromString("maxs", "166 24 72")
 
 	if(origin != null)
-		func_nav_avoid77.SetOrigin(origin)
+		func_nav_avoid_brush23.SetOrigin(origin)
 	if(angles != null)
-		func_nav_avoid77.SetAngles(angles)
+		func_nav_avoid_brush23.SetAngles(angles)
 
-	local func_nav_avoid78 = SpawnEntityFromTable("func_nav_avoid", {
-	    
+	local func_nav_avoid_brush24 = SpawnEntityFromTable("func_nav_avoid", {
+	    tags = "bigguyalert",
+	    mins = "-116 -32 -72",
+	    maxs = "166 32 72",
+	    origin = Vector("-220, 1192, 144")
 	})
+	func_nav_avoid_brush24.KeyValueFromInt("solid", 2)
+	func_nav_avoid_brush24.KeyValueFromString("mins", "0, 0, 0")
+	func_nav_avoid_brush24.KeyValueFromString("maxs", "166 32 72")
 
 	if(origin != null)
-		func_nav_avoid78.SetOrigin(origin)
+		func_nav_avoid_brush24.SetOrigin(origin)
 	if(angles != null)
-		func_nav_avoid78.SetAngles(angles)
+		func_nav_avoid_brush24.SetAngles(angles)
 
-	local func_forcefield79 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush25 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-64 -1472 -3168",
+	    maxs = "64 1472 3168",
+	    origin = Vector("-5184, 0, 2912")
 	})
+	func_forcefield_brush25.KeyValueFromInt("solid", 2)
+	func_forcefield_brush25.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush25.KeyValueFromString("maxs", "64 1472 3168")
 
 	if(origin != null)
-		func_forcefield79.SetOrigin(origin)
+		func_forcefield_brush25.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield79.SetAngles(angles)
+		func_forcefield_brush25.SetAngles(angles)
 
-	local func_forcefield80 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush26 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-4575 -4384 -32",
+	    maxs = "4575 4384 32",
+	    origin = Vector("-671, 96, 1344")
 	})
+	func_forcefield_brush26.KeyValueFromInt("solid", 2)
+	func_forcefield_brush26.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush26.KeyValueFromString("maxs", "4575 4384 32")
 
 	if(origin != null)
-		func_forcefield80.SetOrigin(origin)
+		func_forcefield_brush26.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield80.SetAngles(angles)
+		func_forcefield_brush26.SetAngles(angles)
 
-	local func_forcefield81 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush27 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-194 -209 -514",
+	    maxs = "194 209 514",
+	    origin = Vector("-800, -702, 798")
 	})
+	func_forcefield_brush27.KeyValueFromInt("solid", 2)
+	func_forcefield_brush27.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush27.KeyValueFromString("maxs", "194 209 514")
 
 	if(origin != null)
-		func_forcefield81.SetOrigin(origin)
+		func_forcefield_brush27.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield81.SetAngles(angles)
+		func_forcefield_brush27.SetAngles(angles)
 
-	local func_forcefield82 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush28 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-96 -201.5 -480",
+	    maxs = "96 201.5 480",
+	    origin = Vector("-1088, -694, 832")
 	})
+	func_forcefield_brush28.KeyValueFromInt("solid", 2)
+	func_forcefield_brush28.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush28.KeyValueFromString("maxs", "96 201.5 480")
 
 	if(origin != null)
-		func_forcefield82.SetOrigin(origin)
+		func_forcefield_brush28.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield82.SetAngles(angles)
+		func_forcefield_brush28.SetAngles(angles)
 
-	local func_forcefield83 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush29 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-192 -112 -560",
+	    maxs = "192 112 560",
+	    origin = Vector("192, -720, 752")
 	})
+	func_forcefield_brush29.KeyValueFromInt("solid", 2)
+	func_forcefield_brush29.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush29.KeyValueFromString("maxs", "192 112 560")
 
 	if(origin != null)
-		func_forcefield83.SetOrigin(origin)
+		func_forcefield_brush29.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield83.SetAngles(angles)
+		func_forcefield_brush29.SetAngles(angles)
 
-	local func_forcefield84 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush30 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-736 -384 -8",
+	    maxs = "736 384 8",
+	    origin = Vector("256, 1536, 392")
 	})
+	func_forcefield_brush30.KeyValueFromInt("solid", 2)
+	func_forcefield_brush30.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush30.KeyValueFromString("maxs", "736 384 8")
 
 	if(origin != null)
-		func_forcefield84.SetOrigin(origin)
+		func_forcefield_brush30.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield84.SetAngles(angles)
+		func_forcefield_brush30.SetAngles(angles)
 
-	local func_forcefield85 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush31 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-12 -132 -72",
+	    maxs = "12 132 72",
+	    origin = Vector("-1036, 692, 72")
 	})
+	func_forcefield_brush31.KeyValueFromInt("solid", 2)
+	func_forcefield_brush31.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush31.KeyValueFromString("maxs", "12 132 72")
 
 	if(origin != null)
-		func_forcefield85.SetOrigin(origin)
+		func_forcefield_brush31.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield85.SetAngles(angles)
+		func_forcefield_brush31.SetAngles(angles)
 
-	local func_forcefield86 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush32 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-80 -4 -72",
+	    maxs = "80 4 72",
+	    origin = Vector("-960, 556, 72")
 	})
+	func_forcefield_brush32.KeyValueFromInt("solid", 2)
+	func_forcefield_brush32.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush32.KeyValueFromString("maxs", "80 4 72")
 
 	if(origin != null)
-		func_forcefield86.SetOrigin(origin)
+		func_forcefield_brush32.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield86.SetAngles(angles)
+		func_forcefield_brush32.SetAngles(angles)
 
-	local func_forcefield87 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush33 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-48 -4 -48",
+	    maxs = "48 4 48",
+	    origin = Vector("-824, 556, 48")
 	})
+	func_forcefield_brush33.KeyValueFromInt("solid", 2)
+	func_forcefield_brush33.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush33.KeyValueFromString("maxs", "48 4 48")
 
 	if(origin != null)
-		func_forcefield87.SetOrigin(origin)
+		func_forcefield_brush33.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield87.SetAngles(angles)
+		func_forcefield_brush33.SetAngles(angles)
 
-	local func_forcefield88 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush34 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-4 -88 -48",
+	    maxs = "4 88 48",
+	    origin = Vector("-780, 648, 48")
 	})
+	func_forcefield_brush34.KeyValueFromInt("solid", 2)
+	func_forcefield_brush34.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush34.KeyValueFromString("maxs", "4 88 48")
 
 	if(origin != null)
-		func_forcefield88.SetOrigin(origin)
+		func_forcefield_brush34.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield88.SetAngles(angles)
+		func_forcefield_brush34.SetAngles(angles)
 
-	local func_forcefield89 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush35 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-20 -12 -48",
+	    maxs = "20 12 48",
+	    origin = Vector("-796, 748, 48")
 	})
+	func_forcefield_brush35.KeyValueFromInt("solid", 2)
+	func_forcefield_brush35.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush35.KeyValueFromString("maxs", "20 12 48")
 
 	if(origin != null)
-		func_forcefield89.SetOrigin(origin)
+		func_forcefield_brush35.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield89.SetAngles(angles)
+		func_forcefield_brush35.SetAngles(angles)
 
-	local func_forcefield90 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush36 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-40 -12 -58",
+	    maxs = "40 12 58",
+	    origin = Vector("-856, 748, 58")
 	})
+	func_forcefield_brush36.KeyValueFromInt("solid", 2)
+	func_forcefield_brush36.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush36.KeyValueFromString("maxs", "40 12 58")
 
 	if(origin != null)
-		func_forcefield90.SetOrigin(origin)
+		func_forcefield_brush36.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield90.SetAngles(angles)
+		func_forcefield_brush36.SetAngles(angles)
 
-	local func_forcefield91 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush37 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-9 -192 -96",
+	    maxs = "9 192 96",
+	    origin = Vector("7, 0, 96")
 	})
+	func_forcefield_brush37.KeyValueFromInt("solid", 2)
+	func_forcefield_brush37.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush37.KeyValueFromString("maxs", "9 192 96")
 
 	if(origin != null)
-		func_forcefield91.SetOrigin(origin)
+		func_forcefield_brush37.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield91.SetAngles(angles)
+		func_forcefield_brush37.SetAngles(angles)
 
-	local func_forcefield92 = SpawnEntityFromTable("func_forcefield", {
-	    
+	local func_forcefield_brush38 = SpawnEntityFromTable("func_forcefield", {
+	    StartDisabled = 0,
+	    TeamNum = 3,
+	    mins = "-194 -608 -414",
+	    maxs = "194 608 414",
+	    origin = Vector("128, -1856, 900")
 	})
+	func_forcefield_brush38.KeyValueFromInt("solid", 2)
+	func_forcefield_brush38.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush38.KeyValueFromString("maxs", "194 608 414")
 
 	if(origin != null)
-		func_forcefield92.SetOrigin(origin)
+		func_forcefield_brush38.SetOrigin(origin)
 	if(angles != null)
-		func_forcefield92.SetAngles(angles)
+		func_forcefield_brush38.SetAngles(angles)
 
 }
-::Pushblocks <- function(origin, angles)
+::Pushblocks <- function()
 {
-	local trigger_push93 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush39 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 180 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-1, 0, 194"),
+	    mins = "-1 -192 -2",
+	    maxs = "1 192 2"
 	})
+	trigger_push_brush39.KeyValueFromInt("solid", 2)
+	trigger_push_brush39.KeyValueFromString("mins", "-1 -192 -2")
+	trigger_push_brush39.KeyValueFromString("maxs", "1 192 2")
 
 	if(origin != null)
-		trigger_push93.SetOrigin(origin)
+		trigger_push_brush39.SetOrigin(origin)
 	if(angles != null)
-		trigger_push93.SetAngles(angles)
+		trigger_push_brush39.SetAngles(angles)
 
-	local trigger_push94 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush40 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 180 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("994, 992, 160"),
+	    mins = "-32 -110 -11",
+	    maxs = "32 110 11"
 	})
+	trigger_push_brush40.KeyValueFromInt("solid", 2)
+	trigger_push_brush40.KeyValueFromString("mins", "-32 -110 -11")
+	trigger_push_brush40.KeyValueFromString("maxs", "32 110 11")
 
 	if(origin != null)
-		trigger_push94.SetOrigin(origin)
+		trigger_push_brush40.SetOrigin(origin)
 	if(angles != null)
-		trigger_push94.SetAngles(angles)
+		trigger_push_brush40.SetAngles(angles)
 
-	local trigger_push95 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush41 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("696, 472, 158"),
+	    mins = "-32 -72 -11",
+	    maxs = "32 72 11"
 	})
+	trigger_push_brush41.KeyValueFromInt("solid", 2)
+	trigger_push_brush41.KeyValueFromString("mins", "-32 -72 -11")
+	trigger_push_brush41.KeyValueFromString("maxs", "32 72 11")
 
 	if(origin != null)
-		trigger_push95.SetOrigin(origin)
+		trigger_push_brush41.SetOrigin(origin)
 	if(angles != null)
-		trigger_push95.SetAngles(angles)
+		trigger_push_brush41.SetAngles(angles)
 
-	local trigger_push96 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush42 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("696, 364, 85"),
+	    mins = "-32 -28 -11",
+	    maxs = "32 28 11"
 	})
+	trigger_push_brush42.KeyValueFromInt("solid", 2)
+	trigger_push_brush42.KeyValueFromString("mins", "-32 -28 -11")
+	trigger_push_brush42.KeyValueFromString("maxs", "32 28 11")
 
 	if(origin != null)
-		trigger_push96.SetOrigin(origin)
+		trigger_push_brush42.SetOrigin(origin)
 	if(angles != null)
-		trigger_push96.SetAngles(angles)
+		trigger_push_brush42.SetAngles(angles)
 
-	local trigger_push97 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush43 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("696, 596, 85"),
+	    mins = "-32 -28 -11",
+	    maxs = "32 28 11"
 	})
+	trigger_push_brush43.KeyValueFromInt("solid", 2)
+	trigger_push_brush43.KeyValueFromString("mins", "-32 -28 -11")
+	trigger_push_brush43.KeyValueFromString("maxs", "32 28 11")
 
 	if(origin != null)
-		trigger_push97.SetOrigin(origin)
+		trigger_push_brush43.SetOrigin(origin)
 	if(angles != null)
-		trigger_push97.SetAngles(angles)
+		trigger_push_brush43.SetAngles(angles)
 
-	local trigger_push98 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush44 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("966, 88, 83"),
+	    mins = "-32 -28 -11",
+	    maxs = "32 28 11"
 	})
+	trigger_push_brush44.KeyValueFromInt("solid", 2)
+	trigger_push_brush44.KeyValueFromString("mins", "-32 -28 -11")
+	trigger_push_brush44.KeyValueFromString("maxs", "32 28 11")
 
 	if(origin != null)
-		trigger_push98.SetOrigin(origin)
+		trigger_push_brush44.SetOrigin(origin)
 	if(angles != null)
-		trigger_push98.SetAngles(angles)
+		trigger_push_brush44.SetAngles(angles)
 
-	local trigger_push99 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush45 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("892, 107, 83"),
+	    mins = "-32 -28 -11",
+	    maxs = "32 28 11"
 	})
+	trigger_push_brush45.KeyValueFromInt("solid", 2)
+	trigger_push_brush45.KeyValueFromString("mins", "-32 -28 -11")
+	trigger_push_brush45.KeyValueFromString("maxs", "32 28 11")
 
 	if(origin != null)
-		trigger_push99.SetOrigin(origin)
+		trigger_push_brush45.SetOrigin(origin)
 	if(angles != null)
-		trigger_push99.SetAngles(angles)
+		trigger_push_brush45.SetAngles(angles)
 
-	local trigger_push100 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush46 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("1024, -32, 83"),
+	    mins = "-32 -72 -11",
+	    maxs = "32 72 11"
 	})
+	trigger_push_brush46.KeyValueFromInt("solid", 2)
+	trigger_push_brush46.KeyValueFromString("mins", "-32 -72 -11")
+	trigger_push_brush46.KeyValueFromString("maxs", "32 72 11")
 
 	if(origin != null)
-		trigger_push100.SetOrigin(origin)
+		trigger_push_brush46.SetOrigin(origin)
 	if(angles != null)
-		trigger_push100.SetAngles(angles)
+		trigger_push_brush46.SetAngles(angles)
 
-	local trigger_push101 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush47 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("1056, -172, 97"),
+	    mins = "32 -28 -11",
+	    maxs = "32 28 11"
 	})
+	trigger_push_brush47.KeyValueFromInt("solid", 2)
+	trigger_push_brush47.KeyValueFromString("mins", "32 -28 -11")
+	trigger_push_brush47.KeyValueFromString("maxs", "32 28 11")
 
 	if(origin != null)
-		trigger_push101.SetOrigin(origin)
+		trigger_push_brush47.SetOrigin(origin)
 	if(angles != null)
-		trigger_push101.SetAngles(angles)
+		trigger_push_brush47.SetAngles(angles)
 
-	local trigger_push102 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush48 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("1000, -220, 97"),
+	    mins = "32 -28 -11",
+	    maxs = "32 28 11"
 	})
+	trigger_push_brush48.KeyValueFromInt("solid", 2)
+	trigger_push_brush48.KeyValueFromString("mins", "32 -28 -11")
+	trigger_push_brush48.KeyValueFromString("maxs", "32 28 11")
 
 	if(origin != null)
-		trigger_push102.SetOrigin(origin)
+		trigger_push_brush48.SetOrigin(origin)
 	if(angles != null)
-		trigger_push102.SetAngles(angles)
+		trigger_push_brush48.SetAngles(angles)
 
-	local trigger_push103 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush49 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("973, -915, 163"),
+	    mins = "32 -28 -11",
+	    maxs = "32 28 11"
 	})
+	trigger_push_brush49.KeyValueFromInt("solid", 2)
+	trigger_push_brush49.KeyValueFromString("mins", "32 -28 -11")
+	trigger_push_brush49.KeyValueFromString("maxs", "32 28 11")
 
 	if(origin != null)
-		trigger_push103.SetOrigin(origin)
+		trigger_push_brush49.SetOrigin(origin)
 	if(angles != null)
-		trigger_push103.SetAngles(angles)
+		trigger_push_brush49.SetAngles(angles)
 
-	local trigger_push104 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush50 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("917, -963, 163"),
+	    mins = "32 -28 -11",
+	    maxs = "32 28 11"
 	})
+	trigger_push_brush50.KeyValueFromInt("solid", 2)
+	trigger_push_brush50.KeyValueFromString("mins", "32 -28 -11")
+	trigger_push_brush50.KeyValueFromString("maxs", "32 28 11")
 
 	if(origin != null)
-		trigger_push104.SetOrigin(origin)
+		trigger_push_brush50.SetOrigin(origin)
 	if(angles != null)
-		trigger_push104.SetAngles(angles)
+		trigger_push_brush50.SetAngles(angles)
 
-	local trigger_push105 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush51 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("652, -468, 276"),
+	    mins = "-10 -181 -12",
+	    maxs = "10 181 12"
 	})
+	trigger_push_brush51.KeyValueFromInt("solid", 2)
+	trigger_push_brush51.KeyValueFromString("mins", "-10 -181 -12")
+	trigger_push_brush51.KeyValueFromString("maxs", "10 181 12")
 
 	if(origin != null)
-		trigger_push105.SetOrigin(origin)
+		trigger_push_brush51.SetOrigin(origin)
 	if(angles != null)
-		trigger_push105.SetAngles(angles)
+		trigger_push_brush51.SetAngles(angles)
 
-	local trigger_push106 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush52 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("1248, 1516, 204"),
+	    mins = "-224 -12 -12",
+	    maxs = "224 12 12"
 	})
+	trigger_push_brush52.KeyValueFromInt("solid", 2)
+	trigger_push_brush52.KeyValueFromString("mins", "-224 -12 -12")
+	trigger_push_brush52.KeyValueFromString("maxs", "224 12 12")
 
 	if(origin != null)
-		trigger_push106.SetOrigin(origin)
+		trigger_push_brush52.SetOrigin(origin)
 	if(angles != null)
-		trigger_push106.SetAngles(angles)
+		trigger_push_brush52.SetAngles(angles)
 
-	local trigger_push107 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush53 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("1680, 1500, 196"),
+	    mins = "-208 -28 -20",
+	    maxs = "208 28 20"
 	})
+	trigger_push_brush53.KeyValueFromInt("solid", 2)
+	trigger_push_brush53.KeyValueFromString("mins", "-208 -28 -20")
+	trigger_push_brush53.KeyValueFromString("maxs", "208 28 20")
 
 	if(origin != null)
-		trigger_push107.SetOrigin(origin)
+		trigger_push_brush53.SetOrigin(origin)
 	if(angles != null)
-		trigger_push107.SetAngles(angles)
+		trigger_push_brush53.SetAngles(angles)
 
-	local trigger_push108 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush54 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("1880, 1724, 196"),
+	    mins = "-16 -196 -20",
+	    maxs = "16 196 20"
 	})
+	trigger_push_brush54.KeyValueFromInt("solid", 2)
+	trigger_push_brush54.KeyValueFromString("mins", "-16 -196 -20")
+	trigger_push_brush54.KeyValueFromString("maxs", "16 196 20")
 
 	if(origin != null)
-		trigger_push108.SetOrigin(origin)
+		trigger_push_brush54.SetOrigin(origin)
 	if(angles != null)
-		trigger_push108.SetAngles(angles)
+		trigger_push_brush54.SetAngles(angles)
 
-	local trigger_push109 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush55 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("1908, 2120, 188"),
+	    mins = "-12 -200 -28",
+	    maxs = "12 200 28"
 	})
+	trigger_push_brush55.KeyValueFromInt("solid", 2)
+	trigger_push_brush55.KeyValueFromString("mins", "-12 -200 -28")
+	trigger_push_brush55.KeyValueFromString("maxs", "12 200 28")
 
 	if(origin != null)
-		trigger_push109.SetOrigin(origin)
+		trigger_push_brush55.SetOrigin(origin)
 	if(angles != null)
-		trigger_push109.SetAngles(angles)
+		trigger_push_brush55.SetAngles(angles)
 
-	local trigger_push110 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush56 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("522, -45, 396"),
+	    mins = "-10 -483 -12",
+	    maxs = "10 483 12"
 	})
+	trigger_push_brush56.KeyValueFromInt("solid", 2)
+	trigger_push_brush56.KeyValueFromString("mins", "-10 -483 -12")
+	trigger_push_brush56.KeyValueFromString("maxs", "10 483 12")
 
 	if(origin != null)
-		trigger_push110.SetOrigin(origin)
+		trigger_push_brush56.SetOrigin(origin)
 	if(angles != null)
-		trigger_push110.SetAngles(angles)
+		trigger_push_brush56.SetAngles(angles)
 
-	local trigger_push111 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush57 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 270 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-1256, 488, 524"),
+	    mins = "-48 -48 -12",
+	    maxs = "48 48 12"
 	})
+	trigger_push_brush57.KeyValueFromInt("solid", 2)
+	trigger_push_brush57.KeyValueFromString("mins", "-48 -48 -12")
+	trigger_push_brush57.KeyValueFromString("maxs", "48 48 12")
 
 	if(origin != null)
-		trigger_push111.SetOrigin(origin)
+		trigger_push_brush57.SetOrigin(origin)
 	if(angles != null)
-		trigger_push111.SetAngles(angles)
+		trigger_push_brush57.SetAngles(angles)
 
-	local trigger_push112 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush58 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 270 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-1278, 1475, 524"),
+	    mins = "-48 -48 -12",
+	    maxs = "48 48 12"
 	})
+	trigger_push_brush58.KeyValueFromInt("solid", 2)
+	trigger_push_brush58.KeyValueFromString("mins", "-48 -48 -12")
+	trigger_push_brush58.KeyValueFromString("maxs", "48 48 12")
 
 	if(origin != null)
-		trigger_push112.SetOrigin(origin)
+		trigger_push_brush58.SetOrigin(origin)
 	if(angles != null)
-		trigger_push112.SetAngles(angles)
+		trigger_push_brush58.SetAngles(angles)
 
-	local trigger_push113 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush59 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 270 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-1747, 1473, 524"),
+	    mins = "-48 -48 -12",
+	    maxs = "48 48 12"
 	})
+	trigger_push_brush59.KeyValueFromInt("solid", 2)
+	trigger_push_brush59.KeyValueFromString("mins", "-48 -48 -12")
+	trigger_push_brush59.KeyValueFromString("maxs", "48 48 12")
 
 	if(origin != null)
-		trigger_push113.SetOrigin(origin)
+		trigger_push_brush59.SetOrigin(origin)
 	if(angles != null)
-		trigger_push113.SetAngles(angles)
+		trigger_push_brush59.SetAngles(angles)
 
-	local trigger_push114 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush60 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 270 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-1713, 798, 524"),
+	    mins = "-48 -48 -12",
+	    maxs = "48 48 12"
 	})
+	trigger_push_brush60.KeyValueFromInt("solid", 2)
+	trigger_push_brush60.KeyValueFromString("mins", "-48 -48 -12")
+	trigger_push_brush60.KeyValueFromString("maxs", "48 48 12")
 
 	if(origin != null)
-		trigger_push114.SetOrigin(origin)
+		trigger_push_brush60.SetOrigin(origin)
 	if(angles != null)
-		trigger_push114.SetAngles(angles)
+		trigger_push_brush60.SetAngles(angles)
 
-	local trigger_push115 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush61 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-2112, -574, 524"),
+	    mins = "-48 -48 -12",
+	    maxs = "48 48 12"
 	})
+	trigger_push_brush61.KeyValueFromInt("solid", 2)
+	trigger_push_brush61.KeyValueFromString("mins", "-48 -48 -12")
+	trigger_push_brush61.KeyValueFromString("maxs", "48 48 12")
 
 	if(origin != null)
-		trigger_push115.SetOrigin(origin)
+		trigger_push_brush61.SetOrigin(origin)
 	if(angles != null)
-		trigger_push115.SetAngles(angles)
+		trigger_push_brush61.SetAngles(angles)
 
-	local trigger_push116 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush62 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-1577, -1785, 524"),
+	    mins = "-48 -48 -12",
+	    maxs = "48 48 12"
 	})
+	trigger_push_brush62.KeyValueFromInt("solid", 2)
+	trigger_push_brush62.KeyValueFromString("mins", "-48 -48 -12")
+	trigger_push_brush62.KeyValueFromString("maxs", "48 48 12")
 
 	if(origin != null)
-		trigger_push116.SetOrigin(origin)
+		trigger_push_brush62.SetOrigin(origin)
 	if(angles != null)
-		trigger_push116.SetAngles(angles)
+		trigger_push_brush62.SetAngles(angles)
 
-	local trigger_push117 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush63 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-729, -1737, 524"),
+	    mins = "-48 -48 -12",
+	    maxs = "48 48 12"
 	})
+	trigger_push_brush63.KeyValueFromInt("solid", 2)
+	trigger_push_brush63.KeyValueFromString("mins", "-48 -48 -12")
+	trigger_push_brush63.KeyValueFromString("maxs", "48 48 12")
 
 	if(origin != null)
-		trigger_push117.SetOrigin(origin)
+		trigger_push_brush63.SetOrigin(origin)
 	if(angles != null)
-		trigger_push117.SetAngles(angles)
+		trigger_push_brush63.SetAngles(angles)
 
-	local trigger_push118 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush64 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-320, -2530, 524"),
+	    mins = "-48 -48 -12",
+	    maxs = "48 48 12"
 	})
+	trigger_push_brush64.KeyValueFromInt("solid", 2)
+	trigger_push_brush64.KeyValueFromString("mins", "-48 -48 -12")
+	trigger_push_brush64.KeyValueFromString("maxs", "48 48 12")
 
 	if(origin != null)
-		trigger_push118.SetOrigin(origin)
+		trigger_push_brush64.SetOrigin(origin)
 	if(angles != null)
-		trigger_push118.SetAngles(angles)
+		trigger_push_brush64.SetAngles(angles)
 
-	local trigger_push119 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush65 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("738, -2496, 524"),
+	    mins = "-48 -48 -12",
+	    maxs = "48 48 12"
 	})
+	trigger_push_brush65.KeyValueFromInt("solid", 2)
+	trigger_push_brush65.KeyValueFromString("mins", "-48 -48 -12")
+	trigger_push_brush65.KeyValueFromString("maxs", "48 48 12")
 
 	if(origin != null)
-		trigger_push119.SetOrigin(origin)
+		trigger_push_brush65.SetOrigin(origin)
 	if(angles != null)
-		trigger_push119.SetAngles(angles)
+		trigger_push_brush65.SetAngles(angles)
 
-	local trigger_push120 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush66 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 45 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-2226, -726, 232"),
+	    mins = "-175 -175 -48",
+	    maxs = "175 175 48"
 	})
+	trigger_push_brush66.KeyValueFromInt("solid", 2)
+	trigger_push_brush66.KeyValueFromString("mins", "-175 -175 -48")
+	trigger_push_brush66.KeyValueFromString("maxs", "175 175 48")
 
 	if(origin != null)
-		trigger_push120.SetOrigin(origin)
+		trigger_push_brush66.SetOrigin(origin)
 	if(angles != null)
-		trigger_push120.SetAngles(angles)
+		trigger_push_brush66.SetAngles(angles)
 
-	local trigger_push121 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush67 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-466, -555, 84"),
+	    mins = "-158 -43 -84",
+	    maxs = "158 43 84"
 	})
+	trigger_push_brush67.KeyValueFromInt("solid", 2)
+	trigger_push_brush67.KeyValueFromString("mins", "-158 -43 -84")
+	trigger_push_brush67.KeyValueFromString("maxs", "158 43 84")
 
 	if(origin != null)
-		trigger_push121.SetOrigin(origin)
+		trigger_push_brush67.SetOrigin(origin)
 	if(angles != null)
-		trigger_push121.SetAngles(angles)
+		trigger_push_brush67.SetAngles(angles)
 
-	local trigger_push122 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush68 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-1660, 1920, 274"),
+	    mins = "-900 -3 -26",
+	    maxs = "900 3 26"
 	})
+	trigger_push_brush68.KeyValueFromInt("solid", 2)
+	trigger_push_brush68.KeyValueFromString("mins", "-900 -3 -26")
+	trigger_push_brush68.KeyValueFromString("maxs", "900 3 26")
 
 	if(origin != null)
-		trigger_push122.SetOrigin(origin)
+		trigger_push_brush68.SetOrigin(origin)
 	if(angles != null)
-		trigger_push122.SetAngles(angles)
+		trigger_push_brush68.SetAngles(angles)
 
-	local trigger_push123 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush69 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-400, -978, 146"),
+	    mins = "-136 -9.5 -12",
+	    maxs = "136 9.5 12"
 	})
+	trigger_push_brush69.KeyValueFromInt("solid", 2)
+	trigger_push_brush69.KeyValueFromString("mins", "-136 -9.5 -12")
+	trigger_push_brush69.KeyValueFromString("maxs", "136 9.5 12")
 
 	if(origin != null)
-		trigger_push123.SetOrigin(origin)
+		trigger_push_brush69.SetOrigin(origin)
 	if(angles != null)
-		trigger_push123.SetAngles(angles)
+		trigger_push_brush69.SetAngles(angles)
 
-	local trigger_push124 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush70 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-272, -908, 146"),
+	    mins = "-8 -60 12",
+	    maxs = "8 60 12"
 	})
+	trigger_push_brush70.KeyValueFromInt("solid", 2)
+	trigger_push_brush70.KeyValueFromString("mins", "-8 -60 12")
+	trigger_push_brush70.KeyValueFromString("maxs", "8 60 12")
 
 	if(origin != null)
-		trigger_push124.SetOrigin(origin)
+		trigger_push_brush70.SetOrigin(origin)
 	if(angles != null)
-		trigger_push124.SetAngles(angles)
+		trigger_push_brush70.SetAngles(angles)
 
-	local trigger_push125 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush71 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-68, -864, 146"),
+	    mins = "-68 -48 12",
+	    maxs = "68 48 12"
 	})
+	trigger_push_brush71.KeyValueFromInt("solid", 2)
+	trigger_push_brush71.KeyValueFromString("mins", "-68 -48 12")
+	trigger_push_brush71.KeyValueFromString("maxs", "68 48 12")
 
 	if(origin != null)
-		trigger_push125.SetOrigin(origin)
+		trigger_push_brush71.SetOrigin(origin)
 	if(angles != null)
-		trigger_push125.SetAngles(angles)
+		trigger_push_brush71.SetAngles(angles)
 
-	local trigger_push126 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush72 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("416, -1264, 372"),
+	    mins = "-96 -16 -124",
+	    maxs = "96 16 124"
 	})
+	trigger_push_brush72.KeyValueFromInt("solid", 2)
+	trigger_push_brush72.KeyValueFromString("mins", "-96 -16 -124")
+	trigger_push_brush72.KeyValueFromString("maxs", "96 16 124")
 
 	if(origin != null)
-		trigger_push126.SetOrigin(origin)
+		trigger_push_brush72.SetOrigin(origin)
 	if(angles != null)
-		trigger_push126.SetAngles(angles)
+		trigger_push_brush72.SetAngles(angles)
 
-	local trigger_push127 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush73 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 270 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("123, 2342, 205"),
+	    mins = "-56 -78 -24",
+	    maxs = "56 78 24"
 	})
+	trigger_push_brush73.KeyValueFromInt("solid", 2)
+	trigger_push_brush73.KeyValueFromString("mins", "-56 -78 -24")
+	trigger_push_brush73.KeyValueFromString("maxs", "56 78 24")
 
 	if(origin != null)
-		trigger_push127.SetOrigin(origin)
+		trigger_push_brush73.SetOrigin(origin)
 	if(angles != null)
-		trigger_push127.SetAngles(angles)
+		trigger_push_brush73.SetAngles(angles)
 
-	local trigger_push128 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush74 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 90 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("128, -1276, 220"),
+	    mins = "-256 -4 -12",
+	    maxs = "256 4 12"
 	})
+	trigger_push_brush74.KeyValueFromInt("solid", 2)
+	trigger_push_brush74.KeyValueFromString("mins", "-256 -4 -12")
+	trigger_push_brush74.KeyValueFromString("maxs", "256 4 12")
 
 	if(origin != null)
-		trigger_push128.SetOrigin(origin)
+		trigger_push_brush74.SetOrigin(origin)
 	if(angles != null)
-		trigger_push128.SetAngles(angles)
+		trigger_push_brush74.SetAngles(angles)
 
-	local trigger_push129 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush75 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 270 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("108, -1688, 390"),
+	    mins = "-68 -8 -4",
+	    maxs = "68 8 4"
 	})
+	trigger_push_brush75.KeyValueFromInt("solid", 2)
+	trigger_push_brush75.KeyValueFromString("mins", "-68 -8 -4")
+	trigger_push_brush75.KeyValueFromString("maxs", "68 8 4")
 
 	if(origin != null)
-		trigger_push129.SetOrigin(origin)
+		trigger_push_brush75.SetOrigin(origin)
 	if(angles != null)
-		trigger_push129.SetAngles(angles)
+		trigger_push_brush75.SetAngles(angles)
 
-	local trigger_push130 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush76 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 270 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("168, -1648, 390"),
+	    mins = "-8 -32 -4",
+	    maxs = "8 32 4"
 	})
+	trigger_push_brush76.KeyValueFromInt("solid", 2)
+	trigger_push_brush76.KeyValueFromString("mins", "-8 -32 -4")
+	trigger_push_brush76.KeyValueFromString("maxs", "8 32 4")
 
 	if(origin != null)
-		trigger_push130.SetOrigin(origin)
+		trigger_push_brush76.SetOrigin(origin)
 	if(angles != null)
-		trigger_push130.SetAngles(angles)
+		trigger_push_brush76.SetAngles(angles)
 
-	local trigger_push131 = SpawnEntityFromTable("trigger_push", {
-	    
+	local trigger_push_brush77 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 270 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    filtername = "filter_redteam",
+	    origin = Vector("-72.5, -1856, 890.5"),
+	    mins = "-10.5 -608 -421.5",
+	    maxs = "10.5 608 421.5"
 	})
+	trigger_push_brush77.KeyValueFromInt("solid", 2)
+	trigger_push_brush77.KeyValueFromString("mins", "-10.5 -608 -421.5")
+	trigger_push_brush77.KeyValueFromString("maxs", "10.5 608 421.5")
 
 	if(origin != null)
-		trigger_push131.SetOrigin(origin)
+		trigger_push_brush77.SetOrigin(origin)
 	if(angles != null)
-		trigger_push131.SetAngles(angles)
+		trigger_push_brush77.SetAngles(angles)
 
 }
-::PlayersLeftLogic <- function(origin, angles)
+::PlayersLeftLogic <- function()
 {
-	local math_counter132 = SpawnEntityFromTable("math_counter", {
+	local math_counter55 = SpawnEntityFromTable("math_counter", {
 	    targetname = "playersLeftAlive",
 	    "startvalue" = 0,
 	    "outValue#1": "wipeCheck,SetValueCompare,,0,-1"
 	})
 
 	if(origin != null)
-		math_counter132.SetOrigin(origin)
+		math_counter55.SetOrigin(origin)
 	if(angles != null)
-		math_counter132.SetAngles(angles)
+		math_counter55.SetAngles(angles)
 
-	local logic_compare133 = SpawnEntityFromTable("logic_compare", {
+	local logic_compare56 = SpawnEntityFromTable("logic_compare", {
 	    targetname = "wipeCheck",
 	    "initialValue" = 0,
 	    "CompareValue" = 0,
@@ -1373,39 +2352,1265 @@
 	})
 
 	if(origin != null)
-		logic_compare133.SetOrigin(origin)
+		logic_compare56.SetOrigin(origin)
 	if(angles != null)
-		logic_compare133.SetAngles(angles)
+		logic_compare56.SetAngles(angles)
 
-	local ambient_generic134 = SpawnEntityFromTable("ambient_generic", {
-	    
+	local ambient_generic57 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "#*shadows/goodeffort.mp3",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "fail_snd"
 	})
 
 	if(origin != null)
-		ambient_generic134.SetOrigin(origin)
+		ambient_generic57.SetOrigin(origin)
 	if(angles != null)
-		ambient_generic134.SetAngles(angles)
+		ambient_generic57.SetAngles(angles)
 
-	local ambient_generic135 = SpawnEntityFromTable("ambient_generic", {
-	    
+	local ambient_generic58 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "#*shadows/stage_clear.mp3",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "roundclear_snd"
 	})
 
 	if(origin != null)
-		ambient_generic135.SetOrigin(origin)
+		ambient_generic58.SetOrigin(origin)
 	if(angles != null)
-		ambient_generic135.SetAngles(angles)
+		ambient_generic58.SetAngles(angles)
 
-	local ambient_generic136 = SpawnEntityFromTable("ambient_generic", {
-	    
+	local ambient_generic59 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "#*shadows/youdidit.mp3",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "win_snd"
 	})
 
 	if(origin != null)
-		ambient_generic136.SetOrigin(origin)
+		ambient_generic59.SetOrigin(origin)
 	if(angles != null)
-		ambient_generic136.SetAngles(angles)
+		ambient_generic59.SetAngles(angles)
+
+	local ambient_generic60 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "#*shadows/makeitcount.mp3",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "finale_snd"
+	})
+
+	if(origin != null)
+		ambient_generic60.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic60.SetAngles(angles)
+
+	local ambient_generic61 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "#*shadows/bossround_music.mp3",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "tankround_snd"
+	})
+
+	if(origin != null)
+		ambient_generic61.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic61.SetAngles(angles)
+
+}
+::PlayerTracker <- function()
+{
+	local logic_relay62 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "playersLeftAlive,add,1,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION1"
+	})
+
+	if(origin != null)
+		logic_relay62.SetOrigin(origin)
+	if(angles != null)
+		logic_relay62.SetAngles(angles)
+
+	local logic_relay63 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "popscript,$playertracker,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION2"
+	})
+
+	if(origin != null)
+		logic_relay63.SetOrigin(origin)
+	if(angles != null)
+		logic_relay63.SetAngles(angles)
+
+	local logic_relay64 = SpawnEntityFromTable("logic_relay", {
+	    $OnKilled = "playersLeftAlive,Subtract,1,0,0"
+	})
+
+	if(origin != null)
+		logic_relay64.SetOrigin(origin)
+	if(angles != null)
+		logic_relay64.SetAngles(angles)
+
+	local logic_relay65 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "popscript,$spawn_revive_marker,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "PARENTKILLEDOUTPUT_CONVERSION1"
+	})
+
+	if(origin != null)
+		logic_relay65.SetOrigin(origin)
+	if(angles != null)
+		logic_relay65.SetAngles(angles)
+
+}
+::Revivemarker <- function()
+{
+	local trigger_multiple_brush78 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "revive_trigger",
+	    mins = "-36 -36 -36",
+	    maxs = "36 36 36",
+	    spawnflags = 1,
+	    "OnStartTouch#1": "!activator,RunScriptCode,ClientPrint(self, 4, `Hold Action key to revive your teammate`),0,-1"
+	})
+	trigger_multiple_brush78.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush78.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush78.KeyValueFromString("maxs", "36 36 36")
+
+	if(origin != null)
+		trigger_multiple_brush78.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush78.SetAngles(angles)
+
+	local logic_relay66 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "revive_trigger,DisableAndEndTouch,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "PARENTKILLEDOUTPUT_CONVERSION2"
+	})
+
+	if(origin != null)
+		logic_relay66.SetOrigin(origin)
+	if(angles != null)
+		logic_relay66.SetAngles(angles)
+
+}
+::EnemyTracker <- function()
+{
+	local logic_relay67 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "!activator,$RemoveOutput,$OnDeath,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "PARENTKILLEDOUTPUT_CONVERSION3"
+	})
+
+	if(origin != null)
+		logic_relay67.SetOrigin(origin)
+	if(angles != null)
+		logic_relay67.SetAngles(angles)
+
+	local logic_relay68 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "relay_enemycount_subtract,trigger,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "PARENTKILLEDOUTPUT_CONVERSION4"
+	})
+
+	if(origin != null)
+		logic_relay68.SetOrigin(origin)
+	if(angles != null)
+		logic_relay68.SetAngles(angles)
+
+	local logic_relay69 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "relay_enemycount_add,trigger,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION3"
+	})
+
+	if(origin != null)
+		logic_relay69.SetOrigin(origin)
+	if(angles != null)
+		logic_relay69.SetAngles(angles)
+
+	local logic_relay70 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "popscript,$OnWaveSpawnBot,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION4"
+	})
+
+	if(origin != null)
+		logic_relay70.SetOrigin(origin)
+	if(angles != null)
+		logic_relay70.SetAngles(angles)
+
+}
+::Hulk_PT <- function()
+{
+	local 71 = SpawnEntityFromTable("", {
+	    KeepAlive = 1,
+	    Target = "hankerman",
+	    Action = "SetPlaybackRate",
+	    Param = 0,
+	    Delay = 0.01
+	})
+
+	if(origin != null)
+		71.SetOrigin(origin)
+	if(angles != null)
+		71.SetAngles(angles)
+
+	local logic_relay72 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "hankerman,Enable,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "PARENTKILLEDOUTPUT_CONVERSION5"
+	})
+
+	if(origin != null)
+		logic_relay72.SetOrigin(origin)
+	if(angles != null)
+		logic_relay72.SetAngles(angles)
+
+	local logic_relay73 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "hankerman,SetPlaybackRate,1,0.02,-1",
+	    spawnflags = 1,
+	    targetname = "PARENTKILLEDOUTPUT_CONVERSION6"
+	})
+
+	if(origin != null)
+		logic_relay73.SetOrigin(origin)
+	if(angles != null)
+		logic_relay73.SetAngles(angles)
+
+	local prop_dynamic74 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "hankerman",
+	    angles = QAngle(0, 0, 0),
+	    origin = Vector(0, 0, 0),
+	    DisableBoneFollowers = 1,
+	    disableshadows = 0,
+	    StartDisabled = 1,
+	    "skin" = 1,
+	    model = "models\kirillian\infected\hank_v4.mdl",
+	    DefaultAnim = "Death",
+	    ModelScale = 1.75,
+	    solid = 0,
+	    "OnAnimationDone#1": "!self,SetAnimation,deathpose_incap,0,-1",
+	    "OnAnimationDone#2": "!self,SetPlaybackRate,0,,-1",
+	    "OnAnimationDone#3": "hanked,start,,,-1",
+	    "OnAnimationDone#4": "hanked,kill,,3,-1",
+	    "OnAnimationDone#5": "!self,Kill,,,-1"
+	})
+
+	if(origin != null)
+		prop_dynamic74.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic74.SetAngles(angles)
+
+	local info_particle_system75 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "hanked",
+	    origin = Vector(0, 0, 48),
+	    effect_name = "skull_island_explosion"
+	})
+
+	if(origin != null)
+		info_particle_system75.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system75.SetAngles(angles)
+
+}
+::Crawler_PT <- function()
+{
+	local trigger_push_brush79 = SpawnEntityFromTable("trigger_push", {
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 1000,
+	    filtername = "filter_crawler",
+	    StartDisabled = 1,
+	    targetname = "crawlerpush",
+	    mins = "-24 -24 -24",
+	    maxs = "24 24 24"
+	})
+	trigger_push_brush79.KeyValueFromInt("solid", 2)
+	trigger_push_brush79.KeyValueFromString("mins", "-24 -24 -24")
+	trigger_push_brush79.KeyValueFromString("maxs", "24 24 24")
+
+	if(origin != null)
+		trigger_push_brush79.SetOrigin(origin)
+	if(angles != null)
+		trigger_push_brush79.SetAngles(angles)
+
+	local ambient_generic76 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "crawler_hop_sfx",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 14000,
+	    pitch = 100,
+	    message = ")player/pl_scout_jump1.wav"
+	})
+
+	if(origin != null)
+		ambient_generic76.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic76.SetAngles(angles)
+
+	local logic_timer77 = SpawnEntityFromTable("logic_timer", {
+	    refiretime = 14,
+	    "OnTimer#1": "crawlerpush,Enable,,0,-1",
+	    "OnTimer#2": "crawler_hop_sfx,PlaySound,,0,-1",
+	    "OnTimer#3": "crawlerpush,Disable,,0.7,-1"
+	})
+
+	if(origin != null)
+		logic_timer77.SetOrigin(origin)
+	if(angles != null)
+		logic_timer77.SetAngles(angles)
+
+	local filter_tf_bot_has_tag78 = SpawnEntityFromTable("filter_tf_bot_has_tag", {
+	    targetname = "filter_crawler",
+	    require_all_tags = 1,
+	    tags = "crawler",
+	    Negated = "Allow entities that match criteria"
+	})
+
+	if(origin != null)
+		filter_tf_bot_has_tag78.SetOrigin(origin)
+	if(angles != null)
+		filter_tf_bot_has_tag78.SetAngles(angles)
+
+}
+::Charger_PT <- function()
+{
+	local logic_relay79 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "popscript,$chargerLogic,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION5"
+	})
+
+	if(origin != null)
+		logic_relay79.SetOrigin(origin)
+	if(angles != null)
+		logic_relay79.SetAngles(angles)
+
+}
+::Soldier_Tank <- function()
+{
+	local 80 = SpawnEntityFromTable("", {
+	    KeepAlive = 1,
+	    Target = "autotank_turret_weapon",
+	    Action = "$SetOwner"
+	})
+
+	if(origin != null)
+		80.SetOrigin(origin)
+	if(angles != null)
+		80.SetAngles(angles)
+
+	local prop_dynamic81 = SpawnEntityFromTable("prop_dynamic", {
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("0, 0, -8"),
+	    DisableBoneFollowers = 1,
+	    disableshadows = 0,
+	    model = "models/props_frontline/tank_animated.mdl",
+	    DefaultAnim = "move_slow",
+	    ModelScale = 0.55,
+	    solid = 0,
+	    skin = 1,
+	    targetname = "autotank_body"
+	})
+
+	if(origin != null)
+		prop_dynamic81.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic81.SetAngles(angles)
+
+	local prop_dynamic82 = SpawnEntityFromTable("prop_dynamic", {
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("0, 0, -8"),
+	    DisableBoneFollowers = 1,
+	    disableshadows = 0,
+	    StartDisabled = 1,
+	    model = "models\bots\soldier\bot_soldier.mdl",
+	    DefaultAnim = "PRIMARY_stun_middle",
+	    ModelScale = 1.75,
+	    solid = 0,
+	    skin = 1,
+	    targetname = "autotank_gibby",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		prop_dynamic82.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic82.SetAngles(angles)
+
+	local info_particle_system83 = SpawnEntityFromTable("info_particle_system", {
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("0, 0, 0"),
+	    effect_name = "cinefx_goldrush",
+	    start_active = 0,
+	    targetname = "autotank_blast",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		info_particle_system83.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system83.SetAngles(angles)
+
+	local ambient_generic84 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "autotank_deathsound",
+	    spawnflags = 17,
+	    health = 10,
+	    radius = 18000,
+	    pitch = 100,
+	    message = ")shadows/treadkill_death.mp3",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		ambient_generic84.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic84.SetAngles(angles)
+
+	local ambient_generic85 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "autotank_explosionsound",
+	    spawnflags = 17,
+	    health = 10,
+	    radius = 18000,
+	    pitch = 100,
+	    message = ")mvm\mvm_tank_explode.wav",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		ambient_generic85.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic85.SetAngles(angles)
+
+	local info_particle_system86 = SpawnEntityFromTable("info_particle_system", {
+	    angles = QAngle("0, 180, 0"),
+	    origin = Vector("-70, 38, 52"),
+	    effect_name = "kartdamage_smoke4",
+	    start_active = 1,
+	    targetname = "autotank_smoke",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		info_particle_system86.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system86.SetAngles(angles)
+
+	local info_particle_system87 = SpawnEntityFromTable("info_particle_system", {
+	    angles = QAngle("0, 180, 0"),
+	    origin = Vector("-70, -39, 52"),
+	    effect_name = "kartdamage_smoke4",
+	    start_active = 1,
+	    targetname = "autotank_smoke",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		info_particle_system87.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system87.SetAngles(angles)
+
+	local env_shake88 = SpawnEntityFromTable("env_shake", {
+	    amplitude = 16,
+	    duration = 1.5,
+	    frequency = 2.5,
+	    radius = 1500,
+	    spawnflags = 1,
+	    targetname = "autotank_shake"
+	})
+
+	if(origin != null)
+		env_shake88.SetOrigin(origin)
+	if(angles != null)
+		env_shake88.SetAngles(angles)
+
+	local ambient_generic89 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "autotank_turret_ready",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 18000,
+	    pitch = 100,
+	    message = ")vehicles/tank_readyfire1.wav",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		ambient_generic89.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic89.SetAngles(angles)
+
+	local ambient_generic90 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "autotank_ragemode",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 18000,
+	    pitch = 100,
+	    message = ")shadows/treadkill_rage.mp3",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		ambient_generic90.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic90.SetAngles(angles)
+
+	local ambient_generic91 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "autotank_turret_shoot",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 18000,
+	    pitch = 100,
+	    message = ")player\taunt_tank_shoot.wav",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		ambient_generic91.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic91.SetAngles(angles)
+
+	local tf_point_weapon_mimic92 = SpawnEntityFromTable("tf_point_weapon_mimic", {
+	    origin = Vector("125, 0, 59"),
+	    damage = 75,
+	    speedmin = 2200,
+	    speedmax = 2200,
+	    splashradius = 216,
+	    targetname = "autotank_turret_weapon",
+	    parentname = "autotank_body"
+	})
+
+	if(origin != null)
+		tf_point_weapon_mimic92.SetOrigin(origin)
+	if(angles != null)
+		tf_point_weapon_mimic92.SetAngles(angles)
+
+	local logic_relay93 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "autotank_turretshoot",
+	    "OnTrigger#1": "autotank_turret_ready,PlaySound,,0,-1",
+	    "OnTrigger#2": "autotank_body,SetAnimation,shoot_forward,1,-1",
+	    "OnTrigger#3": "autotank_turret_weapon,Fireonce,,1.3,-1",
+	    "OnTrigger#4": "autotank_turret_shoot,PlaySound,,1.3,-1"
+	})
+
+	if(origin != null)
+		logic_relay93.SetOrigin(origin)
+	if(angles != null)
+		logic_relay93.SetAngles(angles)
+
+	local logic_relay94 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "autotank_death",
+	    "OnTrigger#1": "autotank_idle,StopSound,,0,-1",
+	    "OnTrigger#2": "autotank_gibby,Enable,,0,-1",
+	    "OnTrigger#3": "autotank_smoke,Stop,,0,-1",
+	    "OnTrigger#4": "autotank_gibby,SetAnimation,PRIMARY_Stun_begin,0,-1",
+	    "OnTrigger#5": "autotank_gibby,SetPlaybackRate,0.36,0.3,-1",
+	    "OnTrigger#6": "autotank_deathsound,PlaySound,,0,-1",
+	    "OnTrigger#7": "autotank_gibby,Disable,,3,-1",
+	    "OnTrigger#8": "autotank_body,Disable,,3,-1",
+	    "OnTrigger#9": "autotank_explosionsound,PlaySound,,3,-1",
+	    "OnTrigger#10": "autotank_blast,Start,,3,-1",
+	    "OnTrigger#11": "autotank_shake,StartShake,,3,-1",
+	    "OnTrigger#12": "autotank_*,Kill,,8,-1"
+	})
+
+	if(origin != null)
+		logic_relay94.SetOrigin(origin)
+	if(angles != null)
+		logic_relay94.SetAngles(angles)
+
+}
+::Heavy_Boss <- function()
+{
+	local 95 = SpawnEntityFromTable("", {
+	    KeepAlive = 1,
+	    InitialOwner = "blord",
+	    spawnflags = 256,
+	    DisableBoneFollowers = 1,
+	    disableshadows = 1,
+	    solid = 0,
+	    targetname = "battlelord_cosmetics",
+	    model = "models/workshop/player/items/soldier/hwn2015_hellmet/hwn2015_hellmet.mdl"
+	})
+
+	if(origin != null)
+		95.SetOrigin(origin)
+	if(angles != null)
+		95.SetAngles(angles)
+
+	local prop_dynamic_ornament96 = SpawnEntityFromTable("prop_dynamic_ornament", {
+	    InitialOwner = "blord",
+	    spawnflags = 256,
+	    DisableBoneFollowers = 1,
+	    disableshadows = 1,
+	    solid = 0,
+	    targetname = "battlelord_cosmetics",
+	    model = "models/workshop/player/items/demo/sf14_deadking_pauldrons/sf14_deadking_pauldrons.mdl"
+	})
+
+	if(origin != null)
+		prop_dynamic_ornament96.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic_ornament96.SetAngles(angles)
+
+	local prop_dynamic_ornament97 = SpawnEntityFromTable("prop_dynamic_ornament", {
+	    InitialOwner = "blord",
+	    spawnflags = 256,
+	    DisableBoneFollowers = 1,
+	    disableshadows = 1,
+	    solid = 0,
+	    targetname = "battlelord_cosmetics",
+	    model = "models/workshop/weapons/c_models/c_iron_curtain/c_iron_curtain.mdl"
+	})
+
+	if(origin != null)
+		prop_dynamic_ornament97.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic_ornament97.SetAngles(angles)
+
+	local logic_relay98 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "battlelord_cosmetics_relay",
+	    "OnTrigger#1": "battlelord_cosmetics,TurnOff,,2,-1"
+	})
+
+	if(origin != null)
+		logic_relay98.SetOrigin(origin)
+	if(angles != null)
+		logic_relay98.SetAngles(angles)
+
+	local prop_dynamic99 = SpawnEntityFromTable("prop_dynamic", {
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("0, 0, 0"),
+	    DisableBoneFollowers = 1,
+	    disableshadows = 0,
+	    StartDisabled = 1,
+	    model = "models\bots\heavy_boss\bot_heavy_boss.mdl",
+	    DefaultAnim = "primary_death_01",
+	    ModelScale = 1.75,
+	    solid = 0,
+	    skin = 1,
+	    targetname = "blord"
+	})
+
+	if(origin != null)
+		prop_dynamic99.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic99.SetAngles(angles)
+
+	local ambient_generic100 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "blord_deathsound",
+	    spawnflags = 17,
+	    health = 10,
+	    radius = 18000,
+	    pitch = 100,
+	    message = ")shadows/battlelord_death.mp3",
+	    parentname = "blord"
+	})
+
+	if(origin != null)
+		ambient_generic100.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic100.SetAngles(angles)
+
+	local info_particle_system101 = SpawnEntityFromTable("info_particle_system", {
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("0, 0, 0"),
+	    effect_name = "cinefx_goldrush",
+	    start_active = 0,
+	    targetname = "blord_blast",
+	    parentname = "blord"
+	})
+
+	if(origin != null)
+		info_particle_system101.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system101.SetAngles(angles)
+
+	local env_shake102 = SpawnEntityFromTable("env_shake", {
+	    amplitude = 16,
+	    duration = 1.5,
+	    frequency = 2.5,
+	    radius = 1500,
+	    spawnflags = 1,
+	    targetname = "blord_shake"
+	})
+
+	if(origin != null)
+		env_shake102.SetOrigin(origin)
+	if(angles != null)
+		env_shake102.SetAngles(angles)
+
+	local ambient_generic103 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "blord_explosionsound",
+	    spawnflags = 17,
+	    health = 10,
+	    radius = 18000,
+	    pitch = 100,
+	    message = ")mvm\mvm_tank_explode.wav",
+	    parentname = "blord"
+	})
+
+	if(origin != null)
+		ambient_generic103.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic103.SetAngles(angles)
+
+	local logic_relay104 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "blord_death",
+	    "OnTrigger#1": "blord,Enable,,0,-1",
+	    "OnTrigger#2": "battlelord_cosmetics,TurnOn,,0,-1",
+	    "OnTrigger#3": "blord,SetAnimation,primary_death_01,0,-1",
+	    "OnTrigger#4": "blord_deathsound,PlaySound,,0,-1",
+	    "OnTrigger#5": "blord,Disable,,3.4,-1",
+	    "OnTrigger#6": "battlelord_cosmetics,kill,,3.4,-1",
+	    "OnTrigger#7": "blord_explosionsound,PlaySound,,3.4,-1",
+	    "OnTrigger#8": "blord_blast,Start,,3.4,-1",
+	    "OnTrigger#9": "blord_shake,StartShake,,3.4,-1",
+	    "OnTrigger#10": "blord_*,Kill,,8,-1"
+	})
+
+	if(origin != null)
+		logic_relay104.SetOrigin(origin)
+	if(angles != null)
+		logic_relay104.SetAngles(angles)
+
+}
+::tutorial <- function()
+{
+	local logic_relay105 = SpawnEntityFromTable("logic_relay", {
+	    spawnflags = 2,
+	    targetname = "tutorial_relay",
+	    "OnTrigger#1": "hints_1,Show,,0,-1",
+	    "OnTrigger#2": "hints_2,Show,,4,-1",
+	    "OnTrigger#3": "hints_3,Show,,8,-1",
+	    "OnTrigger#4": "hints_4,Show,,12,-1",
+	    "OnTrigger#5": "hints_5,Show,,16,-1",
+	    "OnTrigger#6": "hints_6,Show,,20,-1",
+	    "OnTrigger#7": "hints_7,Show,,24,-1",
+	    "OnTrigger#8": "hints_8,Show,,28,-1",
+	    "OnTrigger#9": "hints_9,Show,,32,-1",
+	    "OnTrigger#10": "hints_10,Show,,36,-1",
+	    "OnTrigger#11": "hints_11,Show,,40,-1",
+	    "OnTrigger#12": "hints_12,Show,,44,-1",
+	    "OnTrigger#13": "hints_15,Show,,48,-1",
+	    "OnTrigger#14": "tutorial_relay2,Trigger,,52,-1"
+	})
+
+	if(origin != null)
+		logic_relay105.SetOrigin(origin)
+	if(angles != null)
+		logic_relay105.SetAngles(angles)
+
+	local logic_relay106 = SpawnEntityFromTable("logic_relay", {
+	    spawnflags = 2,
+	    targetname = "tutorial_relay2",
+	    "OnTrigger#1": "tutorial_relay,Trigger,,0,-1"
+	})
+
+	if(origin != null)
+		logic_relay106.SetOrigin(origin)
+	if(angles != null)
+		logic_relay106.SetAngles(angles)
+
+	local training_annotation107 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_1",
+	    display_text = "Money is earned only by dealing damage and killing enemies.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation107.SetOrigin(origin)
+	if(angles != null)
+		training_annotation107.SetAngles(angles)
+
+	local training_annotation108 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_2",
+	    display_text = "Enemies become faster and stronger each round.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation108.SetOrigin(origin)
+	if(angles != null)
+		training_annotation108.SetAngles(angles)
+
+	local training_annotation109 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_3",
+	    display_text = "You can purchase Perk Bonuses from vending machines around the map.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation109.SetOrigin(origin)
+	if(angles != null)
+		training_annotation109.SetAngles(angles)
+
+	local training_annotation110 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_4",
+	    display_text = "Perk Bonuses are not permanent and are lost on death.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation110.SetOrigin(origin)
+	if(angles != null)
+		training_annotation110.SetAngles(angles)
+
+	local training_annotation111 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_5",
+	    display_text = "Perk Bonuses stack with your weapon upgrades.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation111.SetOrigin(origin)
+	if(angles != null)
+		training_annotation111.SetAngles(angles)
+
+	local training_annotation112 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_6",
+	    display_text = "Perk Bonuses do not stack per additional purchase.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation112.SetOrigin(origin)
+	if(angles != null)
+		training_annotation112.SetAngles(angles)
+
+	local training_annotation113 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_7",
+	    display_text = "You can also receive random weapons from your local Weapons Dumpster.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation113.SetOrigin(origin)
+	if(angles != null)
+		training_annotation113.SetAngles(angles)
+
+	local training_annotation114 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_8",
+	    display_text = "Weapons received are returned to you after death.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation114.SetOrigin(origin)
+	if(angles != null)
+		training_annotation114.SetAngles(angles)
+
+	local training_annotation115 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_9",
+	    display_text = "Medics supply ammo and health to nearby teammates.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation115.SetOrigin(origin)
+	if(angles != null)
+		training_annotation115.SetAngles(angles)
+
+	local training_annotation116 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_10",
+	    display_text = "Moving and crouching both affect your accuracy.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation116.SetOrigin(origin)
+	if(angles != null)
+		training_annotation116.SetAngles(angles)
+
+	local training_annotation117 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_11",
+	    display_text = "Powerups have a chance to drop from zombies during waves.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation117.SetOrigin(origin)
+	if(angles != null)
+		training_annotation117.SetAngles(angles)
+
+	local training_annotation118 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_12",
+	    display_text = "Powerups despawn after 30 seconds of being dropped.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation118.SetOrigin(origin)
+	if(angles != null)
+		training_annotation118.SetAngles(angles)
+
+	local training_annotation119 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "hints_15",
+	    display_text = "Players cannot join the game once it begins.",
+	    lifetime = 4,
+	    origin = Vector(328, -150, 52)
+	})
+
+	if(origin != null)
+		training_annotation119.SetOrigin(origin)
+	if(angles != null)
+		training_annotation119.SetAngles(angles)
+
+	local logic_relay120 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "tutorial_relay,Trigger,,4,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION6"
+	})
+
+	if(origin != null)
+		logic_relay120.SetOrigin(origin)
+	if(angles != null)
+		logic_relay120.SetAngles(angles)
+
+}
+::DummyMachines <- function()
+{
+	local prop_dynamic121 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("477, -2103, 4"),
+	    angles = QAngle("0, 270, 0"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 0,
+	    targetname = "DUMMY_1"
+	})
+
+	if(origin != null)
+		prop_dynamic121.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic121.SetAngles(angles)
+
+	local prop_dynamic122 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("-1157, -597, -198"),
+	    angles = QAngle("0, 90, 0"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 0,
+	    targetname = "DUMMY_2"
+	})
+
+	if(origin != null)
+		prop_dynamic122.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic122.SetAngles(angles)
+
+	local prop_dynamic123 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("197, -2659, 12"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 1,
+	    targetname = "DUMMY_3"
+	})
+
+	if(origin != null)
+		prop_dynamic123.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic123.SetAngles(angles)
+
+	local prop_dynamic124 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("-19, 1893, 206"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 0,
+	    targetname = "DUMMY_4"
+	})
+
+	if(origin != null)
+		prop_dynamic124.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic124.SetAngles(angles)
+
+	local prop_dynamic125 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("-1794, 1236, -2"),
+	    angles = QAngle("0, 270, 0"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 0,
+	    targetname = "DUMMY_5"
+	})
+
+	if(origin != null)
+		prop_dynamic125.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic125.SetAngles(angles)
+
+}
+::Vending_Jugg <- function()
+{
+	local prop_dynamic126 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 50"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 0,
+	    targetname = "vm_jug"
+	})
+
+	if(origin != null)
+		prop_dynamic126.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic126.SetAngles(angles)
+
+	local prop_dynamic127 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 164"),
+	    angles = QAngle("0, 270, 0"),
+	    disableshadows = 0,
+	    model = "models/effects/medicyell.mdl",
+	    modelscale = 2,
+	    solid = 0,
+	    parentname = "vm_jug"
+	})
+
+	if(origin != null)
+		prop_dynamic127.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic127.SetAngles(angles)
+
+	local func_button_brush80 = SpawnEntityFromTable("func_button", {
+	    targetname = "vm_jugbutton",
+	    parentname = "vm_jug",
+	    damagefilter = "filter_juggmulti",
+	    rendermode = 10,
+	    movedir = "0 180 0",
+	    spawnflags = 513,
+	    speed = 5,
+	    wait = 1,
+	    sounds = 3,
+	    origin = Vector("0, -12, 128"),
+	    mins = "-24 -8 -44",
+	    maxs = "24 8 44",
+	    "OnPressed#1": "perkbuff_jugg,trigger,0,-1"
+	})
+	func_button_brush80.KeyValueFromInt("solid", 2)
+	func_button_brush80.KeyValueFromString("mins", "-24 -8 -44")
+	func_button_brush80.KeyValueFromString("maxs", "24 8 44")
+
+	if(origin != null)
+		func_button_brush80.SetOrigin(origin)
+	if(angles != null)
+		func_button_brush80.SetAngles(angles)
+
+	local $filter_sendprop128 = SpawnEntityFromTable("$filter_sendprop", {
+	    targetname = "filter_juggmoney",
+	    $name = "m_nCurrency",
+	    negated = 0,
+	    $value = 2500,
+	    $compare = "greater than or equal"
+	})
+
+	if(origin != null)
+		$filter_sendprop128.SetOrigin(origin)
+	if(angles != null)
+		$filter_sendprop128.SetAngles(angles)
+
+	local filter_multi129 = SpawnEntityFromTable("filter_multi", {
+	    targetname = "filter_juggmulti",
+	    filtertype = 0,
+	    negated = 0,
+	    filter01 = "filter_juggmoney",
+	    filter02 = "filter_melee",
+	    "OnFail#1": "!activator,$PlaySoundToSelf,buttons/button8.wav,0,-1"
+	})
+
+	if(origin != null)
+		filter_multi129.SetOrigin(origin)
+	if(angles != null)
+		filter_multi129.SetAngles(angles)
+
+	local filter_damage_type130 = SpawnEntityFromTable("filter_damage_type", {
+	    targetname = "filter_melee",
+	    negated = 0,
+	    damagetype = 134221952
+	})
+
+	if(origin != null)
+		filter_damage_type130.SetOrigin(origin)
+	if(angles != null)
+		filter_damage_type130.SetAngles(angles)
+
+	local trigger_multiple_brush81 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "vm_jugmsg",
+	    parentname = "vm_jug",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-128 -128 0",
+	    maxs = "128 128 128",
+	    "OnStartTouchAll#1": "!activator,RunScriptCode,ClientPrint(self, 4, `Hold Action key to buy Saxton Ale for $2500`),0,-1"
+	})
+	trigger_multiple_brush81.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush81.KeyValueFromString("mins", "-128 -128 0")
+	trigger_multiple_brush81.KeyValueFromString("maxs", "128 128 128")
+
+	if(origin != null)
+		trigger_multiple_brush81.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush81.SetAngles(angles)
+
+	local ambient_generic131 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "vm_jugsfx",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 15000,
+	    pitch = 100,
+	    message = "shadows/perk_saxton.mp3",
+	    parentname = "vm_jug"
+	})
+
+	if(origin != null)
+		ambient_generic131.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic131.SetAngles(angles)
+
+	local logic_relay132 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "perkbuff_jugg",
+	    "OnTrigger#1": "!activator,RunScriptCode,self.RemoveCurrency(2500),-1",
+	    "OnTrigger#2": "!activator,$PlaySoundToSelf,shadows/perk_usesfx.mp3,0,-1",
+	    "OnTrigger#3": "vm_jugsfx,PlaySound,0,2.2,-1",
+	    "OnTrigger#4": "!activator,RunScriptCode,self.AddCustomAttribute(`max health additive bonus`, 150, -1),2.2,-1",
+	    "OnTrigger#5": "!activator,$PlaySoundToSelf,weapons/buffed_on.wav,2.2,-1",
+	    "OnTrigger#6": "!activator,RunScriptCode,ClientPrint(self, 4, `Perk Bonus activated: Extra max health!`),2.2,-1",
+	    "OnTrigger#7": "!activator,SpeakResponseConcept,TLK_PLAYER_SPELL_PICKUP_RARE,2.45,-1"
+	})
+
+	if(origin != null)
+		logic_relay132.SetOrigin(origin)
+	if(angles != null)
+		logic_relay132.SetAngles(angles)
+
+}
+::Vending_Speed <- function()
+{
+	local prop_dynamic133 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 50"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 0,
+	    targetname = "vm_speed"
+	})
+
+	if(origin != null)
+		prop_dynamic133.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic133.SetAngles(angles)
+
+	local prop_dynamic134 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 164"),
+	    angles = QAngle("0, 270, 0"),
+	    disableshadows = 0,
+	    model = "models/props_halloween/merasmus_skull_island.mdl",
+	    solid = 0,
+	    parentname = "vm_speed"
+	})
+
+	if(origin != null)
+		prop_dynamic134.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic134.SetAngles(angles)
+
+	local func_button_brush82 = SpawnEntityFromTable("func_button", {
+	    targetname = "vm_speedbutton",
+	    parentname = "vm_speed",
+	    damagefilter = "filter_speedmulti",
+	    rendermode = 10,
+	    movedir = "0 180 0",
+	    spawnflags = 513,
+	    speed = 5,
+	    wait = 3,
+	    sounds = 3,
+	    origin = Vector("0, -12, 128"),
+	    mins = "-24 -8 -44",
+	    maxs = "24 8 44",
+	    "OnPressed#1": "perkbuff_speed,trigger,0,-1"
+	})
+	func_button_brush82.KeyValueFromInt("solid", 2)
+	func_button_brush82.KeyValueFromString("mins", "-24 -8 -44")
+	func_button_brush82.KeyValueFromString("maxs", "24 8 44")
+
+	if(origin != null)
+		func_button_brush82.SetOrigin(origin)
+	if(angles != null)
+		func_button_brush82.SetAngles(angles)
+
+	local $filter_sendprop135 = SpawnEntityFromTable("$filter_sendprop", {
+	    targetname = "filter_speedmoney",
+	    $name = "m_nCurrency",
+	    negated = 0,
+	    $value = 3000,
+	    $compare = "greater than or equal"
+	})
+
+	if(origin != null)
+		$filter_sendprop135.SetOrigin(origin)
+	if(angles != null)
+		$filter_sendprop135.SetAngles(angles)
+
+	local filter_multi136 = SpawnEntityFromTable("filter_multi", {
+	    targetname = "filter_speedmulti",
+	    filtertype = 0,
+	    negated = 0,
+	    filter01 = "filter_speedmoney",
+	    filter02 = "filter_melee",
+	    "OnFail#1": "!activator,$PlaySoundToSelf,buttons/button8.wav,0,-1"
+	})
+
+	if(origin != null)
+		filter_multi136.SetOrigin(origin)
+	if(angles != null)
+		filter_multi136.SetAngles(angles)
+
+	local trigger_multiple_brush83 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "vm_speedmsg",
+	    parentname = "vm_speed",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-128 -128 0",
+	    maxs = "64 64 128",
+	    "OnStartTouchAll#1": "!activator,RunScriptCode,ClientPrint(self, 4, `Hold Action key to buy Meraslixir for $3000`),0,-1"
+	})
+	trigger_multiple_brush83.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush83.KeyValueFromString("mins", "-128 -128 0")
+	trigger_multiple_brush83.KeyValueFromString("maxs", "64 64 128")
+
+	if(origin != null)
+		trigger_multiple_brush83.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush83.SetAngles(angles)
 
 	local ambient_generic137 = SpawnEntityFromTable("ambient_generic", {
-	    
+	    targetname = "vm_speedsfx",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 15000,
+	    pitch = 100,
+	    message = "shadows/perk_meraslixir.mp3",
+	    parentname = "vm_speed"
 	})
 
 	if(origin != null)
@@ -1413,129 +3618,4856 @@
 	if(angles != null)
 		ambient_generic137.SetAngles(angles)
 
-	local ambient_generic138 = SpawnEntityFromTable("ambient_generic", {
-	    
+	local logic_relay138 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "perkbuff_speed",
+	    "OnTrigger#1": "!activator,RunScriptCode,self.RemoveCurrency(3000),-1",
+	    "OnTrigger#2": "!activator,$PlaySoundToSelf,shadows/perk_usesfx.mp3,0,-1",
+	    "OnTrigger#3": "vm_speedsfx,PlaySound,0,2.2,-1",
+	    "OnTrigger#4": "!activator,RunScriptCode,self.AddCustomAttribute(`faster reload rate`, 0.5, -1),2.2,-1",
+	    "OnTrigger#5": "!activator,RunScriptCode,self.AddCustomAttribute(`move speed bonus`, 1.15, -1),2.2,-1",
+	    "OnTrigger#6": "!activator,$PlaySoundToSelf,weapons/buffed_on.wav,2.2,-1",
+	    "OnTrigger#7": "!activator,RunScriptCode,ClientPrint(self, 4, `Perk Bonus activated: Increased movement and reload speed!`),2.2,-1",
+	    "OnTrigger#8": "!activator,SpeakResponseConcept,TLK_PLAYER_SPELL_PICKUP_RARE,2.45,-1"
 	})
 
 	if(origin != null)
-		ambient_generic138.SetOrigin(origin)
+		logic_relay138.SetOrigin(origin)
 	if(angles != null)
-		ambient_generic138.SetAngles(angles)
+		logic_relay138.SetAngles(angles)
 
 }
-::PlayerTracker <- function(origin, angles)
+::Vending_Blaster <- function()
 {
-	local logic_relay139 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "playersLeftAlive,add,1,0.0,-1",
+	local prop_dynamic139 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 50"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 1,
+	    targetname = "vm_blaster"
+	})
+
+	if(origin != null)
+		prop_dynamic139.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic139.SetAngles(angles)
+
+	local func_button_brush84 = SpawnEntityFromTable("func_button", {
+	    origin = Vector("0, -12, 128"),
+	    targetname = "vm_blasterbutton",
+	    parentname = "vm_blaster",
+	    damagefilter = "filter_blastermulti",
+	    rendermode = 10,
+	    movedir = "0 180 0",
+	    spawnflags = 513,
+	    speed = 5,
+	    wait = 3,
+	    sounds = 3,
+	    mins = "-24 -8 -44",
+	    maxs = "24 8 44",
+	    "OnPressed#1": "perkbuff_blaster,trigger,0,-1",
+	    "OnPressed#2": "filter_blastermoney,TestActivator,0,-1"
+	})
+	func_button_brush84.KeyValueFromInt("solid", 2)
+	func_button_brush84.KeyValueFromString("mins", "-24 -8 -44")
+	func_button_brush84.KeyValueFromString("maxs", "24 8 44")
+
+	if(origin != null)
+		func_button_brush84.SetOrigin(origin)
+	if(angles != null)
+		func_button_brush84.SetAngles(angles)
+
+	local $filter_sendprop140 = SpawnEntityFromTable("$filter_sendprop", {
+	    targetname = "filter_blastermoney",
+	    $name = "m_nCurrency",
+	    negated = 0,
+	    $value = 1500,
+	    $compare = "greater than or equal"
+	})
+
+	if(origin != null)
+		$filter_sendprop140.SetOrigin(origin)
+	if(angles != null)
+		$filter_sendprop140.SetAngles(angles)
+
+	local filter_multi141 = SpawnEntityFromTable("filter_multi", {
+	    targetname = "filter_blastermulti",
+	    filtertype = 0,
+	    negated = 0,
+	    filter01 = "filter_blastermoney",
+	    filter02 = "filter_melee",
+	    "OnFail#1": "!activator,$PlaySoundToSelf,buttons/button8.wav,0,-1"
+	})
+
+	if(origin != null)
+		filter_multi141.SetOrigin(origin)
+	if(angles != null)
+		filter_multi141.SetAngles(angles)
+
+	local trigger_multiple_brush85 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "vm_blastermsg",
+	    parentname = "vm_blaster",
+	    filtername = "filter_redteam",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION1"
+	    mins = "-128 -128 0",
+	    maxs = "128 128 128",
+	    "OnStartTouchAll#1": "!activator,RunScriptCode,ClientPrint(self, 4, `Hold Action key to buy Head Rattle for $1500`),0,-1"
+	})
+	trigger_multiple_brush85.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush85.KeyValueFromString("mins", "-128 -128 0")
+	trigger_multiple_brush85.KeyValueFromString("maxs", "128 128 128")
+
+	if(origin != null)
+		trigger_multiple_brush85.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush85.SetAngles(angles)
+
+	local ambient_generic142 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "vm_blastersfx",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 15000,
+	    pitch = 100,
+	    message = "shadows/perk_headrattle.mp3",
+	    parentname = "vm_blaster"
 	})
 
 	if(origin != null)
-		logic_relay139.SetOrigin(origin)
+		ambient_generic142.SetOrigin(origin)
 	if(angles != null)
-		logic_relay139.SetAngles(angles)
+		ambient_generic142.SetAngles(angles)
 
-	local logic_relay140 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "popscript,$playertracker,,0.0,-1",
-	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION2"
+	local logic_relay143 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "perkbuff_blaster",
+	    "OnTrigger#1": "!activator,RunScriptCode,self.RemoveCurrency(1500),-1",
+	    "OnTrigger#2": "!activator,$PlaySoundToSelf,shadows/perk_usesfx.mp3,0,-1",
+	    "OnTrigger#3": "vm_blastersfx,PlaySound,0,2.2,-1",
+	    "OnTrigger#4": "!activator,RunScriptCode,self.AddCustomAttribute(`explosive sniper shot`, 2, -1),2.2,-1",
+	    "OnTrigger#5": "!activator,$PlaySoundToSelf,weapons/buffed_on.wav,2.2,-1",
+	    "OnTrigger#6": "!activator,RunScriptCode,ClientPrint(self, 4, `Perk Bonus activated: Explosive Headshot!`),2.2,-1",
+	    "OnTrigger#7": "!activator,SpeakResponseConcept,TLK_PLAYER_SPELL_PICKUP_RARE,2.45,-1"
 	})
 
 	if(origin != null)
-		logic_relay140.SetOrigin(origin)
+		logic_relay143.SetOrigin(origin)
 	if(angles != null)
-		logic_relay140.SetAngles(angles)
-
-	local logic_relay141 = SpawnEntityFromTable("logic_relay", {
-	    $OnKilled = "playersLeftAlive,Subtract,1,0,0"
-	})
-
-	if(origin != null)
-		logic_relay141.SetOrigin(origin)
-	if(angles != null)
-		logic_relay141.SetAngles(angles)
-
-	local logic_relay142 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "popscript,$spawn_revive_marker,,0.0,-1",
-	    spawnflags = 1,
-	    targetname = "PARENTKILLEDOUTPUT_CONVERSION1"
-	})
-
-	if(origin != null)
-		logic_relay142.SetOrigin(origin)
-	if(angles != null)
-		logic_relay142.SetAngles(angles)
+		logic_relay143.SetAngles(angles)
 
 }
-::Revivemarker <- function(origin, angles)
+::Vending_Doubletap <- function()
 {
-	local trigger_multiple143 = SpawnEntityFromTable("trigger_multiple", {
-	    
+	local prop_dynamic144 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 50"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 0,
+	    targetname = "vm_dt"
 	})
 
 	if(origin != null)
-		trigger_multiple143.SetOrigin(origin)
+		prop_dynamic144.SetOrigin(origin)
 	if(angles != null)
-		trigger_multiple143.SetAngles(angles)
+		prop_dynamic144.SetAngles(angles)
 
-	local logic_relay144 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "revive_trigger,DisableAndEndTouch,,0.0,-1",
+	local prop_dynamic145 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("-24, -16, 132"),
+	    angles = QAngle("-15, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/weapons/c_models/c_shotgun/c_shotgun.mdl",
+	    modelscale = 2,
+	    solid = 0,
+	    parentname = "vm_dt"
+	})
+
+	if(origin != null)
+		prop_dynamic145.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic145.SetAngles(angles)
+
+	local func_button_brush86 = SpawnEntityFromTable("func_button", {
+	    origin = Vector("0, -12, 128"),
+	    targetname = "vm_dtbutton",
+	    parentname = "vm_dt",
+	    damagefilter = "filter_dtmulti",
+	    rendermode = 10,
+	    movedir = "0 180 0",
+	    spawnflags = 513,
+	    speed = 5,
+	    wait = 3,
+	    sounds = 3,
+	    mins = "-24 -8 -44",
+	    maxs = "24 8 44",
+	    "OnPressed#1": "perkbuff_dt,trigger,0,-1",
+	    "OnPressed#2": "filter_dtmoney,TestActivator,0,-1"
+	})
+	func_button_brush86.KeyValueFromInt("solid", 2)
+	func_button_brush86.KeyValueFromString("mins", "-24 -8 -44")
+	func_button_brush86.KeyValueFromString("maxs", "24 8 44")
+
+	if(origin != null)
+		func_button_brush86.SetOrigin(origin)
+	if(angles != null)
+		func_button_brush86.SetAngles(angles)
+
+	local $filter_sendprop146 = SpawnEntityFromTable("$filter_sendprop", {
+	    targetname = "filter_dtmoney",
+	    $name = "m_nCurrency",
+	    negated = 0,
+	    $value = 2000,
+	    $compare = "greater than or equal"
+	})
+
+	if(origin != null)
+		$filter_sendprop146.SetOrigin(origin)
+	if(angles != null)
+		$filter_sendprop146.SetAngles(angles)
+
+	local filter_multi147 = SpawnEntityFromTable("filter_multi", {
+	    targetname = "filter_dtmulti",
+	    filtertype = 0,
+	    negated = 0,
+	    filter01 = "filter_dtmoney",
+	    filter02 = "filter_melee",
+	    "OnFail#1": "!activator,$PlaySoundToSelf,buttons/button8.wav,0,-1"
+	})
+
+	if(origin != null)
+		filter_multi147.SetOrigin(origin)
+	if(angles != null)
+		filter_multi147.SetAngles(angles)
+
+	local trigger_multiple_brush87 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "vm_dtmsg",
+	    parentname = "vm_dt",
+	    filtername = "filter_redteam",
 	    spawnflags = 1,
-	    targetname = "PARENTKILLEDOUTPUT_CONVERSION2"
+	    mins = "-128 -128 0",
+	    maxs = "128 128 128",
+	    "OnStartTouchAll#1": "!activator,RunScriptCode,ClientPrint(self, 4, `Hold Action key to buy Double Tap for $2000`),0,-1"
+	})
+	trigger_multiple_brush87.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush87.KeyValueFromString("mins", "-128 -128 0")
+	trigger_multiple_brush87.KeyValueFromString("maxs", "128 128 128")
+
+	if(origin != null)
+		trigger_multiple_brush87.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush87.SetAngles(angles)
+
+	local ambient_generic148 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "vm_dtsfx",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 15000,
+	    pitch = 100,
+	    message = "shadows/perk_doubletap.mp3",
+	    parentname = "vm_dt"
 	})
 
 	if(origin != null)
-		logic_relay144.SetOrigin(origin)
+		ambient_generic148.SetOrigin(origin)
 	if(angles != null)
-		logic_relay144.SetAngles(angles)
+		ambient_generic148.SetAngles(angles)
+
+	local logic_relay149 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "perkbuff_dt",
+	    "OnTrigger#1": "!activator,RunScriptCode,self.RemoveCurrency(2000),-1",
+	    "OnTrigger#2": "!activator,$PlaySoundToSelf,shadows/perk_usesfx.mp3,0,-1",
+	    "OnTrigger#3": "vm_dtsfx,PlaySound,0,2.2,-1",
+	    "OnTrigger#4": "!activator,RunScriptCode,self.AddCustomAttribute(`fire rate bonus`, 0.67, -1),-1",
+	    "OnTrigger#5": "!activator,$PlaySoundToSelf,weapons/buffed_on.wav,2.2,-1",
+	    "OnTrigger#6": "!activator,RunScriptCode,ClientPrint(self, 4, `Perk Bonus activated: Increased fire rate!`),2.2,-1",
+	    "OnTrigger#7": "!activator,SpeakResponseConcept,TLK_PLAYER_SPELL_PICKUP_RARE,2.45,-1"
+	})
+
+	if(origin != null)
+		logic_relay149.SetOrigin(origin)
+	if(angles != null)
+		logic_relay149.SetAngles(angles)
 
 }
-::EnemyTracker <- function(origin, angles)
+::Vending_Quickrevive <- function()
 {
-	local logic_relay145 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activator,$RemoveOutput,$OnDeath,0.0,-1",
-	    spawnflags = 1,
-	    targetname = "PARENTKILLEDOUTPUT_CONVERSION3"
+	local prop_dynamic150 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 50"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 0,
+	    targetname = "vm_quickrev"
 	})
 
 	if(origin != null)
-		logic_relay145.SetOrigin(origin)
+		prop_dynamic150.SetOrigin(origin)
 	if(angles != null)
-		logic_relay145.SetAngles(angles)
+		prop_dynamic150.SetAngles(angles)
 
-	local logic_relay146 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "relay_enemycount_subtract,trigger,,0.0,-1",
-	    spawnflags = 1,
-	    targetname = "PARENTKILLEDOUTPUT_CONVERSION4"
+	local prop_dynamic151 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 155"),
+	    angles = QAngle("0, 270, 0"),
+	    disableshadows = 0,
+	    model = "models/props_mvm/mvm_human_skull.mdl",
+	    modelscale = 2.5,
+	    solid = 0,
+	    parentname = "vm_quickrev"
 	})
 
 	if(origin != null)
-		logic_relay146.SetOrigin(origin)
+		prop_dynamic151.SetOrigin(origin)
 	if(angles != null)
-		logic_relay146.SetAngles(angles)
+		prop_dynamic151.SetAngles(angles)
 
-	local logic_relay147 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "relay_enemycount_add,trigger,,0.0,-1",
-	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION3"
+	local func_button_brush88 = SpawnEntityFromTable("func_button", {
+	    origin = Vector("0, -12, 128"),
+	    targetname = "vm_quickrevbutton",
+	    parentname = "vm_quickrev",
+	    damagefilter = "filter_quickrevmulti",
+	    rendermode = 10,
+	    movedir = "0 180 0",
+	    spawnflags = 513,
+	    speed = 5,
+	    wait = 3,
+	    sounds = 3,
+	    mins = "-24 -8 -44",
+	    maxs = "24 8 44",
+	    "OnPressed#1": "perkbuff_quickrev,trigger,0,-1",
+	    "OnPressed#2": "filter_quickrevmoney,TestActivator,0,-1"
+	})
+	func_button_brush88.KeyValueFromInt("solid", 2)
+	func_button_brush88.KeyValueFromString("mins", "-24 -8 -44")
+	func_button_brush88.KeyValueFromString("maxs", "24 8 44")
+
+	if(origin != null)
+		func_button_brush88.SetOrigin(origin)
+	if(angles != null)
+		func_button_brush88.SetAngles(angles)
+
+	local $filter_sendprop152 = SpawnEntityFromTable("$filter_sendprop", {
+	    targetname = "filter_quickrevmoney",
+	    $name = "m_nCurrency",
+	    negated = 0,
+	    $value = 1500,
+	    $compare = "greater than or equal"
 	})
 
 	if(origin != null)
-		logic_relay147.SetOrigin(origin)
+		$filter_sendprop152.SetOrigin(origin)
 	if(angles != null)
-		logic_relay147.SetAngles(angles)
+		$filter_sendprop152.SetAngles(angles)
 
-	local logic_relay148 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "popscript,$OnWaveSpawnBot,,0.0,-1",
-	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION4"
+	local filter_multi153 = SpawnEntityFromTable("filter_multi", {
+	    targetname = "filter_quickrevmulti",
+	    filtertype = 0,
+	    negated = 0,
+	    filter01 = "filter_quickrevmoney",
+	    filter02 = "filter_melee",
+	    "OnFail#1": "!activator,$PlaySoundToSelf,buttons/button8.wav,0,-1"
 	})
 
 	if(origin != null)
-		logic_relay148.SetOrigin(origin)
+		filter_multi153.SetOrigin(origin)
 	if(angles != null)
-		logic_relay148.SetAngles(angles)
+		filter_multi153.SetAngles(angles)
 
+	local math_counter154 = SpawnEntityFromTable("math_counter", {
+	    targetname = "vm_quickrevcount",
+	    "startvalue" = 4,
+	    "startdisabled" = 0,
+	    "min" = 0,
+	    "max" = 3,
+	    "onhitmin#1": "vm_quickrev*,Kill,,2,-1"
+	})
+
+	if(origin != null)
+		math_counter154.SetOrigin(origin)
+	if(angles != null)
+		math_counter154.SetAngles(angles)
+
+	local trigger_multiple_brush89 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "vm_quickrevmsg",
+	    parentname = "vm_quickrev",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-128 -128 0",
+	    maxs = "128 128 128",
+	    "OnStartTouchAll#1": "!activator,RunScriptCode,ClientPrint(self, 4, `Hold Action key to buy Ostarion's Reserve for $1500`),0,-1"
+	})
+	trigger_multiple_brush89.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush89.KeyValueFromString("mins", "-128 -128 0")
+	trigger_multiple_brush89.KeyValueFromString("maxs", "128 128 128")
+
+	if(origin != null)
+		trigger_multiple_brush89.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush89.SetAngles(angles)
+
+	local ambient_generic155 = SpawnEntityFromTable("ambient_generic", {
+	    targetname = "vm_quickrevsfx",
+	    spawnflags = 48,
+	    health = 10,
+	    radius = 15000,
+	    pitch = 100,
+	    message = "shadows/perk_regalreserve.mp3",
+	    parentname = "vm_quickrev"
+	})
+
+	if(origin != null)
+		ambient_generic155.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic155.SetAngles(angles)
+
+	local logic_relay156 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "perkbuff_quickrev",
+	    "OnTrigger#1": "!activator,RunScriptCode,self.RemoveCurrency(1500),-1",
+	    "OnTrigger#2": "vm_quickrevcount,Subtract,1,,-1",
+	    "OnTrigger#3": "!activator,$PlaySoundToSelf,shadows/perk_usesfx.mp3,0,-1",
+	    "OnTrigger#4": "vm_quickrevsfx,PlaySound,0,2.2,-1",
+	    "OnTrigger#5": "!activator,RunScriptCode,self.AddCond(70),-1",
+	    "OnTrigger#6": "!activator,RunScriptCode,self.AddCond(129),-1",
+	    "OnTrigger#7": "!activator,$PlaySoundToSelf,weapons/buffed_on.wav,2.2,-1",
+	    "OnTrigger#8": "!activator,RunScriptCode,ClientPrint(self, 4, `Perk Bonus activated: Survive one fatal attack!`),2.2,-1",
+	    "OnTrigger#9": "!activator,SpeakResponseConcept,TLK_PLAYER_SPELL_PICKUP_RARE,2.45,-1"
+	})
+
+	if(origin != null)
+		logic_relay156.SetOrigin(origin)
+	if(angles != null)
+		logic_relay156.SetAngles(angles)
 
 }
+::Vending_Flop <- function()
+{
+	local prop_dynamic157 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 50"),
+	    disableshadows = 0,
+	    model = "models/props_misc/vending_machine_01.mdl",
+	    solid = 6,
+	    skin = 0,
+	    targetname = "vm_flop"
+	})
+
+	if(origin != null)
+		prop_dynamic157.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic157.SetAngles(angles)
+
+	local prop_dynamic158 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("-0, -0, 148"),
+	    angles = QAngle("0, 270, 0"),
+	    disableshadows = 0,
+	    model = "models/player/items/all_class/cowboyboots_soldier.mdl",
+	    modelscale = 2,
+	    solid = 0,
+	    parentname = "vm_flop"
+	})
+
+	if(origin != null)
+		prop_dynamic158.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic158.SetAngles(angles)
+
+	local func_button_brush90 = SpawnEntityFromTable("func_button", {
+	    origin = Vector("0, -12, 128"),
+	    targetname = "vm_flopbutton",
+	    parentname = "vm_flop",
+	    damagefilter = "filter_flopmulti",
+	    rendermode = 10,
+	    movedir = "0 180 0",
+	    spawnflags = 513,
+	    speed = 5,
+	    wait = 3,
+	    sounds = 3,
+	    mins = "-24 -8 -44",
+	    maxs = "24 8 44",
+	    "OnPressed#1": "perkbuff_flop,trigger,0,-1",
+	    "OnPressed#2": "filter_flopmoney,TestActivator,0,-1"
+	})
+	func_button_brush90.KeyValueFromInt("solid", 2)
+	func_button_brush90.KeyValueFromString("mins", "-24 -8 -44")
+	func_button_brush90.KeyValueFromString("maxs", "24 8 44")
+
+	if(origin != null)
+		func_button_brush90.SetOrigin(origin)
+	if(angles != null)
+		func_button_brush90.SetAngles(angles)
+
+	local $filter_sendprop159 = SpawnEntityFromTable("$filter_sendprop", {
+	    targetname = "filter_flopmoney",
+	    $name = "m_nCurrency",
+	    negated = 0,
+	    $value = 1000,
+	    $compare = "greater than or equal"
+	})
+
+	if(origin != null)
+		$filter_sendprop159.SetOrigin(origin)
+	if(angles != null)
+		$filter_sendprop159.SetAngles(angles)
+
+	local filter_multi160 = SpawnEntityFromTable("filter_multi", {
+	    targetname = "filter_flopmulti",
+	    filtertype = 0,
+	    negated = 0,
+	    filter01 = "filter_flopmoney",
+	    filter02 = "filter_melee",
+	    "OnFail#1": "!activator,$PlaySoundToSelf,buttons/button8.wav,0,-1"
+	})
+
+	if(origin != null)
+		filter_multi160.SetOrigin(origin)
+	if(angles != null)
+		filter_multi160.SetAngles(angles)
+
+	local trigger_multiple_brush91 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "vm_flopmsg",
+	    parentname = "vm_flop",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-128 -128 0",
+	    maxs = "128 128 128",
+	    "OnStartTouchAll#1": "!activator,RunScriptCode,ClientPrint(self, 4, `Hold Action key to buy Steelshin Lager for $1000`),0,-1"
+	})
+	trigger_multiple_brush91.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush91.KeyValueFromString("mins", "-128 -128 0")
+	trigger_multiple_brush91.KeyValueFromString("maxs", "128 128 128")
+
+	if(origin != null)
+		trigger_multiple_brush91.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush91.SetAngles(angles)
+
+	local logic_relay161 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "perkbuff_flop",
+	    "OnTrigger#1": "!activator,RunScriptCode,self.RemoveCurrency(1000),-1",
+	    "OnTrigger#2": "!activator,$PlaySoundToSelf,shadows/perk_usesfx.mp3,0,-1",
+	    "OnTrigger#3": "!activator,RunScriptCode,self.AddCustomAttribute(`blast dmg to self increased`, 0, -1),-1",
+	    "OnTrigger#4": "!activator,$PlaySoundToSelf,weapons/buffed_on.wav,2.2,-1",
+	    "OnTrigger#5": "!activator,RunScriptCode,ClientPrint(self, 4, `Perk Bonus activated: Self damage immunity!`),2.2,-1",
+	    "OnTrigger#6": "!activator,SpeakResponseConcept,TLK_PLAYER_SPELL_PICKUP_RARE,2.45,-1"
+	})
+
+	if(origin != null)
+		logic_relay161.SetOrigin(origin)
+	if(angles != null)
+		logic_relay161.SetAngles(angles)
+
+}
+::Roundtimer <- function()
+{
+	local logic_relay162 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "roundcounter,SetValue,0,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION7"
+	})
+
+	if(origin != null)
+		logic_relay162.SetOrigin(origin)
+	if(angles != null)
+		logic_relay162.SetAngles(angles)
+
+	local game_text163 = SpawnEntityFromTable("game_text", {
+	    targetname = "roundtext",
+	    color = "255 65 65",
+	    color2 = "0 0 0",
+	    fxtime = 2.3,
+	    holdtime = 36000,
+	    spawnflags = 1,
+	    "effect" = 2,
+	    "channel" = 1,
+	    x = 0.1,
+	    y = 0.05
+	})
+
+	if(origin != null)
+		game_text163.SetOrigin(origin)
+	if(angles != null)
+		game_text163.SetAngles(angles)
+
+	local game_text164 = SpawnEntityFromTable("game_text", {
+	    targetname = "enemytext",
+	    color = "255 255 65",
+	    color2 = "0 0 0",
+	    holdtime = 36000,
+	    fxtime = 2.3,
+	    spawnflags = 1,
+	    "channel" = 2,
+	    "effect" = 2,
+	    x = 0.1,
+	    y = 0.1
+	})
+
+	if(origin != null)
+		game_text164.SetOrigin(origin)
+	if(angles != null)
+		game_text164.SetAngles(angles)
+
+	local game_text165 = SpawnEntityFromTable("game_text", {
+	    targetname = "poweruptext",
+	    color = "255 255 255",
+	    color2 = "255 255 255",
+	    holdtime = 36000,
+	    spawnflags = 1,
+	    "channel" = 3,
+	    x = 0.27,
+	    y = 0.9
+	})
+
+	if(origin != null)
+		game_text165.SetOrigin(origin)
+	if(angles != null)
+		game_text165.SetAngles(angles)
+
+	local math_counter166 = SpawnEntityFromTable("math_counter", {
+	    targetname = "roundcounter",
+	    max = 255,
+	    "outvalue#1": "roundformat,AddOutput,case01 ,0,-1",
+	    "OutValue#2": "tf_objective_resource,RunScriptCode,NetProps.SetPropINVALID(self, `m_nMannVsMachineWaveCount`, ),0,-1",
+	    "outvalue#3": "gameoverformat,AddOutput,case01 ,0,-1"
+	})
+
+	if(origin != null)
+		math_counter166.SetOrigin(origin)
+	if(angles != null)
+		math_counter166.SetAngles(angles)
+
+	local math_counter167 = SpawnEntityFromTable("math_counter", {
+	    targetname = "enemycounter",
+	    "startvalue" = 0,
+	    "min" = 0,
+	    max = 26,
+	    "outvalue#1": "enemyformat,AddOutput,case01 ,0,-1"
+	})
+
+	if(origin != null)
+		math_counter167.SetOrigin(origin)
+	if(angles != null)
+		math_counter167.SetAngles(angles)
+
+	local logic_case168 = SpawnEntityFromTable("logic_case", {
+	    targetname = "enemyformat",
+	    case16 = "% active enemies",
+	    "ondefault#1": "enemytext,AddOutput,message ,0,-1",
+	    "ondefault#2": "enemytext,display,0,0,-1"
+	})
+
+	if(origin != null)
+		logic_case168.SetOrigin(origin)
+	if(angles != null)
+		logic_case168.SetAngles(angles)
+
+	local logic_case169 = SpawnEntityFromTable("logic_case", {
+	    targetname = "roundformat",
+	    case16 = "Round %"
+	})
+
+	if(origin != null)
+		logic_case169.SetOrigin(origin)
+	if(angles != null)
+		logic_case169.SetAngles(angles)
+
+	local logic_relay170 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "realtimer",
+	    spawnflags = 2,
+	    "ontrigger#1": "roundformat,$format,,0.01,-1",
+	    "OnUser2#2": "gameoverformat,$format,,0.01,-1"
+	})
+
+	if(origin != null)
+		logic_relay170.SetOrigin(origin)
+	if(angles != null)
+		logic_relay170.SetAngles(angles)
+
+	local logic_relay171 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "relay_enemycount_add",
+	    spawnflags = 2,
+	    "ontrigger#1": "enemyformat,$format,,0.05,-1",
+	    "ontrigger#2": "enemyformat,$format,,0.25,-1",
+	    "ontrigger#3": "enemycounter,add,1,,-1"
+	})
+
+	if(origin != null)
+		logic_relay171.SetOrigin(origin)
+	if(angles != null)
+		logic_relay171.SetAngles(angles)
+
+	local logic_relay172 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "relay_enemycount_subtract",
+	    spawnflags = 2,
+	    "ontrigger#1": "enemyformat,$format,,0.05,-1",
+	    "ontrigger#2": "enemyformat,$format,,0.25,-1",
+	    "ontrigger#3": "enemycounter,subtract,1,,-1"
+	})
+
+	if(origin != null)
+		logic_relay172.SetOrigin(origin)
+	if(angles != null)
+		logic_relay172.SetAngles(angles)
+
+	local logic_relay173 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "relay_enemycount_reset",
+	    spawnflags = 2,
+	    "ontrigger#1": "enemyformat,$format,,0.01,-1",
+	    "ontrigger#2": "enemycounter,setvalue,0,,-1"
+	})
+
+	if(origin != null)
+		logic_relay173.SetOrigin(origin)
+	if(angles != null)
+		logic_relay173.SetAngles(angles)
+
+}
+::DoublePointsSpawner <- function()
+{
+	local env_entity_maker174 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "DoublePoints_spawner",
+	    EntityTemplate = "DoublePointsDrop"
+	})
+
+	if(origin != null)
+		env_entity_maker174.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker174.SetAngles(angles)
+
+}
+::DoublePointsDrop <- function()
+{
+	local info_particle_system175 = SpawnEntityFromTable("info_particle_system", {
+	    effect_name = "spellbook_rainbow",
+	    targetname = "powerup_particle",
+	    parentname = "powerup_prop",
+	    start_active = 1,
+	    origin = Vector("0, 0, 24")
+	})
+
+	if(origin != null)
+		info_particle_system175.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system175.SetAngles(angles)
+
+	local prop_dynamic176 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "powerup_prop",
+	    parentname = "powerup_rot",
+	    model = "models\items\target_duck.mdl",
+	    solid = 0,
+	    modelscale = 0.8,
+	    origin = Vector("0, 0, 10")
+	})
+
+	if(origin != null)
+		prop_dynamic176.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic176.SetAngles(angles)
+
+	local func_rotating_brush92 = SpawnEntityFromTable("func_rotating", {
+	    spawnflags = 65,
+	    maxspeed = 48,
+	    solidbsp = 0,
+	    rendermode = 10,
+	    targetname = "powerup_rot"
+	})
+	func_rotating_brush92.KeyValueFromInt("solid", 2)
+	func_rotating_brush92.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush92.KeyValueFromString("maxspeed", "48")
+
+	if(origin != null)
+		func_rotating_brush92.SetOrigin(origin)
+	if(angles != null)
+		func_rotating_brush92.SetAngles(angles)
+
+	local trigger_multiple_brush93 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "powerup_trigger",
+	    parentname = "powerup_prop",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-12 -12 -12",
+	    maxs = "12 12 12",
+	    origin = Vector("0, 0, 24"),
+	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
+	    "OnStartTouchAll#2": "popscript,$ActivateDoublePoints,,-1"
+	})
+	trigger_multiple_brush93.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush93.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush93.KeyValueFromString("maxs", "12 12 12")
+
+	if(origin != null)
+		trigger_multiple_brush93.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush93.SetAngles(angles)
+
+	local logic_timer177 = SpawnEntityFromTable("logic_timer", {
+	    targetname = "powerup_blinker",
+	    RefireTime = 0.5,
+	    spawnflags = 1,
+	    parentname = "powerup_prop",
+	    StartDisabled = 1,
+	    "OnTimerHigh#1": "powerup_prop,Disable,,0,-1",
+	    "OnTimerLow#2": "powerup_prop,Enable,,0,-1"
+	})
+
+	if(origin != null)
+		logic_timer177.SetOrigin(origin)
+	if(angles != null)
+		logic_timer177.SetAngles(angles)
+
+	local logic_timer178 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 15,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,Enable,,-1"
+	})
+
+	if(origin != null)
+		logic_timer178.SetOrigin(origin)
+	if(angles != null)
+		logic_timer178.SetAngles(angles)
+
+	local logic_timer179 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 20,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.25,-1"
+	})
+
+	if(origin != null)
+		logic_timer179.SetOrigin(origin)
+	if(angles != null)
+		logic_timer179.SetAngles(angles)
+
+	local logic_timer180 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 25,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.1,-1"
+	})
+
+	if(origin != null)
+		logic_timer180.SetOrigin(origin)
+	if(angles != null)
+		logic_timer180.SetAngles(angles)
+
+	local logic_timer181 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 30,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_rot,KillHierarchy,,-1"
+	})
+
+	if(origin != null)
+		logic_timer181.SetOrigin(origin)
+	if(angles != null)
+		logic_timer181.SetAngles(angles)
+
+}
+::FireSaleSpawner <- function()
+{
+	local env_entity_maker182 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "FireSale_spawner",
+	    EntityTemplate = "FireSaleDrop"
+	})
+
+	if(origin != null)
+		env_entity_maker182.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker182.SetAngles(angles)
+
+	local ambient_generic183 = SpawnEntityFromTable("ambient_generic", {
+	    health = 7,
+	    message = "#*shadows/gallery_music.mp3",
+	    radius = 20,
+	    spawnflags = 49,
+	    targetname = "firesale_music"
+	})
+
+	if(origin != null)
+		ambient_generic183.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic183.SetAngles(angles)
+
+}
+::FireSaleDrop <- function()
+{
+	local info_particle_system184 = SpawnEntityFromTable("info_particle_system", {
+	    effect_name = "spellbook_rainbow",
+	    targetname = "powerup_particle",
+	    parentname = "powerup_prop",
+	    start_active = 1,
+	    origin = Vector("0, 0, 24")
+	})
+
+	if(origin != null)
+		info_particle_system184.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system184.SetAngles(angles)
+
+	local prop_dynamic185 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "powerup_prop",
+	    parentname = "powerup_rot",
+	    model = "models\props_doomsday\australium_container.mdl",
+	    solid = 0,
+	    modelscale = 1,
+	    origin = Vector("0, 0, 24"),
+	    angles = QAngle("0, 0, 45")
+	})
+
+	if(origin != null)
+		prop_dynamic185.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic185.SetAngles(angles)
+
+	local func_rotating_brush94 = SpawnEntityFromTable("func_rotating", {
+	    spawnflags = 65,
+	    maxspeed = 48,
+	    solidbsp = 0,
+	    rendermode = 10,
+	    targetname = "powerup_rot"
+	})
+	func_rotating_brush94.KeyValueFromInt("solid", 2)
+	func_rotating_brush94.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush94.KeyValueFromString("maxspeed", "48")
+
+	if(origin != null)
+		func_rotating_brush94.SetOrigin(origin)
+	if(angles != null)
+		func_rotating_brush94.SetAngles(angles)
+
+	local trigger_multiple_brush95 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "powerup_trigger",
+	    parentname = "powerup_prop",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-12 -12 -12",
+	    maxs = "12 12 12",
+	    origin = Vector("0, 0, 24"),
+	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
+	    "OnStartTouchAll#2": "popscript,$ActivateFireSale,,-1"
+	})
+	trigger_multiple_brush95.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush95.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush95.KeyValueFromString("maxs", "12 12 12")
+
+	if(origin != null)
+		trigger_multiple_brush95.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush95.SetAngles(angles)
+
+	local logic_timer186 = SpawnEntityFromTable("logic_timer", {
+	    targetname = "powerup_blinker",
+	    RefireTime = 0.5,
+	    spawnflags = 1,
+	    parentname = "powerup_prop",
+	    StartDisabled = 1,
+	    "OnTimerHigh#1": "powerup_prop,Disable,,0,-1",
+	    "OnTimerLow#2": "powerup_prop,Enable,,0,-1"
+	})
+
+	if(origin != null)
+		logic_timer186.SetOrigin(origin)
+	if(angles != null)
+		logic_timer186.SetAngles(angles)
+
+	local logic_timer187 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 15,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,Enable,,-1"
+	})
+
+	if(origin != null)
+		logic_timer187.SetOrigin(origin)
+	if(angles != null)
+		logic_timer187.SetAngles(angles)
+
+	local logic_timer188 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 20,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.25,-1"
+	})
+
+	if(origin != null)
+		logic_timer188.SetOrigin(origin)
+	if(angles != null)
+		logic_timer188.SetAngles(angles)
+
+	local logic_timer189 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 25,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.1,-1"
+	})
+
+	if(origin != null)
+		logic_timer189.SetOrigin(origin)
+	if(angles != null)
+		logic_timer189.SetAngles(angles)
+
+	local logic_timer190 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 30,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_rot,KillHierarchy,,-1"
+	})
+
+	if(origin != null)
+		logic_timer190.SetOrigin(origin)
+	if(angles != null)
+		logic_timer190.SetAngles(angles)
+
+}
+::InstakillSpawner <- function()
+{
+	local env_entity_maker191 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "Instakill_spawner",
+	    EntityTemplate = "InstakillDrop"
+	})
+
+	if(origin != null)
+		env_entity_maker191.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker191.SetAngles(angles)
+
+}
+::InstakillDrop <- function()
+{
+	local info_particle_system192 = SpawnEntityFromTable("info_particle_system", {
+	    effect_name = "spellbook_rainbow",
+	    targetname = "powerup_particle",
+	    parentname = "powerup_prop",
+	    start_active = 1,
+	    origin = Vector("0, 0, 24")
+	})
+
+	if(origin != null)
+		info_particle_system192.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system192.SetAngles(angles)
+
+	local prop_dynamic193 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "powerup_prop",
+	    parentname = "powerup_rot",
+	    model = "models\props_mvm\mvm_human_skull.mdl",
+	    solid = 0,
+	    modelscale = 2.3,
+	    origin = Vector("0, 0, 24"),
+	    angles = QAngle("-15, 0, 0")
+	})
+
+	if(origin != null)
+		prop_dynamic193.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic193.SetAngles(angles)
+
+	local func_rotating_brush96 = SpawnEntityFromTable("func_rotating", {
+	    spawnflags = 65,
+	    maxspeed = 48,
+	    solidbsp = 0,
+	    rendermode = 10,
+	    targetname = "powerup_rot"
+	})
+	func_rotating_brush96.KeyValueFromInt("solid", 2)
+	func_rotating_brush96.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush96.KeyValueFromString("maxspeed", "48")
+
+	if(origin != null)
+		func_rotating_brush96.SetOrigin(origin)
+	if(angles != null)
+		func_rotating_brush96.SetAngles(angles)
+
+	local trigger_multiple_brush97 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "powerup_trigger",
+	    parentname = "powerup_prop",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-12 -12 -12",
+	    maxs = "12 12 12",
+	    origin = Vector("0, 0, 24"),
+	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
+	    "OnStartTouchAll#2": "popscript,$ActivateInstakill,,-1"
+	})
+	trigger_multiple_brush97.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush97.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush97.KeyValueFromString("maxs", "12 12 12")
+
+	if(origin != null)
+		trigger_multiple_brush97.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush97.SetAngles(angles)
+
+	local logic_timer194 = SpawnEntityFromTable("logic_timer", {
+	    targetname = "powerup_blinker",
+	    RefireTime = 0.5,
+	    spawnflags = 1,
+	    parentname = "powerup_prop",
+	    StartDisabled = 1,
+	    "OnTimerHigh#1": "powerup_prop,Disable,,0,-1",
+	    "OnTimerLow#2": "powerup_prop,Enable,,0,-1"
+	})
+
+	if(origin != null)
+		logic_timer194.SetOrigin(origin)
+	if(angles != null)
+		logic_timer194.SetAngles(angles)
+
+	local logic_timer195 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 15,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,Enable,,-1"
+	})
+
+	if(origin != null)
+		logic_timer195.SetOrigin(origin)
+	if(angles != null)
+		logic_timer195.SetAngles(angles)
+
+	local logic_timer196 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 20,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.25,-1"
+	})
+
+	if(origin != null)
+		logic_timer196.SetOrigin(origin)
+	if(angles != null)
+		logic_timer196.SetAngles(angles)
+
+	local logic_timer197 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 25,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.1,-1"
+	})
+
+	if(origin != null)
+		logic_timer197.SetOrigin(origin)
+	if(angles != null)
+		logic_timer197.SetAngles(angles)
+
+	local logic_timer198 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 30,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_rot,KillHierarchy,,-1"
+	})
+
+	if(origin != null)
+		logic_timer198.SetOrigin(origin)
+	if(angles != null)
+		logic_timer198.SetAngles(angles)
+
+}
+::NukeSpawner <- function()
+{
+	local env_entity_maker199 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "Nuke_spawner",
+	    EntityTemplate = "NukeDrop"
+	})
+
+	if(origin != null)
+		env_entity_maker199.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker199.SetAngles(angles)
+
+}
+::NukeDrop <- function()
+{
+	local info_particle_system200 = SpawnEntityFromTable("info_particle_system", {
+	    effect_name = "spellbook_rainbow",
+	    targetname = "powerup_particle",
+	    parentname = "powerup_prop",
+	    start_active = 1,
+	    origin = Vector("0, 0, 24")
+	})
+
+	if(origin != null)
+		info_particle_system200.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system200.SetAngles(angles)
+
+	local info_particle_system201 = SpawnEntityFromTable("info_particle_system", {
+	    effect_name = "taunt_demo_nuke_shroomcloud",
+	    targetname = "powerup_particlenuke",
+	    start_active = 0,
+	    origin = Vector("0, 0, 24")
+	})
+
+	if(origin != null)
+		info_particle_system201.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system201.SetAngles(angles)
+
+	local prop_dynamic202 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "powerup_prop",
+	    parentname = "powerup_rot",
+	    model = "models/props_trainyard/cart_bomb_separate.mdl",
+	    solid = 0,
+	    modelscale = 0.5,
+	    origin = Vector("0, 0, 32"),
+	    angles = QAngle("-45, 0, 0")
+	})
+
+	if(origin != null)
+		prop_dynamic202.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic202.SetAngles(angles)
+
+	local func_rotating_brush98 = SpawnEntityFromTable("func_rotating", {
+	    spawnflags = 65,
+	    maxspeed = 48,
+	    solidbsp = 0,
+	    rendermode = 10,
+	    targetname = "powerup_rot"
+	})
+	func_rotating_brush98.KeyValueFromInt("solid", 2)
+	func_rotating_brush98.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush98.KeyValueFromString("maxspeed", "48")
+
+	if(origin != null)
+		func_rotating_brush98.SetOrigin(origin)
+	if(angles != null)
+		func_rotating_brush98.SetAngles(angles)
+
+	local trigger_multiple_brush99 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "powerup_trigger",
+	    parentname = "powerup_prop",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-12 -12 -12",
+	    maxs = "12 12 12",
+	    origin = Vector("0, 0, 24"),
+	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
+	    "OnStartTouchAll#2": "powerup_particlenuke,Start,,-1",
+	    "OnStartTouchAll#3": "powerup_particlenuke,Kill,,10,-1",
+	    "OnStartTouchAll#4": "popscript,$ActivateNuke,,-1",
+	    "OnStartTouchAll#5": "hologram_nuke,Disable,,-1",
+	    "OnStartTouchAll#6": "hologram_nuke_snd,PlaySound,,-1",
+	    "OnStartTouchAll#7": "nuke_shake,StartShake,,-1",
+	    "OnStartTouchAll#8": "nuke_fade,Fade,,-1",
+	    "OnStartTouchAll#9": "powerup_timer,Enable,,-1",
+	    "OnStartTouchAll#10": "plate,skin,0,-1",
+	    "OnStartTouchAll#11": "!activator,RunScriptCode,self.AddCurrency(400),3,-1"
+	})
+	trigger_multiple_brush99.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush99.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush99.KeyValueFromString("maxs", "12 12 12")
+
+	if(origin != null)
+		trigger_multiple_brush99.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush99.SetAngles(angles)
+
+	local logic_timer203 = SpawnEntityFromTable("logic_timer", {
+	    targetname = "powerup_blinker",
+	    RefireTime = 0.5,
+	    spawnflags = 1,
+	    parentname = "powerup_prop",
+	    StartDisabled = 1,
+	    "OnTimerHigh#1": "powerup_prop,Disable,,0,-1",
+	    "OnTimerLow#2": "powerup_prop,Enable,,0,-1"
+	})
+
+	if(origin != null)
+		logic_timer203.SetOrigin(origin)
+	if(angles != null)
+		logic_timer203.SetAngles(angles)
+
+	local logic_timer204 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 15,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,Enable,,-1"
+	})
+
+	if(origin != null)
+		logic_timer204.SetOrigin(origin)
+	if(angles != null)
+		logic_timer204.SetAngles(angles)
+
+	local logic_timer205 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 20,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.25,-1"
+	})
+
+	if(origin != null)
+		logic_timer205.SetOrigin(origin)
+	if(angles != null)
+		logic_timer205.SetAngles(angles)
+
+	local logic_timer206 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 25,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.1,-1"
+	})
+
+	if(origin != null)
+		logic_timer206.SetOrigin(origin)
+	if(angles != null)
+		logic_timer206.SetAngles(angles)
+
+	local logic_timer207 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 30,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_rot,KillHierarchy,,-1"
+	})
+
+	if(origin != null)
+		logic_timer207.SetOrigin(origin)
+	if(angles != null)
+		logic_timer207.SetAngles(angles)
+
+	local env_shake208 = SpawnEntityFromTable("env_shake", {
+	    amplitude = 16,
+	    duration = 3,
+	    frequency = 40,
+	    radius = 48,
+	    spawnflags = 1,
+	    targetname = "nuke_shake"
+	})
+
+	if(origin != null)
+		env_shake208.SetOrigin(origin)
+	if(angles != null)
+		env_shake208.SetAngles(angles)
+
+	local env_fade209 = SpawnEntityFromTable("env_fade", {
+	    targetname = "nuke_fade",
+	    duration = 1.3,
+	    spawnflags = 1,
+	    rendercolor = "255 255 255"
+	})
+
+	if(origin != null)
+		env_fade209.SetOrigin(origin)
+	if(angles != null)
+		env_fade209.SetAngles(angles)
+
+	local ambient_generic210 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = ")misc/doomsday_missile_explosion.wav",
+	    radius = 20,
+	    pitch = 100,
+	    spawnflags = 49,
+	    targetname = "hologram_nuke_snd"
+	})
+
+	if(origin != null)
+		ambient_generic210.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic210.SetAngles(angles)
+
+	local trigger_hurt_brush100 = SpawnEntityFromTable("trigger_hurt", {
+	    damage = 4500,
+	    spawnflags = 1,
+	    mins = "-9999 -9999 -9999",
+	    maxs = "9999 9999 9999",
+	    startdisabled = 1,
+	    targetname = "hologram_nuke_hurt",
+	    filtername = "filter_notred",
+	    origin = Vector("0, 0, 0")
+	})
+	trigger_hurt_brush100.KeyValueFromInt("solid", 2)
+	trigger_hurt_brush100.KeyValueFromString("mins", "0, 0, 0")
+	trigger_hurt_brush100.KeyValueFromString("maxs", "9999 9999 9999")
+
+	if(origin != null)
+		trigger_hurt_brush100.SetOrigin(origin)
+	if(angles != null)
+		trigger_hurt_brush100.SetAngles(angles)
+
+	local filter_activator_tfteam211 = SpawnEntityFromTable("filter_activator_tfteam", {
+	    targetname = "filter_notred",
+	    teamnum = 2,
+	    negated = 1
+	})
+
+	if(origin != null)
+		filter_activator_tfteam211.SetOrigin(origin)
+	if(angles != null)
+		filter_activator_tfteam211.SetAngles(angles)
+
+}
+::MaxAmmoSpawner <- function()
+{
+	local env_entity_maker212 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "MaxAmmo_spawner",
+	    EntityTemplate = "MaxAmmoDrop"
+	})
+
+	if(origin != null)
+		env_entity_maker212.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker212.SetAngles(angles)
+
+}
+::MaxAmmoDrop <- function()
+{
+	local info_particle_system213 = SpawnEntityFromTable("info_particle_system", {
+	    effect_name = "spellbook_rainbow",
+	    targetname = "powerup_particle",
+	    parentname = "powerup_prop",
+	    start_active = 1,
+	    origin = Vector("0, 0, 24")
+	})
+
+	if(origin != null)
+		info_particle_system213.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system213.SetAngles(angles)
+
+	local prop_dynamic214 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "powerup_prop",
+	    parentname = "powerup_rot",
+	    model = "models\items\ammopack_large.mdl",
+	    solid = 0,
+	    modelscale = 1,
+	    origin = Vector("0, 0, 10"),
+	    angles = QAngle("15, 0, 0")
+	})
+
+	if(origin != null)
+		prop_dynamic214.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic214.SetAngles(angles)
+
+	local func_rotating_brush101 = SpawnEntityFromTable("func_rotating", {
+	    spawnflags = 65,
+	    maxspeed = 48,
+	    solidbsp = 0,
+	    rendermode = 10,
+	    targetname = "powerup_rot"
+	})
+	func_rotating_brush101.KeyValueFromInt("solid", 2)
+	func_rotating_brush101.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush101.KeyValueFromString("maxspeed", "48")
+
+	if(origin != null)
+		func_rotating_brush101.SetOrigin(origin)
+	if(angles != null)
+		func_rotating_brush101.SetAngles(angles)
+
+	local trigger_multiple_brush102 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "powerup_trigger",
+	    parentname = "powerup_prop",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-12 -12 -12",
+	    maxs = "12 12 12",
+	    origin = Vector("0, 0, 24"),
+	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
+	    "OnStartTouchAll#2": "popscript,$ActivateMaxAmmo,,-1"
+	})
+	trigger_multiple_brush102.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush102.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush102.KeyValueFromString("maxs", "12 12 12")
+
+	if(origin != null)
+		trigger_multiple_brush102.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush102.SetAngles(angles)
+
+	local logic_timer215 = SpawnEntityFromTable("logic_timer", {
+	    targetname = "powerup_blinker",
+	    RefireTime = 0.5,
+	    spawnflags = 1,
+	    parentname = "powerup_prop",
+	    StartDisabled = 1,
+	    "OnTimerHigh#1": "powerup_prop,Disable,,0,-1",
+	    "OnTimerLow#2": "powerup_prop,Enable,,0,-1"
+	})
+
+	if(origin != null)
+		logic_timer215.SetOrigin(origin)
+	if(angles != null)
+		logic_timer215.SetAngles(angles)
+
+	local logic_timer216 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 15,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,Enable,,-1"
+	})
+
+	if(origin != null)
+		logic_timer216.SetOrigin(origin)
+	if(angles != null)
+		logic_timer216.SetAngles(angles)
+
+	local logic_timer217 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 20,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.25,-1"
+	})
+
+	if(origin != null)
+		logic_timer217.SetOrigin(origin)
+	if(angles != null)
+		logic_timer217.SetAngles(angles)
+
+	local logic_timer218 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 25,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.1,-1"
+	})
+
+	if(origin != null)
+		logic_timer218.SetOrigin(origin)
+	if(angles != null)
+		logic_timer218.SetAngles(angles)
+
+	local logic_timer219 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 30,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_rot,KillHierarchy,,-1"
+	})
+
+	if(origin != null)
+		logic_timer219.SetOrigin(origin)
+	if(angles != null)
+		logic_timer219.SetAngles(angles)
+
+}
+::BonusPointsSpawner <- function()
+{
+	local env_entity_maker220 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "BonusPoints_spawner",
+	    EntityTemplate = "BonusPointsDrop"
+	})
+
+	if(origin != null)
+		env_entity_maker220.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker220.SetAngles(angles)
+
+}
+::BonusPointsDrop <- function()
+{
+	local info_particle_system221 = SpawnEntityFromTable("info_particle_system", {
+	    effect_name = "spellbook_rainbow",
+	    targetname = "powerup_particle",
+	    parentname = "powerup_prop",
+	    start_active = 1,
+	    origin = Vector("0, 0, 24")
+	})
+
+	if(origin != null)
+		info_particle_system221.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system221.SetAngles(angles)
+
+	local prop_dynamic222 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "powerup_prop",
+	    parentname = "powerup_rot",
+	    model = "models\items\currencypack_large.mdl",
+	    solid = 0,
+	    modelscale = 1,
+	    origin = Vector("0, 0, 10"),
+	    angles = QAngle("15, 0, 0")
+	})
+
+	if(origin != null)
+		prop_dynamic222.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic222.SetAngles(angles)
+
+	local func_rotating_brush103 = SpawnEntityFromTable("func_rotating", {
+	    spawnflags = 65,
+	    mins = = "0 0 0",
+	    maxs = = "1 1 1",
+	    maxspeed = 48,
+	    solidbsp = 0,
+	    rendermode = 10,
+	    targetname = "powerup_rot"
+	})
+	func_rotating_brush103.KeyValueFromInt("solid", 2)
+	func_rotating_brush103.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush103.KeyValueFromString("maxspeed", "48")
+
+	if(origin != null)
+		func_rotating_brush103.SetOrigin(origin)
+	if(angles != null)
+		func_rotating_brush103.SetAngles(angles)
+
+	local trigger_multiple_brush104 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "powerup_trigger",
+	    parentname = "powerup_prop",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-12 -12 -12",
+	    maxs = "12 12 12",
+	    origin = Vector("0, 0, 24"),
+	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
+	    "OnStartTouchAll#2": "popscript,$ActivateBonusPoints,,-1"
+	})
+	trigger_multiple_brush104.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush104.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush104.KeyValueFromString("maxs", "12 12 12")
+
+	if(origin != null)
+		trigger_multiple_brush104.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush104.SetAngles(angles)
+
+	local logic_timer223 = SpawnEntityFromTable("logic_timer", {
+	    targetname = "powerup_blinker",
+	    RefireTime = 0.5,
+	    spawnflags = 1,
+	    parentname = "powerup_prop",
+	    StartDisabled = 1,
+	    "OnTimerHigh#1": "powerup_prop,Disable,,0,-1",
+	    "OnTimerLow#2": "powerup_prop,Enable,,0,-1"
+	})
+
+	if(origin != null)
+		logic_timer223.SetOrigin(origin)
+	if(angles != null)
+		logic_timer223.SetAngles(angles)
+
+	local logic_timer224 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 15,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,Enable,,-1"
+	})
+
+	if(origin != null)
+		logic_timer224.SetOrigin(origin)
+	if(angles != null)
+		logic_timer224.SetAngles(angles)
+
+	local logic_timer225 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 20,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.25,-1"
+	})
+
+	if(origin != null)
+		logic_timer225.SetOrigin(origin)
+	if(angles != null)
+		logic_timer225.SetAngles(angles)
+
+	local logic_timer226 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 25,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_blinker,RefireTime,0.1,-1"
+	})
+
+	if(origin != null)
+		logic_timer226.SetOrigin(origin)
+	if(angles != null)
+		logic_timer226.SetAngles(angles)
+
+	local logic_timer227 = SpawnEntityFromTable("logic_timer", {
+	    RefireTime = 30,
+	    parentname = "powerup_prop",
+	    "OnTimer#1": "powerup_rot,KillHierarchy,,-1"
+	})
+
+	if(origin != null)
+		logic_timer227.SetOrigin(origin)
+	if(angles != null)
+		logic_timer227.SetAngles(angles)
+
+}
+::DumpsterSpawner <- function()
+{
+	local env_entity_maker228 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "dumpster_spawner1",
+	    EntityTemplate = "DumpsterBoxRewrite1"
+	})
+
+	if(origin != null)
+		env_entity_maker228.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker228.SetAngles(angles)
+
+	local env_entity_maker229 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "dumpster_spawner2",
+	    EntityTemplate = "DumpsterBoxRewrite2",
+	    angles = QAngle("0, 270, 0")
+	})
+
+	if(origin != null)
+		env_entity_maker229.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker229.SetAngles(angles)
+
+	local env_entity_maker230 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "dumpster_spawner3",
+	    EntityTemplate = "DumpsterBoxRewrite3"
+	})
+
+	if(origin != null)
+		env_entity_maker230.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker230.SetAngles(angles)
+
+	local env_entity_maker231 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "dumpster_spawner4",
+	    EntityTemplate = "DumpsterBoxRewrite4",
+	    angles = QAngle("0, 180, 0")
+	})
+
+	if(origin != null)
+		env_entity_maker231.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker231.SetAngles(angles)
+
+	local env_entity_maker232 = SpawnEntityFromTable("env_entity_maker", {
+	    targetname = "dumpster_spawner5",
+	    EntityTemplate = "DumpsterBoxRewrite5"
+	})
+
+	if(origin != null)
+		env_entity_maker232.SetOrigin(origin)
+	if(angles != null)
+		env_entity_maker232.SetAngles(angles)
+
+	local point_teleport233 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_1",
+	    origin = Vector("447, -2322, 8"),
+	    angles = QAngle("0, 0, 0")
+	})
+
+	if(origin != null)
+		point_teleport233.SetOrigin(origin)
+	if(angles != null)
+		point_teleport233.SetAngles(angles)
+
+	local point_teleport234 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_2",
+	    origin = Vector("-399, -1380, -1"),
+	    angles = QAngle("0, 270, 0")
+	})
+
+	if(origin != null)
+		point_teleport234.SetOrigin(origin)
+	if(angles != null)
+		point_teleport234.SetAngles(angles)
+
+	local point_teleport235 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_3",
+	    origin = Vector("986, 1338, 96"),
+	    angles = QAngle("0, 0, 0")
+	})
+
+	if(origin != null)
+		point_teleport235.SetOrigin(origin)
+	if(angles != null)
+		point_teleport235.SetAngles(angles)
+
+	local point_teleport236 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_4",
+	    origin = Vector("-788, 1016, -1"),
+	    angles = QAngle("0, 180, 0")
+	})
+
+	if(origin != null)
+		point_teleport236.SetOrigin(origin)
+	if(angles != null)
+		point_teleport236.SetAngles(angles)
+
+	local point_teleport237 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_5",
+	    origin = Vector("-548, -2216, 3"),
+	    angles = QAngle("0, 0, 0")
+	})
+
+	if(origin != null)
+		point_teleport237.SetOrigin(origin)
+	if(angles != null)
+		point_teleport237.SetAngles(angles)
+
+	local point_teleport238 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_out",
+	    origin = Vector("-512, -25, -1008"),
+	    angles = QAngle("0, 0, 0")
+	})
+
+	if(origin != null)
+		point_teleport238.SetOrigin(origin)
+	if(angles != null)
+		point_teleport238.SetAngles(angles)
+
+}
+::DumpsterBoxRewrite1 <- function()
+{
+	local prop_dynamic239 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 104"),
+	    angles = QAngle("90, 0, 180"),
+	    disableshadows = 0,
+	    model = "models/workshop/player/items/all_class/mvm_memes_player/mvm_memes_player_heavy.mdl",
+	    solid = 0,
+	    startdisabled = 1,
+	    modelscale = 3,
+	    targetname = "dumpster_dudprop1",
+	    parentname = "dumpster_prop1"
+	})
+
+	if(origin != null)
+		prop_dynamic239.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic239.SetAngles(angles)
+
+	local info_particle_system240 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "eyeboss_tp_vortex",
+	    targetname = "dumpster_warp_eff1",
+	    parentname = "dumpster_prop1"
+	})
+
+	if(origin != null)
+		info_particle_system240.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system240.SetAngles(angles)
+
+	local info_particle_system241 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "teleporter_mvm_bot_persist",
+	    targetname = "dumpster_warp_beam1",
+	    parentname = "dumpster_prop1"
+	})
+
+	if(origin != null)
+		info_particle_system241.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system241.SetAngles(angles)
+
+	local trigger_push_brush105 = SpawnEntityFromTable("trigger_push", {
+	    origin = Vector("0, 0, 0"),
+	    pushdir = "0 180 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    targetname = "dumpster_push1",
+	    mins = "-32 -66 -16",
+	    maxs = "12 66 64"
+	})
+	trigger_push_brush105.KeyValueFromInt("solid", 2)
+	trigger_push_brush105.KeyValueFromString("mins", "-32 -66 -16")
+	trigger_push_brush105.KeyValueFromString("maxs", "12 66 64")
+
+	if(origin != null)
+		trigger_push_brush105.SetOrigin(origin)
+	if(angles != null)
+		trigger_push_brush105.SetAngles(angles)
+
+	local prop_dynamic242 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_body.mdl",
+	    solid = 6,
+	    skin = 2,
+	    targetname = "dumpster_prop1"
+	})
+
+	if(origin != null)
+		prop_dynamic242.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic242.SetAngles(angles)
+
+	local prop_dynamic243 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_lid1",
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_lid.mdl",
+	    solid = 0,
+	    skin = 2,
+	    parentname = "dumpster_rotdoor1"
+	})
+
+	if(origin != null)
+		prop_dynamic243.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic243.SetAngles(angles)
+
+	local func_door_rotating_brush106 = SpawnEntityFromTable("func_door_rotating", {
+	    targetname = "dumpster_rotdoor1",
+	    parentname = "dumpster_prop1",
+	    origin = Vector("24, -24, 59"),
+	    distance = 90,
+	    speed = 160,
+	    wait = -1.0,
+	    disableshadows = 1,
+	    forceclosed = 1,
+	    spawnflags = 128,
+	    noise1 = "shadows/mystery_open.mp3",
+	    startclosesound = "misc/null.wav",
+	    closesound = "doors\door_metal_medium_close1.wav",
+	    mins = "-2 -2 -2",
+	    maxs = "2 2 2"
+	})
+	func_door_rotating_brush106.KeyValueFromInt("solid", 2)
+	func_door_rotating_brush106.KeyValueFromString("mins", "-2 -2 -2")
+	func_door_rotating_brush106.KeyValueFromString("maxs", "2 2 2")
+
+	if(origin != null)
+		func_door_rotating_brush106.SetOrigin(origin)
+	if(angles != null)
+		func_door_rotating_brush106.SetAngles(angles)
+
+	local trigger_multiple_brush107 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "dumpster_msg1",
+	    parentname = "dumpster_prop1",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-72 -74 -64",
+	    maxs = "40 74 96"
+	})
+	trigger_multiple_brush107.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush107.KeyValueFromString("mins", "-72 -74 -64")
+	trigger_multiple_brush107.KeyValueFromString("maxs", "40 74 96")
+
+	if(origin != null)
+		trigger_multiple_brush107.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush107.SetAngles(angles)
+
+	local light_dynamic244 = SpawnEntityFromTable("light_dynamic", {
+	    origin = Vector("0, 0, 20"),
+	    targetname = "dumpster_light1",
+	    parentname = "dumpster_prop1",
+	    _light = "255 200 0 275",
+	    distance = 75,
+	    brightness = 10,
+	    spawnflags = 1
+	})
+
+	if(origin != null)
+		light_dynamic244.SetOrigin(origin)
+	if(angles != null)
+		light_dynamic244.SetAngles(angles)
+
+	local info_particle_system245 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 0"),
+	    effect_name = "utaunt_beams_yellow",
+	    targetname = "dumpster_particles1",
+	    parentname = "dumpster_prop1"
+	})
+
+	if(origin != null)
+		info_particle_system245.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system245.SetAngles(angles)
+
+	local prop_dynamic246 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_weapon1",
+	    parentname = "dumpster_train1",
+	    model = "models\weapons\w_models\w_medigun.mdl",
+	    solid = 0
+	})
+
+	if(origin != null)
+		prop_dynamic246.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic246.SetAngles(angles)
+
+	local path_track247 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 20"),
+	    targetname = "dumpster_track11",
+	    parentname = "dumpster_prop1",
+	    target = "dumpster_track21",
+	    "OnPass#1": "dumpster_train1,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track247.SetOrigin(origin)
+	if(angles != null)
+		path_track247.SetAngles(angles)
+
+	local path_track248 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 64"),
+	    targetname = "dumpster_track21",
+	    parentname = "dumpster_prop1",
+	    target = "dumpster_track11",
+	    "OnPass#1": "dumpster_train1,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track248.SetOrigin(origin)
+	if(angles != null)
+		path_track248.SetAngles(angles)
+
+	local func_tracktrain_brush108 = SpawnEntityFromTable("func_tracktrain", {
+	    targetname = "dumpster_train1",
+	    parentname = "dumpster_prop1",
+	    target = "dumpster_track11",
+	    orientationtype = 0,
+	    velocitytype = 2,
+	    solid = 0,
+	    speed = 0,
+	    startspeed = 90,
+	    mins = "-4 -4 -4",
+	    maxs = "4 4 4",
+	    angles = QAngle("90, 0, 90"),
+	    spawnflags = 8
+	})
+	func_tracktrain_brush108.KeyValueFromInt("solid", 2)
+	func_tracktrain_brush108.KeyValueFromString("mins", "0, 0, 0")
+	func_tracktrain_brush108.KeyValueFromString("maxs", "4 4 4")
+
+	if(origin != null)
+		func_tracktrain_brush108.SetOrigin(origin)
+	if(angles != null)
+		func_tracktrain_brush108.SetAngles(angles)
+
+	local ambient_generic249 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "shadows\mystery_jingle.mp3",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_jingle1",
+	    parentname = "dumpster_prop1"
+	})
+
+	if(origin != null)
+		ambient_generic249.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic249.SetAngles(angles)
+
+	local ambient_generic250 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_appear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_appear1",
+	    parentname = "dumpster_prop1"
+	})
+
+	if(origin != null)
+		ambient_generic250.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic250.SetAngles(angles)
+
+	local ambient_generic251 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_disappear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_disappear1",
+	    parentname = "dumpster_prop1"
+	})
+
+	if(origin != null)
+		ambient_generic251.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic251.SetAngles(angles)
+
+}
+::DumpsterBoxRewrite2 <- function()
+{
+	local prop_dynamic252 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 104"),
+	    angles = QAngle("90, 0, 180"),
+	    disableshadows = 0,
+	    model = "models/workshop/player/items/all_class/mvm_memes_player/mvm_memes_player_heavy.mdl",
+	    solid = 0,
+	    startdisabled = 1,
+	    modelscale = 3,
+	    targetname = "dumpster_dudprop2",
+	    parentname = "dumpster_prop2"
+	})
+
+	if(origin != null)
+		prop_dynamic252.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic252.SetAngles(angles)
+
+	local info_particle_system253 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "eyeboss_tp_vortex",
+	    targetname = "dumpster_warp_eff2",
+	    parentname = "dumpster_prop2"
+	})
+
+	if(origin != null)
+		info_particle_system253.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system253.SetAngles(angles)
+
+	local info_particle_system254 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "teleporter_mvm_bot_persist",
+	    targetname = "dumpster_warp_beam2",
+	    parentname = "dumpster_prop2"
+	})
+
+	if(origin != null)
+		info_particle_system254.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system254.SetAngles(angles)
+
+	local trigger_push_brush109 = SpawnEntityFromTable("trigger_push", {
+	    origin = Vector("0, 0, 0"),
+	    pushdir = "0 180 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    targetname = "dumpster_push2",
+	    mins = "-32 -66 -16",
+	    maxs = "12 66 64"
+	})
+	trigger_push_brush109.KeyValueFromInt("solid", 2)
+	trigger_push_brush109.KeyValueFromString("mins", "-32 -66 -16")
+	trigger_push_brush109.KeyValueFromString("maxs", "12 66 64")
+
+	if(origin != null)
+		trigger_push_brush109.SetOrigin(origin)
+	if(angles != null)
+		trigger_push_brush109.SetAngles(angles)
+
+	local prop_dynamic255 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_body.mdl",
+	    solid = 6,
+	    skin = 2,
+	    targetname = "dumpster_prop2"
+	})
+
+	if(origin != null)
+		prop_dynamic255.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic255.SetAngles(angles)
+
+	local prop_dynamic256 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_lid2",
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_lid.mdl",
+	    solid = 0,
+	    skin = 2,
+	    parentname = "dumpster_rotdoor2"
+	})
+
+	if(origin != null)
+		prop_dynamic256.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic256.SetAngles(angles)
+
+	local func_door_rotating_brush110 = SpawnEntityFromTable("func_door_rotating", {
+	    targetname = "dumpster_rotdoor2",
+	    parentname = "dumpster_prop2",
+	    origin = Vector("24, -24, 59"),
+	    distance = 90,
+	    speed = 160,
+	    wait = -1.0,
+	    disableshadows = 1,
+	    forceclosed = 1,
+	    spawnflags = 128,
+	    noise1 = "shadows/mystery_open.mp3",
+	    startclosesound = "misc/null.wav",
+	    closesound = "doors\door_metal_medium_close1.wav",
+	    mins = "-2 -2 -2",
+	    maxs = "2 2 2"
+	})
+	func_door_rotating_brush110.KeyValueFromInt("solid", 2)
+	func_door_rotating_brush110.KeyValueFromString("mins", "-2 -2 -2")
+	func_door_rotating_brush110.KeyValueFromString("maxs", "2 2 2")
+
+	if(origin != null)
+		func_door_rotating_brush110.SetOrigin(origin)
+	if(angles != null)
+		func_door_rotating_brush110.SetAngles(angles)
+
+	local trigger_multiple_brush111 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "dumpster_msg2",
+	    parentname = "dumpster_prop2",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-72 -74 -64",
+	    maxs = "40 74 96"
+	})
+	trigger_multiple_brush111.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush111.KeyValueFromString("mins", "-72 -74 -64")
+	trigger_multiple_brush111.KeyValueFromString("maxs", "40 74 96")
+
+	if(origin != null)
+		trigger_multiple_brush111.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush111.SetAngles(angles)
+
+	local light_dynamic257 = SpawnEntityFromTable("light_dynamic", {
+	    origin = Vector("0, 0, 20"),
+	    targetname = "dumpster_light2",
+	    parentname = "dumpster_prop2",
+	    _light = "255 200 0 275",
+	    distance = 75,
+	    brightness = 10,
+	    spawnflags = 1
+	})
+
+	if(origin != null)
+		light_dynamic257.SetOrigin(origin)
+	if(angles != null)
+		light_dynamic257.SetAngles(angles)
+
+	local info_particle_system258 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 0"),
+	    effect_name = "utaunt_beams_yellow",
+	    targetname = "dumpster_particles2",
+	    parentname = "dumpster_prop2"
+	})
+
+	if(origin != null)
+		info_particle_system258.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system258.SetAngles(angles)
+
+	local prop_dynamic259 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_weapon2",
+	    parentname = "dumpster_train2",
+	    model = "models\weapons\w_models\w_medigun.mdl",
+	    solid = 0
+	})
+
+	if(origin != null)
+		prop_dynamic259.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic259.SetAngles(angles)
+
+	local path_track260 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 20"),
+	    targetname = "dumpster_track12",
+	    parentname = "dumpster_prop2",
+	    target = "dumpster_track22",
+	    "OnPass#1": "dumpster_train2,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track260.SetOrigin(origin)
+	if(angles != null)
+		path_track260.SetAngles(angles)
+
+	local path_track261 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 64"),
+	    targetname = "dumpster_track22",
+	    parentname = "dumpster_prop2",
+	    target = "dumpster_track12",
+	    "OnPass#1": "dumpster_train2,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track261.SetOrigin(origin)
+	if(angles != null)
+		path_track261.SetAngles(angles)
+
+	local func_tracktrain_brush112 = SpawnEntityFromTable("func_tracktrain", {
+	    targetname = "dumpster_train2",
+	    parentname = "dumpster_prop2",
+	    target = "dumpster_track12",
+	    orientationtype = 0,
+	    velocitytype = 2,
+	    solid = 0,
+	    speed = 0,
+	    startspeed = 90,
+	    mins = "-4 -4 -4",
+	    maxs = "4 4 4",
+	    angles = QAngle("90, 0, 90"),
+	    spawnflags = 8
+	})
+	func_tracktrain_brush112.KeyValueFromInt("solid", 2)
+	func_tracktrain_brush112.KeyValueFromString("mins", "0, 0, 0")
+	func_tracktrain_brush112.KeyValueFromString("maxs", "4 4 4")
+
+	if(origin != null)
+		func_tracktrain_brush112.SetOrigin(origin)
+	if(angles != null)
+		func_tracktrain_brush112.SetAngles(angles)
+
+	local ambient_generic262 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "shadows\mystery_jingle.mp3",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_jingle2",
+	    parentname = "dumpster_prop2"
+	})
+
+	if(origin != null)
+		ambient_generic262.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic262.SetAngles(angles)
+
+	local ambient_generic263 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_appear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_appear2",
+	    parentname = "dumpster_prop2"
+	})
+
+	if(origin != null)
+		ambient_generic263.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic263.SetAngles(angles)
+
+	local ambient_generic264 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_disappear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_disappear2",
+	    parentname = "dumpster_prop2"
+	})
+
+	if(origin != null)
+		ambient_generic264.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic264.SetAngles(angles)
+
+}
+::DumpsterBoxRewrite3 <- function()
+{
+	local prop_dynamic265 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 104"),
+	    angles = QAngle("90, 0, 180"),
+	    disableshadows = 0,
+	    model = "models/workshop/player/items/all_class/mvm_memes_player/mvm_memes_player_heavy.mdl",
+	    solid = 0,
+	    startdisabled = 1,
+	    modelscale = 3,
+	    targetname = "dumpster_dudprop3",
+	    parentname = "dumpster_prop3"
+	})
+
+	if(origin != null)
+		prop_dynamic265.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic265.SetAngles(angles)
+
+	local info_particle_system266 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "eyeboss_tp_vortex",
+	    targetname = "dumpster_warp_eff3",
+	    parentname = "dumpster_prop3"
+	})
+
+	if(origin != null)
+		info_particle_system266.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system266.SetAngles(angles)
+
+	local info_particle_system267 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "teleporter_mvm_bot_persist",
+	    targetname = "dumpster_warp_beam3",
+	    parentname = "dumpster_prop3"
+	})
+
+	if(origin != null)
+		info_particle_system267.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system267.SetAngles(angles)
+
+	local trigger_push_brush113 = SpawnEntityFromTable("trigger_push", {
+	    origin = Vector("0, 0, 0"),
+	    pushdir = "0 180 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    targetname = "dumpster_push3",
+	    mins = "-32 -66 -16",
+	    maxs = "12 66 64"
+	})
+	trigger_push_brush113.KeyValueFromInt("solid", 2)
+	trigger_push_brush113.KeyValueFromString("mins", "-32 -66 -16")
+	trigger_push_brush113.KeyValueFromString("maxs", "12 66 64")
+
+	if(origin != null)
+		trigger_push_brush113.SetOrigin(origin)
+	if(angles != null)
+		trigger_push_brush113.SetAngles(angles)
+
+	local prop_dynamic268 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_body.mdl",
+	    solid = 6,
+	    skin = 2,
+	    targetname = "dumpster_prop3"
+	})
+
+	if(origin != null)
+		prop_dynamic268.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic268.SetAngles(angles)
+
+	local prop_dynamic269 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_lid3",
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_lid.mdl",
+	    solid = 0,
+	    skin = 2,
+	    parentname = "dumpster_rotdoor3"
+	})
+
+	if(origin != null)
+		prop_dynamic269.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic269.SetAngles(angles)
+
+	local func_door_rotating_brush114 = SpawnEntityFromTable("func_door_rotating", {
+	    targetname = "dumpster_rotdoor3",
+	    parentname = "dumpster_prop3",
+	    origin = Vector("24, -24, 59"),
+	    distance = 90,
+	    speed = 160,
+	    wait = -1.0,
+	    disableshadows = 1,
+	    forceclosed = 1,
+	    spawnflags = 128,
+	    noise1 = "shadows/mystery_open.mp3",
+	    startclosesound = "misc/null.wav",
+	    closesound = "doors\door_metal_medium_close1.wav",
+	    mins = "-2 -2 -2",
+	    maxs = "2 2 2"
+	})
+	func_door_rotating_brush114.KeyValueFromInt("solid", 2)
+	func_door_rotating_brush114.KeyValueFromString("mins", "-2 -2 -2")
+	func_door_rotating_brush114.KeyValueFromString("maxs", "2 2 2")
+
+	if(origin != null)
+		func_door_rotating_brush114.SetOrigin(origin)
+	if(angles != null)
+		func_door_rotating_brush114.SetAngles(angles)
+
+	local trigger_multiple_brush115 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "dumpster_msg3",
+	    parentname = "dumpster_prop3",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-72 -74 -64",
+	    maxs = "40 74 96"
+	})
+	trigger_multiple_brush115.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush115.KeyValueFromString("mins", "-72 -74 -64")
+	trigger_multiple_brush115.KeyValueFromString("maxs", "40 74 96")
+
+	if(origin != null)
+		trigger_multiple_brush115.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush115.SetAngles(angles)
+
+	local light_dynamic270 = SpawnEntityFromTable("light_dynamic", {
+	    origin = Vector("0, 0, 20"),
+	    targetname = "dumpster_light3",
+	    parentname = "dumpster_prop3",
+	    _light = "255 200 0 275",
+	    distance = 75,
+	    brightness = 10,
+	    spawnflags = 1
+	})
+
+	if(origin != null)
+		light_dynamic270.SetOrigin(origin)
+	if(angles != null)
+		light_dynamic270.SetAngles(angles)
+
+	local info_particle_system271 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 0"),
+	    effect_name = "utaunt_beams_yellow",
+	    targetname = "dumpster_particles3",
+	    parentname = "dumpster_prop3"
+	})
+
+	if(origin != null)
+		info_particle_system271.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system271.SetAngles(angles)
+
+	local prop_dynamic272 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_weapon3",
+	    parentname = "dumpster_train3",
+	    model = "models\weapons\w_models\w_medigun.mdl",
+	    solid = 0
+	})
+
+	if(origin != null)
+		prop_dynamic272.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic272.SetAngles(angles)
+
+	local path_track273 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 20"),
+	    targetname = "dumpster_track13",
+	    parentname = "dumpster_prop3",
+	    target = "dumpster_track23",
+	    "OnPass#1": "dumpster_train3,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track273.SetOrigin(origin)
+	if(angles != null)
+		path_track273.SetAngles(angles)
+
+	local path_track274 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 64"),
+	    targetname = "dumpster_track23",
+	    parentname = "dumpster_prop3",
+	    target = "dumpster_track13",
+	    "OnPass#1": "dumpster_train3,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track274.SetOrigin(origin)
+	if(angles != null)
+		path_track274.SetAngles(angles)
+
+	local func_tracktrain_brush116 = SpawnEntityFromTable("func_tracktrain", {
+	    targetname = "dumpster_train3",
+	    parentname = "dumpster_prop3",
+	    target = "dumpster_track13",
+	    orientationtype = 0,
+	    velocitytype = 2,
+	    solid = 0,
+	    speed = 0,
+	    startspeed = 90,
+	    mins = "-4 -4 -4",
+	    maxs = "4 4 4",
+	    angles = QAngle("90, 0, 90"),
+	    spawnflags = 8
+	})
+	func_tracktrain_brush116.KeyValueFromInt("solid", 2)
+	func_tracktrain_brush116.KeyValueFromString("mins", "0, 0, 0")
+	func_tracktrain_brush116.KeyValueFromString("maxs", "4 4 4")
+
+	if(origin != null)
+		func_tracktrain_brush116.SetOrigin(origin)
+	if(angles != null)
+		func_tracktrain_brush116.SetAngles(angles)
+
+	local ambient_generic275 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "shadows\mystery_jingle.mp3",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_jingle3",
+	    parentname = "dumpster_prop3"
+	})
+
+	if(origin != null)
+		ambient_generic275.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic275.SetAngles(angles)
+
+	local ambient_generic276 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_appear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_appear3",
+	    parentname = "dumpster_prop3"
+	})
+
+	if(origin != null)
+		ambient_generic276.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic276.SetAngles(angles)
+
+	local ambient_generic277 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_disappear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_disappear3",
+	    parentname = "dumpster_prop3"
+	})
+
+	if(origin != null)
+		ambient_generic277.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic277.SetAngles(angles)
+
+}
+::DumpsterBoxRewrite4 <- function()
+{
+	local prop_dynamic278 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 104"),
+	    angles = QAngle("90, 0, 180"),
+	    disableshadows = 0,
+	    model = "models/workshop/player/items/all_class/mvm_memes_player/mvm_memes_player_heavy.mdl",
+	    solid = 0,
+	    startdisabled = 1,
+	    modelscale = 3,
+	    targetname = "dumpster_dudprop4",
+	    parentname = "dumpster_prop4"
+	})
+
+	if(origin != null)
+		prop_dynamic278.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic278.SetAngles(angles)
+
+	local info_particle_system279 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "eyeboss_tp_vortex",
+	    targetname = "dumpster_warp_eff4",
+	    parentname = "dumpster_prop4"
+	})
+
+	if(origin != null)
+		info_particle_system279.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system279.SetAngles(angles)
+
+	local info_particle_system280 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "teleporter_mvm_bot_persist",
+	    targetname = "dumpster_warp_beam4",
+	    parentname = "dumpster_prop4"
+	})
+
+	if(origin != null)
+		info_particle_system280.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system280.SetAngles(angles)
+
+	local trigger_push_brush117 = SpawnEntityFromTable("trigger_push", {
+	    origin = Vector("0, 0, 0"),
+	    pushdir = "0 180 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    targetname = "dumpster_push4",
+	    mins = "-32 -66 -16",
+	    maxs = "12 66 64"
+	})
+	trigger_push_brush117.KeyValueFromInt("solid", 2)
+	trigger_push_brush117.KeyValueFromString("mins", "-32 -66 -16")
+	trigger_push_brush117.KeyValueFromString("maxs", "12 66 64")
+
+	if(origin != null)
+		trigger_push_brush117.SetOrigin(origin)
+	if(angles != null)
+		trigger_push_brush117.SetAngles(angles)
+
+	local prop_dynamic281 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_body.mdl",
+	    solid = 6,
+	    skin = 2,
+	    targetname = "dumpster_prop4"
+	})
+
+	if(origin != null)
+		prop_dynamic281.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic281.SetAngles(angles)
+
+	local prop_dynamic282 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_lid4",
+	    angles = QAngle("0, 0, 0"),
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_lid.mdl",
+	    solid = 0,
+	    skin = 2,
+	    parentname = "dumpster_rotdoor4"
+	})
+
+	if(origin != null)
+		prop_dynamic282.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic282.SetAngles(angles)
+
+	local func_door_rotating_brush118 = SpawnEntityFromTable("func_door_rotating", {
+	    targetname = "dumpster_rotdoor4",
+	    parentname = "dumpster_prop4",
+	    origin = Vector("-24, -24, 59"),
+	    angles = QAngle("0, 0, 0"),
+	    distance = 90,
+	    speed = 160,
+	    wait = -1.0,
+	    disableshadows = 1,
+	    forceclosed = 1,
+	    spawnflags = 128,
+	    noise1 = "shadows/mystery_open.mp3",
+	    startclosesound = "misc/null.wav",
+	    closesound = "doors\door_metal_medium_close1.wav",
+	    mins = "-2 -2 -2",
+	    maxs = "2 2 2"
+	})
+	func_door_rotating_brush118.KeyValueFromInt("solid", 2)
+	func_door_rotating_brush118.KeyValueFromString("mins", "-2 -2 -2")
+	func_door_rotating_brush118.KeyValueFromString("maxs", "2 2 2")
+
+	if(origin != null)
+		func_door_rotating_brush118.SetOrigin(origin)
+	if(angles != null)
+		func_door_rotating_brush118.SetAngles(angles)
+
+	local trigger_multiple_brush119 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "dumpster_msg4",
+	    parentname = "dumpster_prop4",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-72 -74 -64",
+	    maxs = "40 74 96"
+	})
+	trigger_multiple_brush119.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush119.KeyValueFromString("mins", "-72 -74 -64")
+	trigger_multiple_brush119.KeyValueFromString("maxs", "40 74 96")
+
+	if(origin != null)
+		trigger_multiple_brush119.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush119.SetAngles(angles)
+
+	local light_dynamic283 = SpawnEntityFromTable("light_dynamic", {
+	    origin = Vector("0, 0, 20"),
+	    targetname = "dumpster_light4",
+	    parentname = "dumpster_prop4",
+	    _light = "255 200 0 275",
+	    distance = 75,
+	    brightness = 10,
+	    spawnflags = 1
+	})
+
+	if(origin != null)
+		light_dynamic283.SetOrigin(origin)
+	if(angles != null)
+		light_dynamic283.SetAngles(angles)
+
+	local info_particle_system284 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 0"),
+	    effect_name = "utaunt_beams_yellow",
+	    targetname = "dumpster_particles4",
+	    parentname = "dumpster_prop4"
+	})
+
+	if(origin != null)
+		info_particle_system284.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system284.SetAngles(angles)
+
+	local prop_dynamic285 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_weapon4",
+	    parentname = "dumpster_train4",
+	    model = "models\weapons\w_models\w_medigun.mdl",
+	    solid = 0
+	})
+
+	if(origin != null)
+		prop_dynamic285.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic285.SetAngles(angles)
+
+	local path_track286 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 20"),
+	    targetname = "dumpster_track14",
+	    parentname = "dumpster_prop4",
+	    target = "dumpster_track24",
+	    "OnPass#1": "dumpster_train4,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track286.SetOrigin(origin)
+	if(angles != null)
+		path_track286.SetAngles(angles)
+
+	local path_track287 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 64"),
+	    targetname = "dumpster_track24",
+	    parentname = "dumpster_prop4",
+	    target = "dumpster_track14",
+	    "OnPass#1": "dumpster_train4,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track287.SetOrigin(origin)
+	if(angles != null)
+		path_track287.SetAngles(angles)
+
+	local func_tracktrain_brush120 = SpawnEntityFromTable("func_tracktrain", {
+	    targetname = "dumpster_train4",
+	    parentname = "dumpster_prop4",
+	    target = "dumpster_track14",
+	    orientationtype = 0,
+	    velocitytype = 2,
+	    solid = 0,
+	    speed = 0,
+	    startspeed = 90,
+	    mins = "-4 -4 -4",
+	    maxs = "4 4 4",
+	    angles = QAngle("90, 0, 90"),
+	    spawnflags = 8
+	})
+	func_tracktrain_brush120.KeyValueFromInt("solid", 2)
+	func_tracktrain_brush120.KeyValueFromString("mins", "0, 0, 0")
+	func_tracktrain_brush120.KeyValueFromString("maxs", "4 4 4")
+
+	if(origin != null)
+		func_tracktrain_brush120.SetOrigin(origin)
+	if(angles != null)
+		func_tracktrain_brush120.SetAngles(angles)
+
+	local ambient_generic288 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "shadows\mystery_jingle.mp3",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_jingle4",
+	    parentname = "dumpster_prop4"
+	})
+
+	if(origin != null)
+		ambient_generic288.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic288.SetAngles(angles)
+
+	local ambient_generic289 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_appear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_appear4",
+	    parentname = "dumpster_prop4"
+	})
+
+	if(origin != null)
+		ambient_generic289.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic289.SetAngles(angles)
+
+	local ambient_generic290 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_disappear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_disappear4",
+	    parentname = "dumpster_prop4"
+	})
+
+	if(origin != null)
+		ambient_generic290.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic290.SetAngles(angles)
+
+}
+::DumpsterBoxRewrite5 <- function()
+{
+	local prop_dynamic291 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 104"),
+	    angles = QAngle("90, 0, 180"),
+	    disableshadows = 0,
+	    model = "models/workshop/player/items/all_class/mvm_memes_player/mvm_memes_player_heavy.mdl",
+	    solid = 0,
+	    startdisabled = 1,
+	    modelscale = 3,
+	    targetname = "dumpster_dudprop5",
+	    parentname = "dumpster_prop5"
+	})
+
+	if(origin != null)
+		prop_dynamic291.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic291.SetAngles(angles)
+
+	local info_particle_system292 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "eyeboss_tp_vortex",
+	    targetname = "dumpster_warp_eff5",
+	    parentname = "dumpster_prop5"
+	})
+
+	if(origin != null)
+		info_particle_system292.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system292.SetAngles(angles)
+
+	local info_particle_system293 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "teleporter_mvm_bot_persist",
+	    targetname = "dumpster_warp_beam5",
+	    parentname = "dumpster_prop5"
+	})
+
+	if(origin != null)
+		info_particle_system293.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system293.SetAngles(angles)
+
+	local trigger_push_brush121 = SpawnEntityFromTable("trigger_push", {
+	    origin = Vector("0, 0, 0"),
+	    pushdir = "0 180 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    targetname = "dumpster_push5",
+	    mins = "-32 -66 -16",
+	    maxs = "12 66 64"
+	})
+	trigger_push_brush121.KeyValueFromInt("solid", 2)
+	trigger_push_brush121.KeyValueFromString("mins", "-32 -66 -16")
+	trigger_push_brush121.KeyValueFromString("maxs", "12 66 64")
+
+	if(origin != null)
+		trigger_push_brush121.SetOrigin(origin)
+	if(angles != null)
+		trigger_push_brush121.SetAngles(angles)
+
+	local prop_dynamic294 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_body.mdl",
+	    solid = 6,
+	    skin = 2,
+	    targetname = "dumpster_prop5"
+	})
+
+	if(origin != null)
+		prop_dynamic294.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic294.SetAngles(angles)
+
+	local prop_dynamic295 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_lid5",
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_lid.mdl",
+	    solid = 0,
+	    skin = 2,
+	    parentname = "dumpster_rotdoor5"
+	})
+
+	if(origin != null)
+		prop_dynamic295.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic295.SetAngles(angles)
+
+	local func_door_rotating_brush122 = SpawnEntityFromTable("func_door_rotating", {
+	    targetname = "dumpster_rotdoor5",
+	    parentname = "dumpster_prop5",
+	    origin = Vector("24, -24, 59"),
+	    distance = 90,
+	    speed = 160,
+	    wait = -1.0,
+	    disableshadows = 1,
+	    forceclosed = 1,
+	    spawnflags = 128,
+	    noise1 = "shadows/mystery_open.mp3",
+	    startclosesound = "misc/null.wav",
+	    closesound = "doors\door_metal_medium_close1.wav",
+	    mins = "-2 -2 -2",
+	    maxs = "2 2 2"
+	})
+	func_door_rotating_brush122.KeyValueFromInt("solid", 2)
+	func_door_rotating_brush122.KeyValueFromString("mins", "-2 -2 -2")
+	func_door_rotating_brush122.KeyValueFromString("maxs", "2 2 2")
+
+	if(origin != null)
+		func_door_rotating_brush122.SetOrigin(origin)
+	if(angles != null)
+		func_door_rotating_brush122.SetAngles(angles)
+
+	local trigger_multiple_brush123 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "dumpster_msg5",
+	    parentname = "dumpster_prop5",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-72 -74 -64",
+	    maxs = "40 74 96"
+	})
+	trigger_multiple_brush123.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush123.KeyValueFromString("mins", "-72 -74 -64")
+	trigger_multiple_brush123.KeyValueFromString("maxs", "40 74 96")
+
+	if(origin != null)
+		trigger_multiple_brush123.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush123.SetAngles(angles)
+
+	local light_dynamic296 = SpawnEntityFromTable("light_dynamic", {
+	    origin = Vector("0, 0, 20"),
+	    targetname = "dumpster_light5",
+	    parentname = "dumpster_prop5",
+	    _light = "255 200 0 275",
+	    distance = 75,
+	    brightness = 10,
+	    spawnflags = 1
+	})
+
+	if(origin != null)
+		light_dynamic296.SetOrigin(origin)
+	if(angles != null)
+		light_dynamic296.SetAngles(angles)
+
+	local info_particle_system297 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 0"),
+	    effect_name = "utaunt_beams_yellow",
+	    targetname = "dumpster_particles5",
+	    parentname = "dumpster_prop5"
+	})
+
+	if(origin != null)
+		info_particle_system297.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system297.SetAngles(angles)
+
+	local prop_dynamic298 = SpawnEntityFromTable("prop_dynamic", {
+	    targetname = "dumpster_weapon5",
+	    parentname = "dumpster_train5",
+	    model = "models\weapons\w_models\w_medigun.mdl",
+	    solid = 0
+	})
+
+	if(origin != null)
+		prop_dynamic298.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic298.SetAngles(angles)
+
+	local path_track299 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 20"),
+	    targetname = "dumpster_track15",
+	    parentname = "dumpster_prop5",
+	    target = "dumpster_track25",
+	    "OnPass#1": "dumpster_train5,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track299.SetOrigin(origin)
+	if(angles != null)
+		path_track299.SetAngles(angles)
+
+	local path_track300 = SpawnEntityFromTable("path_track", {
+	    origin = Vector("-4, 0, 64"),
+	    targetname = "dumpster_track25",
+	    parentname = "dumpster_prop5",
+	    target = "dumpster_track15",
+	    "OnPass#1": "dumpster_train5,Stop,,0,-1"
+	})
+
+	if(origin != null)
+		path_track300.SetOrigin(origin)
+	if(angles != null)
+		path_track300.SetAngles(angles)
+
+	local func_tracktrain_brush124 = SpawnEntityFromTable("func_tracktrain", {
+	    targetname = "dumpster_train5",
+	    parentname = "dumpster_prop5",
+	    target = "dumpster_track15",
+	    orientationtype = 0,
+	    velocitytype = 2,
+	    solid = 0,
+	    speed = 0,
+	    startspeed = 90,
+	    mins = "-4 -4 -4",
+	    maxs = "4 4 4",
+	    angles = QAngle("90, 0, 90"),
+	    spawnflags = 8
+	})
+	func_tracktrain_brush124.KeyValueFromInt("solid", 2)
+	func_tracktrain_brush124.KeyValueFromString("mins", "0, 0, 0")
+	func_tracktrain_brush124.KeyValueFromString("maxs", "4 4 4")
+
+	if(origin != null)
+		func_tracktrain_brush124.SetOrigin(origin)
+	if(angles != null)
+		func_tracktrain_brush124.SetAngles(angles)
+
+	local ambient_generic301 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "shadows\mystery_jingle.mp3",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_jingle5",
+	    parentname = "dumpster_prop5"
+	})
+
+	if(origin != null)
+		ambient_generic301.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic301.SetAngles(angles)
+
+	local ambient_generic302 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_appear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_appear5",
+	    parentname = "dumpster_prop5"
+	})
+
+	if(origin != null)
+		ambient_generic302.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic302.SetAngles(angles)
+
+	local ambient_generic303 = SpawnEntityFromTable("ambient_generic", {
+	    health = 10,
+	    message = "misc/halloween/merasmus_disappear.wav",
+	    radius = 11000,
+	    spawnflags = 48,
+	    targetname = "dumpster_disappear5",
+	    parentname = "dumpster_prop5"
+	})
+
+	if(origin != null)
+		ambient_generic303.SetOrigin(origin)
+	if(angles != null)
+		ambient_generic303.SetAngles(angles)
+
+}
+::DumpsterBox <- function()
+{
+	local logic_relay304 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "dumpster_warp_roulette,PickRandomShuffle,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION8"
+	})
+
+	if(origin != null)
+		logic_relay304.SetOrigin(origin)
+	if(angles != null)
+		logic_relay304.SetAngles(angles)
+
+	local $filter_sendprop305 = SpawnEntityFromTable("$filter_sendprop", {
+	    targetname = "filter_dumpstermoney",
+	    $name = "m_nCurrency",
+	    negated = 0,
+	    $value = 950,
+	    $compare = "greater than or equal",
+	    "OnFail#1": "!activator,$PlaySoundToSelf,buttons/button8.wav,0,-1"
+	})
+
+	if(origin != null)
+		$filter_sendprop305.SetOrigin(origin)
+	if(angles != null)
+		$filter_sendprop305.SetAngles(angles)
+
+	local filter_multi306 = SpawnEntityFromTable("filter_multi", {
+	    targetname = "filter_dumpstermulti",
+	    filtertype = 0,
+	    negated = 0,
+	    filter01 = "filter_dumpstermoney",
+	    filter02 = "filter_melee",
+	    "OnFail#1": "!activator,$PlaySoundToSelf,buttons/button8.wav,0,-1"
+	})
+
+	if(origin != null)
+		filter_multi306.SetOrigin(origin)
+	if(angles != null)
+		filter_multi306.SetAngles(angles)
+
+	local filter_damage_type307 = SpawnEntityFromTable("filter_damage_type", {
+	    targetname = "filter_melee",
+	    negated = 0,
+	    damagetype = 134221952
+	})
+
+	if(origin != null)
+		filter_damage_type307.SetOrigin(origin)
+	if(angles != null)
+		filter_damage_type307.SetAngles(angles)
+
+	local info_particle_system308 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "eyeboss_tp_vortex",
+	    targetname = "dumpster_warp_eff",
+	    parentname = "dumpster_prop"
+	})
+
+	if(origin != null)
+		info_particle_system308.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system308.SetAngles(angles)
+
+	local info_particle_system309 = SpawnEntityFromTable("info_particle_system", {
+	    origin = Vector("0, 0, 24"),
+	    effect_name = "teleporter_mvm_bot_persist",
+	    targetname = "dumpster_warp_beam",
+	    parentname = "dumpster_prop"
+	})
+
+	if(origin != null)
+		info_particle_system309.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system309.SetAngles(angles)
+
+	local trigger_multiple_brush125 = SpawnEntityFromTable("trigger_multiple", {
+	    origin = Vector("0, 0, 50"),
+	    targetname = "dumpster_msg",
+	    parentname = "dumpster_prop",
+	    filtername = "filter_redteam",
+	    spawnflags = 1,
+	    mins = "-64 -64 -64",
+	    maxs = "96 96 96",
+	    "OnStartTouchAll#1": "!activator,RunScriptCode,ClientPrint(self, 4, `Hold Action key to receive a weapon for $950`),0,-1"
+	})
+	trigger_multiple_brush125.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush125.KeyValueFromString("mins", "-64 -64 -64")
+	trigger_multiple_brush125.KeyValueFromString("maxs", "96 96 96")
+
+	if(origin != null)
+		trigger_multiple_brush125.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush125.SetAngles(angles)
+
+	local trigger_push_brush126 = SpawnEntityFromTable("trigger_push", {
+	    origin = Vector("0, 0, 0"),
+	    pushdir = "0 0 0",
+	    spawnflags = 1,
+	    speed = 512,
+	    StartDisabled = 0,
+	    targetname = "dumpster_push",
+	    mins = "-12 -64 -16",
+	    maxs = "12 64 16"
+	})
+	trigger_push_brush126.KeyValueFromInt("solid", 2)
+	trigger_push_brush126.KeyValueFromString("mins", "-12 -64 -16")
+	trigger_push_brush126.KeyValueFromString("maxs", "12 64 16")
+
+	if(origin != null)
+		trigger_push_brush126.SetOrigin(origin)
+	if(angles != null)
+		trigger_push_brush126.SetAngles(angles)
+
+	local logic_relay310 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "dumpster_dud",
+	    "OnTrigger#1": "!activator,RunScriptCode,self.AddCurrency(950),-1",
+	    "OnTrigger#2": "tf_gamerules,PlayVORed,misc/happy_birthday_tf_10.wav,,0,-1",
+	    "OnTrigger#3": "dumpsterbutton,Lock,,0,-1",
+	    "OnTrigger#4": "dumpster_dudprop,Enable,,0,-1",
+	    "OnTrigger#5": "tf_gamerules,PlayVORed,shadows/powerup_dud_03.mp3,1,-1",
+	    "OnTrigger#6": "dumpster_warp_eff,Start,,3,-1",
+	    "OnTrigger#7": "dumpster_warp_beam,Stop,,3,-1",
+	    "OnTrigger#8": "tf_gamerules,PlayVORed,misc/halloween/merasmus_disappear.wav,3,-1",
+	    "OnTrigger#9": "dumpster_tele_out,Teleport,,4,-1",
+	    "OnTrigger#10": "dumpster_warp_eff,Stop,,4.2,-1",
+	    "OnTrigger#11": "dumpster_dudprop,Disable,,8,-1",
+	    "OnTrigger#12": "dumpster_prop,AddOutput,solid 0,9,-1",
+	    "OnTrigger#13": "dumpster_push,Enable,,24,-1",
+	    "OnTrigger#14": "dumpster_warp_roulette,PickRandomShuffle,,25,-1",
+	    "OnTrigger#15": "dumpster_warp_eff,Start,,25,-1",
+	    "OnTrigger#16": "dumpsterbutton,Unlock,,26,-1",
+	    "OnTrigger#17": "dumpster_push,Disable,,26,-1",
+	    "OnTrigger#18": "dumpster_prop,AddOutput,solid 6,26,-1",
+	    "OnTrigger#19": "tf_gamerules,PlayVORed,misc/halloween/merasmus_appear.wav,26,-1",
+	    "OnTrigger#20": "dumpster_warp_eff,Stop,,27.2,-1"
+	})
+
+	if(origin != null)
+		logic_relay310.SetOrigin(origin)
+	if(angles != null)
+		logic_relay310.SetAngles(angles)
+
+	local logic_case311 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_warp_roulette",
+	    "OnCase01#1": "dumpster_tele_1,Teleport,,-1",
+	    "OnCase01#2": "dumpster_warp_beam,Start,,-1",
+	    "OnCase02#3": "dumpster_tele_2,Teleport,,-1",
+	    "OnCase02#4": "dumpster_warp_beam,Start,,-1",
+	    "OnCase03#5": "dumpster_tele_3,Teleport,,-1",
+	    "OnCase03#6": "dumpster_warp_beam,Start,,-1",
+	    "OnCase04#7": "dumpster_tele_4,Teleport,,-1",
+	    "OnCase04#8": "dumpster_warp_beam,Start,,-1",
+	    "OnCase05#9": "dumpster_tele_5,Teleport,,-1",
+	    "OnCase05#10": "dumpster_warp_beam,Start,,-1"
+	})
+
+	if(origin != null)
+		logic_case311.SetOrigin(origin)
+	if(angles != null)
+		logic_case311.SetAngles(angles)
+
+	local point_teleport312 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_out",
+	    target = "dumpster_prop",
+	    origin = Vector("-512, -25, -1008"),
+	    angles = QAngle("0, 0, 0")
+	})
+
+	if(origin != null)
+		point_teleport312.SetOrigin(origin)
+	if(angles != null)
+		point_teleport312.SetAngles(angles)
+
+	local point_teleport313 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_1",
+	    target = "dumpster_prop",
+	    origin = Vector("447, -2322, 8"),
+	    angles = QAngle("0, 0, 0")
+	})
+
+	if(origin != null)
+		point_teleport313.SetOrigin(origin)
+	if(angles != null)
+		point_teleport313.SetAngles(angles)
+
+	local point_teleport314 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_2",
+	    target = "dumpster_prop",
+	    origin = Vector("-399, -1380, -1"),
+	    angles = QAngle("0, 270, 0")
+	})
+
+	if(origin != null)
+		point_teleport314.SetOrigin(origin)
+	if(angles != null)
+		point_teleport314.SetAngles(angles)
+
+	local point_teleport315 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_3",
+	    target = "dumpster_prop",
+	    origin = Vector("986, 1338, 96"),
+	    angles = QAngle("0, 0, 0")
+	})
+
+	if(origin != null)
+		point_teleport315.SetOrigin(origin)
+	if(angles != null)
+		point_teleport315.SetAngles(angles)
+
+	local point_teleport316 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_4",
+	    target = "dumpster_prop",
+	    origin = Vector("-788, 1016, -1"),
+	    angles = QAngle("0, 180, 0")
+	})
+
+	if(origin != null)
+		point_teleport316.SetOrigin(origin)
+	if(angles != null)
+		point_teleport316.SetAngles(angles)
+
+	local point_teleport317 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "dumpster_tele_5",
+	    target = "dumpster_prop",
+	    origin = Vector("-548, -2216, 3"),
+	    angles = QAngle("0, 0, 0")
+	})
+
+	if(origin != null)
+		point_teleport317.SetOrigin(origin)
+	if(angles != null)
+		point_teleport317.SetAngles(angles)
+
+	local logic_case318 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_case",
+	    Case01 = 1,
+	    Case02 = 2,
+	    Case03 = 3,
+	    Case04 = 4,
+	    Case05 = 5,
+	    Case06 = 6,
+	    Case07 = 7,
+	    Case08 = 8,
+	    Case09 = 9,
+	    "OnCase01#1": "dumpster_picker_scout,PickRandom,,2.5,-1",
+	    "OnCase02#2": "dumpster_picker_sniper,PickRandom,,2.5,-1",
+	    "OnCase03#3": "dumpster_picker_soldier,PickRandom,,2.5,-1",
+	    "OnCase04#4": "dumpster_picker_demo,PickRandom,,2.5,-1",
+	    "OnCase05#5": "dumpster_picker_medic,PickRandom,,2.5,-1",
+	    "OnCase06#6": "dumpster_picker_heavy,PickRandom,,2.5,-1",
+	    "OnCase07#7": "dumpster_picker_pyro,PickRandom,,2.5,-1",
+	    "OnCase08#8": "dumpster_picker_spy,PickRandom,,2.5,-1",
+	    "OnCase09#9": "dumpster_picker_engie,PickRandom,,2.5,-1"
+	})
+
+	if(origin != null)
+		logic_case318.SetOrigin(origin)
+	if(angles != null)
+		logic_case318.SetAngles(angles)
+
+	local prop_dynamic319 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 104"),
+	    angles = QAngle("90, 0, 180"),
+	    disableshadows = 0,
+	    model = "models/workshop/player/items/all_class/mvm_memes_player/mvm_memes_player_heavy.mdl",
+	    solid = 0,
+	    startdisabled = 1,
+	    modelscale = 3,
+	    targetname = "dumpster_dudprop",
+	    parentname = "dumpster_prop"
+	})
+
+	if(origin != null)
+		prop_dynamic319.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic319.SetAngles(angles)
+
+	local training_annotation320 = SpawnEntityFromTable("training_annotation", {
+	    targetname = "dumpster_hint",
+	    display_text = "Follow the beam of light to find the Weapons Dumpster!",
+	    lifetime = 5,
+	    origin = Vector(0, 0, 256)
+	})
+
+	if(origin != null)
+		training_annotation320.SetOrigin(origin)
+	if(angles != null)
+		training_annotation320.SetAngles(angles)
+
+	local prop_dynamic321 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_body.mdl",
+	    solid = 6,
+	    skin = 2,
+	    targetname = "dumpster_prop",
+	    lightingorigin = "bombpath_arrows_void"
+	})
+
+	if(origin != null)
+		prop_dynamic321.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic321.SetAngles(angles)
+
+	local light_dynamic322 = SpawnEntityFromTable("light_dynamic", {
+	    _light = "255 249 234 275",
+	    distance = "512",
+	    brightness = "1",
+	    origin = Vector("0, 0, 36"),
+	    parentname = "dumpster_prop"
+	})
+
+	if(origin != null)
+		light_dynamic322.SetOrigin(origin)
+	if(angles != null)
+		light_dynamic322.SetAngles(angles)
+
+	local prop_dynamic323 = SpawnEntityFromTable("prop_dynamic", {
+	    origin = Vector("0, 0, 0"),
+	    disableshadows = 0,
+	    model = "models/props_construction/dumpster_lid.mdl",
+	    solid = 0,
+	    skin = 2,
+	    parentname = "dumpster_rotdoor",
+	    lightingorigin = "bombpath_arrows_void"
+	})
+
+	if(origin != null)
+		prop_dynamic323.SetOrigin(origin)
+	if(angles != null)
+		prop_dynamic323.SetAngles(angles)
+
+	local func_door_rotating_brush127 = SpawnEntityFromTable("func_door_rotating", {
+	    targetname = "dumpster_rotdoor",
+	    parentname = "dumpster_prop",
+	    origin = Vector("28, -24, 60"),
+	    distance = 90,
+	    speed = 160,
+	    wait = 5,
+	    disableshadows = 1,
+	    forceclosed = 1,
+	    spawnflags = 128,
+	    noise1 = "shadows/mystery_open.mp3",
+	    startclosesound = "misc/null.wav",
+	    closesound = "doors\door_metal_medium_close1.wav",
+	    mins = "-2 -2 -2",
+	    maxs = "2 2 2"
+	})
+	func_door_rotating_brush127.KeyValueFromInt("solid", 2)
+	func_door_rotating_brush127.KeyValueFromString("mins", "-2 -2 -2")
+	func_door_rotating_brush127.KeyValueFromString("maxs", "2 2 2")
+
+	if(origin != null)
+		func_door_rotating_brush127.SetOrigin(origin)
+	if(angles != null)
+		func_door_rotating_brush127.SetAngles(angles)
+
+	local func_button_brush128 = SpawnEntityFromTable("func_button", {
+	    origin = Vector("-32, -0, 24"),
+	    targetname = "dumpsterbutton",
+	    parentname = "dumpster_prop",
+	    damagefilter = "filter_dumpstermulti",
+	    rendermode = 10,
+	    movedir = "0 180 0",
+	    spawnflags = 513,
+	    speed = 5,
+	    wait = 3,
+	    sounds = 3,
+	    mins = "-4 -44 -20",
+	    maxs = "4 44 20",
+	    "OnPressed#1": "!activator,$PlaySoundToSelf,shadows/mystery_noise.mp3,0,-1",
+	    "OnPressed#2": "!activator,RunScriptCode,self.RemoveCurrency(950),-1",
+	    "OnPressed#3": "dumpster_rotdoor,Open,,0,-1",
+	    "OnPressed#4": "dumpster_case,InValue,$$=!activator.m_iClass,,-1",
+	    "OnPressed#5": "dumpster_rotdoor,Close,,3.4,-1"
+	})
+	func_button_brush128.KeyValueFromInt("solid", 2)
+	func_button_brush128.KeyValueFromString("mins", "-4 -44 -20")
+	func_button_brush128.KeyValueFromString("maxs", "4 44 20")
+
+	if(origin != null)
+		func_button_brush128.SetOrigin(origin)
+	if(angles != null)
+		func_button_brush128.SetAngles(angles)
+
+	local logic_case324 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_picker_scout",
+	    "OnCase01#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase01#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shortstop!`),0,-1",
+	    "OnCase02#5": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase02#6": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shortstop!`),0,-1",
+	    "OnCase03#9": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase03#10": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase04#13": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase04#14": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase05#17": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase05#18": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Stickybomb Launcher!`),0,-1",
+	    "OnCase06#21": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase06#22": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Stickybomb Launcher!`),0,-1",
+	    "OnCase07#25": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase07#26": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase07#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase07#28": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Force-a-Nature!`),0,-1",
+	    "OnCase08#29": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase08#30": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase08#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase08#32": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Force-a-Nature!`),0,-1",
+	    "OnCase09#33": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase09#34": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase09#36": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Scattergun`),0,-1",
+	    "OnCase10#37": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase10#38": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase10#40": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Scattergun`),0,-1",
+	    "OnCase11#41": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase11#42": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase11#44": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Punch Packer!`),0,-1",
+	    "OnCase12#45": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase12#46": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase12#47": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase12#48": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Punch Packer!`),0,-1",
+	    "OnCase13#49": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase13#50": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase13#51": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase13#52": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ray Gun!`),0,-1",
+	    "OnCase14#53": "dumpster_dud,Trigger,-1"
+	})
+
+	if(origin != null)
+		logic_case324.SetOrigin(origin)
+	if(angles != null)
+		logic_case324.SetAngles(angles)
+
+	local logic_case325 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_picker_sniper",
+	    "OnCase01#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase01#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shotgun!`),0,-1",
+	    "OnCase02#5": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase02#6": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shotgun!`),0,-1",
+	    "OnCase03#9": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase03#10": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Scattergun`),0,-1",
+	    "OnCase04#13": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase04#14": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Scattergun`),0,-1",
+	    "OnCase05#17": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase05#18": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase06#21": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase06#22": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase07#25": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase07#26": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase07#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase07#28": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Stickybomb Launcher!`),0,-1",
+	    "OnCase08#29": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase08#30": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase08#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase08#32": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Stickybomb Launcher!`),0,-1",
+	    "OnCase09#33": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase09#34": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase09#36": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Crusader's Crossbow!`),0,-1",
+	    "OnCase10#37": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase10#38": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase10#40": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Crusader's Crossbow!`),0,-1",
+	    "OnCase11#41": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase11#42": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase11#44": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ray Gun!`),0,-1",
+	    "OnCase12#45": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase12#46": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase12#47": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase12#48": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Beam Rifle!`),0,-1",
+	    "OnCase13#49": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase13#50": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase13#51": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase13#52": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Punch Packer!`),0,-1",
+	    "OnCase14#53": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase14#54": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase14#55": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase14#56": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Cleaner's Carbine!`),0,-1",
+	    "OnCase15#57": "dumpster_dud,Trigger,-1"
+	})
+
+	if(origin != null)
+		logic_case325.SetOrigin(origin)
+	if(angles != null)
+		logic_case325.SetAngles(angles)
+
+	local logic_case326 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_picker_soldier",
+	    "OnCase01#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase01#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase02#5": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase02#6": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase03#9": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase03#10": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase04#13": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase04#14": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase05#17": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase05#18": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Rocket Launcher!`),0,-1",
+	    "OnCase06#21": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase06#22": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Rocket Launcher!`),0,-1",
+	    "OnCase07#25": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase07#26": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase07#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase07#28": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ray Gun!`),0,-1",
+	    "OnCase08#29": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase08#30": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase08#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase08#32": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Tactigatling!`),0,-1",
+	    "OnCase09#33": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase09#34": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase09#36": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Beam Rifle!`),0,-1",
+	    "OnCase10#37": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase10#38": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase10#40": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Cleaner's Carbine!`),0,-1",
+	    "OnCase11#41": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase11#42": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase11#44": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Cleaner's Carbine!`),0,-1",
+	    "OnCase12#45": "tgun_check,Test,,-1",
+	    "OnCase13#46": "dumpster_dud,Trigger,-1"
+	})
+
+	if(origin != null)
+		logic_case326.SetOrigin(origin)
+	if(angles != null)
+		logic_case326.SetAngles(angles)
+
+	local logic_case327 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_picker_demo",
+	    "OnCase01#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase01#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shotgun!`),0,-1",
+	    "OnCase02#5": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase02#6": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shotgun!`),0,-1",
+	    "OnCase03#9": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase03#10": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase04#13": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase04#14": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase05#17": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase05#18": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase06#21": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase06#22": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase07#25": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase07#26": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase07#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase07#28": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Stickybomb Launcher!`),0,-1",
+	    "OnCase08#29": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase08#30": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase08#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase08#32": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Stickybomb Launcher!`),0,-1",
+	    "OnCase09#33": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase09#34": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase09#36": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Tactigatling!`),0,-1",
+	    "OnCase10#37": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase10#38": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase10#40": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Beam Rifle!`),0,-1",
+	    "OnCase11#41": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase11#42": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase11#44": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ray Gun!`),0,-1",
+	    "OnCase12#45": "dumpster_dud,Trigger,-1"
+	})
+
+	if(origin != null)
+		logic_case327.SetOrigin(origin)
+	if(angles != null)
+		logic_case327.SetAngles(angles)
+
+	local logic_case328 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_picker_medic",
+	    "OnCase01#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase01#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Scattergun!`),0,-1",
+	    "OnCase02#5": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase02#6": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Scattergun!`),0,-1",
+	    "OnCase03#9": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase03#10": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Flamethrower!`),0,-1",
+	    "OnCase04#13": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase04#14": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Flamethrower!`),0,-1",
+	    "OnCase05#17": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase05#18": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Punch Packer!`),0,-1",
+	    "OnCase06#21": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase06#22": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Punch Packer!`),0,-1",
+	    "OnCase07#25": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase07#26": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase07#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase07#28": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase08#29": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase08#30": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase08#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase08#32": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase09#33": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase09#34": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase09#36": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Crusader's Crossbow!`),0,-1",
+	    "OnCase10#37": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase10#38": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase10#40": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Crusader's Crossbow!`),0,-1",
+	    "OnCase11#41": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase11#42": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase11#44": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Black Box!`),0,-1",
+	    "OnCase12#45": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase12#46": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase12#47": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase12#48": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: Das Maschinenpistole!`),0,-1",
+	    "OnCase13#49": "dumpster_dud,Trigger,-1"
+	})
+
+	if(origin != null)
+		logic_case328.SetOrigin(origin)
+	if(angles != null)
+		logic_case328.SetAngles(angles)
+
+	local logic_case329 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_picker_heavy",
+	    "OnCase01#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase01#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase02#5": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase02#6": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase03#9": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase03#10": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase04#13": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase04#14": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase05#17": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase05#18": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Flamethrower!`),0,-1",
+	    "OnCase06#21": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase06#22": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Flamethrower!`),0,-1",
+	    "OnCase07#25": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase07#26": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase07#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase07#28": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Minigun!`),0,-1",
+	    "OnCase08#29": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase08#30": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase08#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase08#32": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Minigun!`),0,-1",
+	    "OnCase09#33": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase09#34": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase09#36": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ray Gun!`),0,-1",
+	    "OnCase10#37": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase10#38": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase10#40": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Beam Rifle!`),0,-1",
+	    "OnCase11#41": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase11#42": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase11#44": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Tactigatling!`),0,-1",
+	    "OnCase12#45": "tgun_check,Test,,-1",
+	    "OnCase13#46": "dumpster_dud,Trigger,-1"
+	})
+
+	if(origin != null)
+		logic_case329.SetOrigin(origin)
+	if(angles != null)
+		logic_case329.SetAngles(angles)
+
+	local logic_case330 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_picker_pyro",
+	    "OnCase01#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase01#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Flamethrower!`),0,-1",
+	    "OnCase02#5": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase02#6": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Flamethrower!`),0,-1",
+	    "OnCase03#9": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase03#10": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase04#13": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase04#14": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Double Barrel!`),0,-1",
+	    "OnCase05#17": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase05#18": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase06#21": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase06#22": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase07#25": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase07#26": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase07#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase07#28": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Dragon's Fury!`),0,-1",
+	    "OnCase08#29": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase08#30": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase08#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase08#32": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Dragon's Fury!`),0,-1",
+	    "OnCase09#33": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase09#34": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase09#36": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Minigun!`),0,-1",
+	    "OnCase10#37": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase10#38": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase10#40": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Minigun!`),0,-1",
+	    "OnCase11#41": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase11#42": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase11#44": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ray Gun!`),0,-1",
+	    "OnCase12#45": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase12#46": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase12#47": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase12#48": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Tactigatling!`),0,-1",
+	    "OnCase13#49": "tgun_check,Test,,-1",
+	    "OnCase14#50": "dumpster_dud,Trigger,-1"
+	})
+
+	if(origin != null)
+		logic_case330.SetOrigin(origin)
+	if(angles != null)
+		logic_case330.SetAngles(angles)
+
+	local logic_case331 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_picker_spy",
+	    "OnCase01#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase01#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase02#5": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase02#6": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase03#9": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase03#10": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Pistol!`),0,-1",
+	    "OnCase04#13": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase04#14": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Pistol!`),0,-1",
+	    "OnCase05#17": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase05#18": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ambassador!`),0,-1",
+	    "OnCase06#21": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase06#22": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ambassador!`),0,-1",
+	    "OnCase07#25": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase07#26": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase07#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase07#28": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Big Iron!`),0,-1",
+	    "OnCase08#29": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase08#30": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase08#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase08#32": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Big Iron!`),0,-1",
+	    "OnCase09#33": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase09#34": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase09#36": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shotgun!`),0,-1",
+	    "OnCase10#37": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase10#38": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase10#40": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shotgun!`),0,-1",
+	    "OnCase11#41": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase11#42": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase11#44": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Winger!`),0,-1",
+	    "OnCase12#45": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase12#46": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase12#47": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase12#48": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Winger!`),0,-1",
+	    "OnCase13#49": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase13#50": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase13#51": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase13#52": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ray Gun!`),0,-1",
+	    "OnCase14#53": "dumpster_dud,Trigger,-1"
+	})
+
+	if(origin != null)
+		logic_case331.SetOrigin(origin)
+	if(angles != null)
+		logic_case331.SetAngles(angles)
+
+	local logic_case332 = SpawnEntityFromTable("logic_case", {
+	    targetname = "dumpster_picker_engie",
+	    "OnCase01#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase01#2": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The B.M.M.H!`),0,-1",
+	    "OnCase02#5": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase02#6": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase03#9": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase03#10": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The SMG!`),0,-1",
+	    "OnCase04#13": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase04#14": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shotgun!`),0,-1",
+	    "OnCase05#17": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase05#18": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Scattergun!`),0,-1",
+	    "OnCase06#21": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase06#22": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Shotgun!`),0,-1",
+	    "OnCase07#25": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase07#26": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase07#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase07#28": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Nostromo Napalmer!`),0,-1",
+	    "OnCase08#29": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase08#30": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase08#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase08#32": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Nostromo Napalmer!`),0,-1",
+	    "OnCase09#33": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase09#34": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase09#36": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Ray Gun!`),0,-1",
+	    "OnCase10#37": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),-1",
+	    "OnCase10#38": "!activator,$PlaySoundToSelf,items/gunpickup2.wav,-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase10#40": "!activator,RunScriptCode,ClientPrint(self, 4, `You've received: The Punch Packer!`),0,-1",
+	    "OnCase11#41": "dumpster_dud,Trigger,-1"
+	})
+
+	if(origin != null)
+		logic_case332.SetOrigin(origin)
+	if(angles != null)
+		logic_case332.SetAngles(angles)
+
+}
+::TankTeleport <- function()
+{
+	local trigger_teleport_brush129 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "tank_warper",
+	    spawnflags = 1,
+	    target = "tank_spawnroulette",
+	    filtername = "filter_tank",
+	    mins = "-9999 -9999 -9999",
+	    maxs = "9999 9999 9999"
+	})
+	trigger_teleport_brush129.KeyValueFromInt("solid", 2)
+	trigger_teleport_brush129.KeyValueFromString("mins", "-9999 -9999 -9999")
+	trigger_teleport_brush129.KeyValueFromString("maxs", "9999 9999 9999")
+
+	if(origin != null)
+		trigger_teleport_brush129.SetOrigin(origin)
+	if(angles != null)
+		trigger_teleport_brush129.SetAngles(angles)
+
+	local trigger_multiple_brush130 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "tank_spawnroulette",
+	    spawnflags = 1,
+	    filtername = "filter_tank",
+	    origin = Vector("-2168, 40, 13604"),
+	    mins = "-24 -24 -36",
+	    maxs = "24 24 36",
+	    "OnStartTouchAll#1": "tank_spawn_picker,PickRandomShuffle,,-1"
+	})
+	trigger_multiple_brush130.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush130.KeyValueFromString("mins", "-24 -24 -36")
+	trigger_multiple_brush130.KeyValueFromString("maxs", "24 24 36")
+
+	if(origin != null)
+		trigger_multiple_brush130.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush130.SetAngles(angles)
+
+	local trigger_bot_tag_brush131 = SpawnEntityFromTable("trigger_bot_tag", {
+	    targetname = "tank_spawnroulette",
+	    spawnflags = 1,
+	    filtername = "filter_tank",
+	    tags = "swooce",
+	    add = 0,
+	    origin = Vector("-2168, 40, 13604"),
+	    mins = "-128 -128 -128",
+	    maxs = "128 128 128"
+	})
+	trigger_bot_tag_brush131.KeyValueFromInt("solid", 2)
+	trigger_bot_tag_brush131.KeyValueFromString("mins", "-128 -128 -128")
+	trigger_bot_tag_brush131.KeyValueFromString("maxs", "128 128 128")
+
+	if(origin != null)
+		trigger_bot_tag_brush131.SetOrigin(origin)
+	if(angles != null)
+		trigger_bot_tag_brush131.SetAngles(angles)
+
+	local filter_tf_bot_has_tag333 = SpawnEntityFromTable("filter_tf_bot_has_tag", {
+	    targetname = "filter_tank",
+	    require_all_tags = 1,
+	    tags = "swooce",
+	    Negated = "Allow entities that match criteria"
+	})
+
+	if(origin != null)
+		filter_tf_bot_has_tag333.SetOrigin(origin)
+	if(angles != null)
+		filter_tf_bot_has_tag333.SetAngles(angles)
+
+	local point_teleport334 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "tank_spawn_01",
+	    target = "!activator",
+	    origin = Vector("-2048, -2432, 24")
+	})
+
+	if(origin != null)
+		point_teleport334.SetOrigin(origin)
+	if(angles != null)
+		point_teleport334.SetAngles(angles)
+
+	local info_particle_system335 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_01_eff1",
+	    effect_name = "utaunt_electricity_cloud_parent_WB",
+	    origin = Vector("-2048, -2432, 24")
+	})
+
+	if(origin != null)
+		info_particle_system335.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system335.SetAngles(angles)
+
+	local info_particle_system336 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_01_eff2",
+	    effect_name = "utaunt_lightning_bolt",
+	    origin = Vector("-2048, -2432, 24")
+	})
+
+	if(origin != null)
+		info_particle_system336.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system336.SetAngles(angles)
+
+	local point_teleport337 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "tank_spawn_02",
+	    target = "!activator",
+	    origin = Vector("-352, -3064, 8")
+	})
+
+	if(origin != null)
+		point_teleport337.SetOrigin(origin)
+	if(angles != null)
+		point_teleport337.SetAngles(angles)
+
+	local info_particle_system338 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_02_eff1",
+	    effect_name = "utaunt_electricity_cloud_parent_WB",
+	    origin = Vector("-352, -3064, 8")
+	})
+
+	if(origin != null)
+		info_particle_system338.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system338.SetAngles(angles)
+
+	local info_particle_system339 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_02_eff2",
+	    effect_name = "utaunt_lightning_bolt",
+	    origin = Vector("-352, -3064, 8")
+	})
+
+	if(origin != null)
+		info_particle_system339.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system339.SetAngles(angles)
+
+	local point_teleport340 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "tank_spawn_03",
+	    target = "!activator",
+	    origin = Vector("1376, -945, 24")
+	})
+
+	if(origin != null)
+		point_teleport340.SetOrigin(origin)
+	if(angles != null)
+		point_teleport340.SetAngles(angles)
+
+	local info_particle_system341 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_03_eff1",
+	    effect_name = "utaunt_electricity_cloud_parent_WB",
+	    origin = Vector("1376, -945, 24")
+	})
+
+	if(origin != null)
+		info_particle_system341.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system341.SetAngles(angles)
+
+	local info_particle_system342 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_03_eff2",
+	    effect_name = "utaunt_lightning_bolt",
+	    origin = Vector("1376, -945, 24")
+	})
+
+	if(origin != null)
+		info_particle_system342.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system342.SetAngles(angles)
+
+	local point_teleport343 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "tank_spawn_04",
+	    target = "!activator",
+	    origin = Vector("1376, 1120, 16")
+	})
+
+	if(origin != null)
+		point_teleport343.SetOrigin(origin)
+	if(angles != null)
+		point_teleport343.SetAngles(angles)
+
+	local info_particle_system344 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_04_eff1",
+	    effect_name = "utaunt_electricity_cloud_parent_WB",
+	    origin = Vector("1376, 1120, 16")
+	})
+
+	if(origin != null)
+		info_particle_system344.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system344.SetAngles(angles)
+
+	local info_particle_system345 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_04_eff2",
+	    effect_name = "utaunt_lightning_bolt",
+	    origin = Vector("1376, 1120, 16")
+	})
+
+	if(origin != null)
+		info_particle_system345.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system345.SetAngles(angles)
+
+	local point_teleport346 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "tank_spawn_05",
+	    target = "!activator",
+	    origin = Vector("-8, 1556, 224")
+	})
+
+	if(origin != null)
+		point_teleport346.SetOrigin(origin)
+	if(angles != null)
+		point_teleport346.SetAngles(angles)
+
+	local info_particle_system347 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_05_eff1",
+	    effect_name = "utaunt_electricity_cloud_parent_WB",
+	    origin = Vector("-8, 1556, 224")
+	})
+
+	if(origin != null)
+		info_particle_system347.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system347.SetAngles(angles)
+
+	local info_particle_system348 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_05_eff2",
+	    effect_name = "utaunt_lightning_bolt",
+	    origin = Vector("-8, 1556, 224")
+	})
+
+	if(origin != null)
+		info_particle_system348.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system348.SetAngles(angles)
+
+	local point_teleport349 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "tank_spawn_06",
+	    target = "!activator",
+	    origin = Vector("-792, 2280, 16")
+	})
+
+	if(origin != null)
+		point_teleport349.SetOrigin(origin)
+	if(angles != null)
+		point_teleport349.SetAngles(angles)
+
+	local info_particle_system350 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_06_eff1",
+	    effect_name = "utaunt_electricity_cloud_parent_WB",
+	    origin = Vector("-792, 2280, 16")
+	})
+
+	if(origin != null)
+		info_particle_system350.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system350.SetAngles(angles)
+
+	local info_particle_system351 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_06_eff2",
+	    effect_name = "utaunt_lightning_bolt",
+	    origin = Vector("-792, 2280, 16")
+	})
+
+	if(origin != null)
+		info_particle_system351.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system351.SetAngles(angles)
+
+	local point_teleport352 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "tank_spawn_07",
+	    target = "!activator",
+	    origin = Vector("-3136, 1272, 24")
+	})
+
+	if(origin != null)
+		point_teleport352.SetOrigin(origin)
+	if(angles != null)
+		point_teleport352.SetAngles(angles)
+
+	local info_particle_system353 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_07_eff1",
+	    effect_name = "utaunt_electricity_cloud_parent_WB",
+	    origin = Vector("-3136, 1272, 24")
+	})
+
+	if(origin != null)
+		info_particle_system353.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system353.SetAngles(angles)
+
+	local info_particle_system354 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_07_eff2",
+	    effect_name = "utaunt_lightning_bolt",
+	    origin = Vector("-3136, 1272, 24")
+	})
+
+	if(origin != null)
+		info_particle_system354.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system354.SetAngles(angles)
+
+	local point_teleport355 = SpawnEntityFromTable("point_teleport", {
+	    targetname = "tank_spawn_08",
+	    target = "!activator",
+	    origin = Vector("-2296, -264, 24")
+	})
+
+	if(origin != null)
+		point_teleport355.SetOrigin(origin)
+	if(angles != null)
+		point_teleport355.SetAngles(angles)
+
+	local info_particle_system356 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_08_eff1",
+	    effect_name = "utaunt_electricity_cloud_parent_WB",
+	    origin = Vector("-2296, -264, 24")
+	})
+
+	if(origin != null)
+		info_particle_system356.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system356.SetAngles(angles)
+
+	local info_particle_system357 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "tank_spawn_08_eff2",
+	    effect_name = "utaunt_lightning_bolt",
+	    origin = Vector("-2296, -264, 24")
+	})
+
+	if(origin != null)
+		info_particle_system357.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system357.SetAngles(angles)
+
+	local logic_case358 = SpawnEntityFromTable("logic_case", {
+	    targetname = "tank_spawn_picker",
+	    "OnCase01#1": "tank_spawn_01_eff1,Start,,-1",
+	    "OnCase01#2": "tf_gamerules,PlayVORed,misc/halloween_eyeball/book_spawn.wav,,-1",
+	    "OnCase01#3": "tank_spawn_01_eff2,Start,,1.75,-1",
+	    "OnCase01#4": "tank_spawn_01,Teleport,,1.75,-1",
+	    "OnCase01#5": "tf_gamerules,PlayVORed,ambient/halloween/thunder_04.wav,1.75,-1",
+	    "OnCase01#6": "tank_spawn_01_eff1,Stop,,1.8,-1",
+	    "OnCase01#7": "tank_spawn_01_eff2,Stop,,2,-1",
+	    "OnCase02#8": "tank_spawn_02_eff1,Start,,-1",
+	    "OnCase02#9": "tf_gamerules,PlayVORed,misc/halloween_eyeball/book_spawn.wav,,-1",
+	    "OnCase02#10": "tank_spawn_02_eff2,Start,,1.75,-1",
+	    "OnCase02#11": "tank_spawn_02,Teleport,,1.75,-1",
+	    "OnCase02#12": "tf_gamerules,PlayVORed,ambient/halloween/thunder_04.wav,1.75,-1",
+	    "OnCase02#13": "tank_spawn_02_eff1,Stop,,1.8,-1",
+	    "OnCase02#14": "tank_spawn_02_eff2,Stop,,2,-1",
+	    "OnCase03#15": "tank_spawn_03_eff1,Start,,-1",
+	    "OnCase03#16": "tf_gamerules,PlayVORed,misc/halloween_eyeball/book_spawn.wav,,-1",
+	    "OnCase03#17": "tank_spawn_03_eff2,Start,,1.75,-1",
+	    "OnCase03#18": "tank_spawn_03,Teleport,,1.75,-1",
+	    "OnCase03#19": "tf_gamerules,PlayVORed,ambient/halloween/thunder_04.wav,1.75,-1",
+	    "OnCase03#20": "tank_spawn_03_eff1,Stop,,1.8,-1",
+	    "OnCase03#21": "tank_spawn_03_eff2,Stop,,2,-1",
+	    "OnCase04#22": "tank_spawn_04_eff1,Start,,-1",
+	    "OnCase04#23": "tf_gamerules,PlayVORed,misc/halloween_eyeball/book_spawn.wav,,-1",
+	    "OnCase04#24": "tank_spawn_04_eff2,Start,,1.75,-1",
+	    "OnCase04#25": "tank_spawn_04,Teleport,,1.75,-1",
+	    "OnCase04#26": "tf_gamerules,PlayVORed,ambient/halloween/thunder_04.wav,1.75,-1",
+	    "OnCase04#27": "tank_spawn_04_eff1,Stop,,1.8,-1",
+	    "OnCase04#28": "tank_spawn_04_eff2,Stop,,2,-1",
+	    "OnCase05#29": "tank_spawn_05_eff1,Start,,-1",
+	    "OnCase05#30": "tf_gamerules,PlayVORed,misc/halloween_eyeball/book_spawn.wav,,-1",
+	    "OnCase05#31": "tank_spawn_05_eff2,Start,,1.75,-1",
+	    "OnCase05#32": "tank_spawn_05,Teleport,,1.75,-1",
+	    "OnCase05#33": "tf_gamerules,PlayVORed,ambient/halloween/thunder_04.wav,1.75,-1",
+	    "OnCase05#34": "tank_spawn_05_eff1,Stop,,1.8,-1",
+	    "OnCase05#35": "tank_spawn_05_eff2,Stop,,2,-1",
+	    "OnCase06#36": "tank_spawn_06_eff1,Start,,-1",
+	    "OnCase06#37": "tf_gamerules,PlayVORed,misc/halloween_eyeball/book_spawn.wav,,-1",
+	    "OnCase06#38": "tank_spawn_06_eff2,Start,,1.75,-1",
+	    "OnCase06#39": "tank_spawn_06,Teleport,,1.75,-1",
+	    "OnCase06#40": "tf_gamerules,PlayVORed,ambient/halloween/thunder_04.wav,1.75,-1",
+	    "OnCase06#41": "tank_spawn_06_eff1,Stop,,1.8,-1",
+	    "OnCase06#42": "tank_spawn_06_eff2,Stop,,2,-1",
+	    "OnCase07#43": "tank_spawn_07_eff1,Start,,-1",
+	    "OnCase07#44": "tf_gamerules,PlayVORed,misc/halloween_eyeball/book_spawn.wav,,-1",
+	    "OnCase07#45": "tank_spawn_07_eff2,Start,,1.75,-1",
+	    "OnCase07#46": "tank_spawn_07,Teleport,,1.75,-1",
+	    "OnCase07#47": "tf_gamerules,PlayVORed,ambient/halloween/thunder_04.wav,1.75,-1",
+	    "OnCase07#48": "tank_spawn_07_eff1,Stop,,1.8,-1",
+	    "OnCase07#49": "tank_spawn_07_eff2,Stop,,2,-1",
+	    "OnCase08#50": "tank_spawn_08_eff1,Start,,-1",
+	    "OnCase08#51": "tf_gamerules,PlayVORed,misc/halloween_eyeball/book_spawn.wav,,-1",
+	    "OnCase08#52": "tank_spawn_08_eff2,Start,,1.75,-1",
+	    "OnCase08#53": "tank_spawn_08,Teleport,,1.75,-1",
+	    "OnCase08#54": "tf_gamerules,PlayVORed,ambient/halloween/thunder_04.wav,1.75,-1",
+	    "OnCase08#55": "tank_spawn_08_eff1,Stop,,1.8,-1",
+	    "OnCase08#56": "tank_spawn_08_eff2,Stop,,2,-1"
+	})
+
+	if(origin != null)
+		logic_case358.SetOrigin(origin)
+	if(angles != null)
+		logic_case358.SetAngles(angles)
+
+}
+::Camera_Crew_Death <- function()
+{
+	local point_viewcontrol359 = SpawnEntityFromTable("point_viewcontrol", {
+	    angles = QAngle("14, 206, 0"),
+	    origin = Vector("2948, 924, 518"),
+	    acceleration = 0,
+	    deceleration = 0,
+	    spawnflags = 0,
+	    targetname = "camera_gameover_1",
+	    parentname = "camera_spin",
+	    wait = 5,
+	    interpolatepositiontoplayer = 0,
+	    speed = 0
+	})
+
+	if(origin != null)
+		point_viewcontrol359.SetOrigin(origin)
+	if(angles != null)
+		point_viewcontrol359.SetAngles(angles)
+
+	local func_rotating_brush132 = SpawnEntityFromTable("func_rotating", {
+	    spawnflags = 64,
+	    maxspeed = 1,
+	    solidbsp = 0,
+	    rendermode = 10,
+	    targetname = "camera_spin",
+	    origin = Vector("2948, 924, 518")
+	})
+	func_rotating_brush132.KeyValueFromInt("solid", 2)
+	func_rotating_brush132.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush132.KeyValueFromString("maxspeed", "1")
+
+	if(origin != null)
+		func_rotating_brush132.SetOrigin(origin)
+	if(angles != null)
+		func_rotating_brush132.SetAngles(angles)
+
+	local game_text360 = SpawnEntityFromTable("game_text", {
+	    targetname = "gameovertext",
+	    color = "222 222 222",
+	    color2 = "240 110 0",
+	    fxtime = 8,
+	    holdtime = 30,
+	    spawnflags = 1,
+	    "channel" = 2,
+	    "effect" = 2,
+	    x = 0.4,
+	    y = 0.37
+	})
+
+	if(origin != null)
+		game_text360.SetOrigin(origin)
+	if(angles != null)
+		game_text360.SetAngles(angles)
+
+	local logic_case361 = SpawnEntityFromTable("logic_case", {
+	    targetname = "gameoverformat",
+	    case16 = "You survived % waves",
+	    "ondefault#1": "gameovertext,AddOutput,message ,0,-1",
+	    "ondefault#2": "gameovertext,display,0,0,-1"
+	})
+
+	if(origin != null)
+		logic_case361.SetOrigin(origin)
+	if(angles != null)
+		logic_case361.SetAngles(angles)
+
+	local point_viewcontrol362 = SpawnEntityFromTable("point_viewcontrol", {
+	    angles = QAngle("23, 298, 0"),
+	    origin = Vector("-2349, 1008, 479"),
+	    acceleration = 0,
+	    deceleration = 0,
+	    spawnflags = 0,
+	    targetname = "camera_gameover_2",
+	    wait = 5,
+	    parentname = "camera_spin_2",
+	    interpolatepositiontoplayer = 0,
+	    speed = 0
+	})
+
+	if(origin != null)
+		point_viewcontrol362.SetOrigin(origin)
+	if(angles != null)
+		point_viewcontrol362.SetAngles(angles)
+
+	local func_rotating_brush133 = SpawnEntityFromTable("func_rotating", {
+	    spawnflags = 66,
+	    maxspeed = 1,
+	    solidbsp = 0,
+	    rendermode = 10,
+	    targetname = "camera_spin_2",
+	    origin = Vector("-2349, 1008, 479")
+	})
+	func_rotating_brush133.KeyValueFromInt("solid", 2)
+	func_rotating_brush133.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush133.KeyValueFromString("maxspeed", "1")
+
+	if(origin != null)
+		func_rotating_brush133.SetOrigin(origin)
+	if(angles != null)
+		func_rotating_brush133.SetAngles(angles)
+
+	local env_fade363 = SpawnEntityFromTable("env_fade", {
+	    targetname = "fade_out",
+	    duration = 2,
+	    holdtime = 0.5,
+	    rendercolor = "0 0 0"
+	})
+
+	if(origin != null)
+		env_fade363.SetOrigin(origin)
+	if(angles != null)
+		env_fade363.SetAngles(angles)
+
+	local env_fade364 = SpawnEntityFromTable("env_fade", {
+	    targetname = "fade_in",
+	    duration = 2,
+	    holdtime = 0.5,
+	    spawnflags = 1,
+	    rendercolor = "0 0 0"
+	})
+
+	if(origin != null)
+		env_fade364.SetOrigin(origin)
+	if(angles != null)
+		env_fade364.SetAngles(angles)
+
+	local point_populator_interface365 = SpawnEntityFromTable("point_populator_interface", {
+	    targetname = "populator"
+	})
+
+	if(origin != null)
+		point_populator_interface365.SetOrigin(origin)
+	if(angles != null)
+		point_populator_interface365.SetAngles(angles)
+
+	local logic_relay366 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "gameover",
+	    startdisabled = 1,
+	    "OnTrigger#1": "youwin,Disable,,1.5,-1",
+	    "OnTrigger#2": "LMA,Disable,,3,-1",
+	    "OnTrigger#3": "populator,PauseBotSpawning,,3,-1",
+	    "OnTrigger#4": "player,$PlaySequence,victory,3,-1",
+	    "OnTrigger#5": "bossstage_start,CancelPending,,3,-1",
+	    "OnTrigger#6": "bossstage_start_tread,CancelPending,,3,-1",
+	    "OnTrigger#7": "stage_clear_finale,CancelPending,,3,-1",
+	    "OnTrigger#8": "stage_clear,CancelPending,,3,-1",
+	    "OnTrigger#9": "player,RunScriptCode,ClientPrint(self, 4, `Game over`),3,-1",
+	    "OnTrigger#10": "roundformat,FireUser2,,3,-1",
+	    "OnTrigger#11": "realtimer,FireUser2,,3,-1",
+	    "OnTrigger#12": "realtimer,FireUser2,,3.7,-1",
+	    "OnTrigger#13": "finale_snd,volume,0,3,-1",
+	    "OnTrigger#14": "bossfight_snd,volume,0,3,-1",
+	    "OnTrigger#15": "tankround_snd,volume,0,3,-1",
+	    "OnTrigger#16": "fail_snd,PlaySound,,3,-1",
+	    "OnTrigger#17": "fade_out,Fade,,6,-1",
+	    "OnTrigger#18": "camera_gameover_1,$EnableAll,,8,-1",
+	    "OnTrigger#19": "camera_spin,start,,8,-1",
+	    "OnTrigger#20": "player,$PlaySequence,victoryb,8,-1",
+	    "OnTrigger#21": "fade_in,Fade,,8,-1",
+	    "OnTrigger#22": "fade_out,Fade,,13,-1",
+	    "OnTrigger#23": "camera_spin,stop,,15,-1",
+	    "OnTrigger#24": "camera_gameover_2,$EnableAll,,15,-1",
+	    "OnTrigger#25": "camera_spin_2,start,,15,-1",
+	    "OnTrigger#26": "player,$PlaySequence,victory,15,-1",
+	    "OnTrigger#27": "fade_in,Fade,,15,-1",
+	    "OnTrigger#28": "bots_win,RoundWin,,18.5,-1"
+	})
+
+	if(origin != null)
+		logic_relay366.SetOrigin(origin)
+	if(angles != null)
+		logic_relay366.SetAngles(angles)
+
+	local logic_relay367 = SpawnEntityFromTable("logic_relay", {
+	    targetname = "youwin",
+	    "OnTrigger#1": "finale_snd,volume,0,0,-1",
+	    "OnTrigger#2": "player,RunScriptCode,ClientPrint(self, 4, `Game over`),0,-1",
+	    "OnTrigger#3": "gameover,Disable,,-1",
+	    "OnTrigger#4": "roundformat,FireUser2,,0,-1",
+	    "OnTrigger#5": "realtimer,FireUser2,,0,-1",
+	    "OnTrigger#6": "realtimer,FireUser2,,0.7,-1",
+	    "OnTrigger#7": "win_snd,PlaySound,,0,-1",
+	    "OnTrigger#8": "fade_out,Fade,,13,-1",
+	    "OnTrigger#9": "camera_gameover_1,$EnableAll,,15,-1",
+	    "OnTrigger#10": "camera_spin,start,,15,-1",
+	    "OnTrigger#11": "fade_in,Fade,,15,-1",
+	    "OnTrigger#12": "fade_out,Fade,,20,-1",
+	    "OnTrigger#13": "camera_spin,stop,,22,-1",
+	    "OnTrigger#14": "camera_gameover_2,$EnableAll,,22,-1",
+	    "OnTrigger#15": "camera_spin_2,start,,22,-1",
+	    "OnTrigger#16": "fade_in,Fade,,22,-1",
+	    "OnTrigger#17": "hologram_nuke_hurt,Enable,,25.5,-1",
+	    "OnTrigger#18": "camera_spin_2,stop,,32,-1"
+	})
+
+	if(origin != null)
+		logic_relay367.SetOrigin(origin)
+	if(angles != null)
+		logic_relay367.SetAngles(angles)
+
+}
+::FrearmPT <- function()
+{
+	local logic_relay368 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "!activator,RunScriptCode,GiveWeapon(self,`INVALID`,-1,null),0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION9"
+	})
+
+	if(origin != null)
+		logic_relay368.SetOrigin(origin)
+	if(angles != null)
+		logic_relay368.SetAngles(angles)
+
+}
+::ThundergunPT <- function()
+{
+	local logic_relay369 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "thundergun_effect,Start,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION10"
+	})
+
+	if(origin != null)
+		logic_relay369.SetOrigin(origin)
+	if(angles != null)
+		logic_relay369.SetAngles(angles)
+
+	local logic_relay370 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "thundergun_hurt,$SetOwner,!activator,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION11"
+	})
+
+	if(origin != null)
+		logic_relay370.SetOrigin(origin)
+	if(angles != null)
+		logic_relay370.SetAngles(angles)
+
+	local logic_relay371 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "thundergun*,Kill,,0.35,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION12"
+	})
+
+	if(origin != null)
+		logic_relay371.SetOrigin(origin)
+	if(angles != null)
+		logic_relay371.SetAngles(angles)
+
+	local info_particle_system372 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "thundergun_effect",
+	    effect_name = "utaunt_lightning_bolt",
+	    angles = QAngle("0, 90, 90")
+	})
+
+	if(origin != null)
+		info_particle_system372.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system372.SetAngles(angles)
+
+	local info_particle_system373 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "thundergun_effect",
+	    effect_name = "utaunt_lightning_bolt",
+	    angles = QAngle("0, 65, 90")
+	})
+
+	if(origin != null)
+		info_particle_system373.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system373.SetAngles(angles)
+
+	local info_particle_system374 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "thundergun_effect",
+	    effect_name = "utaunt_lightning_bolt",
+	    angles = QAngle("0, 115, 90")
+	})
+
+	if(origin != null)
+		info_particle_system374.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system374.SetAngles(angles)
+
+	local trigger_hurt_brush134 = SpawnEntityFromTable("trigger_hurt", {
+	    damage = 5000,
+	    damagetype = 4194304,
+	    targetname = "thundergun_hurt",
+	    spawnflags = 1,
+	    nodmgforce = 0,
+	    filtername = "filter_blueteam",
+	    mins = "-128 -48 -24",
+	    maxs = "128 48 24"
+	})
+	trigger_hurt_brush134.KeyValueFromInt("solid", 2)
+	trigger_hurt_brush134.KeyValueFromString("mins", "-128 -48 -24")
+	trigger_hurt_brush134.KeyValueFromString("maxs", "128 48 24")
+
+	if(origin != null)
+		trigger_hurt_brush134.SetOrigin(origin)
+	if(angles != null)
+		trigger_hurt_brush134.SetAngles(angles)
+
+}
+::Thundergun_2PT <- function()
+{
+	local logic_relay375 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "thundergun_effect,Start,,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION13"
+	})
+
+	if(origin != null)
+		logic_relay375.SetOrigin(origin)
+	if(angles != null)
+		logic_relay375.SetAngles(angles)
+
+	local logic_relay376 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "thundergun_hurt,$SetOwner,!activator,0.0,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION14"
+	})
+
+	if(origin != null)
+		logic_relay376.SetOrigin(origin)
+	if(angles != null)
+		logic_relay376.SetAngles(angles)
+
+	local logic_relay377 = SpawnEntityFromTable("logic_relay", {
+	    "OnTrigger#1": "thundergun*,Kill,,0.35,-1",
+	    spawnflags = 1,
+	    targetname = "SPAWNOUTPUT_CONVERSION15"
+	})
+
+	if(origin != null)
+		logic_relay377.SetOrigin(origin)
+	if(angles != null)
+		logic_relay377.SetAngles(angles)
+
+	local info_particle_system378 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "thundergun_effect",
+	    effect_name = "utaunt_lightning_bolt",
+	    angles = QAngle("0, 90, 90")
+	})
+
+	if(origin != null)
+		info_particle_system378.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system378.SetAngles(angles)
+
+	local info_particle_system379 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "thundergun_effect",
+	    effect_name = "utaunt_lightning_bolt",
+	    angles = QAngle("0, 65, 90")
+	})
+
+	if(origin != null)
+		info_particle_system379.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system379.SetAngles(angles)
+
+	local info_particle_system380 = SpawnEntityFromTable("info_particle_system", {
+	    targetname = "thundergun_effect",
+	    effect_name = "utaunt_lightning_bolt",
+	    angles = QAngle("0, 115, 90")
+	})
+
+	if(origin != null)
+		info_particle_system380.SetOrigin(origin)
+	if(angles != null)
+		info_particle_system380.SetAngles(angles)
+
+	local trigger_hurt_brush135 = SpawnEntityFromTable("trigger_hurt", {
+	    damage = 9750,
+	    damagetype = 4194304,
+	    targetname = "thundergun_hurt",
+	    spawnflags = 1,
+	    nodmgforce = 0,
+	    filtername = "filter_blueteam",
+	    mins = "-128 -48 -24",
+	    maxs = "128 96 24"
+	})
+	trigger_hurt_brush135.KeyValueFromInt("solid", 2)
+	trigger_hurt_brush135.KeyValueFromString("mins", "-128 -48 -24")
+	trigger_hurt_brush135.KeyValueFromString("maxs", "128 96 24")
+
+	if(origin != null)
+		trigger_hurt_brush135.SetOrigin(origin)
+	if(angles != null)
+		trigger_hurt_brush135.SetAngles(angles)
+
+}
+::MedicbagPT <- function()
+{
+	local _brush136 = SpawnEntityFromTable("", {
+	    spawnflags = 1,
+	    targetname = "medicbag_aoe",
+	    origin = Vector("0, 0, 0"),
+	    mins = "-128 -128 -36",
+	    maxs = "128 128 36"
+	})
+	_brush136.KeyValueFromInt("solid", 2)
+	_brush136.KeyValueFromString("mins", "-128 -128 -36")
+	_brush136.KeyValueFromString("maxs", "128 128 36")
+
+	if(origin != null)
+		_brush136.SetOrigin(origin)
+	if(angles != null)
+		_brush136.SetAngles(angles)
+
+	local mapobj_cart_dispenser381 = SpawnEntityFromTable("mapobj_cart_dispenser", {
+	    spawnflags = 12,
+	    origin = Vector("0, -12, 0"),
+	    targetname = "medicbag_dispbeam",
+	    TeamNum = 2,
+	    touch_trigger = "medicbag_aoe"
+	})
+
+	if(origin != null)
+		mapobj_cart_dispenser381.SetOrigin(origin)
+	if(angles != null)
+		mapobj_cart_dispenser381.SetAngles(angles)
+
+	local trigger_multiple_brush137 = SpawnEntityFromTable("trigger_multiple", {
+	    spawnflags = 1,
+	    filtername = "filter_notred",
+	    origin = Vector("0, 0, 0"),
+	    mins = "-128 -128 -36",
+	    maxs = "128 128 36",
+	    "OnStartTouchAll#1": "medicbag_aoe,Disable,,-1",
+	    "OnEndTouchAll#2": "medicbag_aoe,Enable,,3,-1"
+	})
+	trigger_multiple_brush137.KeyValueFromInt("solid", 2)
+	trigger_multiple_brush137.KeyValueFromString("mins", "-128 -128 -36")
+	trigger_multiple_brush137.KeyValueFromString("maxs", "128 128 36")
+
+	if(origin != null)
+		trigger_multiple_brush137.SetOrigin(origin)
+	if(angles != null)
+		trigger_multiple_brush137.SetAngles(angles)
+
+}
+::PlayerSpawnTemplate "PlayerTracker" <- function()
+{
+	local 382 = SpawnEntityFromTable("", {
+	    PlayerSpawnTemplate = "PlayerTracker",
+	    SpawnTemplate = "corelogic",
+	    SpawnTemplate = "DummyMachines",
+	    SpawnTemplate = "Spawn_things",
+	    SpawnTemplate = "PlayersLeftLogic",
+	    SpawnTemplate = "tutorial",
+	    SpawnTemplate = "BuildingBlocks",
+	    SpawnTemplate = "Plate_Big",
+	    SpawnTemplate = "Camera_Crew_Death",
+	    SpawnTemplate = "DumpsterSpawner"
+	})
+
+	if(origin != null)
+		382.SetOrigin(origin)
+	if(angles != null)
+		382.SetAngles(angles)
+

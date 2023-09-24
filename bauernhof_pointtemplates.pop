@@ -590,14 +590,6 @@
 		Plate_Big // spawn powerups here
 		{
 			NoFixup 1
-			prop_dynamic
-			{
-				model "models/props_gameplay/cap_point_base.mdl"
-				disableshadows 1
-				solid 6
-				targetname plate
-				origin "-540 -0 -182"
-			}
 			func_rotating
 			{
 				spawnflags 65 // nice
@@ -606,6 +598,14 @@
 				rendermode 10
 				targetname powerup_spinner
 				origin "-540 -0 -164"
+			}
+			prop_dynamic
+			{
+				model "models/props_gameplay/cap_point_base.mdl"
+				targetname plate
+				origin "-540 -0 -182"
+				disableshadows 1
+				solid 6
 			}
 			prop_dynamic // nuke
 			{
@@ -1608,9 +1608,6 @@
         //      Action "AddOutput"
 		//		Param "$OnDeath !activator:$AddCurrency:100:0:-1"
         //  }
-			logic_relay // only here so the pt can spawn
-            {
-            }
 		}
 		Hulk_PT
 		{
@@ -3387,6 +3384,8 @@
 			func_rotating
 			{
 				spawnflags 65 // nice
+				mins = "0 0 0"
+				maxs = "1 1 1"
 				maxspeed 48
 				solidbsp 0
 				rendermode 10
@@ -5622,16 +5621,16 @@
 		}
 	}
 	
-	//PlayerSpawnTemplate "PlayerTracker"
-	//SpawnTemplate "corelogic"
-	//SpawnTemplate "DummyMachines"
-	//SpawnTemplate "Spawn_things"
-	//SpawnTemplate "PlayersLeftLogic"  
-	//SpawnTemplate "tutorial"
-	//SpawnTemplate "BuildingBlocks"
-	//SpawnTemplate "Plate_Big"
-	//SpawnTemplate "Camera_Crew_Death"
-	//SpawnTemplate "DumpsterSpawner"
+	PlayerSpawnTemplate "PlayerTracker"
+	SpawnTemplate "corelogic"
+	SpawnTemplate "DummyMachines"
+	SpawnTemplate "Spawn_things"
+	SpawnTemplate "PlayersLeftLogic"  
+	SpawnTemplate "tutorial"
+	SpawnTemplate "BuildingBlocks"
+	SpawnTemplate "Plate_Big"
+	SpawnTemplate "Camera_Crew_Death"
+	SpawnTemplate "DumpsterSpawner"
 	//PlayerSpawnTemplate
 	//{
 	//	Name MedicbagPT
