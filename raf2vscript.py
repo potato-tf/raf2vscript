@@ -330,6 +330,8 @@ def convert_raf_keyvalues(value):
 		print(COLOR['CYAN'],'Enter null for wearable model if you are not creating a tf_wearable weapon',COLOR['ENDC'])
 		print(COLOR['HEADER'], 'Enter ? for an example input',COLOR['ENDC'])
 		formatval = input('Format: Classname ? Index ? Wearable Model: ')
+		# debug testing
+		# formatval = 'a ? a ? null'
 		if formatval == '?':
 			print(COLOR['CYAN'],'Example input (the bat outta hell for demo):',COLOR['ENDC'],COLOR['GREEN'], 'tf_weapon_bottle ? 939 ? null', COLOR['ENDC'])
 			print(COLOR['CYAN'],'Example tf_wearable input (cozy camper):',COLOR['ENDC'],COLOR['GREEN'], 'tf_wearable ? 642 ? models/workshop/player/items/sniper/xms_sniper_commandobackpack/xms_sniper_commandobackpack.mdl', COLOR['ENDC'])
@@ -416,7 +418,11 @@ def format_entities(lines, entity_name):
 				if 'maxs' in key:
 					brushent = True
 					brushsizemax = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
-				if (entity_name.startswith('trigger_') or entity_name.startswith('func_')) and not ('mins' in key or 'maxs' in key):
+				
+				#Brush ents with no mins/maxs can fuck things up.  
+				#Some entities probably aren't covered in this.
+				#If templates suddenly stop being written, this is why.
+				if (entity_name.startswith('trigger_') or entity_name.startswith('func_') or 'volume' in entity_name or 'brush' in entity_name or 'zone' in entity_name or entity_name.strip() == 'env_bubbles' or entity_name.strip() == 'env_embers' or entity_name.strip() == 'dispenser_touch_trigger' or entity_name.strip() == 'momentary_rot_button') and not ('mins' in key or 'maxs' in key):
 					brushent = True
 					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
 					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
@@ -447,17 +453,23 @@ def format_entities(lines, entity_name):
 		if funcname != oldname and funcname != '':
 			oldname = funcname
 			spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
-			output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
+			# don't think setang/setorigin is necessary
+			# output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
+			output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
 		else:
-			output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
+			# output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
+			output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
+
 		g += 1
 	else:
 		if funcname != oldname and funcname != '':
 			oldname = funcname
 			spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
-			output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(origin != null)\n\t\t{brushname}{b}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{brushname}{b}.SetAngles(angles)\n'
+			# output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(origin != null)\n\t\t{brushname}{b}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{brushname}{b}.SetAngles(angles)\n'
+			output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n'
 		else:
-			output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(origin != null)\n\t\t{brushname}{b}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{brushname}{b}.SetAngles(angles)\n'
+			# output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(origin != null)\n\t\t{brushname}{b}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{brushname}{b}.SetAngles(angles)\n'
+			output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n'
 		brushent = False
 		b += 1
 	entity_list.append(f'{output_text}\n')
@@ -487,6 +499,8 @@ def convert_entities():
 			# print([line.split('//') for line in lines if line.split('//')])
 			if len(lines) < 1:
 				continue
+
+			#goofy ass
 			else:
 
 				if lines[0] == '}':
@@ -510,6 +524,11 @@ def convert_entities():
 				if 'nofixup' in lines[2].lower():
 					# print(lines)
 					lines = lines[3:]
+				
+				for line in lines:
+					if 'KeepAlive' in line:
+						print(lines)
+						input('')
 
 				# Get the entity name
 				# do not remove the space
@@ -632,7 +651,7 @@ def write_ents_to_file():
 		script.write(e)
 		i += 1
 		if 'INVALID' in e: invalidprop = True
-	
+	script.write('}\n')
 	spawnall = input('Write all SpawnTemplate functions? Y/N: ')
 	if 'Y' in spawnall.upper():
 		for spawnfunc in func_list:
