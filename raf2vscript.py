@@ -333,9 +333,9 @@ def convert_raf_keyvalues(value):
 		print(COLOR['CYAN'],'Find them here:',COLOR['ENDC'],COLOR['GREEN'],'https://wiki.alliedmods.net/Team_fortress_2_item_definition_indexes',COLOR['ENDC'])
 		print(COLOR['CYAN'],'Enter null for wearable model if you are not creating a tf_wearable weapon',COLOR['ENDC'])
 		print(COLOR['HEADER'], 'Enter ? for an example input',COLOR['ENDC'])
-		# formatval = input('Format: Classname ? Index ? Wearable Model: ')
+		formatval = input('Format: Classname ? Index ? Wearable Model: ')
 		# debug testing
-		formatval = 'a ? a ? null'
+		# formatval = 'a ? a ? null'
 		if formatval == '?':
 			print(COLOR['CYAN'],'Example input (the bat outta hell for demo):',COLOR['ENDC'],COLOR['GREEN'], 'tf_weapon_bottle ? 939 ? null', COLOR['ENDC'])
 			print(COLOR['CYAN'],'Example tf_wearable input (cozy camper):',COLOR['ENDC'],COLOR['GREEN'], 'tf_wearable ? 642 ? models/workshop/player/items/sniper/xms_sniper_commandobackpack/xms_sniper_commandobackpack.mdl', COLOR['ENDC'])
@@ -425,7 +425,7 @@ def format_entities(lines, entity_name):
 					brushent = True
 					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
 					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
-					
+
 				if key.startswith('origin'):
 					splitval = value.split(' ')
 					value = f'Vector({splitval[0]}, {splitval[1]}, {splitval[2]})'
