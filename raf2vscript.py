@@ -14,8 +14,6 @@ COLOR = {
     "ENDC": '\033[0m',
 }
 
-lumpchars = ['','ø','','','ß','','�']
-
 path = os.getcwd()
 
 print(COLOR['HEADER'],'HOW TO USE:', COLOR['ENDC'])
@@ -30,16 +28,17 @@ print(COLOR['RED'],'(DO NOT ENTER THE UNMODIFIED POPFILE)',COLOR['ENDC'])
 
 filename = input('').strip()
 
+if filename.endswith('.pop'):
+	filename = filename.removesuffix('.pop')
+
+filename = f'{filename}.pop'
+
 properties = {}
 
 formatted_properties, entity_list, name_list, extralines, log, func_list = [], [], [], [], [], []
 giveitem = False
-lumpfile = False
-vmffile = False
 funcname = ''
 
-#TODO: Implement some actual list of entity names instead of doing this
-# also make ent name check stop after finding the first match to avoid targetnames with similar names.
 entprefixes = [ 
 	'ai',
 	'ambient_generic',
@@ -97,7 +96,6 @@ outputs = [
 blacklisted = [
 	'onlyvelocitycheck',
 ]
-
 convertedkeys = [
 	'$playsoundtoself',
 	'$displaytextchat',
@@ -117,42 +115,26 @@ convertedkeys = [
 	'$awardandgiveextraitem'
 ]
 # Define a regular expression pattern to match key-value pairs
-# nvm regex scares me
-# pattern = r'(\S+)\s+([^\n]+)'
+pattern = r'(\S+)\s+([^\n]+)'
 
 def read_file(filename):
-	global lumpfile, vmffile
+
 	file_path = os.path.join(os.getcwd(), filename)
-		
-		
+	
 	try:
-		if os.path.exists(f'{file_path}.pop'):
-				file_path = f'{file_path}.pop'
-				lumpfile = False
-				vmffile = False
-
-		elif os.path.exists(f'{file_path}.lmp'):
-				file_path = f'{file_path}.lmp'
-				lumpfile = True
-
-		elif os.path.exists(f'{file_path}.vmf'):
-				file_path = f'{file_path}.vmf'
-				vmffile = True
-
 		with open(file_path, 'r') as file:
 			lines = file.readlines()
 			content = ''.join(process_line(line) for line in lines)
 			return content
-		
 	except: 
 		print(COLOR['RED'],'Invalid filename!', COLOR['ENDC'])
 		input('Press enter to close')
 
 def process_line(line):
-    # Remove line comments
+    # Remove line comments starting with //
 	line = line.split('//', 1)[0]
 	line = f'{line}\n'
-    # Remove inline comments
+    # Remove inline comments starting with //
 	if '//' in line:
 		line = remove_inline_comments(line)
     
@@ -185,8 +167,26 @@ text_list = input_text.split('}\n')
 #remove indentation
 text_list = [text.replace('\t', '') for text in text_list]
 # print(text_list)
+# Create a dictionary to store the properties
 
-#TODO: dump all netprops and their prop type into a table or something to do this automatically
+# fuck it, just format things the way we want to
+# def wrap_in_quotes(match):
+# 	key, value = match.groups()
+	
+# 	if not key.startswith('"') and not key.endswith('"'):
+# 		key = f'"{key}"'
+# 	if not value.startswith('"') and not value.endswith('"'):
+# 		value = f'"{value}"'
+	
+# 	return f'{key} {value}'
+
+# with open(filename, 'r') as file:
+#     input = file.read()
+
+# quoted = re.sub(pattern, wrap_in_quotes, input)
+
+# with open(filename, 'w') as file:
+#     file.write(quoted)
 
 def convert_proptype(prop, propval, arrayval):
 
@@ -242,16 +242,12 @@ def convert_raf_keyvalues(value):
 		splitval = value.split(',')
 
 	# convert global $PlaySoundToSelf inputs to tf_gamerules PlayVORed
+	# TODO: implement point_clientcommand play inputs or something else for !activator/player specific sounds
 	if 'player' in splitval[0].lower() and '$playsoundtoself' in splitval[1].lower():
 		print(COLOR['HEADER'], f'converted {splitval[1]} input to PlayVORed', COLOR['ENDC'])
 		splitval[0] = 'tf_gamerules'
 		splitval[1] = 'PlayVORed'
-		
-	# use emitsoundex vscript function instead
-	
-	elif not 'player' in splitval[0].lower() and '$playsoundtoself' in splitval[1].lower():
-		splitval[1] = 'RunScriptCode'
-		splitval[2] = f'EmitSoundEx({{sound_name = `{splitval[2]}`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 }})'
+
 
 	# convert $SetProp and $SetClientProp to vscript alternative
 	elif '$setclientprop' in splitval[1].lower() or '$setprop' in splitval[1].lower():
@@ -333,9 +329,9 @@ def convert_raf_keyvalues(value):
 		print(COLOR['CYAN'],'Find them here:',COLOR['ENDC'],COLOR['GREEN'],'https://wiki.alliedmods.net/Team_fortress_2_item_definition_indexes',COLOR['ENDC'])
 		print(COLOR['CYAN'],'Enter null for wearable model if you are not creating a tf_wearable weapon',COLOR['ENDC'])
 		print(COLOR['HEADER'], 'Enter ? for an example input',COLOR['ENDC'])
-		# formatval = input('Format: Classname ? Index ? Wearable Model: ')
+		formatval = input('Format: Classname ? Index ? Wearable Model: ')
 		# debug testing
-		formatval = 'a ? a ? null'
+		# formatval = 'a ? a ? null'
 		if formatval == '?':
 			print(COLOR['CYAN'],'Example input (the bat outta hell for demo):',COLOR['ENDC'],COLOR['GREEN'], 'tf_weapon_bottle ? 939 ? null', COLOR['ENDC'])
 			print(COLOR['CYAN'],'Example tf_wearable input (cozy camper):',COLOR['ENDC'],COLOR['GREEN'], 'tf_wearable ? 642 ? models/workshop/player/items/sniper/xms_sniper_commandobackpack/xms_sniper_commandobackpack.mdl', COLOR['ENDC'])
@@ -364,35 +360,41 @@ def convert_raf_keyvalues(value):
 
 	# print(splitval)
 	# input('')
-	lower = [v.lower() for v in splitval if v.lower() == 'addoutput']
-	if 'addoutput' in lower:
+	if 'addoutput' in value or 'AddOutput' in value:
 		value = ':'.join(splitval)
 		return value
-
 	else:
-		value = ''.join(splitval)
+		value = ','.join(splitval)
 		return value	
 
 j, b, g = 1, 1, 1
 oldname = ''
 #format rafmod to spawnentityfromtable
 def format_entities(lines, entity_name):
+	brushname = f'{entity_name}_brush'
 	brushent = False
 	global j, b, g
+
 	for line in lines:
 		try:
+			# if line.split('"')[0] == '}':
+			#simple split if everything is quoted
 			if line.count('"') == 4:
 				parts = line.split('"')
 				key, value = parts[1::2]
-				if lumpfile:
-					if 'classname' in key:
-						entity_name = value
-
 			else:
+				# print(line)
 				parts = line.split(maxsplit=1)
+
 				if len(parts) > 0 and not any(lines[2].startswith(prefix) for prefix in entprefixes):
+					# print(line)
 					key, value = parts[0], parts[1]
-					
+					# if 'mins' in parts or 'maxs' in parts or 'movedir' in parts:
+					# 	value = f'{parts[1]}, {parts[2]}, {parts[3]}'
+					# 	print(parts)
+					# else:
+					# 	value = parts[1]
+
 			if key == '}': continue
 			properties[key] = value
 			lowerkey = key.lower()
@@ -410,7 +412,6 @@ def format_entities(lines, entity_name):
 				j += 1
 			
 			else:
-				brushname = f'{entity_name}_brush'
 				if 'mins' in key: 
 					brushent = True
 					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
@@ -425,7 +426,6 @@ def format_entities(lines, entity_name):
 					brushent = True
 					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
 					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
-					
 				if key.startswith('origin'):
 					splitval = value.split(' ')
 					value = f'Vector({splitval[0]}, {splitval[1]}, {splitval[2]})'
@@ -434,9 +434,6 @@ def format_entities(lines, entity_name):
 					splitval = value.split(' ')
 					value = f'QAngle({splitval[0]}, {splitval[1]}, {splitval[2]})'
 				
-				if '"' in key:
-					key = key.replace('"','').strip()
-					
 				if value.isdigit() or 'Vector' in value or 'QAngle' in value:
 					formatted_properties.append(f'{key} = {value}')
 				else:
@@ -453,7 +450,7 @@ def format_entities(lines, entity_name):
 
 	global funcname, oldname
 	if not brushent:
-		if not lumpfile and funcname != oldname and funcname != '':
+		if funcname != oldname and funcname != '':
 			oldname = funcname
 			spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
 			# don't think setang/setorigin is necessary
@@ -465,7 +462,7 @@ def format_entities(lines, entity_name):
 
 		g += 1
 	else:
-		if not lumpfile and funcname != oldname and funcname != '':
+		if funcname != oldname and funcname != '':
 			oldname = funcname
 			spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
 			# output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(origin != null)\n\t\t{brushname}{b}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{brushname}{b}.SetAngles(angles)\n'
@@ -475,10 +472,6 @@ def format_entities(lines, entity_name):
 			output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n'
 		brushent = False
 		b += 1
-
-	if lumpfile and ('function()' in output_text or "hammerid = 0" in output_text):
-		output_text = ''
-
 	entity_list.append(f'{output_text}\n')
 	# print(funcname)
 	# print(output_text)
@@ -495,18 +488,13 @@ def convert_spawntemplates(lines):
 #convert OnSpawnOutput/OnParentKilledOutput to relays
 def convert_entities():
 	o, p = 1, 1
-	global extralines, lumpfile
-
+	global extralines
 	try:
 		# Split the input into lines
 		for i in text_list:
 			lines = i.split('\n')
 			# Remove empty lines
 			lines = [line.strip() for line in lines if line.strip()]
-						
-			if '\x00' in lines[0]:
-				lumpfile = True
-				lines = lines[1:]
 
 			# print([line.split('//') for line in lines if line.split('//')])
 			if len(lines) < 1:
@@ -536,9 +524,11 @@ def convert_entities():
 				if 'nofixup' in lines[2].lower():
 					# print(lines)
 					lines = lines[3:]
-
-				if 'keepalive' in lines[2].lower():
-					lines = lines[3:]
+				
+				for line in lines:
+					if 'KeepAlive' in line:
+						print(lines)
+						input('')
 
 				# Get the entity name
 				# do not remove the space
@@ -631,11 +621,9 @@ def convert_entities():
 				# print(lines)
 				# Remove the entity name line
 			convert_spawntemplates(lines)
-
 	except Exception as IndexError:
 		print(COLOR['CYAN'],f'Writing entities to file...',COLOR['ENDC'])
-		# done elsewhere now
-		# entity_list.append(f'\n}}\n')
+		entity_list.append(f'\n}}\n')
 		name_list.append('END OF FILE')
 		time.sleep(1)
 		# input('')
@@ -663,10 +651,7 @@ def write_ents_to_file():
 		script.write(e)
 		i += 1
 		if 'INVALID' in e: invalidprop = True
-	
-	if not lumpfile and not vmffile:
-		script.write('}\n')
-
+	script.write('}\n')
 	spawnall = input('Write all SpawnTemplate functions? Y/N: ')
 	if 'Y' in spawnall.upper():
 		for spawnfunc in func_list:

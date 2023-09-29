@@ -101,7 +101,7 @@
 ::ModelandScale_FailSafe_Scout <- function()
 {
 	local logic_relay7 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/scout.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/scout.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION3"
 	})
@@ -110,7 +110,7 @@
 ::ModelandScale_FailSafe_Soldier <- function()
 {
 	local logic_relay8 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/soldier.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/soldier.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION4"
 	})
@@ -119,7 +119,7 @@
 ::ModelandScale_FailSafe_Pyro <- function()
 {
 	local logic_relay9 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/pyro.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/pyro.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION5"
 	})
@@ -128,7 +128,7 @@
 ::ModelandScale_FailSafe_Demo <- function()
 {
 	local logic_relay10 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/demo.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/demo.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION6"
 	})
@@ -137,7 +137,7 @@
 ::ModelandScale_FailSafe_Heavy <- function()
 {
 	local logic_relay11 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/heavy.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/heavy.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION7"
 	})
@@ -146,7 +146,7 @@
 ::ModelandScale_FailSafe_Engie <- function()
 {
 	local logic_relay12 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/engineer.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/engineer.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION8"
 	})
@@ -155,7 +155,7 @@
 ::ModelandScale_FailSafe_Medic <- function()
 {
 	local logic_relay13 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/medic.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/medic.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION9"
 	})
@@ -164,7 +164,7 @@
 ::ModelandScale_FailSafe_Sniper <- function()
 {
 	local logic_relay14 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/sniper.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/sniper.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION10"
 	})
@@ -173,7 +173,7 @@
 ::ModelandScale_FailSafe_Spy <- function()
 {
 	local logic_relay15 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/spy.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/spy.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION11"
 	})
@@ -207,8 +207,8 @@
 
 	local logic_relay20 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "users",
-	    "ontrigger#1": "!activator,addoutput,onuser1 !selfRunScriptCodeself.AddCustomAttribute(`cancel falling damage`, 1, -1)0-1,0,-1",
-	    "ontrigger#2": "!activator,addoutput,onuser1 !selfRunScriptCodeself.RemoveCustomAttribute(`cancel falling damage`)5-1,0,-1"
+	    "ontrigger#1": "!activator,addoutput,onuser1 !self:RunScriptCode:self.AddCustomAttribute(`cancel falling damage`, 1, -1):0:-1,0,-1",
+	    "ontrigger#2": "!activator,addoutput,onuser1 !self:RunScriptCode:self.RemoveCustomAttribute(`cancel falling damage`):5:-1,0,-1"
 	})
 
 }
@@ -278,8 +278,8 @@
 	    maxs = "64 64 64",
 	    spawnflags = 1,
 	    "onstarttouch#1": "!activator,addoutput,targetname aliveblu,0,-1",
-	    "onstarttouch#2": "!activatorRunScriptCodeself.AddCond(43)0-1",
-	    "onstarttouch#3": "!activatorRunScriptCodeself.AddCond(114)0-1",
+	    "onstarttouch#2": "!activator,RunScriptCode,self.AddCond(43),0,-1",
+	    "onstarttouch#3": "!activator,RunScriptCode,self.AddCond(114),0,-1",
 	    "onstarttouch#4": "!activator,$weaponstripslot,0,0,-1",
 	    "onstarttouch#5": "!activator,$weaponstripslot,1,0,-1",
 	    "onstarttouch#6": "!activator,$weaponstripslot,3,0,-1",
@@ -287,11 +287,11 @@
 	    "onstarttouch#8": "!activator,$weaponstripslot,5,0,-1",
 	    "onstarttouch#9": "!activator,$weaponstripslot,6,0,-1",
 	    "onstarttouch#10": "!activator,$weaponswitchslot,2,0,-1",
-	    "onstarttouch#11": "!activatorRunScriptCodeself.AddCustomAttribute(`SET BONUS: special dsp`, 38, -1)0-1",
-	    "onstarttouch#12": "!activatorRunScriptCodeself.AddCustomAttribute(`damage penalty`, 0.5, -1)0-1",
-	    "onstarttouch#13": "!activatorRunScriptCodeself.AddCustomAttribute(`increased jump height`, 1, -1)0-1",
-	    "onstarttouch#14": "!activatorRunScriptCodeself.AddCustomAttribute(`dmg taken from crit reduced`, 1, -1)0-1",
-	    "onstarttouch#15": "!activatorSetCustomModelWithClassAnimationsmodels/bots/soldier/bot_soldier_gibby.mdl0.1-1"
+	    "onstarttouch#11": "!activator,RunScriptCode,self.AddCustomAttribute(`SET BONUS: special dsp`, 38, -1),0,-1",
+	    "onstarttouch#12": "!activator,RunScriptCode,self.AddCustomAttribute(`damage penalty`, 0.5, -1),0,-1",
+	    "onstarttouch#13": "!activator,RunScriptCode,self.AddCustomAttribute(`increased jump height`, 1, -1),0,-1",
+	    "onstarttouch#14": "!activator,RunScriptCode,self.AddCustomAttribute(`dmg taken from crit reduced`, 1, -1),0,-1",
+	    "onstarttouch#15": "!activator,SetCustomModelWithClassAnimations,models/bots/soldier/bot_soldier_gibby.mdl,0.1,-1"
 	})
 	trigger_multiple_brush4.KeyValueFromInt("solid", 2)
 	trigger_multiple_brush4.KeyValueFromString("mins", "0, 0, 0")
@@ -522,7 +522,7 @@
 {
 	local logic_timer36 = SpawnEntityFromTable("logic_timer", {
 	    refiretime = 3,
-	    "ontimer#1": "obj_sentrygunRunScriptCodeNetProps.SetPropInt(self, `m_CollisionGroup`, 3)0-1"
+	    "ontimer#1": "obj_sentrygun,RunScriptCode,NetProps.SetPropInt(self, `m_CollisionGroup`, 3),0,-1"
 	})
 
 }
@@ -716,7 +716,7 @@
 	    targetname = "gogogo",
 	    mins = "-8000 -8000 -1000",
 	    maxs = "8000 8000 1000",
-	    StartDisabled = 1,
+	    "StartDisabled" = 1,
 	    spawnflags = 1,
 	    "OnStartTouch#1": "!activator,SpeakResponseConcept,tlk_player_go,1,-1",
 	    "OnStartTouch#2": "gogogo,Disable,,2,-1",
@@ -1104,7 +1104,7 @@
 	    "OnMapSpawn#23": "camera2,kill,,2,-1",
 	    "OnMapSpawn#24": "signchat,Show,,2,-1",
 	    "OnMapSpawn#25": "badsign,Show,,12,-1",
-	    "OnMapSpawn#26": "playerSetCustomModelWithClassAnimations-1",
+	    "OnMapSpawn#26": "player,SetCustomModelWithClassAnimations,,-1",
 	    "OnMapSpawn#27": "shopgear,setattached,fam,0,-1",
 	    "OnMapSpawn#28": "shopgear,setlightingorigin,fam,0,-1"
 	})
@@ -1491,7 +1491,7 @@
 	    id = 3,
 	    classname = "entity_soldier_statue",
 	    origin = Vector(0, 0, 0),
-	    disableshadows = 1,
+	    "disableshadows" = 1,
 	    lightingorigin = "spawnbot_surprise2"
 	})
 
@@ -1611,7 +1611,7 @@
 	    DisableBoneFollowers = 1,
 	    disablereceiveshadows = 0,
 	    disableshadows = 1,
-	    startdisabled = 1,
+	    "startdisabled" = 1,
 	    ExplodeDamage = 0,
 	    ExplodeRadius = 0,
 	    fademaxdist = 0,
@@ -1647,7 +1647,7 @@
 	    DisableBoneFollowers = 1,
 	    disablereceiveshadows = 0,
 	    disableshadows = 1,
-	    startdisabled = 1,
+	    "startdisabled" = 1,
 	    ExplodeDamage = 0,
 	    ExplodeRadius = 0,
 	    fademaxdist = 0,
@@ -1683,7 +1683,7 @@
 	    DisableBoneFollowers = 1,
 	    disablereceiveshadows = 0,
 	    disableshadows = 1,
-	    startdisabled = 1,
+	    "startdisabled" = 1,
 	    ExplodeDamage = 0,
 	    ExplodeRadius = 0,
 	    fademaxdist = 0,
@@ -1745,7 +1745,7 @@
 	    spawnflags = 14,
 	    SolidToPlayer = 0,
 	    defaultupgrade = 0,
-	    modelscale = 0.75
+	    "modelscale" = 0.75
 	})
 
 }
@@ -1819,7 +1819,7 @@
 	    solid = 6,
 	    spawnflags = 0,
 	    lightingorigin = "desk",
-	    startdisabled = 1
+	    "startdisabled" = 1
 	})
 
 }
@@ -1836,7 +1836,7 @@
 	    solid = 6,
 	    spawnflags = 0,
 	    lightingorigin = "desk",
-	    startdisabled = 1
+	    "startdisabled" = 1
 	})
 
 }
@@ -1853,7 +1853,7 @@
 	    solid = 6,
 	    spawnflags = 0,
 	    lightingorigin = "item_ammopack_large",
-	    startdisabled = 1
+	    "startdisabled" = 1
 	})
 
 }
@@ -2277,7 +2277,7 @@
 	    skin = 0,
 	    solid = 6,
 	    spawnflags = 0,
-	    minhealthdmg = 9999
+	    "minhealthdmg" = 9999
 	})
 
 }
@@ -2353,7 +2353,7 @@
 	    solid = 0,
 	    spawnflags = 0,
 	    lightingorigin = "spawnbot_surprise2",
-	    minhealthdmg = 9999
+	    "minhealthdmg" = 9999
 	})
 
 }
@@ -2369,7 +2369,7 @@
 	    skin = 0,
 	    solid = 6,
 	    spawnflags = 0,
-	    minhealthdmg = 9999
+	    "minhealthdmg" = 9999
 	})
 
 }
@@ -2398,7 +2398,7 @@
 	    skin = 0,
 	    solid = 6,
 	    spawnflags = 0,
-	    minhealthdmg = 9999
+	    "minhealthdmg" = 9999
 	})
 
 }
@@ -2414,7 +2414,7 @@
 	    skin = 0,
 	    solid = 6,
 	    spawnflags = 0,
-	    minhealthdmg = 9999
+	    "minhealthdmg" = 9999
 	})
 
 }
@@ -2982,7 +2982,7 @@
 	    spawnflags = 0,
 	    Origin = "478 -852 -85",
 	    Angles = "0 105 10",
-	    minhealthdmg = 9999
+	    "minhealthdmg" = 9999
 	})
 
 	local prop_dynamic171 = SpawnEntityFromTable("prop_dynamic", {
@@ -2996,7 +2996,7 @@
 	    spawnflags = 0,
 	    Origin = "458 -852 -43",
 	    Angles = "0 105 10",
-	    minhealthdmg = 9999
+	    "minhealthdmg" = 9999
 	})
 
 }
@@ -3309,7 +3309,7 @@
 	    "ontrigger#5": "gameover2,playsound,,0,-1",
 	    "ontrigger#6": "sign0,show,,2.5,-1",
 	    "ontrigger#7": "virospook,playsound,,2.5,-1",
-	    "ontrigger#8": "playerRunScriptCodeself.AddCustomAttribute(`mult dmg vs tanks`, 3, -1)0-1",
+	    "ontrigger#8": "player,RunScriptCode,self.AddCustomAttribute(`mult dmg vs tanks`, 3, -1),0,-1",
 	    "ontrigger#9": "obj_dispenser,removehealth,9999,2.5,-1",
 	    "ontrigger#10": "obj_sentrygun,removehealth,9999,2.5,-1",
 	    "ontrigger#11": "obj_teleporter,removehealth,9999,2.5,-1"
@@ -3325,7 +3325,7 @@
 	    "ontrigger#5": "gameover2,stopsound,,0,-1",
 	    "ontrigger#6": "sign0,hide,,0,-1",
 	    "ontrigger#7": "virospook,stopsound,,0,-1",
-	    "ontrigger#8": "playerRunScriptCodeself.AddCustomAttribute(`mult dmg vs tanks`, 1, -1)0-1"
+	    "ontrigger#8": "player,RunScriptCode,self.AddCustomAttribute(`mult dmg vs tanks`, 1, -1),0,-1"
 	})
 
 }
@@ -3506,7 +3506,7 @@
 	local logic_relay200 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "threat",
-	    "OnTrigger#1": "player*RunScriptCodeClientPrint(self, 4, `KILL KILL KILL KILL KILL KILL`)0-1"
+	    "OnTrigger#1": "player*,RunScriptCode,ClientPrint(self, 4, `KILL KILL KILL KILL KILL KILL`),0,-1"
 	})
 
 }
@@ -3515,7 +3515,7 @@
 	local logic_relay201 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "threat2",
-	    "OnTrigger#1": "player*RunScriptCodeClientPrint(self, 4, `LAST CHANCE FOR PURCHASES`)0-1"
+	    "OnTrigger#1": "player*,RunScriptCode,ClientPrint(self, 4, `LAST CHANCE FOR PURCHASES`),0,-1"
 	})
 
 }
@@ -4089,4 +4089,6 @@
 	    targetname = "SPAWNOUTPUT_CONVERSION30"
 	})
 
+
+}
 }
