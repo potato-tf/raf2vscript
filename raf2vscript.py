@@ -30,6 +30,9 @@ print(COLOR['RED'],'(DO NOT ENTER THE UNMODIFIED POPFILE)',COLOR['ENDC'])
 
 filename = input('').strip()
 
+if '.' in filename:
+	filename = filename.split('.')[0]
+
 properties = {}
 
 formatted_properties, entity_list, name_list, extralines, log, func_list = [], [], [], [], [], []
@@ -421,11 +424,18 @@ def format_entities(lines, entity_name):
 				#Brush ents with no mins/maxs can fuck things up.  
 				#Some entities probably aren't covered in this.
 				#If templates suddenly stop being written, this is why.
-				if (entity_name.startswith('trigger_') or entity_name.startswith('func_') or 'volume' in entity_name or 'brush' in entity_name or 'zone' in entity_name or entity_name.strip() == 'env_bubbles' or entity_name.strip() == 'env_embers' or entity_name.strip() == 'dispenser_touch_trigger' or entity_name.strip() == 'momentary_rot_button') and not ('mins' in key or 'maxs' in key):
+				if brushent == False and (entity_name.startswith('trigger_') or entity_name.startswith('func_') or 'volume' in entity_name or 'brush' in entity_name or 'zone' in entity_name or entity_name.strip() == 'env_bubbles' or entity_name.strip() == 'env_embers' or entity_name.strip() == 'dispenser_touch_trigger' or entity_name.strip() == 'momentary_rot_button') and not ('mins' in key or 'maxs' in key):
 					brushent = True
-					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
-					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("mins", "0, 0, 0")'
+					lines.append('"mins" "0 0 0"')
+					lines.append('"maxs" "1 1 1"')
+					# index = int(len(lines) / 2)
+					# print(index)
+					# lines.insert(index,'"mins" "0 0 0"')
+					# lines.insert(index,'"maxs" "1 1 1"')
+					# print(lines)
 					
+				# print(lines)
+
 				if key.startswith('origin'):
 					splitval = value.split(' ')
 					value = f'Vector({splitval[0]}, {splitval[1]}, {splitval[2]})'
@@ -459,6 +469,13 @@ def format_entities(lines, entity_name):
 			# don't think setang/setorigin is necessary
 			# output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
 			output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
+		
+		elif lumpfile:
+			for f in formatted_properties:
+				if 'hammerid' in f:
+					f = f.split('=')[1].strip()
+			print(formatted_properties)
+			output_text = f'::{entity_name}{f} <- SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
 		else:
 			# output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
 			output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
@@ -476,8 +493,9 @@ def format_entities(lines, entity_name):
 		brushent = False
 		b += 1
 
-	if lumpfile and ('function()' in output_text or "hammerid = 0" in output_text):
-		output_text = ''
+	if lumpfile: 
+		if 'function()' in output_text or "hammerid = 0" in output_text:
+			output_text = ''
 
 	entity_list.append(f'{output_text}\n')
 	# print(funcname)
@@ -503,10 +521,6 @@ def convert_entities():
 			lines = i.split('\n')
 			# Remove empty lines
 			lines = [line.strip() for line in lines if line.strip()]
-						
-			if '\x00' in lines[0]:
-				lumpfile = True
-				lines = lines[1:]
 
 			# print([line.split('//') for line in lines if line.split('//')])
 			if len(lines) < 1:
@@ -647,8 +661,8 @@ def write_ents_to_file():
 	global giveitem
 	i = 0
 	newfilename = filename
-	if '.pop' in filename:
-		newfilename = filename.split('.pop', 1)[0]
+	if '.' in filename:
+		newfilename = filename.split('.', 1)[0]
 
 	script = open(f'r2v_{newfilename}.nut', 'w')
 	invalidprop = False

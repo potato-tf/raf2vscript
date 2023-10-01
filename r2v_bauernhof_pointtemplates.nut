@@ -72,7 +72,7 @@
 	    "OnMapSpawn#22": "fog_controller,AddOutput,spawnflags 1:0:-1",
 	    "OnMapSpawn#23": "fog_controller,AddOutput,farz -1:0:-1",
 	    "OnMapSpawn#24": "player,$ResetExtraItems,,0,-1",
-	    "OnMapSpawn#25": "tf_objective_resourceRunScriptCodeNetProps.SetPropInt(self, `m_iszMvMPopfileName`, Bauernhof Der Toten)0-1",
+	    "OnMapSpawn#25": "tf_objective_resourceRunScriptCodeNetProps.SetPropINVALID(self, `m_iszMvMPopfileName`, Bauernhof Der Toten)0-1",
 	    "OnMapSpawn#26": "wave_start_relay,AddOutput,OnTrigger LMA:Enable:0:-1",
 	    "OnMapSpawn#27": "func_flagdetectionzone,AddOutput,alarm 0",
 	    "OnMapSpawn#28": "wave_start_relay,AddOutput,OnTrigger DUMMY_*:Kill:0:-1",
@@ -2942,7 +2942,7 @@
 	    targetname = "roundcounter",
 	    max = 255,
 	    "outvalue#1": "roundformat:AddOutput:case01 :0:-1",
-	    "OutValue#2": "tf_objective_resourceRunScriptCodeNetProps.SetPropINVALID(self, `m_nMannVsMachineWaveCount`, )0-1",
+	    "OutValue#2": "tf_objective_resourceRunScriptCodeNetProps.SetPropInt(self, `m_nMannVsMachineWaveCount`, )0-1",
 	    "outvalue#3": "gameoverformat:AddOutput:case01 :0:-1"
 	})
 
@@ -5765,3 +5765,14 @@
 	})
 
 }
+
+PlayerTracker()
+corelogic()
+DummyMachines()
+Spawn_things()
+PlayersLeftLogic()
+tutorial()
+BuildingBlocks()
+Plate_Big()
+Camera_Crew_Death()
+DumpsterSpawner()
