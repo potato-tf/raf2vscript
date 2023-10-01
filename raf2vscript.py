@@ -414,17 +414,18 @@ def format_entities(lines, entity_name):
 				if 'mins' in key: 
 					brushent = True
 					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
-				if 'maxs' in key:
+				elif 'maxs' in key:
 					brushent = True
 					brushsizemax = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
 				
 				#Brush ents with no mins/maxs can fuck things up.  
 				#Some entities probably aren't covered in this.
 				#If templates suddenly stop being written, this is why.
-				if (entity_name.startswith('trigger_') or entity_name.startswith('func_') or 'volume' in entity_name or 'brush' in entity_name or 'zone' in entity_name or entity_name.strip() == 'env_bubbles' or entity_name.strip() == 'env_embers' or entity_name.strip() == 'dispenser_touch_trigger' or entity_name.strip() == 'momentary_rot_button') and not ('mins' in key or 'maxs' in key or brushent):
-					brushent = True
-					lines.append('"mins" "0 0 0"')
-					lines.append('"maxs" "1 1 1"')
+				elif (entity_name.startswith('trigger_') or entity_name.startswith('func_') or 'volume' in entity_name or 'brush' in entity_name or 'zone' in entity_name or entity_name.strip() == 'env_bubbles' or entity_name.strip() == 'env_embers' or entity_name.strip() == 'dispenser_touch_trigger' or entity_name.strip() == 'momentary_rot_button') and not ('mins' in key or 'maxs' in key):
+					if not brushent:
+						brushent = True
+						lines.append('"mins" "0 0 0"')
+						lines.append('"maxs" "1 1 1"')
 					
 				if key.startswith('origin'):
 					splitval = value.split(' ')
@@ -516,10 +517,6 @@ def convert_entities():
 			lines = i.split('\n')
 			# Remove empty lines
 			lines = [line.strip() for line in lines if line.strip()]
-						
-			if '\x00' in lines[0]:
-				lumpfile = True
-				lines = lines[1:]
 
 			# print([line.split('//') for line in lines if line.split('//')])
 			if len(lines) < 1:

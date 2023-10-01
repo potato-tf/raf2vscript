@@ -72,7 +72,7 @@
 	    "OnMapSpawn#22": "fog_controller,AddOutput,spawnflags 1:0:-1",
 	    "OnMapSpawn#23": "fog_controller,AddOutput,farz -1:0:-1",
 	    "OnMapSpawn#24": "player,$ResetExtraItems,,0,-1",
-	    "OnMapSpawn#25": "tf_objective_resourceRunScriptCodeNetProps.SetPropInt(self, `m_iszMvMPopfileName`, Bauernhof Der Toten)0-1",
+	    "OnMapSpawn#25": "tf_objective_resourceRunScriptCodeNetProps.SetPropString(self, `m_iszMvMPopfileName`, `Bauernhof Der Toten`)0-1",
 	    "OnMapSpawn#26": "wave_start_relay,AddOutput,OnTrigger LMA:Enable:0:-1",
 	    "OnMapSpawn#27": "func_flagdetectionzone,AddOutput,alarm 0",
 	    "OnMapSpawn#28": "wave_start_relay,AddOutput,OnTrigger DUMMY_*:Kill:0:-1",
@@ -101,11 +101,13 @@
 	    wait = 20,
 	    sounds = 3,
 	    targetname = "revive_button",
-	    "OnPressed#1": "popscript,$revivelogic,!activator,0,-1"
+	    "OnPressed#1": "popscript,$revivelogic,!activator,0,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_button_brush1.KeyValueFromInt("solid", 2)
-	func_button_brush1.KeyValueFromString("mins", "0, 0, 0")
-	func_button_brush1.KeyValueFromString("maxs", "24 10 6")
+	func_button_brush1.KeyValueFromString("mins", "0 0 0")
+	func_button_brush1.KeyValueFromString("maxs", "1 1 1")
 
 	local game_forcerespawn3 = SpawnEntityFromTable("game_forcerespawn", {
 	    targetname = "respawner"
@@ -124,11 +126,13 @@
 	    startdisabled = 1,
 	    targetname = "hologram_nuke_hurt",
 	    filtername = "filter_notred",
-	    origin = Vector("0, 0, 0")
+	    origin = Vector("0, 0, 0"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_hurt_brush2.KeyValueFromInt("solid", 2)
-	trigger_hurt_brush2.KeyValueFromString("mins", "0, 0, 0")
-	trigger_hurt_brush2.KeyValueFromString("maxs", "9999 9999 9999")
+	trigger_hurt_brush2.KeyValueFromString("mins", "0 0 0")
+	trigger_hurt_brush2.KeyValueFromString("maxs", "1 1 1")
 
 	local filter_activator_tfteam5 = SpawnEntityFromTable("filter_activator_tfteam", {
 	    targetname = "filter_notred",
@@ -213,11 +217,13 @@
 	    "OnStartTouchFlag#11": "!activatorRunScriptCodeClientPrint(self, 4, `Tavish has given you his Super Shank!`)6.5-1",
 	    "OnStartTouchFlag#12": "ee_shiv,Kill,,7,-1",
 	    "OnStartTouchFlag#13": "ee_demo,SetAnimation,taunt_woohoo,7,-1",
-	    "OnStartTouchFlag#14": "ee_demo,Kill,,8,-1"
+	    "OnStartTouchFlag#14": "ee_demo,Kill,,8,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_flagdetectionzone_brush3.KeyValueFromInt("solid", 2)
-	func_flagdetectionzone_brush3.KeyValueFromString("mins", "0, 0, 0")
-	func_flagdetectionzone_brush3.KeyValueFromString("maxs", "5 5 24")
+	func_flagdetectionzone_brush3.KeyValueFromString("mins", "0 0 0")
+	func_flagdetectionzone_brush3.KeyValueFromString("maxs", "1 1 1")
 
 	local item_teamflag12 = SpawnEntityFromTable("item_teamflag", {
 	    targetname = "ee_beerflag",
@@ -282,11 +288,13 @@
 	    TeamNum = 3,
 	    mins = "-240 -608 -8",
 	    maxs = "240 608 8",
-	    origin = Vector("256, 16, 768")
+	    origin = Vector("256, 16, 768"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush4.KeyValueFromInt("solid", 2)
-	func_forcefield_brush4.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush4.KeyValueFromString("maxs", "240 608 8")
+	func_forcefield_brush4.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush4.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_teleport_brush5 = SpawnEntityFromTable("trigger_teleport", {
 	    StartDisabled = 1,
@@ -296,33 +304,39 @@
 	    targetname = "red_spawn_warp",
 	    mins = "-232 -448 -16",
 	    maxs = "232 448 3000",
-	    origin = Vector("264, -96, 0")
+	    origin = Vector("264, -96, 0"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_teleport_brush5.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush5.KeyValueFromString("mins", "0, 0, 0")
-	trigger_teleport_brush5.KeyValueFromString("maxs", "232 448 3000")
+	trigger_teleport_brush5.KeyValueFromString("mins", "0 0 0")
+	trigger_teleport_brush5.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush6 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-240 -192 -284",
 	    maxs = "240 192 284",
-	    origin = Vector("256, -400, 492")
+	    origin = Vector("256, -400, 492"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush6.KeyValueFromInt("solid", 2)
-	func_forcefield_brush6.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush6.KeyValueFromString("maxs", "240 192 284")
+	func_forcefield_brush6.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush6.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush7 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-240 -136 -16",
 	    maxs = "240 136 3000",
-	    origin = Vector("256, 488, 224")
+	    origin = Vector("256, 488, 224"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush7.KeyValueFromInt("solid", 2)
-	func_forcefield_brush7.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush7.KeyValueFromString("maxs", "240 136 3000")
+	func_forcefield_brush7.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush7.KeyValueFromString("maxs", "1 1 1")
 
 	local info_teleport_destination18 = SpawnEntityFromTable("info_teleport_destination", {
 	    targetname = "warp_target",
@@ -594,11 +608,13 @@
 	    solidbsp = 0,
 	    rendermode = 10,
 	    targetname = "powerup_spinner",
-	    origin = Vector("-540, -0, -164")
+	    origin = Vector("-540, -0, -164"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_rotating_brush8.KeyValueFromInt("solid", 2)
-	func_rotating_brush8.KeyValueFromString("mins", "0, 0, 0")
-	func_rotating_brush8.KeyValueFromString("maxspeed", "48")
+	func_rotating_brush8.KeyValueFromString("mins", "0 0 0")
+	func_rotating_brush8.KeyValueFromString("maxs", "1 1 1")
 
 	local prop_dynamic44 = SpawnEntityFromTable("prop_dynamic", {
 	    model = "models/props_gameplay/cap_point_base.mdl",
@@ -657,11 +673,13 @@
 	    "OnStartTouchAll#7": "!activatorRunScriptCodeEmitSoundEx({sound_name = `shadows/powerup_nuke_01.mp3`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })1-1",
 	    "OnStartTouchAll#8": "powerup_timer,Enable,,-1",
 	    "OnStartTouchAll#9": "plate,skin,0,-1",
-	    "OnStartTouchAll#10": "!activatorRunScriptCodeself.AddCurrency(400)3-1"
+	    "OnStartTouchAll#10": "!activatorRunScriptCodeself.AddCurrency(400)3-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_add_tf_player_condition_brush9.KeyValueFromInt("solid", 2)
-	trigger_add_tf_player_condition_brush9.KeyValueFromString("mins", "-26 -26 -26")
-	trigger_add_tf_player_condition_brush9.KeyValueFromString("maxs", "26 26 26")
+	trigger_add_tf_player_condition_brush9.KeyValueFromString("mins", "0 0 0")
+	trigger_add_tf_player_condition_brush9.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic48 = SpawnEntityFromTable("ambient_generic", {
 	    health = 10,
@@ -707,11 +725,13 @@
 	    "OnStartTouchAll#7": "!activatorRunScriptCodeself.AddCustomAttribute(`dmg current health`, 1, -1)-1",
 	    "OnStartTouchAll#8": "!activatorRunScriptCodeself.AddCond(56)-1",
 	    "OnStartTouchAll#9": "!activatorRunScriptCodeself.RemoveCustomAttribute(`dmg current health`)30-1",
-	    "OnStartTouchAll#10": "!activatorRunScriptCodeself.RemoveCond(56)30-1"
+	    "OnStartTouchAll#10": "!activatorRunScriptCodeself.RemoveCond(56)30-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_add_tf_player_condition_brush10.KeyValueFromInt("solid", 2)
-	trigger_add_tf_player_condition_brush10.KeyValueFromString("mins", "-26 -26 -26")
-	trigger_add_tf_player_condition_brush10.KeyValueFromString("maxs", "26 26 26")
+	trigger_add_tf_player_condition_brush10.KeyValueFromString("mins", "0 0 0")
+	trigger_add_tf_player_condition_brush10.KeyValueFromString("maxs", "1 1 1")
 
 	local prop_dynamic50 = SpawnEntityFromTable("prop_dynamic", {
 	    model = "models\props_gameplay\resupply_locker.mdl",
@@ -745,11 +765,13 @@
 	    "OnStartTouchAll#4": "!activatorRunScriptCodeClientPrint(self, 4, `Max Ammo!`)0-1",
 	    "OnStartTouchAll#5": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/powerup_pickup_agility.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })0-1",
 	    "OnStartTouchAll#6": "!activatorRunScriptCodeEmitSoundEx({sound_name = `shadows/powerup_resupply_01.mp3`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })1-1",
-	    "OnStartTouchAll#7": "!activator,$RefillAmmo,,-1"
+	    "OnStartTouchAll#7": "!activator,$RefillAmmo,,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_add_tf_player_condition_brush11.KeyValueFromInt("solid", 2)
-	trigger_add_tf_player_condition_brush11.KeyValueFromString("mins", "-26 -26 -26")
-	trigger_add_tf_player_condition_brush11.KeyValueFromString("maxs", "26 26 26")
+	trigger_add_tf_player_condition_brush11.KeyValueFromString("mins", "0 0 0")
+	trigger_add_tf_player_condition_brush11.KeyValueFromString("maxs", "1 1 1")
 
 	local prop_dynamic51 = SpawnEntityFromTable("prop_dynamic", {
 	    model = "models\items\currencypack_large.mdl",
@@ -783,11 +805,13 @@
 	    "OnStartTouchAll#4": "!activatorRunScriptCodeClientPrint(self, 4, `Bonus Points!`)0-1",
 	    "OnStartTouchAll#5": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/powerup_pickup_agility.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })0-1",
 	    "OnStartTouchAll#6": "!activatorRunScriptCodeEmitSoundEx({sound_name = `shadows/powerup_money_01.mp3`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })1-1",
-	    "OnStartTouchAll#7": "!activatorRunScriptCodeself.AddCurrency(2000)-1"
+	    "OnStartTouchAll#7": "!activatorRunScriptCodeself.AddCurrency(2000)-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_add_tf_player_condition_brush12.KeyValueFromInt("solid", 2)
-	trigger_add_tf_player_condition_brush12.KeyValueFromString("mins", "-26 -26 -26")
-	trigger_add_tf_player_condition_brush12.KeyValueFromString("maxs", "26 26 26")
+	trigger_add_tf_player_condition_brush12.KeyValueFromString("mins", "0 0 0")
+	trigger_add_tf_player_condition_brush12.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic52 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "powerup_snd",
@@ -829,11 +853,13 @@
 	    Teamnum = 2,
 	    mins = "-42 -160 -99",
 	    maxs = "42 160 99",
-	    origin = Vector("698, 488, 63")
+	    origin = Vector("698, 488, 63"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nobuild_brush13.KeyValueFromInt("solid", 2)
-	func_nobuild_brush13.KeyValueFromString("mins", "0, 0, 0")
-	func_nobuild_brush13.KeyValueFromString("maxs", "42 160 99")
+	func_nobuild_brush13.KeyValueFromString("mins", "0 0 0")
+	func_nobuild_brush13.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nobuild_brush14 = SpawnEntityFromTable("func_nobuild", {
 	    AllowDispenser = 0,
@@ -843,11 +869,13 @@
 	    Teamnum = 2,
 	    mins = "-70 -58 -99",
 	    maxs = "70 58 99",
-	    origin = Vector("914, 98, 63")
+	    origin = Vector("914, 98, 63"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nobuild_brush14.KeyValueFromInt("solid", 2)
-	func_nobuild_brush14.KeyValueFromString("mins", "0, 0, 0")
-	func_nobuild_brush14.KeyValueFromString("maxs", "70 58 99")
+	func_nobuild_brush14.KeyValueFromString("mins", "0 0 0")
+	func_nobuild_brush14.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nobuild_brush15 = SpawnEntityFromTable("func_nobuild", {
 	    AllowDispenser = 0,
@@ -857,11 +885,13 @@
 	    Teamnum = 2,
 	    mins = "-62 -214 -99",
 	    maxs = "62 214 99",
-	    origin = Vector("1046, -58, 63")
+	    origin = Vector("1046, -58, 63"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nobuild_brush15.KeyValueFromInt("solid", 2)
-	func_nobuild_brush15.KeyValueFromString("mins", "0, 0, 0")
-	func_nobuild_brush15.KeyValueFromString("maxs", "62 214 99")
+	func_nobuild_brush15.KeyValueFromString("mins", "0 0 0")
+	func_nobuild_brush15.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nobuild_brush16 = SpawnEntityFromTable("func_nobuild", {
 	    AllowDispenser = 0,
@@ -871,11 +901,13 @@
 	    Teamnum = 2,
 	    mins = "-20 -48 -99",
 	    maxs = "20 48 99",
-	    origin = Vector("964, -224, 63")
+	    origin = Vector("964, -224, 63"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nobuild_brush16.KeyValueFromInt("solid", 2)
-	func_nobuild_brush16.KeyValueFromString("mins", "0, 0, 0")
-	func_nobuild_brush16.KeyValueFromString("maxs", "20 48 99")
+	func_nobuild_brush16.KeyValueFromString("mins", "0 0 0")
+	func_nobuild_brush16.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nobuild_brush17 = SpawnEntityFromTable("func_nobuild", {
 	    AllowDispenser = 0,
@@ -885,11 +917,13 @@
 	    Teamnum = 2,
 	    mins = "-110 -157 -99",
 	    maxs = "110 157 99",
-	    origin = Vector("969, -928, 63")
+	    origin = Vector("969, -928, 63"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nobuild_brush17.KeyValueFromInt("solid", 2)
-	func_nobuild_brush17.KeyValueFromString("mins", "0, 0, 0")
-	func_nobuild_brush17.KeyValueFromString("maxs", "110 157 99")
+	func_nobuild_brush17.KeyValueFromString("mins", "0 0 0")
+	func_nobuild_brush17.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nobuild_brush18 = SpawnEntityFromTable("func_nobuild", {
 	    AllowDispenser = 0,
@@ -899,11 +933,13 @@
 	    Teamnum = 2,
 	    mins = "-157 -38 -99",
 	    maxs = "157 38 99",
-	    origin = Vector("-465, -560, 92")
+	    origin = Vector("-465, -560, 92"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nobuild_brush18.KeyValueFromInt("solid", 2)
-	func_nobuild_brush18.KeyValueFromString("mins", "0, 0, 0")
-	func_nobuild_brush18.KeyValueFromString("maxs", "157 38 99")
+	func_nobuild_brush18.KeyValueFromString("mins", "0 0 0")
+	func_nobuild_brush18.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nobuild_brush19 = SpawnEntityFromTable("func_nobuild", {
 	    AllowDispenser = 0,
@@ -913,215 +949,255 @@
 	    Teamnum = 2,
 	    mins = "-59 -59 -61",
 	    maxs = "59 59 61",
-	    origin = Vector("-1525, -1141, 59")
+	    origin = Vector("-1525, -1141, 59"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nobuild_brush19.KeyValueFromInt("solid", 2)
-	func_nobuild_brush19.KeyValueFromString("mins", "0, 0, 0")
-	func_nobuild_brush19.KeyValueFromString("maxs", "59 59 61")
+	func_nobuild_brush19.KeyValueFromString("mins", "0 0 0")
+	func_nobuild_brush19.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nav_avoid_brush20 = SpawnEntityFromTable("func_nav_avoid", {
 	    tags = "bigguyalert",
 	    mins = "-106 -288 -26",
 	    maxs = "106 288 26",
-	    origin = Vector("-738, -1622, 18")
+	    origin = Vector("-738, -1622, 18"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nav_avoid_brush20.KeyValueFromInt("solid", 2)
-	func_nav_avoid_brush20.KeyValueFromString("mins", "0, 0, 0")
-	func_nav_avoid_brush20.KeyValueFromString("maxs", "106 288 26")
+	func_nav_avoid_brush20.KeyValueFromString("mins", "0 0 0")
+	func_nav_avoid_brush20.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nav_avoid_brush21 = SpawnEntityFromTable("func_nav_avoid", {
 	    tags = "bigguyalert",
 	    mins = "-84 -68 -48",
 	    maxs = "84 68 48",
-	    origin = Vector("-556, -1916, 50")
+	    origin = Vector("-556, -1916, 50"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nav_avoid_brush21.KeyValueFromInt("solid", 2)
-	func_nav_avoid_brush21.KeyValueFromString("mins", "0, 0, 0")
-	func_nav_avoid_brush21.KeyValueFromString("maxs", "84 68 48")
+	func_nav_avoid_brush21.KeyValueFromString("mins", "0 0 0")
+	func_nav_avoid_brush21.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nav_avoid_brush22 = SpawnEntityFromTable("func_nav_avoid", {
 	    tags = "bigguyalert",
 	    mins = "-384 -68 -48",
 	    maxs = "384 68 48",
-	    origin = Vector("-912, -1788, 45")
+	    origin = Vector("-912, -1788, 45"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nav_avoid_brush22.KeyValueFromInt("solid", 2)
-	func_nav_avoid_brush22.KeyValueFromString("mins", "0, 0, 0")
-	func_nav_avoid_brush22.KeyValueFromString("maxs", "384 68 48")
+	func_nav_avoid_brush22.KeyValueFromString("mins", "0 0 0")
+	func_nav_avoid_brush22.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nav_avoid_brush23 = SpawnEntityFromTable("func_nav_avoid", {
 	    tags = "bigguyalert",
 	    mins = "-116 -24 -72",
 	    maxs = "166 24 72",
-	    origin = Vector("-220, 1842, 144")
+	    origin = Vector("-220, 1842, 144"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nav_avoid_brush23.KeyValueFromInt("solid", 2)
-	func_nav_avoid_brush23.KeyValueFromString("mins", "0, 0, 0")
-	func_nav_avoid_brush23.KeyValueFromString("maxs", "166 24 72")
+	func_nav_avoid_brush23.KeyValueFromString("mins", "0 0 0")
+	func_nav_avoid_brush23.KeyValueFromString("maxs", "1 1 1")
 
 	local func_nav_avoid_brush24 = SpawnEntityFromTable("func_nav_avoid", {
 	    tags = "bigguyalert",
 	    mins = "-116 -32 -72",
 	    maxs = "166 32 72",
-	    origin = Vector("-220, 1192, 144")
+	    origin = Vector("-220, 1192, 144"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_nav_avoid_brush24.KeyValueFromInt("solid", 2)
-	func_nav_avoid_brush24.KeyValueFromString("mins", "0, 0, 0")
-	func_nav_avoid_brush24.KeyValueFromString("maxs", "166 32 72")
+	func_nav_avoid_brush24.KeyValueFromString("mins", "0 0 0")
+	func_nav_avoid_brush24.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush25 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-64 -1472 -3168",
 	    maxs = "64 1472 3168",
-	    origin = Vector("-5184, 0, 2912")
+	    origin = Vector("-5184, 0, 2912"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush25.KeyValueFromInt("solid", 2)
-	func_forcefield_brush25.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush25.KeyValueFromString("maxs", "64 1472 3168")
+	func_forcefield_brush25.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush25.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush26 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-4575 -4384 -32",
 	    maxs = "4575 4384 32",
-	    origin = Vector("-671, 96, 1344")
+	    origin = Vector("-671, 96, 1344"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush26.KeyValueFromInt("solid", 2)
-	func_forcefield_brush26.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush26.KeyValueFromString("maxs", "4575 4384 32")
+	func_forcefield_brush26.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush26.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush27 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-194 -209 -514",
 	    maxs = "194 209 514",
-	    origin = Vector("-800, -702, 798")
+	    origin = Vector("-800, -702, 798"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush27.KeyValueFromInt("solid", 2)
-	func_forcefield_brush27.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush27.KeyValueFromString("maxs", "194 209 514")
+	func_forcefield_brush27.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush27.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush28 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-96 -201.5 -480",
 	    maxs = "96 201.5 480",
-	    origin = Vector("-1088, -694, 832")
+	    origin = Vector("-1088, -694, 832"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush28.KeyValueFromInt("solid", 2)
-	func_forcefield_brush28.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush28.KeyValueFromString("maxs", "96 201.5 480")
+	func_forcefield_brush28.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush28.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush29 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-192 -112 -560",
 	    maxs = "192 112 560",
-	    origin = Vector("192, -720, 752")
+	    origin = Vector("192, -720, 752"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush29.KeyValueFromInt("solid", 2)
-	func_forcefield_brush29.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush29.KeyValueFromString("maxs", "192 112 560")
+	func_forcefield_brush29.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush29.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush30 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-736 -384 -8",
 	    maxs = "736 384 8",
-	    origin = Vector("256, 1536, 392")
+	    origin = Vector("256, 1536, 392"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush30.KeyValueFromInt("solid", 2)
-	func_forcefield_brush30.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush30.KeyValueFromString("maxs", "736 384 8")
+	func_forcefield_brush30.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush30.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush31 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-12 -132 -72",
 	    maxs = "12 132 72",
-	    origin = Vector("-1036, 692, 72")
+	    origin = Vector("-1036, 692, 72"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush31.KeyValueFromInt("solid", 2)
-	func_forcefield_brush31.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush31.KeyValueFromString("maxs", "12 132 72")
+	func_forcefield_brush31.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush31.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush32 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-80 -4 -72",
 	    maxs = "80 4 72",
-	    origin = Vector("-960, 556, 72")
+	    origin = Vector("-960, 556, 72"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush32.KeyValueFromInt("solid", 2)
-	func_forcefield_brush32.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush32.KeyValueFromString("maxs", "80 4 72")
+	func_forcefield_brush32.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush32.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush33 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-48 -4 -48",
 	    maxs = "48 4 48",
-	    origin = Vector("-824, 556, 48")
+	    origin = Vector("-824, 556, 48"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush33.KeyValueFromInt("solid", 2)
-	func_forcefield_brush33.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush33.KeyValueFromString("maxs", "48 4 48")
+	func_forcefield_brush33.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush33.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush34 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-4 -88 -48",
 	    maxs = "4 88 48",
-	    origin = Vector("-780, 648, 48")
+	    origin = Vector("-780, 648, 48"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush34.KeyValueFromInt("solid", 2)
-	func_forcefield_brush34.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush34.KeyValueFromString("maxs", "4 88 48")
+	func_forcefield_brush34.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush34.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush35 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-20 -12 -48",
 	    maxs = "20 12 48",
-	    origin = Vector("-796, 748, 48")
+	    origin = Vector("-796, 748, 48"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush35.KeyValueFromInt("solid", 2)
-	func_forcefield_brush35.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush35.KeyValueFromString("maxs", "20 12 48")
+	func_forcefield_brush35.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush35.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush36 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-40 -12 -58",
 	    maxs = "40 12 58",
-	    origin = Vector("-856, 748, 58")
+	    origin = Vector("-856, 748, 58"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush36.KeyValueFromInt("solid", 2)
-	func_forcefield_brush36.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush36.KeyValueFromString("maxs", "40 12 58")
+	func_forcefield_brush36.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush36.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush37 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-9 -192 -96",
 	    maxs = "9 192 96",
-	    origin = Vector("7, 0, 96")
+	    origin = Vector("7, 0, 96"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush37.KeyValueFromInt("solid", 2)
-	func_forcefield_brush37.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush37.KeyValueFromString("maxs", "9 192 96")
+	func_forcefield_brush37.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush37.KeyValueFromString("maxs", "1 1 1")
 
 	local func_forcefield_brush38 = SpawnEntityFromTable("func_forcefield", {
 	    StartDisabled = 0,
 	    TeamNum = 3,
 	    mins = "-194 -608 -414",
 	    maxs = "194 608 414",
-	    origin = Vector("128, -1856, 900")
+	    origin = Vector("128, -1856, 900"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_forcefield_brush38.KeyValueFromInt("solid", 2)
-	func_forcefield_brush38.KeyValueFromString("mins", "0, 0, 0")
-	func_forcefield_brush38.KeyValueFromString("maxs", "194 608 414")
+	func_forcefield_brush38.KeyValueFromString("mins", "0 0 0")
+	func_forcefield_brush38.KeyValueFromString("maxs", "1 1 1")
 
 }
 ::Pushblocks <- function()
@@ -1134,11 +1210,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-1, 0, 194"),
 	    mins = "-1 -192 -2",
-	    maxs = "1 192 2"
+	    maxs = "1 192 2",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush39.KeyValueFromInt("solid", 2)
-	trigger_push_brush39.KeyValueFromString("mins", "-1 -192 -2")
-	trigger_push_brush39.KeyValueFromString("maxs", "1 192 2")
+	trigger_push_brush39.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush39.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush40 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 180 0",
@@ -1148,11 +1226,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("994, 992, 160"),
 	    mins = "-32 -110 -11",
-	    maxs = "32 110 11"
+	    maxs = "32 110 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush40.KeyValueFromInt("solid", 2)
-	trigger_push_brush40.KeyValueFromString("mins", "-32 -110 -11")
-	trigger_push_brush40.KeyValueFromString("maxs", "32 110 11")
+	trigger_push_brush40.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush40.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush41 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1162,11 +1242,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("696, 472, 158"),
 	    mins = "-32 -72 -11",
-	    maxs = "32 72 11"
+	    maxs = "32 72 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush41.KeyValueFromInt("solid", 2)
-	trigger_push_brush41.KeyValueFromString("mins", "-32 -72 -11")
-	trigger_push_brush41.KeyValueFromString("maxs", "32 72 11")
+	trigger_push_brush41.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush41.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush42 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1176,11 +1258,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("696, 364, 85"),
 	    mins = "-32 -28 -11",
-	    maxs = "32 28 11"
+	    maxs = "32 28 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush42.KeyValueFromInt("solid", 2)
-	trigger_push_brush42.KeyValueFromString("mins", "-32 -28 -11")
-	trigger_push_brush42.KeyValueFromString("maxs", "32 28 11")
+	trigger_push_brush42.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush42.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush43 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1190,11 +1274,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("696, 596, 85"),
 	    mins = "-32 -28 -11",
-	    maxs = "32 28 11"
+	    maxs = "32 28 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush43.KeyValueFromInt("solid", 2)
-	trigger_push_brush43.KeyValueFromString("mins", "-32 -28 -11")
-	trigger_push_brush43.KeyValueFromString("maxs", "32 28 11")
+	trigger_push_brush43.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush43.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush44 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1204,11 +1290,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("966, 88, 83"),
 	    mins = "-32 -28 -11",
-	    maxs = "32 28 11"
+	    maxs = "32 28 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush44.KeyValueFromInt("solid", 2)
-	trigger_push_brush44.KeyValueFromString("mins", "-32 -28 -11")
-	trigger_push_brush44.KeyValueFromString("maxs", "32 28 11")
+	trigger_push_brush44.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush44.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush45 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1218,11 +1306,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("892, 107, 83"),
 	    mins = "-32 -28 -11",
-	    maxs = "32 28 11"
+	    maxs = "32 28 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush45.KeyValueFromInt("solid", 2)
-	trigger_push_brush45.KeyValueFromString("mins", "-32 -28 -11")
-	trigger_push_brush45.KeyValueFromString("maxs", "32 28 11")
+	trigger_push_brush45.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush45.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush46 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1232,11 +1322,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("1024, -32, 83"),
 	    mins = "-32 -72 -11",
-	    maxs = "32 72 11"
+	    maxs = "32 72 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush46.KeyValueFromInt("solid", 2)
-	trigger_push_brush46.KeyValueFromString("mins", "-32 -72 -11")
-	trigger_push_brush46.KeyValueFromString("maxs", "32 72 11")
+	trigger_push_brush46.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush46.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush47 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1246,11 +1338,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("1056, -172, 97"),
 	    mins = "32 -28 -11",
-	    maxs = "32 28 11"
+	    maxs = "32 28 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush47.KeyValueFromInt("solid", 2)
-	trigger_push_brush47.KeyValueFromString("mins", "32 -28 -11")
-	trigger_push_brush47.KeyValueFromString("maxs", "32 28 11")
+	trigger_push_brush47.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush47.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush48 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1260,11 +1354,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("1000, -220, 97"),
 	    mins = "32 -28 -11",
-	    maxs = "32 28 11"
+	    maxs = "32 28 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush48.KeyValueFromInt("solid", 2)
-	trigger_push_brush48.KeyValueFromString("mins", "32 -28 -11")
-	trigger_push_brush48.KeyValueFromString("maxs", "32 28 11")
+	trigger_push_brush48.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush48.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush49 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1274,11 +1370,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("973, -915, 163"),
 	    mins = "32 -28 -11",
-	    maxs = "32 28 11"
+	    maxs = "32 28 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush49.KeyValueFromInt("solid", 2)
-	trigger_push_brush49.KeyValueFromString("mins", "32 -28 -11")
-	trigger_push_brush49.KeyValueFromString("maxs", "32 28 11")
+	trigger_push_brush49.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush49.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush50 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1288,11 +1386,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("917, -963, 163"),
 	    mins = "32 -28 -11",
-	    maxs = "32 28 11"
+	    maxs = "32 28 11",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush50.KeyValueFromInt("solid", 2)
-	trigger_push_brush50.KeyValueFromString("mins", "32 -28 -11")
-	trigger_push_brush50.KeyValueFromString("maxs", "32 28 11")
+	trigger_push_brush50.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush50.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush51 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1302,11 +1402,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("652, -468, 276"),
 	    mins = "-10 -181 -12",
-	    maxs = "10 181 12"
+	    maxs = "10 181 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush51.KeyValueFromInt("solid", 2)
-	trigger_push_brush51.KeyValueFromString("mins", "-10 -181 -12")
-	trigger_push_brush51.KeyValueFromString("maxs", "10 181 12")
+	trigger_push_brush51.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush51.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush52 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1316,11 +1418,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("1248, 1516, 204"),
 	    mins = "-224 -12 -12",
-	    maxs = "224 12 12"
+	    maxs = "224 12 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush52.KeyValueFromInt("solid", 2)
-	trigger_push_brush52.KeyValueFromString("mins", "-224 -12 -12")
-	trigger_push_brush52.KeyValueFromString("maxs", "224 12 12")
+	trigger_push_brush52.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush52.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush53 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1330,11 +1434,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("1680, 1500, 196"),
 	    mins = "-208 -28 -20",
-	    maxs = "208 28 20"
+	    maxs = "208 28 20",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush53.KeyValueFromInt("solid", 2)
-	trigger_push_brush53.KeyValueFromString("mins", "-208 -28 -20")
-	trigger_push_brush53.KeyValueFromString("maxs", "208 28 20")
+	trigger_push_brush53.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush53.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush54 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1344,11 +1450,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("1880, 1724, 196"),
 	    mins = "-16 -196 -20",
-	    maxs = "16 196 20"
+	    maxs = "16 196 20",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush54.KeyValueFromInt("solid", 2)
-	trigger_push_brush54.KeyValueFromString("mins", "-16 -196 -20")
-	trigger_push_brush54.KeyValueFromString("maxs", "16 196 20")
+	trigger_push_brush54.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush54.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush55 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1358,11 +1466,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("1908, 2120, 188"),
 	    mins = "-12 -200 -28",
-	    maxs = "12 200 28"
+	    maxs = "12 200 28",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush55.KeyValueFromInt("solid", 2)
-	trigger_push_brush55.KeyValueFromString("mins", "-12 -200 -28")
-	trigger_push_brush55.KeyValueFromString("maxs", "12 200 28")
+	trigger_push_brush55.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush55.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush56 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 0 0",
@@ -1372,11 +1482,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("522, -45, 396"),
 	    mins = "-10 -483 -12",
-	    maxs = "10 483 12"
+	    maxs = "10 483 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush56.KeyValueFromInt("solid", 2)
-	trigger_push_brush56.KeyValueFromString("mins", "-10 -483 -12")
-	trigger_push_brush56.KeyValueFromString("maxs", "10 483 12")
+	trigger_push_brush56.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush56.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush57 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 270 0",
@@ -1386,11 +1498,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-1256, 488, 524"),
 	    mins = "-48 -48 -12",
-	    maxs = "48 48 12"
+	    maxs = "48 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush57.KeyValueFromInt("solid", 2)
-	trigger_push_brush57.KeyValueFromString("mins", "-48 -48 -12")
-	trigger_push_brush57.KeyValueFromString("maxs", "48 48 12")
+	trigger_push_brush57.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush57.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush58 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 270 0",
@@ -1400,11 +1514,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-1278, 1475, 524"),
 	    mins = "-48 -48 -12",
-	    maxs = "48 48 12"
+	    maxs = "48 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush58.KeyValueFromInt("solid", 2)
-	trigger_push_brush58.KeyValueFromString("mins", "-48 -48 -12")
-	trigger_push_brush58.KeyValueFromString("maxs", "48 48 12")
+	trigger_push_brush58.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush58.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush59 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 270 0",
@@ -1414,11 +1530,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-1747, 1473, 524"),
 	    mins = "-48 -48 -12",
-	    maxs = "48 48 12"
+	    maxs = "48 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush59.KeyValueFromInt("solid", 2)
-	trigger_push_brush59.KeyValueFromString("mins", "-48 -48 -12")
-	trigger_push_brush59.KeyValueFromString("maxs", "48 48 12")
+	trigger_push_brush59.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush59.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush60 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 270 0",
@@ -1428,11 +1546,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-1713, 798, 524"),
 	    mins = "-48 -48 -12",
-	    maxs = "48 48 12"
+	    maxs = "48 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush60.KeyValueFromInt("solid", 2)
-	trigger_push_brush60.KeyValueFromString("mins", "-48 -48 -12")
-	trigger_push_brush60.KeyValueFromString("maxs", "48 48 12")
+	trigger_push_brush60.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush60.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush61 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1442,11 +1562,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-2112, -574, 524"),
 	    mins = "-48 -48 -12",
-	    maxs = "48 48 12"
+	    maxs = "48 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush61.KeyValueFromInt("solid", 2)
-	trigger_push_brush61.KeyValueFromString("mins", "-48 -48 -12")
-	trigger_push_brush61.KeyValueFromString("maxs", "48 48 12")
+	trigger_push_brush61.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush61.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush62 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1456,11 +1578,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-1577, -1785, 524"),
 	    mins = "-48 -48 -12",
-	    maxs = "48 48 12"
+	    maxs = "48 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush62.KeyValueFromInt("solid", 2)
-	trigger_push_brush62.KeyValueFromString("mins", "-48 -48 -12")
-	trigger_push_brush62.KeyValueFromString("maxs", "48 48 12")
+	trigger_push_brush62.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush62.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush63 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1470,11 +1594,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-729, -1737, 524"),
 	    mins = "-48 -48 -12",
-	    maxs = "48 48 12"
+	    maxs = "48 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush63.KeyValueFromInt("solid", 2)
-	trigger_push_brush63.KeyValueFromString("mins", "-48 -48 -12")
-	trigger_push_brush63.KeyValueFromString("maxs", "48 48 12")
+	trigger_push_brush63.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush63.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush64 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1484,11 +1610,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-320, -2530, 524"),
 	    mins = "-48 -48 -12",
-	    maxs = "48 48 12"
+	    maxs = "48 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush64.KeyValueFromInt("solid", 2)
-	trigger_push_brush64.KeyValueFromString("mins", "-48 -48 -12")
-	trigger_push_brush64.KeyValueFromString("maxs", "48 48 12")
+	trigger_push_brush64.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush64.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush65 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1498,11 +1626,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("738, -2496, 524"),
 	    mins = "-48 -48 -12",
-	    maxs = "48 48 12"
+	    maxs = "48 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush65.KeyValueFromInt("solid", 2)
-	trigger_push_brush65.KeyValueFromString("mins", "-48 -48 -12")
-	trigger_push_brush65.KeyValueFromString("maxs", "48 48 12")
+	trigger_push_brush65.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush65.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush66 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 45 0",
@@ -1512,11 +1642,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-2226, -726, 232"),
 	    mins = "-175 -175 -48",
-	    maxs = "175 175 48"
+	    maxs = "175 175 48",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush66.KeyValueFromInt("solid", 2)
-	trigger_push_brush66.KeyValueFromString("mins", "-175 -175 -48")
-	trigger_push_brush66.KeyValueFromString("maxs", "175 175 48")
+	trigger_push_brush66.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush66.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush67 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1526,11 +1658,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-466, -555, 84"),
 	    mins = "-158 -43 -84",
-	    maxs = "158 43 84"
+	    maxs = "158 43 84",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush67.KeyValueFromInt("solid", 2)
-	trigger_push_brush67.KeyValueFromString("mins", "-158 -43 -84")
-	trigger_push_brush67.KeyValueFromString("maxs", "158 43 84")
+	trigger_push_brush67.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush67.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush68 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1540,11 +1674,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-1660, 1920, 274"),
 	    mins = "-900 -3 -26",
-	    maxs = "900 3 26"
+	    maxs = "900 3 26",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush68.KeyValueFromInt("solid", 2)
-	trigger_push_brush68.KeyValueFromString("mins", "-900 -3 -26")
-	trigger_push_brush68.KeyValueFromString("maxs", "900 3 26")
+	trigger_push_brush68.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush68.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush69 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1554,11 +1690,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-400, -978, 146"),
 	    mins = "-136 -9.5 -12",
-	    maxs = "136 9.5 12"
+	    maxs = "136 9.5 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush69.KeyValueFromInt("solid", 2)
-	trigger_push_brush69.KeyValueFromString("mins", "-136 -9.5 -12")
-	trigger_push_brush69.KeyValueFromString("maxs", "136 9.5 12")
+	trigger_push_brush69.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush69.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush70 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1568,11 +1706,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-272, -908, 146"),
 	    mins = "-8 -60 12",
-	    maxs = "8 60 12"
+	    maxs = "8 60 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush70.KeyValueFromInt("solid", 2)
-	trigger_push_brush70.KeyValueFromString("mins", "-8 -60 12")
-	trigger_push_brush70.KeyValueFromString("maxs", "8 60 12")
+	trigger_push_brush70.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush70.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush71 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1582,11 +1722,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-68, -864, 146"),
 	    mins = "-68 -48 12",
-	    maxs = "68 48 12"
+	    maxs = "68 48 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush71.KeyValueFromInt("solid", 2)
-	trigger_push_brush71.KeyValueFromString("mins", "-68 -48 12")
-	trigger_push_brush71.KeyValueFromString("maxs", "68 48 12")
+	trigger_push_brush71.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush71.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush72 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1596,11 +1738,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("416, -1264, 372"),
 	    mins = "-96 -16 -124",
-	    maxs = "96 16 124"
+	    maxs = "96 16 124",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush72.KeyValueFromInt("solid", 2)
-	trigger_push_brush72.KeyValueFromString("mins", "-96 -16 -124")
-	trigger_push_brush72.KeyValueFromString("maxs", "96 16 124")
+	trigger_push_brush72.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush72.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush73 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 270 0",
@@ -1610,11 +1754,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("123, 2342, 205"),
 	    mins = "-56 -78 -24",
-	    maxs = "56 78 24"
+	    maxs = "56 78 24",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush73.KeyValueFromInt("solid", 2)
-	trigger_push_brush73.KeyValueFromString("mins", "-56 -78 -24")
-	trigger_push_brush73.KeyValueFromString("maxs", "56 78 24")
+	trigger_push_brush73.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush73.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush74 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 90 0",
@@ -1624,11 +1770,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("128, -1276, 220"),
 	    mins = "-256 -4 -12",
-	    maxs = "256 4 12"
+	    maxs = "256 4 12",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush74.KeyValueFromInt("solid", 2)
-	trigger_push_brush74.KeyValueFromString("mins", "-256 -4 -12")
-	trigger_push_brush74.KeyValueFromString("maxs", "256 4 12")
+	trigger_push_brush74.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush74.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush75 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 270 0",
@@ -1638,11 +1786,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("108, -1688, 390"),
 	    mins = "-68 -8 -4",
-	    maxs = "68 8 4"
+	    maxs = "68 8 4",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush75.KeyValueFromInt("solid", 2)
-	trigger_push_brush75.KeyValueFromString("mins", "-68 -8 -4")
-	trigger_push_brush75.KeyValueFromString("maxs", "68 8 4")
+	trigger_push_brush75.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush75.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush76 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 270 0",
@@ -1652,11 +1802,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("168, -1648, 390"),
 	    mins = "-8 -32 -4",
-	    maxs = "8 32 4"
+	    maxs = "8 32 4",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush76.KeyValueFromInt("solid", 2)
-	trigger_push_brush76.KeyValueFromString("mins", "-8 -32 -4")
-	trigger_push_brush76.KeyValueFromString("maxs", "8 32 4")
+	trigger_push_brush76.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush76.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush77 = SpawnEntityFromTable("trigger_push", {
 	    pushdir = "0 270 0",
@@ -1666,11 +1818,13 @@
 	    filtername = "filter_redteam",
 	    origin = Vector("-72.5, -1856, 890.5"),
 	    mins = "-10.5 -608 -421.5",
-	    maxs = "10.5 608 421.5"
+	    maxs = "10.5 608 421.5",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush77.KeyValueFromInt("solid", 2)
-	trigger_push_brush77.KeyValueFromString("mins", "-10.5 -608 -421.5")
-	trigger_push_brush77.KeyValueFromString("maxs", "10.5 608 421.5")
+	trigger_push_brush77.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush77.KeyValueFromString("maxs", "1 1 1")
 
 }
 ::PlayersLeftLogic <- function()
@@ -1762,11 +1916,13 @@
 	    mins = "-36 -36 -36",
 	    maxs = "36 36 36",
 	    spawnflags = 1,
-	    "OnStartTouch#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to revive your teammate`)0-1"
+	    "OnStartTouch#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to revive your teammate`)0-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush78.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush78.KeyValueFromString("mins", "0, 0, 0")
-	trigger_multiple_brush78.KeyValueFromString("maxs", "36 36 36")
+	trigger_multiple_brush78.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush78.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_relay66 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "revive_trigger,DisableAndEndTouch,,0.0,-1",
@@ -1858,11 +2014,13 @@
 	    StartDisabled = 1,
 	    targetname = "crawlerpush",
 	    mins = "-24 -24 -24",
-	    maxs = "24 24 24"
+	    maxs = "24 24 24",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush79.KeyValueFromInt("solid", 2)
-	trigger_push_brush79.KeyValueFromString("mins", "-24 -24 -24")
-	trigger_push_brush79.KeyValueFromString("maxs", "24 24 24")
+	trigger_push_brush79.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush79.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic76 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "crawler_hop_sfx",
@@ -2369,11 +2527,13 @@
 	    origin = Vector("0, -12, 128"),
 	    mins = "-24 -8 -44",
 	    maxs = "24 8 44",
-	    "OnPressed#1": "perkbuff_jugg,trigger,0,-1"
+	    "OnPressed#1": "perkbuff_jugg,trigger,0,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_button_brush80.KeyValueFromInt("solid", 2)
-	func_button_brush80.KeyValueFromString("mins", "-24 -8 -44")
-	func_button_brush80.KeyValueFromString("maxs", "24 8 44")
+	func_button_brush80.KeyValueFromString("mins", "0 0 0")
+	func_button_brush80.KeyValueFromString("maxs", "1 1 1")
 
 	local $filter_sendprop128 = SpawnEntityFromTable("$filter_sendprop", {
 	    targetname = "filter_juggmoney",
@@ -2406,11 +2566,13 @@
 	    spawnflags = 1,
 	    mins = "-128 -128 0",
 	    maxs = "128 128 128",
-	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Saxton Ale for $2500`)0-1"
+	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Saxton Ale for $2500`)0-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush81.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush81.KeyValueFromString("mins", "-128 -128 0")
-	trigger_multiple_brush81.KeyValueFromString("maxs", "128 128 128")
+	trigger_multiple_brush81.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush81.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic131 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "vm_jugsfx",
@@ -2467,11 +2629,13 @@
 	    origin = Vector("0, -12, 128"),
 	    mins = "-24 -8 -44",
 	    maxs = "24 8 44",
-	    "OnPressed#1": "perkbuff_speed,trigger,0,-1"
+	    "OnPressed#1": "perkbuff_speed,trigger,0,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_button_brush82.KeyValueFromInt("solid", 2)
-	func_button_brush82.KeyValueFromString("mins", "-24 -8 -44")
-	func_button_brush82.KeyValueFromString("maxs", "24 8 44")
+	func_button_brush82.KeyValueFromString("mins", "0 0 0")
+	func_button_brush82.KeyValueFromString("maxs", "1 1 1")
 
 	local $filter_sendprop135 = SpawnEntityFromTable("$filter_sendprop", {
 	    targetname = "filter_speedmoney",
@@ -2498,11 +2662,13 @@
 	    spawnflags = 1,
 	    mins = "-128 -128 0",
 	    maxs = "64 64 128",
-	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Meraslixir for $3000`)0-1"
+	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Meraslixir for $3000`)0-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush83.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush83.KeyValueFromString("mins", "-128 -128 0")
-	trigger_multiple_brush83.KeyValueFromString("maxs", "64 64 128")
+	trigger_multiple_brush83.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush83.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic137 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "vm_speedsfx",
@@ -2552,11 +2718,13 @@
 	    mins = "-24 -8 -44",
 	    maxs = "24 8 44",
 	    "OnPressed#1": "perkbuff_blaster,trigger,0,-1",
-	    "OnPressed#2": "filter_blastermoney,TestActivator,0,-1"
+	    "OnPressed#2": "filter_blastermoney,TestActivator,0,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_button_brush84.KeyValueFromInt("solid", 2)
-	func_button_brush84.KeyValueFromString("mins", "-24 -8 -44")
-	func_button_brush84.KeyValueFromString("maxs", "24 8 44")
+	func_button_brush84.KeyValueFromString("mins", "0 0 0")
+	func_button_brush84.KeyValueFromString("maxs", "1 1 1")
 
 	local $filter_sendprop140 = SpawnEntityFromTable("$filter_sendprop", {
 	    targetname = "filter_blastermoney",
@@ -2583,11 +2751,13 @@
 	    spawnflags = 1,
 	    mins = "-128 -128 0",
 	    maxs = "128 128 128",
-	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Head Rattle for $1500`)0-1"
+	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Head Rattle for $1500`)0-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush85.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush85.KeyValueFromString("mins", "-128 -128 0")
-	trigger_multiple_brush85.KeyValueFromString("maxs", "128 128 128")
+	trigger_multiple_brush85.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush85.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic142 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "vm_blastersfx",
@@ -2646,11 +2816,13 @@
 	    mins = "-24 -8 -44",
 	    maxs = "24 8 44",
 	    "OnPressed#1": "perkbuff_dt,trigger,0,-1",
-	    "OnPressed#2": "filter_dtmoney,TestActivator,0,-1"
+	    "OnPressed#2": "filter_dtmoney,TestActivator,0,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_button_brush86.KeyValueFromInt("solid", 2)
-	func_button_brush86.KeyValueFromString("mins", "-24 -8 -44")
-	func_button_brush86.KeyValueFromString("maxs", "24 8 44")
+	func_button_brush86.KeyValueFromString("mins", "0 0 0")
+	func_button_brush86.KeyValueFromString("maxs", "1 1 1")
 
 	local $filter_sendprop146 = SpawnEntityFromTable("$filter_sendprop", {
 	    targetname = "filter_dtmoney",
@@ -2677,11 +2849,13 @@
 	    spawnflags = 1,
 	    mins = "-128 -128 0",
 	    maxs = "128 128 128",
-	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Double Tap for $2000`)0-1"
+	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Double Tap for $2000`)0-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush87.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush87.KeyValueFromString("mins", "-128 -128 0")
-	trigger_multiple_brush87.KeyValueFromString("maxs", "128 128 128")
+	trigger_multiple_brush87.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush87.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic148 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "vm_dtsfx",
@@ -2740,11 +2914,13 @@
 	    mins = "-24 -8 -44",
 	    maxs = "24 8 44",
 	    "OnPressed#1": "perkbuff_quickrev,trigger,0,-1",
-	    "OnPressed#2": "filter_quickrevmoney,TestActivator,0,-1"
+	    "OnPressed#2": "filter_quickrevmoney,TestActivator,0,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_button_brush88.KeyValueFromInt("solid", 2)
-	func_button_brush88.KeyValueFromString("mins", "-24 -8 -44")
-	func_button_brush88.KeyValueFromString("maxs", "24 8 44")
+	func_button_brush88.KeyValueFromString("mins", "0 0 0")
+	func_button_brush88.KeyValueFromString("maxs", "1 1 1")
 
 	local $filter_sendprop152 = SpawnEntityFromTable("$filter_sendprop", {
 	    targetname = "filter_quickrevmoney",
@@ -2780,11 +2956,13 @@
 	    spawnflags = 1,
 	    mins = "-128 -128 0",
 	    maxs = "128 128 128",
-	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Ostarion's Reserve for $1500`)0-1"
+	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Ostarion's Reserve for $1500`)0-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush89.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush89.KeyValueFromString("mins", "-128 -128 0")
-	trigger_multiple_brush89.KeyValueFromString("maxs", "128 128 128")
+	trigger_multiple_brush89.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush89.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic155 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "vm_quickrevsfx",
@@ -2845,11 +3023,13 @@
 	    mins = "-24 -8 -44",
 	    maxs = "24 8 44",
 	    "OnPressed#1": "perkbuff_flop,trigger,0,-1",
-	    "OnPressed#2": "filter_flopmoney,TestActivator,0,-1"
+	    "OnPressed#2": "filter_flopmoney,TestActivator,0,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_button_brush90.KeyValueFromInt("solid", 2)
-	func_button_brush90.KeyValueFromString("mins", "-24 -8 -44")
-	func_button_brush90.KeyValueFromString("maxs", "24 8 44")
+	func_button_brush90.KeyValueFromString("mins", "0 0 0")
+	func_button_brush90.KeyValueFromString("maxs", "1 1 1")
 
 	local $filter_sendprop159 = SpawnEntityFromTable("$filter_sendprop", {
 	    targetname = "filter_flopmoney",
@@ -2876,11 +3056,13 @@
 	    spawnflags = 1,
 	    mins = "-128 -128 0",
 	    maxs = "128 128 128",
-	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Steelshin Lager for $1000`)0-1"
+	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to buy Steelshin Lager for $1000`)0-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush91.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush91.KeyValueFromString("mins", "-128 -128 0")
-	trigger_multiple_brush91.KeyValueFromString("maxs", "128 128 128")
+	trigger_multiple_brush91.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush91.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_relay161 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "perkbuff_flop",
@@ -3029,11 +3211,13 @@
 	    maxspeed = 48,
 	    solidbsp = 0,
 	    rendermode = 10,
-	    targetname = "powerup_rot"
+	    targetname = "powerup_rot",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_rotating_brush92.KeyValueFromInt("solid", 2)
-	func_rotating_brush92.KeyValueFromString("mins", "0, 0, 0")
-	func_rotating_brush92.KeyValueFromString("maxspeed", "48")
+	func_rotating_brush92.KeyValueFromString("mins", "0 0 0")
+	func_rotating_brush92.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush93 = SpawnEntityFromTable("trigger_multiple", {
 	    targetname = "powerup_trigger",
@@ -3044,11 +3228,13 @@
 	    maxs = "12 12 12",
 	    origin = Vector("0, 0, 24"),
 	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
-	    "OnStartTouchAll#2": "popscript,$ActivateDoublePoints,,-1"
+	    "OnStartTouchAll#2": "popscript,$ActivateDoublePoints,,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush93.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush93.KeyValueFromString("mins", "0, 0, 0")
-	trigger_multiple_brush93.KeyValueFromString("maxs", "12 12 12")
+	trigger_multiple_brush93.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush93.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_timer177 = SpawnEntityFromTable("logic_timer", {
 	    targetname = "powerup_blinker",
@@ -3126,11 +3312,13 @@
 	    maxspeed = 48,
 	    solidbsp = 0,
 	    rendermode = 10,
-	    targetname = "powerup_rot"
+	    targetname = "powerup_rot",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_rotating_brush94.KeyValueFromInt("solid", 2)
-	func_rotating_brush94.KeyValueFromString("mins", "0, 0, 0")
-	func_rotating_brush94.KeyValueFromString("maxspeed", "48")
+	func_rotating_brush94.KeyValueFromString("mins", "0 0 0")
+	func_rotating_brush94.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush95 = SpawnEntityFromTable("trigger_multiple", {
 	    targetname = "powerup_trigger",
@@ -3141,11 +3329,13 @@
 	    maxs = "12 12 12",
 	    origin = Vector("0, 0, 24"),
 	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
-	    "OnStartTouchAll#2": "popscript,$ActivateFireSale,,-1"
+	    "OnStartTouchAll#2": "popscript,$ActivateFireSale,,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush95.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush95.KeyValueFromString("mins", "0, 0, 0")
-	trigger_multiple_brush95.KeyValueFromString("maxs", "12 12 12")
+	trigger_multiple_brush95.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush95.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_timer186 = SpawnEntityFromTable("logic_timer", {
 	    targetname = "powerup_blinker",
@@ -3215,11 +3405,13 @@
 	    maxspeed = 48,
 	    solidbsp = 0,
 	    rendermode = 10,
-	    targetname = "powerup_rot"
+	    targetname = "powerup_rot",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_rotating_brush96.KeyValueFromInt("solid", 2)
-	func_rotating_brush96.KeyValueFromString("mins", "0, 0, 0")
-	func_rotating_brush96.KeyValueFromString("maxspeed", "48")
+	func_rotating_brush96.KeyValueFromString("mins", "0 0 0")
+	func_rotating_brush96.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush97 = SpawnEntityFromTable("trigger_multiple", {
 	    targetname = "powerup_trigger",
@@ -3230,11 +3422,13 @@
 	    maxs = "12 12 12",
 	    origin = Vector("0, 0, 24"),
 	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
-	    "OnStartTouchAll#2": "popscript,$ActivateInstakill,,-1"
+	    "OnStartTouchAll#2": "popscript,$ActivateInstakill,,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush97.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush97.KeyValueFromString("mins", "0, 0, 0")
-	trigger_multiple_brush97.KeyValueFromString("maxs", "12 12 12")
+	trigger_multiple_brush97.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush97.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_timer194 = SpawnEntityFromTable("logic_timer", {
 	    targetname = "powerup_blinker",
@@ -3311,11 +3505,13 @@
 	    maxspeed = 48,
 	    solidbsp = 0,
 	    rendermode = 10,
-	    targetname = "powerup_rot"
+	    targetname = "powerup_rot",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_rotating_brush98.KeyValueFromInt("solid", 2)
-	func_rotating_brush98.KeyValueFromString("mins", "0, 0, 0")
-	func_rotating_brush98.KeyValueFromString("maxspeed", "48")
+	func_rotating_brush98.KeyValueFromString("mins", "0 0 0")
+	func_rotating_brush98.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush99 = SpawnEntityFromTable("trigger_multiple", {
 	    targetname = "powerup_trigger",
@@ -3335,11 +3531,13 @@
 	    "OnStartTouchAll#8": "nuke_fade,Fade,,-1",
 	    "OnStartTouchAll#9": "powerup_timer,Enable,,-1",
 	    "OnStartTouchAll#10": "plate,skin,0,-1",
-	    "OnStartTouchAll#11": "!activatorRunScriptCodeself.AddCurrency(400)3-1"
+	    "OnStartTouchAll#11": "!activatorRunScriptCodeself.AddCurrency(400)3-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush99.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush99.KeyValueFromString("mins", "0, 0, 0")
-	trigger_multiple_brush99.KeyValueFromString("maxs", "12 12 12")
+	trigger_multiple_brush99.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush99.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_timer203 = SpawnEntityFromTable("logic_timer", {
 	    targetname = "powerup_blinker",
@@ -3408,11 +3606,13 @@
 	    startdisabled = 1,
 	    targetname = "hologram_nuke_hurt",
 	    filtername = "filter_notred",
-	    origin = Vector("0, 0, 0")
+	    origin = Vector("0, 0, 0"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_hurt_brush100.KeyValueFromInt("solid", 2)
-	trigger_hurt_brush100.KeyValueFromString("mins", "0, 0, 0")
-	trigger_hurt_brush100.KeyValueFromString("maxs", "9999 9999 9999")
+	trigger_hurt_brush100.KeyValueFromString("mins", "0 0 0")
+	trigger_hurt_brush100.KeyValueFromString("maxs", "1 1 1")
 
 	local filter_activator_tfteam211 = SpawnEntityFromTable("filter_activator_tfteam", {
 	    targetname = "filter_notred",
@@ -3454,11 +3654,13 @@
 	    maxspeed = 48,
 	    solidbsp = 0,
 	    rendermode = 10,
-	    targetname = "powerup_rot"
+	    targetname = "powerup_rot",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_rotating_brush101.KeyValueFromInt("solid", 2)
-	func_rotating_brush101.KeyValueFromString("mins", "0, 0, 0")
-	func_rotating_brush101.KeyValueFromString("maxspeed", "48")
+	func_rotating_brush101.KeyValueFromString("mins", "0 0 0")
+	func_rotating_brush101.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush102 = SpawnEntityFromTable("trigger_multiple", {
 	    targetname = "powerup_trigger",
@@ -3469,11 +3671,13 @@
 	    maxs = "12 12 12",
 	    origin = Vector("0, 0, 24"),
 	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
-	    "OnStartTouchAll#2": "popscript,$ActivateMaxAmmo,,-1"
+	    "OnStartTouchAll#2": "popscript,$ActivateMaxAmmo,,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush102.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush102.KeyValueFromString("mins", "0, 0, 0")
-	trigger_multiple_brush102.KeyValueFromString("maxs", "12 12 12")
+	trigger_multiple_brush102.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush102.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_timer215 = SpawnEntityFromTable("logic_timer", {
 	    targetname = "powerup_blinker",
@@ -3545,11 +3749,13 @@
 	    maxspeed = 48,
 	    solidbsp = 0,
 	    rendermode = 10,
-	    targetname = "powerup_rot"
+	    targetname = "powerup_rot",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_rotating_brush103.KeyValueFromInt("solid", 2)
-	func_rotating_brush103.KeyValueFromString("mins", "0, 0, 0")
-	func_rotating_brush103.KeyValueFromString("maxspeed", "48")
+	func_rotating_brush103.KeyValueFromString("mins", "0 0 0")
+	func_rotating_brush103.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush104 = SpawnEntityFromTable("trigger_multiple", {
 	    targetname = "powerup_trigger",
@@ -3560,11 +3766,13 @@
 	    maxs = "12 12 12",
 	    origin = Vector("0, 0, 24"),
 	    "OnStartTouchAll#1": "powerup_rot,KillHierarchy,,-1",
-	    "OnStartTouchAll#2": "popscript,$ActivateBonusPoints,,-1"
+	    "OnStartTouchAll#2": "popscript,$ActivateBonusPoints,,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush104.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush104.KeyValueFromString("mins", "0, 0, 0")
-	trigger_multiple_brush104.KeyValueFromString("maxs", "12 12 12")
+	trigger_multiple_brush104.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush104.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_timer223 = SpawnEntityFromTable("logic_timer", {
 	    targetname = "powerup_blinker",
@@ -3702,11 +3910,13 @@
 	    speed = 512,
 	    targetname = "dumpster_push1",
 	    mins = "-32 -66 -16",
-	    maxs = "12 66 64"
+	    maxs = "12 66 64",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush105.KeyValueFromInt("solid", 2)
-	trigger_push_brush105.KeyValueFromString("mins", "-32 -66 -16")
-	trigger_push_brush105.KeyValueFromString("maxs", "12 66 64")
+	trigger_push_brush105.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush105.KeyValueFromString("maxs", "1 1 1")
 
 	local prop_dynamic242 = SpawnEntityFromTable("prop_dynamic", {
 	    origin = Vector("0, 0, 0"),
@@ -3741,11 +3951,13 @@
 	    startclosesound = "misc/null.wav",
 	    closesound = "doors\door_metal_medium_close1.wav",
 	    mins = "-2 -2 -2",
-	    maxs = "2 2 2"
+	    maxs = "2 2 2",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_door_rotating_brush106.KeyValueFromInt("solid", 2)
-	func_door_rotating_brush106.KeyValueFromString("mins", "-2 -2 -2")
-	func_door_rotating_brush106.KeyValueFromString("maxs", "2 2 2")
+	func_door_rotating_brush106.KeyValueFromString("mins", "0 0 0")
+	func_door_rotating_brush106.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush107 = SpawnEntityFromTable("trigger_multiple", {
 	    origin = Vector("0, 0, 50"),
@@ -3754,11 +3966,13 @@
 	    filtername = "filter_redteam",
 	    spawnflags = 1,
 	    mins = "-72 -74 -64",
-	    maxs = "40 74 96"
+	    maxs = "40 74 96",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush107.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush107.KeyValueFromString("mins", "-72 -74 -64")
-	trigger_multiple_brush107.KeyValueFromString("maxs", "40 74 96")
+	trigger_multiple_brush107.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush107.KeyValueFromString("maxs", "1 1 1")
 
 	local light_dynamic244 = SpawnEntityFromTable("light_dynamic", {
 	    origin = Vector("0, 0, 20"),
@@ -3812,11 +4026,13 @@
 	    mins = "-4 -4 -4",
 	    maxs = "4 4 4",
 	    angles = QAngle("90, 0, 90"),
-	    spawnflags = 8
+	    spawnflags = 8,
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_tracktrain_brush108.KeyValueFromInt("solid", 2)
-	func_tracktrain_brush108.KeyValueFromString("mins", "0, 0, 0")
-	func_tracktrain_brush108.KeyValueFromString("maxs", "4 4 4")
+	func_tracktrain_brush108.KeyValueFromString("mins", "0 0 0")
+	func_tracktrain_brush108.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic249 = SpawnEntityFromTable("ambient_generic", {
 	    health = 10,
@@ -3881,11 +4097,13 @@
 	    speed = 512,
 	    targetname = "dumpster_push2",
 	    mins = "-32 -66 -16",
-	    maxs = "12 66 64"
+	    maxs = "12 66 64",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush109.KeyValueFromInt("solid", 2)
-	trigger_push_brush109.KeyValueFromString("mins", "-32 -66 -16")
-	trigger_push_brush109.KeyValueFromString("maxs", "12 66 64")
+	trigger_push_brush109.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush109.KeyValueFromString("maxs", "1 1 1")
 
 	local prop_dynamic255 = SpawnEntityFromTable("prop_dynamic", {
 	    origin = Vector("0, 0, 0"),
@@ -3920,11 +4138,13 @@
 	    startclosesound = "misc/null.wav",
 	    closesound = "doors\door_metal_medium_close1.wav",
 	    mins = "-2 -2 -2",
-	    maxs = "2 2 2"
+	    maxs = "2 2 2",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_door_rotating_brush110.KeyValueFromInt("solid", 2)
-	func_door_rotating_brush110.KeyValueFromString("mins", "-2 -2 -2")
-	func_door_rotating_brush110.KeyValueFromString("maxs", "2 2 2")
+	func_door_rotating_brush110.KeyValueFromString("mins", "0 0 0")
+	func_door_rotating_brush110.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush111 = SpawnEntityFromTable("trigger_multiple", {
 	    origin = Vector("0, 0, 50"),
@@ -3933,11 +4153,13 @@
 	    filtername = "filter_redteam",
 	    spawnflags = 1,
 	    mins = "-72 -74 -64",
-	    maxs = "40 74 96"
+	    maxs = "40 74 96",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush111.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush111.KeyValueFromString("mins", "-72 -74 -64")
-	trigger_multiple_brush111.KeyValueFromString("maxs", "40 74 96")
+	trigger_multiple_brush111.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush111.KeyValueFromString("maxs", "1 1 1")
 
 	local light_dynamic257 = SpawnEntityFromTable("light_dynamic", {
 	    origin = Vector("0, 0, 20"),
@@ -3991,11 +4213,13 @@
 	    mins = "-4 -4 -4",
 	    maxs = "4 4 4",
 	    angles = QAngle("90, 0, 90"),
-	    spawnflags = 8
+	    spawnflags = 8,
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_tracktrain_brush112.KeyValueFromInt("solid", 2)
-	func_tracktrain_brush112.KeyValueFromString("mins", "0, 0, 0")
-	func_tracktrain_brush112.KeyValueFromString("maxs", "4 4 4")
+	func_tracktrain_brush112.KeyValueFromString("mins", "0 0 0")
+	func_tracktrain_brush112.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic262 = SpawnEntityFromTable("ambient_generic", {
 	    health = 10,
@@ -4060,11 +4284,13 @@
 	    speed = 512,
 	    targetname = "dumpster_push3",
 	    mins = "-32 -66 -16",
-	    maxs = "12 66 64"
+	    maxs = "12 66 64",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush113.KeyValueFromInt("solid", 2)
-	trigger_push_brush113.KeyValueFromString("mins", "-32 -66 -16")
-	trigger_push_brush113.KeyValueFromString("maxs", "12 66 64")
+	trigger_push_brush113.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush113.KeyValueFromString("maxs", "1 1 1")
 
 	local prop_dynamic268 = SpawnEntityFromTable("prop_dynamic", {
 	    origin = Vector("0, 0, 0"),
@@ -4099,11 +4325,13 @@
 	    startclosesound = "misc/null.wav",
 	    closesound = "doors\door_metal_medium_close1.wav",
 	    mins = "-2 -2 -2",
-	    maxs = "2 2 2"
+	    maxs = "2 2 2",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_door_rotating_brush114.KeyValueFromInt("solid", 2)
-	func_door_rotating_brush114.KeyValueFromString("mins", "-2 -2 -2")
-	func_door_rotating_brush114.KeyValueFromString("maxs", "2 2 2")
+	func_door_rotating_brush114.KeyValueFromString("mins", "0 0 0")
+	func_door_rotating_brush114.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush115 = SpawnEntityFromTable("trigger_multiple", {
 	    origin = Vector("0, 0, 50"),
@@ -4112,11 +4340,13 @@
 	    filtername = "filter_redteam",
 	    spawnflags = 1,
 	    mins = "-72 -74 -64",
-	    maxs = "40 74 96"
+	    maxs = "40 74 96",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush115.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush115.KeyValueFromString("mins", "-72 -74 -64")
-	trigger_multiple_brush115.KeyValueFromString("maxs", "40 74 96")
+	trigger_multiple_brush115.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush115.KeyValueFromString("maxs", "1 1 1")
 
 	local light_dynamic270 = SpawnEntityFromTable("light_dynamic", {
 	    origin = Vector("0, 0, 20"),
@@ -4170,11 +4400,13 @@
 	    mins = "-4 -4 -4",
 	    maxs = "4 4 4",
 	    angles = QAngle("90, 0, 90"),
-	    spawnflags = 8
+	    spawnflags = 8,
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_tracktrain_brush116.KeyValueFromInt("solid", 2)
-	func_tracktrain_brush116.KeyValueFromString("mins", "0, 0, 0")
-	func_tracktrain_brush116.KeyValueFromString("maxs", "4 4 4")
+	func_tracktrain_brush116.KeyValueFromString("mins", "0 0 0")
+	func_tracktrain_brush116.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic275 = SpawnEntityFromTable("ambient_generic", {
 	    health = 10,
@@ -4239,11 +4471,13 @@
 	    speed = 512,
 	    targetname = "dumpster_push4",
 	    mins = "-32 -66 -16",
-	    maxs = "12 66 64"
+	    maxs = "12 66 64",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush117.KeyValueFromInt("solid", 2)
-	trigger_push_brush117.KeyValueFromString("mins", "-32 -66 -16")
-	trigger_push_brush117.KeyValueFromString("maxs", "12 66 64")
+	trigger_push_brush117.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush117.KeyValueFromString("maxs", "1 1 1")
 
 	local prop_dynamic281 = SpawnEntityFromTable("prop_dynamic", {
 	    origin = Vector("0, 0, 0"),
@@ -4280,11 +4514,13 @@
 	    startclosesound = "misc/null.wav",
 	    closesound = "doors\door_metal_medium_close1.wav",
 	    mins = "-2 -2 -2",
-	    maxs = "2 2 2"
+	    maxs = "2 2 2",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_door_rotating_brush118.KeyValueFromInt("solid", 2)
-	func_door_rotating_brush118.KeyValueFromString("mins", "-2 -2 -2")
-	func_door_rotating_brush118.KeyValueFromString("maxs", "2 2 2")
+	func_door_rotating_brush118.KeyValueFromString("mins", "0 0 0")
+	func_door_rotating_brush118.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush119 = SpawnEntityFromTable("trigger_multiple", {
 	    origin = Vector("0, 0, 50"),
@@ -4293,11 +4529,13 @@
 	    filtername = "filter_redteam",
 	    spawnflags = 1,
 	    mins = "-72 -74 -64",
-	    maxs = "40 74 96"
+	    maxs = "40 74 96",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush119.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush119.KeyValueFromString("mins", "-72 -74 -64")
-	trigger_multiple_brush119.KeyValueFromString("maxs", "40 74 96")
+	trigger_multiple_brush119.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush119.KeyValueFromString("maxs", "1 1 1")
 
 	local light_dynamic283 = SpawnEntityFromTable("light_dynamic", {
 	    origin = Vector("0, 0, 20"),
@@ -4351,11 +4589,13 @@
 	    mins = "-4 -4 -4",
 	    maxs = "4 4 4",
 	    angles = QAngle("90, 0, 90"),
-	    spawnflags = 8
+	    spawnflags = 8,
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_tracktrain_brush120.KeyValueFromInt("solid", 2)
-	func_tracktrain_brush120.KeyValueFromString("mins", "0, 0, 0")
-	func_tracktrain_brush120.KeyValueFromString("maxs", "4 4 4")
+	func_tracktrain_brush120.KeyValueFromString("mins", "0 0 0")
+	func_tracktrain_brush120.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic288 = SpawnEntityFromTable("ambient_generic", {
 	    health = 10,
@@ -4420,11 +4660,13 @@
 	    speed = 512,
 	    targetname = "dumpster_push5",
 	    mins = "-32 -66 -16",
-	    maxs = "12 66 64"
+	    maxs = "12 66 64",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush121.KeyValueFromInt("solid", 2)
-	trigger_push_brush121.KeyValueFromString("mins", "-32 -66 -16")
-	trigger_push_brush121.KeyValueFromString("maxs", "12 66 64")
+	trigger_push_brush121.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush121.KeyValueFromString("maxs", "1 1 1")
 
 	local prop_dynamic294 = SpawnEntityFromTable("prop_dynamic", {
 	    origin = Vector("0, 0, 0"),
@@ -4459,11 +4701,13 @@
 	    startclosesound = "misc/null.wav",
 	    closesound = "doors\door_metal_medium_close1.wav",
 	    mins = "-2 -2 -2",
-	    maxs = "2 2 2"
+	    maxs = "2 2 2",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_door_rotating_brush122.KeyValueFromInt("solid", 2)
-	func_door_rotating_brush122.KeyValueFromString("mins", "-2 -2 -2")
-	func_door_rotating_brush122.KeyValueFromString("maxs", "2 2 2")
+	func_door_rotating_brush122.KeyValueFromString("mins", "0 0 0")
+	func_door_rotating_brush122.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush123 = SpawnEntityFromTable("trigger_multiple", {
 	    origin = Vector("0, 0, 50"),
@@ -4472,11 +4716,13 @@
 	    filtername = "filter_redteam",
 	    spawnflags = 1,
 	    mins = "-72 -74 -64",
-	    maxs = "40 74 96"
+	    maxs = "40 74 96",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush123.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush123.KeyValueFromString("mins", "-72 -74 -64")
-	trigger_multiple_brush123.KeyValueFromString("maxs", "40 74 96")
+	trigger_multiple_brush123.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush123.KeyValueFromString("maxs", "1 1 1")
 
 	local light_dynamic296 = SpawnEntityFromTable("light_dynamic", {
 	    origin = Vector("0, 0, 20"),
@@ -4530,11 +4776,13 @@
 	    mins = "-4 -4 -4",
 	    maxs = "4 4 4",
 	    angles = QAngle("90, 0, 90"),
-	    spawnflags = 8
+	    spawnflags = 8,
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_tracktrain_brush124.KeyValueFromInt("solid", 2)
-	func_tracktrain_brush124.KeyValueFromString("mins", "0, 0, 0")
-	func_tracktrain_brush124.KeyValueFromString("maxs", "4 4 4")
+	func_tracktrain_brush124.KeyValueFromString("mins", "0 0 0")
+	func_tracktrain_brush124.KeyValueFromString("maxs", "1 1 1")
 
 	local ambient_generic301 = SpawnEntityFromTable("ambient_generic", {
 	    health = 10,
@@ -4618,11 +4866,13 @@
 	    spawnflags = 1,
 	    mins = "-64 -64 -64",
 	    maxs = "96 96 96",
-	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to receive a weapon for $950`)0-1"
+	    "OnStartTouchAll#1": "!activatorRunScriptCodeClientPrint(self, 4, `Hold Action key to receive a weapon for $950`)0-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush125.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush125.KeyValueFromString("mins", "-64 -64 -64")
-	trigger_multiple_brush125.KeyValueFromString("maxs", "96 96 96")
+	trigger_multiple_brush125.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush125.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_push_brush126 = SpawnEntityFromTable("trigger_push", {
 	    origin = Vector("0, 0, 0"),
@@ -4632,11 +4882,13 @@
 	    StartDisabled = 0,
 	    targetname = "dumpster_push",
 	    mins = "-12 -64 -16",
-	    maxs = "12 64 16"
+	    maxs = "12 64 16",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_push_brush126.KeyValueFromInt("solid", 2)
-	trigger_push_brush126.KeyValueFromString("mins", "-12 -64 -16")
-	trigger_push_brush126.KeyValueFromString("maxs", "12 64 16")
+	trigger_push_brush126.KeyValueFromString("mins", "0 0 0")
+	trigger_push_brush126.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_relay310 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "dumpster_dud",
@@ -4801,11 +5053,13 @@
 	    startclosesound = "misc/null.wav",
 	    closesound = "doors\door_metal_medium_close1.wav",
 	    mins = "-2 -2 -2",
-	    maxs = "2 2 2"
+	    maxs = "2 2 2",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_door_rotating_brush127.KeyValueFromInt("solid", 2)
-	func_door_rotating_brush127.KeyValueFromString("mins", "-2 -2 -2")
-	func_door_rotating_brush127.KeyValueFromString("maxs", "2 2 2")
+	func_door_rotating_brush127.KeyValueFromString("mins", "0 0 0")
+	func_door_rotating_brush127.KeyValueFromString("maxs", "1 1 1")
 
 	local func_button_brush128 = SpawnEntityFromTable("func_button", {
 	    origin = Vector("-32, -0, 24"),
@@ -4824,11 +5078,13 @@
 	    "OnPressed#2": "!activatorRunScriptCodeself.RemoveCurrency(950)-1",
 	    "OnPressed#3": "dumpster_rotdoor,Open,,0,-1",
 	    "OnPressed#4": "dumpster_case,InValue,$$=!activator.m_iClass,,-1",
-	    "OnPressed#5": "dumpster_rotdoor,Close,,3.4,-1"
+	    "OnPressed#5": "dumpster_rotdoor,Close,,3.4,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_button_brush128.KeyValueFromInt("solid", 2)
-	func_button_brush128.KeyValueFromString("mins", "-4 -44 -20")
-	func_button_brush128.KeyValueFromString("maxs", "4 44 20")
+	func_button_brush128.KeyValueFromString("mins", "0 0 0")
+	func_button_brush128.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_case324 = SpawnEntityFromTable("logic_case", {
 	    targetname = "dumpster_picker_scout",
@@ -5208,11 +5464,13 @@
 	    target = "tank_spawnroulette",
 	    filtername = "filter_tank",
 	    mins = "-9999 -9999 -9999",
-	    maxs = "9999 9999 9999"
+	    maxs = "9999 9999 9999",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_teleport_brush129.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush129.KeyValueFromString("mins", "-9999 -9999 -9999")
-	trigger_teleport_brush129.KeyValueFromString("maxs", "9999 9999 9999")
+	trigger_teleport_brush129.KeyValueFromString("mins", "0 0 0")
+	trigger_teleport_brush129.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_multiple_brush130 = SpawnEntityFromTable("trigger_multiple", {
 	    targetname = "tank_spawnroulette",
@@ -5221,11 +5479,13 @@
 	    origin = Vector("-2168, 40, 13604"),
 	    mins = "-24 -24 -36",
 	    maxs = "24 24 36",
-	    "OnStartTouchAll#1": "tank_spawn_picker,PickRandomShuffle,,-1"
+	    "OnStartTouchAll#1": "tank_spawn_picker,PickRandomShuffle,,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush130.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush130.KeyValueFromString("mins", "-24 -24 -36")
-	trigger_multiple_brush130.KeyValueFromString("maxs", "24 24 36")
+	trigger_multiple_brush130.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush130.KeyValueFromString("maxs", "1 1 1")
 
 	local trigger_bot_tag_brush131 = SpawnEntityFromTable("trigger_bot_tag", {
 	    targetname = "tank_spawnroulette",
@@ -5235,11 +5495,13 @@
 	    add = 0,
 	    origin = Vector("-2168, 40, 13604"),
 	    mins = "-128 -128 -128",
-	    maxs = "128 128 128"
+	    maxs = "128 128 128",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_bot_tag_brush131.KeyValueFromInt("solid", 2)
-	trigger_bot_tag_brush131.KeyValueFromString("mins", "-128 -128 -128")
-	trigger_bot_tag_brush131.KeyValueFromString("maxs", "128 128 128")
+	trigger_bot_tag_brush131.KeyValueFromString("mins", "0 0 0")
+	trigger_bot_tag_brush131.KeyValueFromString("maxs", "1 1 1")
 
 	local filter_tf_bot_has_tag333 = SpawnEntityFromTable("filter_tf_bot_has_tag", {
 	    targetname = "filter_tank",
@@ -5474,11 +5736,13 @@
 	    solidbsp = 0,
 	    rendermode = 10,
 	    targetname = "camera_spin",
-	    origin = Vector("2948, 924, 518")
+	    origin = Vector("2948, 924, 518"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_rotating_brush132.KeyValueFromInt("solid", 2)
-	func_rotating_brush132.KeyValueFromString("mins", "0, 0, 0")
-	func_rotating_brush132.KeyValueFromString("maxspeed", "1")
+	func_rotating_brush132.KeyValueFromString("mins", "0 0 0")
+	func_rotating_brush132.KeyValueFromString("maxs", "1 1 1")
 
 	local game_text360 = SpawnEntityFromTable("game_text", {
 	    targetname = "gameovertext",
@@ -5519,11 +5783,13 @@
 	    solidbsp = 0,
 	    rendermode = 10,
 	    targetname = "camera_spin_2",
-	    origin = Vector("-2349, 1008, 479")
+	    origin = Vector("-2349, 1008, 479"),
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	func_rotating_brush133.KeyValueFromInt("solid", 2)
-	func_rotating_brush133.KeyValueFromString("mins", "0, 0, 0")
-	func_rotating_brush133.KeyValueFromString("maxspeed", "1")
+	func_rotating_brush133.KeyValueFromString("mins", "0 0 0")
+	func_rotating_brush133.KeyValueFromString("maxs", "1 1 1")
 
 	local env_fade363 = SpawnEntityFromTable("env_fade", {
 	    targetname = "fade_out",
@@ -5654,11 +5920,13 @@
 	    nodmgforce = 0,
 	    filtername = "filter_blueteam",
 	    mins = "-128 -48 -24",
-	    maxs = "128 48 24"
+	    maxs = "128 48 24",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_hurt_brush134.KeyValueFromInt("solid", 2)
-	trigger_hurt_brush134.KeyValueFromString("mins", "-128 -48 -24")
-	trigger_hurt_brush134.KeyValueFromString("maxs", "128 48 24")
+	trigger_hurt_brush134.KeyValueFromString("mins", "0 0 0")
+	trigger_hurt_brush134.KeyValueFromString("maxs", "1 1 1")
 
 }
 ::Thundergun_2PT <- function()
@@ -5707,11 +5975,13 @@
 	    nodmgforce = 0,
 	    filtername = "filter_blueteam",
 	    mins = "-128 -48 -24",
-	    maxs = "128 96 24"
+	    maxs = "128 96 24",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_hurt_brush135.KeyValueFromInt("solid", 2)
-	trigger_hurt_brush135.KeyValueFromString("mins", "-128 -48 -24")
-	trigger_hurt_brush135.KeyValueFromString("maxs", "128 96 24")
+	trigger_hurt_brush135.KeyValueFromString("mins", "0 0 0")
+	trigger_hurt_brush135.KeyValueFromString("maxs", "1 1 1")
 
 }
 ::MedicbagPT <- function()
@@ -5742,11 +6012,13 @@
 	    mins = "-128 -128 -36",
 	    maxs = "128 128 36",
 	    "OnStartTouchAll#1": "medicbag_aoe,Disable,,-1",
-	    "OnEndTouchAll#2": "medicbag_aoe,Enable,,3,-1"
+	    "OnEndTouchAll#2": "medicbag_aoe,Enable,,3,-1",
+	    mins = "0 0 0",
+	    maxs = "1 1 1"
 	})
 	trigger_multiple_brush137.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush137.KeyValueFromString("mins", "-128 -128 -36")
-	trigger_multiple_brush137.KeyValueFromString("maxs", "128 128 36")
+	trigger_multiple_brush137.KeyValueFromString("mins", "0 0 0")
+	trigger_multiple_brush137.KeyValueFromString("maxs", "1 1 1")
 
 }
 ::PlayerSpawnTemplate "PlayerTracker" <- function()
