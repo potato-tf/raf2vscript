@@ -63,7 +63,6 @@
 	})
 
 	local trigger_multiple_brush1 = SpawnEntityFromTable("trigger_multiple", {
-	    targetname = "clear_overlay_brush",
 	    spawnflags = 1,
 	    StartDisabled = 1,
 	    mins = "-1 -1 -1",
@@ -73,7 +72,7 @@
 	    "OnStartTouch#2": "!self,Kill,,0.1,-1"
 	})
 	trigger_multiple_brush1.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush1.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush1.KeyValueFromString("mins", "-1 -1 -1")
 	trigger_multiple_brush1.KeyValueFromString("maxs", "1 1 1")
 
 	local logic_relay4 = SpawnEntityFromTable("logic_relay", {
@@ -240,7 +239,6 @@
 	})
 
 	local trigger_multiple_brush2 = SpawnEntityFromTable("trigger_multiple", {
-	    targetname = "redtargetname",
 	    mins = "-152 -368 -160",
 	    maxs = "152 368 160",
 	    origin = Vector(856, 1280, 352),
@@ -249,11 +247,10 @@
 	    "onstarttouch#1": "!activator,addoutput,targetname alivered,0,-1"
 	})
 	trigger_multiple_brush2.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush2.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush2.KeyValueFromString("mins", "-152 -368 -160")
 	trigger_multiple_brush2.KeyValueFromString("maxs", "152 368 160")
 
 	local trigger_teleport_brush3 = SpawnEntityFromTable("trigger_teleport", {
-	    targetname = "deadredtele",
 	    mins = "-152 -368 -160",
 	    maxs = "152 368 160",
 	    origin = Vector(856, 1280, 352),
@@ -263,7 +260,7 @@
 	    startdisabled = 1
 	})
 	trigger_teleport_brush3.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush3.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush3.KeyValueFromString("mins", "-152 -368 -160")
 	trigger_teleport_brush3.KeyValueFromString("maxs", "152 368 160")
 
 	local info_teleport_destination25 = SpawnEntityFromTable("info_teleport_destination", {
@@ -272,7 +269,6 @@
 	})
 
 	local trigger_multiple_brush4 = SpawnEntityFromTable("trigger_multiple", {
-	    filtername = "filter_deadred",
 	    origin = Vector(-1885, -561, 60),
 	    mins = "-64 -64 -64",
 	    maxs = "64 64 64",
@@ -294,11 +290,10 @@
 	    "onstarttouch#15": "!activatorSetCustomModelWithClassAnimationsmodels/bots/soldier/bot_soldier_gibby.mdl0.1-1"
 	})
 	trigger_multiple_brush4.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush4.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush4.KeyValueFromString("mins", "-64 -64 -64")
 	trigger_multiple_brush4.KeyValueFromString("maxs", "64 64 64")
 
 	local trigger_stun_brush5 = SpawnEntityFromTable("trigger_stun", {
-	    filtername = "filter_aliveblu",
 	    origin = Vector(0, 1440, 228),
 	    mins = "-9999 -9999 -9999",
 	    maxs = "9999 9999 9999",
@@ -308,7 +303,7 @@
 	    spawnflags = 1
 	})
 	trigger_stun_brush5.KeyValueFromInt("solid", 2)
-	trigger_stun_brush5.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush5.KeyValueFromString("mins", "-9999 -9999 -9999")
 	trigger_stun_brush5.KeyValueFromString("maxs", "9999 9999 9999")
 
 }
@@ -344,7 +339,6 @@
 ::p_rock_pusher <- function()
 {
 	local trigger_push_brush6 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    origin = Vector(-1088, 984, 48),
 	    mins = "-112 -40 -144",
 	    maxs = "112 40 144",
@@ -354,7 +348,7 @@
 	    targetname = "rock_pusher"
 	})
 	trigger_push_brush6.KeyValueFromInt("solid", 2)
-	trigger_push_brush6.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush6.KeyValueFromString("mins", "-112 -40 -144")
 	trigger_push_brush6.KeyValueFromString("maxs", "112 40 144")
 
 }
@@ -385,7 +379,6 @@
 ::p_virofix <- function()
 {
 	local trigger_push_brush7 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    filtername = "filter_virophage",
 	    origin = Vector(641, 304, -49),
 	    mins = "-50 -42 -124",
@@ -397,11 +390,10 @@
 	    targetname = "barrel_pusher"
 	})
 	trigger_push_brush7.KeyValueFromInt("solid", 2)
-	trigger_push_brush7.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush7.KeyValueFromString("mins", "-50 -42 -124")
 	trigger_push_brush7.KeyValueFromString("maxs", "50 42 124")
 
 	local trigger_catapult_brush8 = SpawnEntityFromTable("trigger_catapult", {
-	    targetname = "jump_barrel",
 	    useThresholdCheck = 0,
 	    useExactVelocity = 0,
 	    upperThreshold = 0.3,
@@ -426,7 +418,7 @@
 	    "OnCatapulted#3": "catapult_buffer,Trigger,,0,-1"
 	})
 	trigger_catapult_brush8.KeyValueFromInt("solid", 2)
-	trigger_catapult_brush8.KeyValueFromString("mins", "0, 0, 0")
+	trigger_catapult_brush8.KeyValueFromString("mins", "-50 -42 -15")
 	trigger_catapult_brush8.KeyValueFromString("maxs", "50 42 15")
 
 	local logic_relay31 = SpawnEntityFromTable("logic_relay", {
@@ -451,7 +443,6 @@
 ::p_virofix2 <- function()
 {
 	local trigger_multiple_brush9 = SpawnEntityFromTable("trigger_multiple", {
-	    targetname = "jump_generator_fix",
 	    spawnflags = 1,
 	    StartDisabled = 0,
 	    filtername = "filter_red",
@@ -463,11 +454,10 @@
 	    "OnEndTouch#3": "jump_generator_relay,CancelPending,0.5"
 	})
 	trigger_multiple_brush9.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush9.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush9.KeyValueFromString("mins", "-66 -45 -96")
 	trigger_multiple_brush9.KeyValueFromString("maxs", "66 45 96")
 
 	local trigger_catapult_brush10 = SpawnEntityFromTable("trigger_catapult", {
-	    targetname = "jump_generator",
 	    useThresholdCheck = 0,
 	    useExactVelocity = 0,
 	    upperThreshold = 0.3,
@@ -491,7 +481,7 @@
 	    "OnCatapulted#1": "jump_generator_relay,Trigger,,0,-1"
 	})
 	trigger_catapult_brush10.KeyValueFromInt("solid", 2)
-	trigger_catapult_brush10.KeyValueFromString("mins", "0, 0, 0")
+	trigger_catapult_brush10.KeyValueFromString("mins", "-85 -45 -18")
 	trigger_catapult_brush10.KeyValueFromString("maxs", "85 45 18")
 
 	local logic_relay34 = SpawnEntityFromTable("logic_relay", {
@@ -509,7 +499,6 @@
 ::p_spawnfix <- function()
 {
 	local func_brush_brush11 = SpawnEntityFromTable("func_brush", {
-	    origin = Vector(992, 3072, 832),
 	    mins = "-32 -64 -398",
 	    maxs = "32 64 398"
 	})
@@ -522,7 +511,7 @@
 {
 	local logic_timer36 = SpawnEntityFromTable("logic_timer", {
 	    refiretime = 3,
-	    "ontimer#1": "obj_sentrygunRunScriptCodeNetProps.SetPropInt(self, `m_CollisionGroup`, 3)0-1"
+	    "ontimer#1": "obj_sentrygunRunScriptCodeNetProps.SetPropINVALID(self, `m_CollisionGroup`, 3)0-1"
 	})
 
 }
@@ -599,7 +588,6 @@
 ::p_finale_facer <- function()
 {
 	local trigger_teleport_brush12 = SpawnEntityFromTable("trigger_teleport", {
-	    targetname = "cheese",
 	    mins = "-3392 -3392 -704",
 	    maxs = "3392 3392 704",
 	    origin = Vector(768, 768, 576),
@@ -610,7 +598,7 @@
 	    "OnStartTouch#1": "cheese,Kill,,0,-1"
 	})
 	trigger_teleport_brush12.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush12.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush12.KeyValueFromString("mins", "-3392 -3392 -704")
 	trigger_teleport_brush12.KeyValueFromString("maxs", "3392 3392 704")
 
 	local info_target43 = SpawnEntityFromTable("info_target", {
@@ -623,7 +611,6 @@
 ::p_finale_facerblu <- function()
 {
 	local trigger_teleport_brush13 = SpawnEntityFromTable("trigger_teleport", {
-	    targetname = "cheese2",
 	    mins = "-3392 -3392 -704",
 	    maxs = "3392 3392 704",
 	    origin = Vector(768, 768, 576),
@@ -634,7 +621,7 @@
 	    "OnStartTouch#1": "cheese2,Kill,,0,-1"
 	})
 	trigger_teleport_brush13.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush13.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush13.KeyValueFromString("mins", "-3392 -3392 -704")
 	trigger_teleport_brush13.KeyValueFromString("maxs", "3392 3392 704")
 
 	local info_target44 = SpawnEntityFromTable("info_target", {
@@ -647,7 +634,6 @@
 ::p_teleporter_brush <- function()
 {
 	local trigger_teleport_brush14 = SpawnEntityFromTable("trigger_teleport", {
-	    targetname = "teleporter",
 	    mins = "-224 -452 -576",
 	    maxs = "224 452 576",
 	    origin = Vector(-160, 3132, 704),
@@ -656,14 +642,13 @@
 	    target = "info_tele"
 	})
 	trigger_teleport_brush14.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush14.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush14.KeyValueFromString("mins", "-224 -452 -576")
 	trigger_teleport_brush14.KeyValueFromString("maxs", "224 452 576")
 
 }
 ::p_teleporter_brush_finale <- function()
 {
 	local trigger_teleport_brush15 = SpawnEntityFromTable("trigger_teleport", {
-	    targetname = "teleporterfinale",
 	    mins = "-224 -452 -576",
 	    maxs = "224 452 576",
 	    origin = Vector(-160, 3132, 704),
@@ -672,7 +657,7 @@
 	    target = "parachute_tele"
 	})
 	trigger_teleport_brush15.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush15.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush15.KeyValueFromString("mins", "-224 -452 -576")
 	trigger_teleport_brush15.KeyValueFromString("maxs", "224 452 576")
 
 }
@@ -697,7 +682,6 @@
 ::p_lastbot <- function()
 {
 	local trigger_multiple_brush16 = SpawnEntityFromTable("trigger_multiple", {
-	    targetname = "lastbotnamer",
 	    mins = "-224 -452 -576",
 	    maxs = "224 452 576",
 	    origin = Vector(-160, 3132, 704),
@@ -706,14 +690,13 @@
 	    "OnStartTouch#1": "!activator,addoutput,targetname victory,0,-1"
 	})
 	trigger_multiple_brush16.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush16.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush16.KeyValueFromString("mins", "-224 -452 -576")
 	trigger_multiple_brush16.KeyValueFromString("maxs", "224 452 576")
 
 }
 ::p_voice <- function()
 {
 	local trigger_multiple_brush17 = SpawnEntityFromTable("trigger_multiple", {
-	    targetname = "gogogo",
 	    mins = "-8000 -8000 -1000",
 	    maxs = "8000 8000 1000",
 	    StartDisabled = 1,
@@ -724,7 +707,7 @@
 	    filtername = "filter_red"
 	})
 	trigger_multiple_brush17.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush17.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush17.KeyValueFromString("mins", "-8000 -8000 -1000")
 	trigger_multiple_brush17.KeyValueFromString("maxs", "8000 8000 1000")
 
 }
@@ -894,7 +877,6 @@
 ::p_leap <- function()
 {
 	local trigger_catapult_brush18 = SpawnEntityFromTable("trigger_catapult", {
-	    targetname = "jump_column",
 	    useThresholdCheck = 0,
 	    useExactVelocity = 0,
 	    upperThreshold = 0.3,
@@ -918,7 +900,7 @@
 	    "OnCatapulted#2": "!self,Enable,,1.5,-1"
 	})
 	trigger_catapult_brush18.KeyValueFromInt("solid", 2)
-	trigger_catapult_brush18.KeyValueFromString("mins", "0, 0, 0")
+	trigger_catapult_brush18.KeyValueFromString("mins", "-160 -22 -134")
 	trigger_catapult_brush18.KeyValueFromString("maxs", "160 22 134")
 
 	local info_target64 = SpawnEntityFromTable("info_target", {
@@ -927,7 +909,6 @@
 	})
 
 	local trigger_catapult_brush19 = SpawnEntityFromTable("trigger_catapult", {
-	    targetname = "jump_stairs",
 	    origin = Vector(-178, 974, -28),
 	    mins = "-50 -50 -100",
 	    maxs = "50 50 100",
@@ -951,7 +932,7 @@
 	    "OnCatapulted#2": "!self,Enable,,1.5,-1"
 	})
 	trigger_catapult_brush19.KeyValueFromInt("solid", 2)
-	trigger_catapult_brush19.KeyValueFromString("mins", "0, 0, 0")
+	trigger_catapult_brush19.KeyValueFromString("mins", "-50 -50 -100")
 	trigger_catapult_brush19.KeyValueFromString("maxs", "50 50 100")
 
 	local info_target65 = SpawnEntityFromTable("info_target", {
@@ -963,7 +944,6 @@
 ::p_leap_tele <- function()
 {
 	local trigger_teleport_brush20 = SpawnEntityFromTable("trigger_teleport", {
-	    targetname = "leap_tele",
 	    mins = "-134.5 -0.5 -217.5",
 	    maxs = "134.5 0.5 217.5",
 	    origin = Vector(231.5, 1279.5, 147.5),
@@ -976,7 +956,7 @@
 	    "OnStartTouch#4": "leap_tele2,Enable,,2.5,-1"
 	})
 	trigger_teleport_brush20.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush20.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush20.KeyValueFromString("mins", "-134.5 -0.5 -217.5")
 	trigger_teleport_brush20.KeyValueFromString("maxs", "134.5 0.5 217.5")
 
 	local info_target66 = SpawnEntityFromTable("info_target", {
@@ -985,7 +965,6 @@
 	})
 
 	local trigger_teleport_brush21 = SpawnEntityFromTable("trigger_teleport", {
-	    targetname = "leap_tele2",
 	    mins = "-134.5 -0.5 -217.5",
 	    maxs = "134.5 0.5 217.5",
 	    origin = Vector(233.5, 1288.5, 147.5),
@@ -998,7 +977,7 @@
 	    "OnStartTouch#4": "leap_tele2,Enable,,2.5,-1"
 	})
 	trigger_teleport_brush21.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush21.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush21.KeyValueFromString("mins", "-134.5 -0.5 -217.5")
 	trigger_teleport_brush21.KeyValueFromString("maxs", "134.5 0.5 217.5")
 
 	local info_target67 = SpawnEntityFromTable("info_target", {
@@ -1017,7 +996,7 @@
 	    AllowDispenser = 0
 	})
 	func_nobuild_brush22.KeyValueFromInt("solid", 2)
-	func_nobuild_brush22.KeyValueFromString("mins", "0, 0, 0")
+	func_nobuild_brush22.KeyValueFromString("mins", "-76 -63 -29")
 	func_nobuild_brush22.KeyValueFromString("maxs", "76 63 29")
 
 }
@@ -1031,7 +1010,7 @@
 	    AllowDispenser = 1
 	})
 	func_nobuild_brush23.KeyValueFromInt("solid", 2)
-	func_nobuild_brush23.KeyValueFromString("mins", "0, 0, 0")
+	func_nobuild_brush23.KeyValueFromString("mins", "-8000 -8000 -1000")
 	func_nobuild_brush23.KeyValueFromString("maxs", "8000 8000 1000")
 
 }
@@ -1130,7 +1109,6 @@
 	})
 
 	local func_regenerate_brush24 = SpawnEntityFromTable("func_regenerate", {
-	    targetname = "cab",
 	    associatedmodel = "locker_model",
 	    TeamNum = 2,
 	    origin = Vector(136, 112, 160),
@@ -1712,7 +1690,6 @@
 ::p_viewblocker_window <- function()
 {
 	local func_brush_brush25 = SpawnEntityFromTable("func_brush", {
-	    origin = Vector(-1, 260, 368),
 	    mins = "-320.5 -4 -144",
 	    maxs = "320.5 4 144"
 	})
@@ -1791,7 +1768,6 @@
 ::p_brushbug_fix <- function()
 {
 	local trigger_multiple_brush26 = SpawnEntityFromTable("trigger_multiple", {
-	    targetname = "brushbug_fix",
 	    origin = Vector(136, 112, 160),
 	    mins = "-152 -468 -160",
 	    maxs = "152 468 160",
@@ -1802,7 +1778,7 @@
 	    "onstarttouch#3": "!self,kill,,0.1,-1"
 	})
 	trigger_multiple_brush26.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush26.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush26.KeyValueFromString("mins", "-152 -468 -160")
 	trigger_multiple_brush26.KeyValueFromString("maxs", "152 468 160")
 
 }
@@ -1860,7 +1836,6 @@
 ::p_pusher <- function()
 {
 	local trigger_push_brush27 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    filtername = "filter_leaper",
 	    origin = Vector(-192, 1072, 0),
 	    mins = "-53 -29 -64",
@@ -1872,7 +1847,7 @@
 	    targetname = "pusher"
 	})
 	trigger_push_brush27.KeyValueFromInt("solid", 2)
-	trigger_push_brush27.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush27.KeyValueFromString("mins", "-53 -29 -64")
 	trigger_push_brush27.KeyValueFromString("maxs", "53 29 64")
 
 	local filter_tf_bot_has_tag120 = SpawnEntityFromTable("filter_tf_bot_has_tag", {
@@ -1886,7 +1861,6 @@
 ::p_pusher2 <- function()
 {
 	local trigger_push_brush28 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    filtername = "filter_virophage",
 	    origin = Vector(-1224, 2167, 736),
 	    mins = "-74 -62 -544",
@@ -1898,7 +1872,7 @@
 	    targetname = "pusher2"
 	})
 	trigger_push_brush28.KeyValueFromInt("solid", 2)
-	trigger_push_brush28.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush28.KeyValueFromString("mins", "-74 -62 -544")
 	trigger_push_brush28.KeyValueFromString("maxs", "74 62 544")
 
 }
@@ -2190,7 +2164,6 @@
 ::p_beer <- function()
 {
 	local func_wall_brush29 = SpawnEntityFromTable("func_wall", {
-	    origin = Vector(654, 328, 456),
 	    mins = "-49 -65 -224",
 	    maxs = "49 65 224"
 	})
@@ -2202,7 +2175,6 @@
 ::p_brokenstairs_clip <- function()
 {
 	local func_wall_brush30 = SpawnEntityFromTable("func_wall", {
-	    origin = Vector(188, 1248, 5),
 	    mins = "-36 -32 -77",
 	    maxs = "36 32 77"
 	})
@@ -2211,7 +2183,6 @@
 	func_wall_brush30.KeyValueFromString("maxs", "36 32 77")
 
 	local func_wall_brush31 = SpawnEntityFromTable("func_wall", {
-	    origin = Vector(256, 1248, 23),
 	    mins = "-32 -32 -95",
 	    maxs = "32 32 95"
 	})
@@ -2220,7 +2191,6 @@
 	func_wall_brush31.KeyValueFromString("maxs", "32 32 95")
 
 	local func_wall_brush32 = SpawnEntityFromTable("func_wall", {
-	    origin = Vector(326, 1248, 39),
 	    mins = "-38 -32 -111",
 	    maxs = "38 32 111"
 	})
@@ -2229,7 +2199,6 @@
 	func_wall_brush32.KeyValueFromString("maxs", "38 32 111")
 
 	local func_wall_brush33 = SpawnEntityFromTable("func_wall", {
-	    origin = Vector(365, 1248, 52),
 	    mins = "-19 -32 -124",
 	    maxs = "19 32 124"
 	})
@@ -2238,7 +2207,6 @@
 	func_wall_brush33.KeyValueFromString("maxs", "19 32 124")
 
 	local func_wall_brush34 = SpawnEntityFromTable("func_wall", {
-	    origin = Vector(388, 1256, 48),
 	    mins = "-4 -24 -112",
 	    maxs = "4 24 112"
 	})
@@ -2247,7 +2215,6 @@
 	func_wall_brush34.KeyValueFromString("maxs", "4 24 112")
 
 	local func_wall_brush35 = SpawnEntityFromTable("func_wall", {
-	    origin = Vector(396, 1264, 48),
 	    mins = "-4 -16 -112",
 	    maxs = "4 16 112"
 	})
@@ -2256,7 +2223,6 @@
 	func_wall_brush35.KeyValueFromString("maxs", "4 16 112")
 
 	local func_wall_brush36 = SpawnEntityFromTable("func_wall", {
-	    origin = Vector(404, 1272, 48),
 	    mins = "-4 -8 -112",
 	    maxs = "4 8 112"
 	})
@@ -2284,7 +2250,6 @@
 ::p_ledgefix_left <- function()
 {
 	local func_brush_brush37 = SpawnEntityFromTable("func_brush", {
-	    origin = Vector(-544, 1596, 536),
 	    mins = "-112 -8 -104",
 	    maxs = "112 8 104"
 	})
@@ -2293,7 +2258,6 @@
 	func_brush_brush37.KeyValueFromString("maxs", "112 8 104")
 
 	local func_brush_brush38 = SpawnEntityFromTable("func_brush", {
-	    origin = Vector(-380, 1440, 520),
 	    mins = "-8 -112 -120",
 	    maxs = "8 112 120"
 	})
@@ -2302,7 +2266,6 @@
 	func_brush_brush38.KeyValueFromString("maxs", "8 112 120")
 
 	local func_brush_brush39 = SpawnEntityFromTable("func_brush", {
-	    origin = Vector(-544, 1284, 536),
 	    mins = "-112 -8 -104",
 	    maxs = "112 8 104"
 	})
@@ -2314,7 +2277,6 @@
 ::p_ledgefix_right <- function()
 {
 	local func_brush_brush40 = SpawnEntityFromTable("func_brush", {
-	    origin = Vector(544, 1284, 536),
 	    mins = "-112 -8 -104",
 	    maxs = "112 8 104"
 	})
@@ -2323,7 +2285,6 @@
 	func_brush_brush40.KeyValueFromString("maxs", "112 8 104")
 
 	local func_brush_brush41 = SpawnEntityFromTable("func_brush", {
-	    origin = Vector(380, 1440, 520),
 	    mins = "-8 -112 -120",
 	    maxs = "8 112 120"
 	})
@@ -2332,7 +2293,6 @@
 	func_brush_brush41.KeyValueFromString("maxs", "8 112 120")
 
 	local func_brush_brush42 = SpawnEntityFromTable("func_brush", {
-	    origin = Vector(544, 1596, 536),
 	    mins = "-112 -8 -104",
 	    maxs = "112 8 104"
 	})
@@ -2603,7 +2563,6 @@
 ::p_hhhteleporter <- function()
 {
 	local trigger_teleport_brush43 = SpawnEntityFromTable("trigger_teleport", {
-	    targetname = "hhhtele1",
 	    origin = Vector(0, 2176, 48),
 	    filtername = "filter_headless",
 	    mins = "-384 -160 -80",
@@ -2615,7 +2574,7 @@
 	    "OnStartTouch#2": "hhhtele1,Enable,,5,-1"
 	})
 	trigger_teleport_brush43.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush43.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush43.KeyValueFromString("mins", "-384 -160 -80")
 	trigger_teleport_brush43.KeyValueFromString("maxs", "384 160 80")
 
 	local info_teleport_destination162 = SpawnEntityFromTable("info_teleport_destination", {
@@ -2633,7 +2592,6 @@
 ::p_slower0 <- function()
 {
 	local trigger_stun_brush44 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower0",
 	    stun_type = 0,
@@ -2650,14 +2608,13 @@
 	    solid = 3
 	})
 	trigger_stun_brush44.KeyValueFromInt("solid", 2)
-	trigger_stun_brush44.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush44.KeyValueFromString("mins", "-8000 -8000 -1000")
 	trigger_stun_brush44.KeyValueFromString("maxs", "8000 8000 1000")
 
 }
 ::p_slower1 <- function()
 {
 	local trigger_stun_brush45 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower1",
 	    stun_type = 0,
@@ -2674,14 +2631,13 @@
 	    solid = 3
 	})
 	trigger_stun_brush45.KeyValueFromInt("solid", 2)
-	trigger_stun_brush45.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush45.KeyValueFromString("mins", "-384 -160 -80")
 	trigger_stun_brush45.KeyValueFromString("maxs", "384 160 80")
 
 }
 ::p_slower2 <- function()
 {
 	local trigger_stun_brush46 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower2",
 	    stun_type = 0,
@@ -2698,14 +2654,13 @@
 	    solid = 3
 	})
 	trigger_stun_brush46.KeyValueFromInt("solid", 2)
-	trigger_stun_brush46.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush46.KeyValueFromString("mins", "-480 -128 -104")
 	trigger_stun_brush46.KeyValueFromString("maxs", "480 128 104")
 
 }
 ::p_slower3 <- function()
 {
 	local trigger_stun_brush47 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower3",
 	    stun_type = 0,
@@ -2722,14 +2677,13 @@
 	    solid = 3
 	})
 	trigger_stun_brush47.KeyValueFromInt("solid", 2)
-	trigger_stun_brush47.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush47.KeyValueFromString("mins", "-448 -192 -104")
 	trigger_stun_brush47.KeyValueFromString("maxs", "448 192 104")
 
 }
 ::p_slower4 <- function()
 {
 	local trigger_stun_brush48 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower4",
 	    stun_type = 0,
@@ -2746,14 +2700,13 @@
 	    solid = 3
 	})
 	trigger_stun_brush48.KeyValueFromInt("solid", 2)
-	trigger_stun_brush48.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush48.KeyValueFromString("mins", "-288 -336 -104")
 	trigger_stun_brush48.KeyValueFromString("maxs", "288 336 104")
 
 }
 ::p_slower5 <- function()
 {
 	local trigger_stun_brush49 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower5",
 	    stun_type = 0,
@@ -2770,14 +2723,13 @@
 	    solid = 3
 	})
 	trigger_stun_brush49.KeyValueFromInt("solid", 2)
-	trigger_stun_brush49.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush49.KeyValueFromString("mins", "-104 -140 -104")
 	trigger_stun_brush49.KeyValueFromString("maxs", "104 140 104")
 
 }
 ::p_slower6 <- function()
 {
 	local trigger_stun_brush50 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower6",
 	    stun_type = 0,
@@ -2794,14 +2746,13 @@
 	    solid = 3
 	})
 	trigger_stun_brush50.KeyValueFromInt("solid", 2)
-	trigger_stun_brush50.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush50.KeyValueFromString("mins", "-288 -928 -104")
 	trigger_stun_brush50.KeyValueFromString("maxs", "288 928 104")
 
 }
 ::p_slower7 <- function()
 {
 	local trigger_stun_brush51 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower7",
 	    stun_type = 0,
@@ -2818,14 +2769,13 @@
 	    solid = 3
 	})
 	trigger_stun_brush51.KeyValueFromInt("solid", 2)
-	trigger_stun_brush51.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush51.KeyValueFromString("mins", "-1360 -528 -55")
 	trigger_stun_brush51.KeyValueFromString("maxs", "1360 528 55")
 
 }
 ::p_slower8 <- function()
 {
 	local trigger_stun_brush52 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower8",
 	    stun_type = 0,
@@ -2842,14 +2792,13 @@
 	    solid = 3
 	})
 	trigger_stun_brush52.KeyValueFromInt("solid", 2)
-	trigger_stun_brush52.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush52.KeyValueFromString("mins", "-784 -544 -104")
 	trigger_stun_brush52.KeyValueFromString("maxs", "784 544 104")
 
 }
 ::p_slower9 <- function()
 {
 	local trigger_stun_brush53 = SpawnEntityFromTable("trigger_stun", {
-	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower9",
 	    stun_type = 0,
@@ -2866,7 +2815,7 @@
 	    solid = 3
 	})
 	trigger_stun_brush53.KeyValueFromInt("solid", 2)
-	trigger_stun_brush53.KeyValueFromString("mins", "0, 0, 0")
+	trigger_stun_brush53.KeyValueFromString("mins", "-96 -160 -104")
 	trigger_stun_brush53.KeyValueFromString("maxs", "96 160 104")
 
 }
@@ -2880,7 +2829,6 @@
 	})
 
 	local trigger_capture_area_brush54 = SpawnEntityFromTable("trigger_capture_area", {
-	    classname = "trigger_capture_area",
 	    area_cap_point = "cap_point",
 	    area_time_to_cap = 60,
 	    StartDisabled = 0,
@@ -2900,7 +2848,7 @@
 	    "OnCapTeam1#1": "boss_deploy_relay,Trigger,,10,-1"
 	})
 	trigger_capture_area_brush54.KeyValueFromInt("solid", 2)
-	trigger_capture_area_brush54.KeyValueFromString("mins", "0, 0, 0")
+	trigger_capture_area_brush54.KeyValueFromString("mins", "-128 -128 -128")
 	trigger_capture_area_brush54.KeyValueFromString("maxs", "128 128 128")
 
 	local team_control_point165 = SpawnEntityFromTable("team_control_point", {
@@ -3019,7 +2967,6 @@
 ::p_shutter_pusher <- function()
 {
 	local trigger_push_brush55 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    origin = Vector(232, 249, 521),
 	    mins = "-456 -7 -7.5",
 	    maxs = "456 7 7.5",
@@ -3029,14 +2976,13 @@
 	    targetname = "shutter_pusher"
 	})
 	trigger_push_brush55.KeyValueFromInt("solid", 2)
-	trigger_push_brush55.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush55.KeyValueFromString("mins", "-456 -7 -7.5")
 	trigger_push_brush55.KeyValueFromString("maxs", "456 7 7.5")
 
 }
 ::p_shutter_pusher2 <- function()
 {
 	local trigger_push_brush56 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    origin = Vector(125, 244, 345),
 	    mins = "-349 -12.5 -168.5",
 	    maxs = "349 12.5 168.5",
@@ -3046,14 +2992,13 @@
 	    targetname = "shutter_pusher"
 	})
 	trigger_push_brush56.KeyValueFromInt("solid", 2)
-	trigger_push_brush56.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush56.KeyValueFromString("mins", "-349 -12.5 -168.5")
 	trigger_push_brush56.KeyValueFromString("maxs", "349 12.5 168.5")
 
 }
 ::p_brokenwall_pusher <- function()
 {
 	local trigger_push_brush57 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    origin = Vector(388, 2182, 587),
 	    mins = "-4 -5.5 -85",
 	    maxs = "4 5.5 85",
@@ -3063,14 +3008,13 @@
 	    targetname = "brokenwall_pusher"
 	})
 	trigger_push_brush57.KeyValueFromInt("solid", 2)
-	trigger_push_brush57.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush57.KeyValueFromString("mins", "-4 -5.5 -85")
 	trigger_push_brush57.KeyValueFromString("maxs", "4 5.5 85")
 
 }
 ::p_brokenwall_pusher2 <- function()
 {
 	local trigger_push_brush58 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    origin = Vector(-388, 1761, 365),
 	    mins = "-4 -163.5 -57.5",
 	    maxs = "4 163.5 57.5",
@@ -3080,11 +3024,10 @@
 	    targetname = "brokenwall_pusher"
 	})
 	trigger_push_brush58.KeyValueFromInt("solid", 2)
-	trigger_push_brush58.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush58.KeyValueFromString("mins", "-4 -163.5 -57.5")
 	trigger_push_brush58.KeyValueFromString("maxs", "4 163.5 57.5")
 
 	local trigger_push_brush59 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    origin = Vector(-408, 1616, 430),
 	    mins = "-24 -15.5 -40.5",
 	    maxs = "24 15.5 40.5",
@@ -3094,14 +3037,13 @@
 	    targetname = "brokenwall_pusher"
 	})
 	trigger_push_brush59.KeyValueFromInt("solid", 2)
-	trigger_push_brush59.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush59.KeyValueFromString("mins", "-24 -15.5 -40.5")
 	trigger_push_brush59.KeyValueFromString("maxs", "24 15.5 40.5")
 
 }
 ::p_yeet_failsafe <- function()
 {
 	local trigger_teleport_brush60 = SpawnEntityFromTable("trigger_teleport", {
-	    targetname = "yeet_failsafe",
 	    mins = "-82.5 -41 -20",
 	    maxs = "82.5 41 20",
 	    origin = Vector(0, 488, 212),
@@ -3110,7 +3052,7 @@
 	    target = "yeet_failsafe_target"
 	})
 	trigger_teleport_brush60.KeyValueFromInt("solid", 2)
-	trigger_teleport_brush60.KeyValueFromString("mins", "0, 0, 0")
+	trigger_teleport_brush60.KeyValueFromString("mins", "-82.5 -41 -20")
 	trigger_teleport_brush60.KeyValueFromString("maxs", "82.5 41 20")
 
 	local info_target174 = SpawnEntityFromTable("info_target", {
@@ -3123,7 +3065,6 @@
 ::p_yeet <- function()
 {
 	local func_forcefield_brush61 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(0, 488, 212),
 	    mins = "-82.5 -41 -20.5",
 	    maxs = "82.5 41 20.5",
 	    TeamNum = 3,
@@ -3131,14 +3072,13 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush61.KeyValueFromInt("solid", 2)
-	func_forcefield_brush61.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush61.KeyValueFromString("mins", "-82.5 -41 -20.5")
 	func_forcefield_brush61.KeyValueFromString("maxs", "82.5 41 20.5")
 
 }
 ::p_yeet2 <- function()
 {
 	local trigger_push_brush62 = SpawnEntityFromTable("trigger_push", {
-	    origin = Vector(400, 1040, 191),
 	    mins = "-16 -156 -16",
 	    maxs = "16 156 16",
 	    pushdir = "0 0 0",
@@ -3149,11 +3089,10 @@
 	    parentname = "yeetrotate"
 	})
 	trigger_push_brush62.KeyValueFromInt("solid", 2)
-	trigger_push_brush62.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush62.KeyValueFromString("mins", "-16 -156 -16")
 	trigger_push_brush62.KeyValueFromString("maxs", "16 156 16")
 
 	local func_rotating_brush63 = SpawnEntityFromTable("func_rotating", {
-	    targetname = "yeetrotate",
 	    origin = Vector(400, 1040, 191),
 	    mins = "-8 -8 -8",
 	    maxs = "8 8 8",
@@ -3163,14 +3102,13 @@
 	    spawnflags = 65
 	})
 	func_rotating_brush63.KeyValueFromInt("solid", 2)
-	func_rotating_brush63.KeyValueFromString("mins", "0, 0, 0")
+	func_rotating_brush63.KeyValueFromString("mins", "-8 -8 -8")
 	func_rotating_brush63.KeyValueFromString("maxspeed", "50")
 
 }
 ::p_yeet3 <- function()
 {
 	local trigger_catapult_brush64 = SpawnEntityFromTable("trigger_catapult", {
-	    targetname = "jump_lonepillar",
 	    useThresholdCheck = 0,
 	    useExactVelocity = 0,
 	    upperThreshold = 0.3,
@@ -3194,7 +3132,7 @@
 	    "OnCatapulted#2": "!self,Enable,,3,-1"
 	})
 	trigger_catapult_brush64.KeyValueFromInt("solid", 2)
-	trigger_catapult_brush64.KeyValueFromString("mins", "0, 0, 0")
+	trigger_catapult_brush64.KeyValueFromString("mins", "-64 -64 -45")
 	trigger_catapult_brush64.KeyValueFromString("maxs", "64 64 45")
 
 	local info_target175 = SpawnEntityFromTable("info_target", {
@@ -3206,7 +3144,6 @@
 ::p_yeet4 <- function()
 {
 	local trigger_push_brush65 = SpawnEntityFromTable("trigger_push", {
-	    alternateticksfix = 0,
 	    origin = Vector(416, -1056, 576),
 	    mins = "-32 -32 -704",
 	    maxs = "32 32 704",
@@ -3218,14 +3155,13 @@
 	    targetname = "pusherrr"
 	})
 	trigger_push_brush65.KeyValueFromInt("solid", 2)
-	trigger_push_brush65.KeyValueFromString("mins", "0, 0, 0")
+	trigger_push_brush65.KeyValueFromString("mins", "-32 -32 -704")
 	trigger_push_brush65.KeyValueFromString("maxs", "32 32 704")
 
 }
 ::p_mapblock <- function()
 {
 	local func_forcefield_brush66 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(-992, 997, 576),
 	    mins = "-288 -62 -704",
 	    maxs = "288 62 704",
 	    TeamNum = 3,
@@ -3233,7 +3169,7 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush66.KeyValueFromInt("solid", 2)
-	func_forcefield_brush66.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush66.KeyValueFromString("mins", "-288 -62 -704")
 	func_forcefield_brush66.KeyValueFromString("maxs", "288 62 704")
 
 }
@@ -3253,7 +3189,6 @@
 	})
 
 	local trigger_add_tf_player_condition_brush67 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
-	    targetname = "lastcrits",
 	    condition = 40,
 	    duration = 2,
 	    filtername = "filter_redplayer",
@@ -3264,7 +3199,7 @@
 	    spawnflags = 1
 	})
 	trigger_add_tf_player_condition_brush67.KeyValueFromInt("solid", 2)
-	trigger_add_tf_player_condition_brush67.KeyValueFromString("mins", "0, 0, 0")
+	trigger_add_tf_player_condition_brush67.KeyValueFromString("mins", "-3328 -3328 -704")
 	trigger_add_tf_player_condition_brush67.KeyValueFromString("maxs", "3328 3328 704")
 
 	local logic_timer178 = SpawnEntityFromTable("logic_timer", {
@@ -3361,7 +3296,6 @@
 	})
 
 	local trigger_multiple_brush68 = SpawnEntityFromTable("trigger_multiple", {
-	    targetname = "fog_system",
 	    origin = Vector(1847, -4007, 71),
 	    mins = "-9999 -9999 -9999",
 	    maxs = "9999 9999 9999",
@@ -3370,14 +3304,13 @@
 	    "OnStartTouch#1": "!activator,SetFogController,mist,0.01,-1"
 	})
 	trigger_multiple_brush68.KeyValueFromInt("solid", 2)
-	trigger_multiple_brush68.KeyValueFromString("mins", "0, 0, 0")
+	trigger_multiple_brush68.KeyValueFromString("mins", "-9999 -9999 -9999")
 	trigger_multiple_brush68.KeyValueFromString("maxs", "9999 9999 9999")
 
 }
 ::p_navblocker <- function()
 {
 	local func_nav_blocker_brush69 = SpawnEntityFromTable("func_nav_blocker", {
-	    targetname = "nav_blocker",
 	    start_disabled = 0,
 	    mins = "-224 -222 -650",
 	    maxs = "224 222 650",
@@ -3385,7 +3318,7 @@
 	    team = -2.0
 	})
 	func_nav_blocker_brush69.KeyValueFromInt("solid", 2)
-	func_nav_blocker_brush69.KeyValueFromString("mins", "0, 0, 0")
+	func_nav_blocker_brush69.KeyValueFromString("mins", "-224 -222 -650")
 	func_nav_blocker_brush69.KeyValueFromString("maxs", "224 222 650")
 
 	local logic_relay186 = SpawnEntityFromTable("logic_relay", {
@@ -3406,7 +3339,7 @@
 	    StartDisabled = 0
 	})
 	func_brush_brush70.KeyValueFromInt("solid", 2)
-	func_brush_brush70.KeyValueFromString("mins", "0, 0, 0")
+	func_brush_brush70.KeyValueFromString("mins", "-224 -50 -650")
 	func_brush_brush70.KeyValueFromString("maxs", "224 50 650")
 
 }
@@ -3549,7 +3482,6 @@
 ::p_spawns <- function()
 {
 	local func_forcefield_brush71 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(-160, 2700, 736),
 	    mins = "-224 -20 -464",
 	    maxs = "224 20 464",
 	    TeamNum = 3,
@@ -3557,11 +3489,10 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush71.KeyValueFromInt("solid", 2)
-	func_forcefield_brush71.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush71.KeyValueFromString("mins", "-224 -20 -464")
 	func_forcefield_brush71.KeyValueFromString("maxs", "224 20 464")
 
 	local func_forcefield_brush72 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(1148, 2844, 672),
 	    mins = "-4 -156 -448",
 	    maxs = "4 156 448",
 	    TeamNum = 3,
@@ -3569,11 +3500,10 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush72.KeyValueFromInt("solid", 2)
-	func_forcefield_brush72.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush72.KeyValueFromString("mins", "-4 -156 -448")
 	func_forcefield_brush72.KeyValueFromString("maxs", "4 156 448")
 
 	local func_forcefield_brush73 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(1072, 3004, 672),
 	    mins = "-80 -4 -448",
 	    maxs = "80 4 448",
 	    TeamNum = 3,
@@ -3581,11 +3511,10 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush73.KeyValueFromInt("solid", 2)
-	func_forcefield_brush73.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush73.KeyValueFromString("mins", "-80 -4 -448")
 	func_forcefield_brush73.KeyValueFromString("maxs", "80 4 448")
 
 	local func_forcefield_brush74 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(-1136, -448, 672),
 	    mins = "-16 -320 -704",
 	    maxs = "16 320 704",
 	    TeamNum = 3,
@@ -3593,11 +3522,10 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush74.KeyValueFromInt("solid", 2)
-	func_forcefield_brush74.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush74.KeyValueFromString("mins", "-16 -320 -704")
 	func_forcefield_brush74.KeyValueFromString("maxs", "16 320 704")
 
 	local func_forcefield_brush75 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(-1200, 576, 576),
 	    mins = "-16 -192 -704",
 	    maxs = "16 192 704",
 	    TeamNum = 3,
@@ -3605,11 +3533,10 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush75.KeyValueFromInt("solid", 2)
-	func_forcefield_brush75.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush75.KeyValueFromString("mins", "-16 -192 -704")
 	func_forcefield_brush75.KeyValueFromString("maxs", "16 192 704")
 
 	local func_forcefield_brush76 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(1085, 492, 576),
 	    mins = "-56 -113 -704",
 	    maxs = "56 113 704",
 	    TeamNum = 3,
@@ -3617,11 +3544,10 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush76.KeyValueFromInt("solid", 2)
-	func_forcefield_brush76.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush76.KeyValueFromString("mins", "-56 -113 -704")
 	func_forcefield_brush76.KeyValueFromString("maxs", "56 113 704")
 
 	local func_forcefield_brush77 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(1109, 386, 576),
 	    mins = "-56 -84 -704",
 	    maxs = "56 84 704",
 	    TeamNum = 3,
@@ -3629,11 +3555,10 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush77.KeyValueFromInt("solid", 2)
-	func_forcefield_brush77.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush77.KeyValueFromString("mins", "-56 -84 -704")
 	func_forcefield_brush77.KeyValueFromString("maxs", "56 84 704")
 
 	local func_forcefield_brush78 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(1148, 216, 576),
 	    mins = "-56 -86 -704",
 	    maxs = "56 86 704",
 	    TeamNum = 3,
@@ -3641,11 +3566,10 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush78.KeyValueFromInt("solid", 2)
-	func_forcefield_brush78.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush78.KeyValueFromString("mins", "-56 -86 -704")
 	func_forcefield_brush78.KeyValueFromString("maxs", "56 86 704")
 
 	local func_forcefield_brush79 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(-1307, 1992, 650),
 	    mins = "-47 -222 -632",
 	    maxs = "47 222 632",
 	    TeamNum = 3,
@@ -3653,11 +3577,10 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush79.KeyValueFromInt("solid", 2)
-	func_forcefield_brush79.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush79.KeyValueFromString("mins", "-47 -222 -632")
 	func_forcefield_brush79.KeyValueFromString("maxs", "47 222 632")
 
 	local func_forcefield_brush80 = SpawnEntityFromTable("func_forcefield", {
-	    origin = Vector(-1260, 2121, 650),
 	    mins = "-75 -46 -632",
 	    maxs = "75 46 632",
 	    TeamNum = 3,
@@ -3665,7 +3588,7 @@
 	    StartDisabled = 0
 	})
 	func_forcefield_brush80.KeyValueFromInt("solid", 2)
-	func_forcefield_brush80.KeyValueFromString("mins", "0, 0, 0")
+	func_forcefield_brush80.KeyValueFromString("mins", "-75 -46 -632")
 	func_forcefield_brush80.KeyValueFromString("maxs", "75 46 632")
 
 }
@@ -3868,7 +3791,6 @@
 	})
 
 	local trigger_hurt_brush81 = SpawnEntityFromTable("trigger_hurt", {
-	    targetname = "ded",
 	    origin = Vector(0, 0, 0),
 	    angles = QAngle(-45, -90, 0),
 	    mins = "-8000 -8000 -1000",
@@ -3882,7 +3804,7 @@
 	    spawnflags = 64
 	})
 	trigger_hurt_brush81.KeyValueFromInt("solid", 2)
-	trigger_hurt_brush81.KeyValueFromString("mins", "0, 0, 0")
+	trigger_hurt_brush81.KeyValueFromString("mins", "-8000 -8000 -1000")
 	trigger_hurt_brush81.KeyValueFromString("maxs", "8000 8000 1000")
 
 	local ambient_generic217 = SpawnEntityFromTable("ambient_generic", {

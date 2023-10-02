@@ -153,7 +153,7 @@ def process_line(line):
 	line = line.split('//', 1)[0]
 	line = f'{line}\n'
     # Remove inline comments
-	if '//' in line:
+	if '//' in line and not '$displaytext' in line.lower():
 		line = remove_inline_comments(line)
     
 	return line
@@ -240,6 +240,8 @@ def convert_raf_keyvalues(value):
 		splitval = value.split(':')
 	else:
 		splitval = value.split(',')
+	
+	print(splitval)
 
 	# convert global $PlaySoundToSelf inputs to tf_gamerules PlayVORed
 	if 'player' in splitval[0].lower() and '$playsoundtoself' in splitval[1].lower():
@@ -270,7 +272,7 @@ def convert_raf_keyvalues(value):
 	#convert $DisplayText to ClientPrint
 	elif '$displaytextchat' in splitval[1].lower() or '$displaytextcenter' in splitval[1].lower():
 		print(COLOR['HEADER'], f'converted {splitval[1]} to ClientPrint', COLOR['ENDC'])
-
+		print(splitval)
 		if splitval[2].startswith('{') and '$displaytextchat' in splitval[1]:
 			splitcolor = splitval[2].split("{")
 			removebracket = splitcolor[1].split('}')
@@ -281,7 +283,6 @@ def convert_raf_keyvalues(value):
 		else:
 			splitval[1] = 'RunScriptCode'
 			splitval[2] = f'ClientPrint(self, 4, `{splitval[2]}`)'
-		# print(color)
 		# input('')
 
 	#convert $SetKey to AddOutput (probably won't work everywhere)
@@ -378,10 +379,19 @@ oldname = ''
 #format rafmod to spawnentityfromtable
 def format_entities(lines, entity_name):
 	brushent = False
+	minmaxfound = False
+	minmaxindex = 0
 	global j, b, g
 	for line in lines:
+
+		if lumpfile:
+			for h in lines:
+				if 'hammerid' in h:
+					h = h.split('"')[3].strip()
+					break
 		try:
 			if line.count('"') == 4:
+				minmaxindex = 1
 				parts = line.split('"')
 				key, value = parts[1::2]
 				if lumpfile:
@@ -389,6 +399,7 @@ def format_entities(lines, entity_name):
 						entity_name = value
 
 			else:
+				minmaxindex = 0
 				parts = line.split(maxsplit=1)
 				if len(parts) > 0 and not any(lines[2].startswith(prefix) for prefix in entprefixes):
 					key, value = parts[0], parts[1]
@@ -413,19 +424,35 @@ def format_entities(lines, entity_name):
 				brushname = f'{entity_name}_brush'
 				if 'mins' in key: 
 					brushent = True
-					brushsizemin = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
+					if lumpfile:
+						brushsizemin = f'{entity_name}{h}.KeyValueFromString("{key}", "{value.strip('"')}")'
+					else:
+						brushsizemin = f'{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
 				elif 'maxs' in key:
 					brushent = True
-					brushsizemax = f'\t{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
+					if lumpfile:
+						brushsizemax = f'{entity_name}{h}.KeyValueFromString("{key}", "{value.strip('"')}")'
+					else:
+						brushsizemax = f'{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
 				
 				#Brush ents with no mins/maxs can fuck things up.  
 				#Some entities probably aren't covered in this.
 				#If templates suddenly stop being written, this is why.
-				elif (entity_name.startswith('trigger_') or entity_name.startswith('func_') or 'volume' in entity_name or 'brush' in entity_name or 'zone' in entity_name or entity_name.strip() == 'env_bubbles' or entity_name.strip() == 'env_embers' or entity_name.strip() == 'dispenser_touch_trigger' or entity_name.strip() == 'momentary_rot_button') and not ('mins' in key or 'maxs' in key):
+				elif (entity_name.startswith('trigger_') or entity_name.startswith('func_') or 'volume' in entity_name or 'brush' in entity_name or 'zone' in entity_name or entity_name.strip() == 'env_bubbles' or entity_name.strip() == 'env_embers' or entity_name.strip() == 'dispenser_touch_trigger' or entity_name.strip() == 'momentary_rot_button'):
 					if not brushent:
 						brushent = True
-						lines.append('"mins" "0 0 0"')
-						lines.append('"maxs" "1 1 1"')
+						for line in lines:
+							splitline = line.split('"')[minmaxindex].strip()
+							if splitline == 'mins' or splitline == 'maxs':
+								minmaxfound = True
+								break
+
+							# if not minmaxfound and (line.split('"')[1].strip() == 'mins' or line.split('"')[1].strip() == 'maxs'):
+							# 	minmaxfound = True
+
+						if not minmaxfound:
+							lines.append('"mins" "-1 -1 -1"')
+							lines.append('"maxs" "1 1 1"')
 					
 				if key.startswith('origin'):
 					splitval = value.split(' ')
@@ -454,18 +481,19 @@ def format_entities(lines, entity_name):
 
 	global funcname, oldname
 	if not brushent:
-		if not lumpfile and funcname != oldname and funcname != '':
+		
+		#lumpfile appends the hammerid to the variable name
+		if lumpfile:
+
+			output_text = f'::{entity_name}{h} <- SpawnEntityFromTable("{entity_name}", {{\n    {",\n    ".join(formatted_properties)}\n}})\n'
+
+		elif not lumpfile and funcname != oldname and funcname != '':
+
 			oldname = funcname
 			spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
 			# don't think setang/setorigin is necessary
 			# output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
 			output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
-		elif lumpfile:
-			for h in formatted_properties:
-				if 'hammerid' in h:
-					h = h.split('=')[1].strip()
-					break
-			output_text = f'::{entity_name}{h} <- SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
 
 		else:
 			# output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
@@ -473,20 +501,23 @@ def format_entities(lines, entity_name):
 
 		g += 1
 	else:
-		if not lumpfile and funcname != oldname and funcname != '':
+		
+		#lumpfile appends the hammerid to the variable name
+		if lumpfile:
+
+			output_text = f'::{entity_name}{h} <- SpawnEntityFromTable("{entity_name}", {{\n    {",\n    ".join(formatted_properties)}\n}})\n{entity_name}{h}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n'
+		
+		elif funcname != oldname and funcname != '':
+
 			oldname = funcname
 			spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
 			# output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(origin != null)\n\t\t{brushname}{b}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{brushname}{b}.SetAngles(angles)\n'
-			output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n'
-		elif lumpfile:
-			for h in formatted_properties:
-				if 'hammerid' in h:
-					h = h.split('=')[1].strip()
-					break
-			output_text = f'::{entity_name}{h} <- SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
+			output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n\t{brushsizemin}\n\t{brushsizemax}\n'
+		
+
 		else:
 			# output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(origin != null)\n\t\t{brushname}{b}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{brushname}{b}.SetAngles(angles)\n'
-			output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n'
+			output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n\t{brushsizemin}\n\t{brushsizemax}\n'
 		brushent = False
 		b += 1
 
