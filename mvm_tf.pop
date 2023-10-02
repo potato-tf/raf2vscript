@@ -307,9 +307,9 @@
 			logic_relay
 			{
 				"targetname" "recovered_armor_plates"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///ARMOR PLATING RECOVERED///,0,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///NOW PLAYING: SUPERCHARGED BY SNUPERBOB///,5,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///ACTIVATING REMAING SCRAPPED BOTS///,15,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///ARMOR PLATING RECOVERED///,0,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///NOW PLAYING: SUPERCHARGED BY SNUPERBOB///,5,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///ACTIVATING REMAING SCRAPPED BOTS///,15,-1"
 				"OnTrigger" "letsgow6,Fade,,0,-1"
 				"OnTrigger" "player,$PlaySoundToSelf,items\powerup_pickup_crits.wav,0,-1"
 				"OnTrigger" "player,$PlaySoundToSelf,misc\doomsday_missile_explosion.wav,15,-1"
@@ -420,14 +420,14 @@
                	"OnTrigger" "@p@boss_thingy,$RemovePlayerAttribute,no_attack,10,-1" // Can attack
                 "OnTrigger" "@p@boss_thingy,$RemovePlayerAttribute,no_jump,10,-1" // Can jump
                 "OnTrigger" "@p@boss_thingy,$RemovePlayerAttribute,no_duck,10,-1" // Can duck
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///THE FALLEN CHIEFS HAVE AWOKEN///,9,-1"
 				"OnTrigger" "abrawlissurelybrewing,StartShake,,9.2,-1"
 				"OnTrigger" "diethesecond,Start,,9.2,-1"
 				"OnTrigger" "player,$PlaySoundToSelf,misc\doomsday_missile_explosion.wav,9.2,-1"
@@ -545,15 +545,15 @@
 				"OnTrigger" "stunbots,disable,,30,-1"
 				"OnTrigger" "cleanupbots,Enable,,12,-1"
 				"OnTrigger" "cleanupbots,disable,,30,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///SUPERSTORM INCOMING///,,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///MOVE ALL ELECTRONICS INTO THE BASE///,3,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///CHANCE OF LIGHTNING. 99999%///,6,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///LIGHTNING AFFECTING IMPORTANT MACHINERY///,12,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///INTERNAL CIRCUITS DAMAGED...?///,14,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///PATROL SYSTEM MAIN LINK ESTABLISHING CONNECTION WITH SERVERS///,16,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///ESTABLISHING CONNECTION WITH THE CARRIER TANK... PLEASE WAIT///,18,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///PATROL BOTS SQUAD LEADER: MAJOR SHOCKS ONLINE///,24,-1"
-				// "OnTrigger" "player,$DisplayTextChat,{yellow}///SECURITY SYSTEM ACTIVATED. PATROL BOTS ONLINE.///,30,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///SUPERSTORM INCOMING///,,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///MOVE ALL ELECTRONICS INTO THE BASE///,3,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///CHANCE OF LIGHTNING. 99999%///,6,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///LIGHTNING AFFECTING IMPORTANT MACHINERY///,12,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///INTERNAL CIRCUITS DAMAGED...?///,14,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///PATROL SYSTEM MAIN LINK ESTABLISHING CONNECTION WITH SERVERS///,16,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///ESTABLISHING CONNECTION WITH THE CARRIER TANK... PLEASE WAIT///,18,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///PATROL BOTS SQUAD LEADER: MAJOR SHOCKS ONLINE///,24,-1"
+				"OnTrigger" "player,$DisplayTextChat,{yellow}///SECURITY SYSTEM ACTIVATED. PATROL BOTS ONLINE.///,30,-1"
 				"OnTrigger" "player,$PlaySoundToSelf,misc\hologram_start.wav,12,-1"
 				"OnTrigger" "player,$PlaySoundToSelf,ambient\halloween\thunder_08.wav,16,-1"
 				"OnTrigger" "player,$PlaySoundToSelf,misc\ks_tier_04_death.wav,28,-1"
@@ -844,154 +844,6 @@
 				"holdtime" "4.8"
 			}
 		}
-		CarrierLaunch_cloak
-			{
-				NoFixup 1
-				func_tracktrain
-				{
-					"targetname" "prop_move_cloak"
-					"target" "prop_path_b_1"
-					"origin" "674.245178 8250.830078 3857.45703"
-					"velocitytype" "2"
-					"startspeed" "2366"
-					"speed" "0"
-				}
-				prop_dynamic
-				{
-					"targetname" "prop_model_cloak"
-					"DisableBoneFollowers" "1"
-					"model" "models/props_combine/headcrabcannister01a.mdl"
-					"modelscale"	"1.5"
-					"origin" "674.245178 8250.830078 3857.45703"
-					"angles" "-6 0 0"
-					"StartDisabled" "1"
-					"parentname" "prop_move_cloak"
-				}
-				prop_dynamic
-				{
-					"targetname" "warning_cloak"
-					"DisableBoneFollowers" "1"
-					"skin" "1"
-					"model" "models\props_mvm\robot_spawnpoint.mdl"
-					"modelscale"	"4.5"
-					"DefaultAnim" "idle"
-					"disableshadows" "1"
-					"origin" "-1616.641357 7038.530273 752.031311"
-					"angles" "0 0 0"
-					"StartDisabled" "1"
-				}
-				env_shake
-				{
-					"spawnflags" "1" 
-					"amplitude" "16"
-					"duration" "3"
-					"frequency" "9"
-					"targetname" "missile_shake_cloak"
-					"parentname" "prop_move_cloak"
-				}
-				info_particle_system
-				{
-					"targetname" "missileparticle_cloak"
-					"parentname" "prop_move_cloak"
-					"origin" "674.245178 8250.830078 3857.45703"
-					"angles" "-90 0 0"
-					"effect_name" "mvm_tank_destroy"
-				}
-				info_particle_system
-				{
-					"targetname" "missileparticle2_cloak"
-					"parentname" "prop_move_cloak"
-					"origin" "674.245178 8250.830078 3857.45703"
-					"angles" "0 0 0"
-					"effect_name" "rockettrail_burst_doomsday"
-				}
-				info_particle_system
-				{
-					"targetname" "missileparticle3_cloak"
-					"parentname" "prop_move_cloak"
-					"origin" "674.245178 8250.830078 3857.45703"
-					"angles" "0 0 0"
-					"effect_name" "rockettrail_vents_doomsday"
-				}
-				ambient_generic
-				{
-					"targetname" "launch_cloak"
-					"message" "npc/env_headcrabcanister/launch.wav"
-					"health" "10"
-					"pitch" "100"
-					"spawnflags" "17"
-				}
-				ambient_generic
-				{
-					"targetname" "launch1_cloak"
-					"message" "misc/doomsday_missile_explosion.wav"
-					"health" "10"
-					"pitch" "100"
-					"spawnflags" "17"
-				}
-				ambient_generic
-				{
-					"targetname" "launch2_cloak"
-					"message" "npc/attack_helicopter/aheli_megabomb_siren1.wav"
-					"health" "10"
-					"pitch" "100"
-					"spawnflags" "17"
-				}
-				trigger_hurt
-				{
-					"targetname" "oops_you_died_cloak"
-					"origin" "-1616.641357 7038.530273 852.031311"
-					"angles" "0 0 0"
-					"mins" "-300 -300 -8000"
-					"maxs" "300 300 8000"
-					"damagetype" "64"
-					"damage" "2000"
-					"StartDisabled" "1"
-					"spawnflags" "64"
-					"filtername" "filter_redteam"
-				}
-				env_fade
-				{
-					"targetname" "kaboom1_cloak"
-					"duration" "0.35"
-					"holdtime" "0.1"
-					"rendercolor" "255 255 255"
-					"spawnflags" "1"
-				}
-				logic_relay
-				{	
-					"targetname" "prop_move_relay_cloak"
-					"OnTrigger" "prop_move_cloak,SetSpeed,3000,6,-1"
-					"OnTrigger" "prop_move_cloak,Stop,,7.869,-1"
-					"OnTrigger" "prop_move_cloak,Toggle,,6,-1"
-					"OnTrigger" "prop_move_cloak,Toggle,,7.85,-1"
-					"OnTrigger" "warning_cloak,Enable,,0,-1"
-					"OnTrigger"	"launch1_cloak,PlaySound,,7.85,-1"
-					"OnTrigger"	"launch1_cloak,StopSound,,7.85,-1"
-					"OnTrigger" "prop_model_cloak,Disable,,7.85,-1"
-					"OnTrigger" "prop_model_cloak,Enable,,6,-1"
-					"OnTrigger" "warning_cloak,Disable,,7.85,-1"
-					"OnTrigger"	"missile_shake_cloak,StartShake,,7.85,-1"
-					"OnTrigger"	"missileparticle_cloak,Start,,7.85,-1"
-					"OnTrigger"	"missileparticle2_cloak,Start,,6,-1"
-					"OnTrigger"	"missileparticle3_cloak,Start,,6,-1"
-					"OnTrigger"	"missileparticle2_cloak,Stop,,7.85,-1"
-					"OnTrigger"	"missileparticle3_cloak,Stop,,7.85,-1"
-					"OnTrigger"	"launch_cloak,PlaySound,,6,-1"
-					"OnTrigger"	"launch_cloak,StopSound,,7.5,-1"
-					"OnTrigger"	"launch2_cloak,PlaySound,,0,-1"
-					"OnTrigger"	"launch2_cloak,PlaySound,,1,-1"
-					"OnTrigger"	"launch2_cloak,PlaySound,,2,-1"
-					"OnTrigger"	"launch2_cloak,PlaySound,,3,-1"
-					"OnTrigger"	"launch2_cloak,PlaySound,,4,-1"
-					"OnTrigger"	"launch2_cloak,PlaySound,,5,-1"
-					"OnTrigger"	"launch2_cloak,PlaySound,,6,-1"
-					//"OnTrigger"	"kaboom1,Fade,,7.848,-1"
-					"OnTrigger"	"oops_you_died_cloak,Enable,,7.84,-1"
-					"OnTrigger"	"oops_you_died_cloak,Disable,,7.85,-1"
-					"OnTrigger"	"CarrierLaunch_cloak,kill,,12,-1"
-				}
-			}
 		MissionName
 		{
 			logic_relay

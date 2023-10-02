@@ -1,6 +1,5 @@
 import os
 import time
-import re
 
 os.system('')  # enables ansi escape characters in terminal
 
@@ -12,6 +11,16 @@ COLOR = {
     'GREEN': '\033[92m',
     'RED': '\033[91m',
     "ENDC": '\033[0m',
+}
+
+newcolors = {
+	'blue': '99ccff',
+	'red': 'ff3f3f',
+	'green': '99ff99',
+	'darkgreen': '40ff40',
+	'yellow': 'ffb200',
+	'grey': 'cccccc',
+	'newline': '\\n'
 }
 
 lumpchars = ['','ø','','','ß','','�']
@@ -33,9 +42,7 @@ filename = input('').strip()
 properties = {}
 
 formatted_properties, entity_list, name_list, extralines, log, func_list = [], [], [], [], [], []
-giveitem = False
-lumpfile = False
-vmffile = False
+giveitem, switchslot, changeattribs, lumpfile, vmffile =  False, False, False, False, False
 funcname = ''
 
 #TODO: Implement some actual list of entity names instead of doing this
@@ -114,7 +121,10 @@ convertedkeys = [
 	'$teleporttoentity',
 	'$setkey',
 	'$giveitem',
-	'$awardandgiveextraitem'
+	'$awardandgiveextraitem',
+	'$weaponswitchslot',
+	'$changeattributes',
+	'$setowner'
 ]
 # Define a regular expression pattern to match key-value pairs
 # nvm regex scares me
@@ -149,12 +159,12 @@ def read_file(filename):
 		input('Press enter to close')
 
 def process_line(line):
-    # Remove line comments
-	line = line.split('//', 1)[0]
-	line = f'{line}\n'
-    # Remove inline comments
-	if '//' in line and not '$displaytext' in line.lower():
-		line = remove_inline_comments(line)
+	if not '$displaytext' in line.lower():
+		line = line.split('//', 1)[0]
+		line = f'{line}\n'
+   		# Remove inline comments
+		if '//' in line:
+			line = remove_inline_comments(line)
     
 	return line
 
@@ -177,6 +187,7 @@ def remove_inline_comments(line):
 
 
 input_text = read_file(filename)
+# print(input_text)
 input_text = input_text.strip()
 
 #split each block
@@ -235,13 +246,11 @@ def convert_proptype(prop, propval, arrayval):
 
 def convert_raf_keyvalues(value):
 	# print(value.split(','))
-	global giveitem
+	global giveitem, switchslot, changeattribs
 	if 'addoutput' in value.lower():
 		splitval = value.split(':')
 	else:
 		splitval = value.split(',')
-	
-	print(splitval)
 
 	# convert global $PlaySoundToSelf inputs to tf_gamerules PlayVORed
 	if 'player' in splitval[0].lower() and '$playsoundtoself' in splitval[1].lower():
@@ -272,10 +281,10 @@ def convert_raf_keyvalues(value):
 	#convert $DisplayText to ClientPrint
 	elif '$displaytextchat' in splitval[1].lower() or '$displaytextcenter' in splitval[1].lower():
 		print(COLOR['HEADER'], f'converted {splitval[1]} to ClientPrint', COLOR['ENDC'])
-		print(splitval)
-		if splitval[2].startswith('{') and '$displaytextchat' in splitval[1]:
-			splitcolor = splitval[2].split("{")
+		if splitval[2].startswith('{') and '$displaytextchat' in splitval[1].lower():
+			splitcolor = splitval[2].split('{')
 			removebracket = splitcolor[1].split('}')
+			removebracket[0] = newcolors[removebracket[0]]
 			color = r'\x07' + ''.join(removebracket)
 			splitval[1] = 'RunScriptCode'
 			splitval[2] = f'ClientPrint(self, 3, `{color}`)'
@@ -334,9 +343,11 @@ def convert_raf_keyvalues(value):
 		print(COLOR['CYAN'],'Find them here:',COLOR['ENDC'],COLOR['GREEN'],'https://wiki.alliedmods.net/Team_fortress_2_item_definition_indexes',COLOR['ENDC'])
 		print(COLOR['CYAN'],'Enter null for wearable model if you are not creating a tf_wearable weapon',COLOR['ENDC'])
 		print(COLOR['HEADER'], 'Enter ? for an example input',COLOR['ENDC'])
-		# formatval = input('Format: Classname ? Index ? Wearable Model: ')
+		
 		# debug testing
-		formatval = 'a ? a ? null'
+		# formatval = 'a ? a ? null'
+		formatval = input('Format: Classname ? Index ? Wearable Model: ')
+
 		if formatval == '?':
 			print(COLOR['CYAN'],'Example input (the bat outta hell for demo):',COLOR['ENDC'],COLOR['GREEN'], 'tf_weapon_bottle ? 939 ? null', COLOR['ENDC'])
 			print(COLOR['CYAN'],'Example tf_wearable input (cozy camper):',COLOR['ENDC'],COLOR['GREEN'], 'tf_wearable ? 642 ? models/workshop/player/items/sniper/xms_sniper_commandobackpack/xms_sniper_commandobackpack.mdl', COLOR['ENDC'])
@@ -362,6 +373,23 @@ def convert_raf_keyvalues(value):
 		else:
 			splitval[1] = 'RunScriptCode'
 			splitval[2] = f'self.RemoveCurrency({splitval[2]})'
+	
+	elif '$weaponswitchslot' in splitval[1].lower():
+		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
+		switchslot = True
+		splitval[1] = 'RunScriptCode'
+		splitval[2] = f'WeaponSwitchSlot({splitval[2]}, self)'
+	
+	elif '$changeattributes' in splitval[1].lower():
+		print(COLOR['HEADER'], f'converted {splitval[1]} to ChangeBotAttributes.  This will cause issues with multiple events under the same name!', COLOR['ENDC'])
+		changeattribs = True
+		splitval[0] = 'point_populator_interface'
+		splitval[1] = 'ChangeBotAttributes'
+	
+	elif '$setowner' in splitval[1].lower():
+		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
+		splitval[1] = 'RunScriptCode'
+		splitval[2] = f'self.SetOwner({splitval[2]})'
 
 	# print(splitval)
 	# input('')
@@ -374,14 +402,14 @@ def convert_raf_keyvalues(value):
 		value = ''.join(splitval)
 		return value	
 
-j, b, g = 1, 1, 1
+j, b, g, t = 1, 1, 1, 1
 oldname = ''
 #format rafmod to spawnentityfromtable
 def format_entities(lines, entity_name):
 	brushent = False
 	minmaxfound = False
 	minmaxindex = 0
-	global j, b, g
+	global j, b, g, t
 	for line in lines:
 
 		if lumpfile:
@@ -397,7 +425,6 @@ def format_entities(lines, entity_name):
 				if lumpfile:
 					if 'classname' in key:
 						entity_name = value
-
 			else:
 				minmaxindex = 0
 				parts = line.split(maxsplit=1)
@@ -490,7 +517,11 @@ def format_entities(lines, entity_name):
 		elif not lumpfile and funcname != oldname and funcname != '':
 
 			oldname = funcname
-			spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
+			if t == 1:
+				spawnfunc = f'\n::{funcname} <- function()\n{{\n'
+			else:
+				spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
+			func_list.append(f'{funcname}()')
 			# don't think setang/setorigin is necessary
 			# output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
 			output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
@@ -500,6 +531,7 @@ def format_entities(lines, entity_name):
 			output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
 
 		g += 1
+		t += 1
 	else:
 		
 		#lumpfile appends the hammerid to the variable name
@@ -520,6 +552,7 @@ def format_entities(lines, entity_name):
 			output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n\t{brushsizemin}\n\t{brushsizemax}\n'
 		brushent = False
 		b += 1
+		t += 1
 
 	if lumpfile and ('function()' in output_text or "hammerid = 0" in output_text):
 		output_text = ''
@@ -531,11 +564,6 @@ def format_entities(lines, entity_name):
 	# input('')
 	name_list.append(entity_name)
 	formatted_properties.clear()
-
-def convert_spawntemplates(lines):
-	for line in lines:
-		if "SpawnTemplate" in line:
-			func_list.append(f'{line.split()[1].strip('"')}()')
 		
 #convert OnSpawnOutput/OnParentKilledOutput to relays
 def convert_entities():
@@ -555,31 +583,39 @@ def convert_entities():
 
 			#goofy ass
 			else:
+				lower = [line.lower() for line in lines if line.lower()]
 
 				if lines[0] == '}':
 					lines = lines[1:]
 
-				if lines[0].lower().startswith('pointtemplates'):
-					# print(lines)
+				if lower[0].startswith('pointtemplates'):
 					lines = lines[2:]
 
 				if lines[0].startswith('{'):
 					lines = lines[1:]
 
-				if not any(lines[0].startswith(prefix) for prefix in entprefixes) and not lines[0].lower() == 'onspawnoutput' and not lines[0].lower() == 'onparentkilledoutput':
+				if not any(lines[0].startswith(prefix) for prefix in entprefixes) and not lower[0] == 'onspawnoutput' and not lower[0] == 'onparentkilledoutput' and not lower[0] == 'keepalive 1' and not lower[0] == 'nofixup 1':
 					global funcname
 					funcname = lines[0]
-					# print(lines)
 					
-				if 'nofixup' in lines[1].lower() or any(lines[2].startswith(prefix) for prefix in entprefixes):
+				if any(lines[2].startswith(prefix) for prefix in entprefixes):
 					lines = lines[2:]
+				for i, v in enumerate(lower):
+					
+					if 'keepalive' in v:
+						# print(lines)
+						templine = lines[i + 1:]
+						if templine[0] == '{':
+							templine = lines[i:]
+						lines = templine
+						
+					if 'nofixup' in v:
+						templine = lines[i + 1:]
+						if templine[0] == '{':
+							templine = lines[i:]
+						lines = templine
 
-				if 'nofixup' in lines[2].lower():
-					# print(lines)
-					lines = lines[3:]
-
-				if 'keepalive' in lines[2].lower():
-					lines = lines[3:]
+				# print(lines)
 
 				# Get the entity name
 				# do not remove the space
@@ -590,7 +626,6 @@ def convert_entities():
 				
 				# convert OnSpawnOutput to logic_relay
 
-				# print(lines)
 				if lines[2].startswith('OnSpawnOutput') or lines[2].startswith('OnParentKilledOutput'):
 					lines = lines[2:]
 
@@ -614,31 +649,22 @@ def convert_entities():
 						relayline = ['logic_relay','{','','"spawnflags" "1"',f'"targetname" "PARENTKILLEDOUTPUT_CONVERSION{p}"']
 						print(COLOR['HEADER'], f'converted OnSpawnOutput to logic_relay named PARENTKILLEDOUTPUT_CONVERSION{p}.', COLOR['ENDC'])
 						p += 1
-					# print(lines)
-					# lines[0] = 'logic_relay'
 					if lines[2].startswith('Target'):
 
 						lines[3] = lines[3].removeprefix('Action ')
 						lines[2] = lines[2].split('Target')
-						# lines[2] = lines[2].replace('Target', 'OnSpawn')
-						# lines[2] = 'OnSpawn'.join(lines[2])
-						# print(lines)
 					
 					if len(lines) == 4:
 						relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},,0.0,-1"'
-						# print(relayline)
 					
 					if len(lines) == 5:
 						if lines[4].startswith('Delay'):
 							lines[4] = lines[4].removeprefix('Delay').strip()
-							# print(lines)
 							relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},,{lines[4]},-1"'
-							# print(relayline)
 
 						elif lines[4].startswith('Param'):
 							lines[4] = lines[4].removeprefix('Param').strip()
 							relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},{lines[4]},0.0,-1"'
-							# print(relayline)
 
 					if len(lines) >= 6:
 						lines[4] = lines[4].removeprefix('Param').strip()
@@ -646,22 +672,15 @@ def convert_entities():
 						if len(lines[2]) > 1:
 							lines[2] = lines[2][1:]
 							relayline[2] = f'"OnTrigger" "{lines[2][0].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
-							# print(relayline[2])
 						else:
 							relayline[2] = f'"OnTrigger" "{lines[2].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
-						# print(relayline)
 
 					lines = relayline
-						# input('')
 
-				# lines = lines[0][0]
-
-				# print(lines)
 				if any(lines[0].startswith(prefix) for prefix in entprefixes):
 					entity_name = lines[0]
 
 				if len(extralines) > 0:
-					# print(f'EXTRALINES: {extralines}')
 					entity_name = extralines[0]
 					format_entities(extralines, entity_name)
 					extralines.clear()
@@ -669,9 +688,6 @@ def convert_entities():
 					format_entities(lines, entity_name)
 				else:
 					format_entities(lines, entity_name)
-				# print(lines)
-				# Remove the entity name line
-			convert_spawntemplates(lines)
 
 	except Exception as IndexError:
 		print(COLOR['CYAN'],f'Writing entities to file...',COLOR['ENDC'])
@@ -679,13 +695,12 @@ def convert_entities():
 		# entity_list.append(f'\n}}\n')
 		name_list.append('END OF FILE')
 		time.sleep(1)
-		# input('')
 	except:
 		print(COLOR['RED'],f'An error has occured. Press enter to continue',COLOR['ENDC'])
 		input('')
 
 def write_ents_to_file():
-	global giveitem
+	global giveitem, switchslot, changeattribs
 	i = 0
 	newfilename = filename
 	if '.pop' in filename:
@@ -695,10 +710,16 @@ def write_ents_to_file():
 	invalidprop = False
 	if giveitem:
 		# func = '::GiveWeapon <- function(player, classname, itemid, model)\n{\n\tif (model != null && (classname == \"tf_wearable\" || classname == \"tf_wearable_demoshield\" || classname == \"tf_wearable_razorback\"))\n\t{\n\t\tlocal wearable = Entities.CreateByClassname(classname);\n\t\tNetProps.SetPropInt(wearable, \"m_nModelIndex\", PrecacheModel(model));\n\t\tNetProps.SetPropBool(wearable, \"m_bValidatedAttachedEntity\", true);\n\t\tNetProps.SetPropBool(wearable, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tNetProps.SetPropEntity(wearable, \"m_hOwnerEntity\", player);\n\t\twearable.SetOwner(player);\n\t\twearable.DispatchSpawn();\n\t\tEntFireByHandle(wearable, \"SetParent\", \"!activator\", 0.0, player, player);\n\t\tNetProps.SetPropInt(wearable, \"m_fEffects\", 129);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != wearable.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", wearable, i);\n\t\t\tbreak;\n\t\t}\n\t\treturn wearable;\n\t} else {\n\t\tlocal weapon = Entities.CreateByClassname(classname);\n\t\tSetPropInt(weapon, \"m_AttributeManager.m_Item.m_iItemDefinitionIndex\", itemid);\n\t\tSetPropBool(weapon, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tSetPropBool(weapon, \"m_bValidatedAttachedEntity\", true);\n\t\tEntities.DispatchSpawn(weapon);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != weapon.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", weapon, i);\n\t\t\tbreak;\n\t\t}\n\t\tplayer.Weapon_Equip(weapon);\n\t}\n\treturn weapon;\n}'
-		func = '::GiveWeapon <- function(player, classname, itemid, model)\n{\n\tif (model != null && (classname == \"tf_wearable\" || classname == \"tf_wearable_demoshield\" || classname == \"tf_wearable_razorback\"))\n\t{\n\t\tlocal wearable = Entities.CreateByClassname(classname);\n\t\tNetProps.SetPropInt(wearable, \"m_nModelIndex\", PrecacheModel(model));\n\t\tNetProps.SetPropBool(wearable, \"m_bValidatedAttachedEntity\", true);\n\t\tNetProps.SetPropBool(wearable, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tNetProps.SetPropEntity(wearable, \"m_hOwnerEntity\", player);\n\t\twearable.SetOwner(player);\n\t\twearable.DispatchSpawn();\n\t\tEntFireByHandle(wearable, \"SetParent\", \"!activator\", 0.0, player, player);\n\t\tNetProps.SetPropInt(wearable, \"m_fEffects\", 129);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != wearable.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", wearable, i);\n\t\t\tbreak;\n\t\t}\n\t\treturn wearable;\n\t} else {\n\t\tlocal weapon = Entities.CreateByClassname(classname);\n\t\tSetPropInt(weapon, \"m_AttributeManager.m_Item.m_iItemDefinitionIndex\", itemid);\n\t\tSetPropBool(weapon, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tSetPropBool(weapon, \"m_bValidatedAttachedEntity\", true);\n\t\tEntities.DispatchSpawn(weapon);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != weapon.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", weapon, i);\n\t\t\tbreak;\n\t\t}\n\t\tplayer.Weapon_Equip(weapon);\n\t}\n\treturn weapon;\n'
-	# this function does not have tf_wearable compatibilitorigin =y
+		givefunc = '::GiveWeapon <- function(player, classname, itemid, model)\n{\n\tif (model != null && (classname == \"tf_wearable\" || classname == \"tf_wearable_demoshield\" || classname == \"tf_wearable_razorback\"))\n\t{\n\t\tlocal wearable = Entities.CreateByClassname(classname);\n\t\tNetProps.SetPropInt(wearable, \"m_nModelIndex\", PrecacheModel(model));\n\t\tNetProps.SetPropBool(wearable, \"m_bValidatedAttachedEntity\", true);\n\t\tNetProps.SetPropBool(wearable, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tNetProps.SetPropEntity(wearable, \"m_hOwnerEntity\", player);\n\t\twearable.SetOwner(player);\n\t\twearable.DispatchSpawn();\n\t\tEntFireByHandle(wearable, \"SetParent\", \"!activator\", 0.0, player, player);\n\t\tNetProps.SetPropInt(wearable, \"m_fEffects\", 129);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != wearable.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", wearable, i);\n\t\t\tbreak;\n\t\t}\n\t\treturn wearable;\n\t} else {\n\t\tlocal weapon = Entities.CreateByClassname(classname);\n\t\tSetPropInt(weapon, \"m_AttributeManager.m_Item.m_iItemDefinitionIndex\", itemid);\n\t\tSetPropBool(weapon, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tSetPropBool(weapon, \"m_bValidatedAttachedEntity\", true);\n\t\tEntities.DispatchSpawn(weapon);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != weapon.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", weapon, i);\n\t\t\tbreak;\n\t\t}\n\t\tplayer.Weapon_Equip(weapon);\n\t}\n\treturn weapon;\n}\n'
+		script.write(givefunc)
+	if switchslot:
+		switchfunc = '::WeaponSwitchSlot <- function(slot, player) {\n\tfor (local i = 0; i < 7; i++) {\n\t\tlocal weapon = GetPropEntityArray(player, "m_hMyWeapons", i);\n\t\tif (weapon.GetSlot() == slot) player.Weapon_Switch(weapon);\n\t\tbreak;\n\t}\n}'
+		script.write(switchfunc)
+	if changeattribs:
+		changefunc = '\n::r2v_events <- {}\n::r2v_events.OnGameEvent_teamplay_round_start <- function(params)\n{\n\tif (Entities.FindByClassname(null, "point_populator_interface") != null) return\n\tSpawnEntityFromTable("point_populator_interface", { targetname = "pop_interface" })\n}\n__CollectGameEventCallbacks(::r2v_events)\n'
+		script.write(changefunc)
+	# this function does not have tf_wearable compatibility
 	# func = '::GiveWeapon <- function(player, classname, itemid)\n{\n\t\t// local clientcommand = Entities.CreateByClassname(\"point_clientcommand\");\n\n\tlocal weapon = Entities.CreateByClassname(classname);\n\n\tSetPropInt(weapon, \"m_AttributeManager.m_Item.m_iItemDefinitionIndex\", itemid);\n\tSetPropBool(weapon, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\tSetPropBool(weapon, \"m_bValidatedAttachedEntity\", true);\n\tEntities.DispatchSpawn(weapon);\n\n\tfor (local i = 0; i < 7; i++)\n\t{\n\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\n\t\tif (heldWeapon == null)\n\t\t\tcontinue;\n\t\tif (heldWeapon.GetSlot() != weapon.GetSlot())\n\t\t\tcontinue;\n\n\t\theldWeapon.Destroy();\n\t\tSetPropEntityArray(player, \"m_hMyWeapons\", weapon, i);\n\t\tbreak;\n\t}\n\tplayer.Weapon_Equip(weapon);\n\n\treturn weapon;\n}'
-		script.write(func)
 	for e in entity_list:
 		print(COLOR['GREEN'],'Writing',COLOR['ENDC'],COLOR['CYAN'],name_list[i],COLOR['ENDC'],COLOR['GREEN'],'to file...',COLOR['ENDC'])
 		script.write(e)
