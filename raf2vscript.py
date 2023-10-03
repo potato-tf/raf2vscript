@@ -387,7 +387,6 @@ def convert_raf_keyvalues(value):
 		splitval[1] = 'ChangeBotAttributes'
 	
 	elif '$setowner' in splitval[1].lower():
-		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
 		splitval[1] = 'RunScriptCode'
 		splitval[2] = f'self.SetOwner({splitval[2]})'
 
@@ -484,10 +483,12 @@ def format_entities(lines, entity_name):
 				if key.startswith('origin'):
 					splitval = value.split(' ')
 					value = f'Vector({splitval[0]}, {splitval[1]}, {splitval[2]})'
+					org = value
 
 				if key.startswith('angles'):
 					splitval = value.split(' ')
 					value = f'QAngle({splitval[0]}, {splitval[1]}, {splitval[2]})'
+					ang = [splitval[0], splitval[1], splitval[2]]
 				
 				if '"' in key:
 					key = key.replace('"','').strip()
@@ -517,18 +518,19 @@ def format_entities(lines, entity_name):
 		elif not lumpfile and funcname != oldname and funcname != '':
 
 			oldname = funcname
+			org, x, y, z = 'Vector(0, 0, 0)', 0, 0, 0
 			if t == 1:
-				spawnfunc = f'\n::{funcname} <- function()\n{{\n'
+				spawnfunc = f'\n::{funcname} <- function({org}, {x}, {y}, {z})\n{{\n'
 			else:
-				spawnfunc = f'}}\n::{funcname} <- function()\n{{\n'
+				spawnfunc = f'}}\n::{funcname} <- function({org}, {x}, {y}, {z})\n{{\n'
 			func_list.append(f'{funcname}()')
 			# don't think setang/setorigin is necessary
-			# output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
-			output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
+			output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
+			# output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
 
 		else:
-			# output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
-			output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
+			output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\n\tif(origin != null)\n\t\t{entity_name}{g}.SetOrigin(origin)\n\tif(angles != null)\n\t\t{entity_name}{g}.SetAngles(angles)\n'
+			# output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
 
 		g += 1
 		t += 1
@@ -600,20 +602,9 @@ def convert_entities():
 					
 				if any(lines[2].startswith(prefix) for prefix in entprefixes):
 					lines = lines[2:]
-				for i, v in enumerate(lower):
 					
-					if 'keepalive' in v:
-						# print(lines)
-						templine = lines[i + 1:]
-						if templine[0] == '{':
-							templine = lines[i:]
-						lines = templine
-						
-					if 'nofixup' in v:
-						templine = lines[i + 1:]
-						if templine[0] == '{':
-							templine = lines[i:]
-						lines = templine
+				remove = ['keepalive', 'nofixup']
+				lines = [l for l in lines if l.split()[0].lower() not in remove]
 
 				# print(lines)
 
@@ -676,6 +667,24 @@ def convert_entities():
 							relayline[2] = f'"OnTrigger" "{lines[2].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
 
 					lines = relayline
+					
+				for i, v in enumerate(lower):
+					
+					if 'keepalive' in v:
+						# print(lines)
+						templine = lines[i + 1:]
+						while not any(templine[0].lower().startswith(prefix) for prefix in entprefixes):
+							templine = lines[i:]
+							i -= 1
+						lines = templine
+						
+					if 'nofixup' in v:
+						templine = lines[i + 1:]
+						while not any(templine[0].lower().startswith(prefix) for prefix in entprefixes):
+							templine = lines[i:]
+							i -= 1
+						lines = templine
+						
 
 				if any(lines[0].startswith(prefix) for prefix in entprefixes):
 					entity_name = lines[0]
