@@ -4242,1425 +4242,1425 @@
             }
         }
 	}	
-	// SpawnTemplate "p_brushbug_fix"  
+	SpawnTemplate "p_brushbug_fix"  
 
-	// SpawnTemplate "reviveredasblu"  
+	SpawnTemplate "reviveredasblu"  
 
-	// SpawnTemplate "p_beginrelay"  
+	SpawnTemplate "p_beginrelay"  
 
-	// SpawnTemplate "p_spawnremover1"  
+	SpawnTemplate "p_spawnremover1"  
 	
-	// SpawnTemplate "p_spawnremover2"  
+	SpawnTemplate "p_spawnremover2"  
 
-	// SpawnTemplate "p_spawnremover3"  
+	SpawnTemplate "p_spawnremover3"  
 
-	// SpawnTemplate "p_shake"  
+	SpawnTemplate "p_shake"  
 
-	// SpawnTemplate "p_shakelong"  
+	SpawnTemplate "p_shakelong"  
 
-	// SpawnTemplate "p_rock_pusher"  
+	SpawnTemplate "p_rock_pusher"  
 
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_voice"
-	// }
+	SpawnTemplate  
+	{
+		Name   "p_voice"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_lastbot"
-	// }
+	SpawnTemplate  
+	{
+		Name   "p_lastbot"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_camera"
-	// }
+	SpawnTemplate  
+	{
+		Name   "p_camera"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_camera2"
-	// }
+	SpawnTemplate  
+	{
+		Name   "p_camera2"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_camera3"
-	// }
+	SpawnTemplate  
+	{
+		Name   "p_camera3"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_camera4"
-	// }
+	SpawnTemplate  
+	{
+		Name   "p_camera4"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_pointmaker"
-	// 	Origin "626 -942 -85"
-	// 	Angles "0 0 0"
-	// }
+	SpawnTemplate  
+	{
+		Name   "p_pointmaker"
+		Origin "626 -942 -85"
+		Angles "0 0 0"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_pointmaker2"
-	// 	Origin "500 -985 -80"
-	// 	Angles "0 25 0"
-	// }
+	SpawnTemplate  
+	{
+		Name   "p_pointmaker2"
+		Origin "500 -985 -80"
+		Angles "0 25 0"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_musicmaker1"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_musicmaker1"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_musicmaker2"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_musicmaker2"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_planemaker"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_planemaker"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_viewblocker_window"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_viewblocker_window"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_signbomb"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_signbomb"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_badsign"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_badsign"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign666"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign666"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign0"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign0"
+	}
 	
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign2"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign2"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign3"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign3"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_chat1"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_chat1"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign1"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign1"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign4"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign4"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign5"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign5"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign6"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign6"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign7"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign7"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign8"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign8"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign9"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign9"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_sign10"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_sign10"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_shopitem1"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_shopitem1"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_shopitem2"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_shopitem2"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_shopitem3"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_shopitem3"
+	}
 
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_shopitem4"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_shopitem4"
+	}
 	
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_shopitem5"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_virofix"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_virofix2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_spawnfix"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"sentry_collision_template"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_pusher"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_pusher2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_mvm_beat"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"r_virobeat"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"r_virobeatoff"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"r_beatson"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"r_beatsoff"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_kaboom"
-	// 	Origin 	"0 1163 70"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_kaboom"
-	// 	Origin 	"0 560 -55"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_kaboom"
-	// 	Origin 	"0 -240 -80"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_kaboom"
-	// 	Origin 	"0 80 -80"
-	// 	Angles "-35 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_kaboom"
-	// 	Origin 	"0 1792 178"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_kaboom"
-	// 	Origin 	"532 2522 267"
-	// 	Angles "0 45 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_kaboom"
-	// 	Origin 	"-835 1705 200"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_kaboom"
-	// 	Origin 	"852 1445 200"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_nuke"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_introcam"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_survrelay1"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_survrelay2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_survrelay3"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_navblocker"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_navblocker2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_survmoveup"
-	// 	Origin 	"0 380 267"
-	// 	//Origin 	"230 1312 267"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_survmoveup2"
-	// 	Origin 	"-647 465 267"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_survmoveup3"
-	// 	Origin "626 -942 -90"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_survshop1"
-	// 	Origin 	"800 1514 267"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_survshop2"
-	// 	Origin 	"870 1514 267"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_survshop3"
-	// 	Origin 	"940 1514 267"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_marketgardener"
-	// 	Origin 	"0 676 10"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_marketgardener2"
-	// 	Origin 	"-5 1113 139"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_marketgardener3"
-	// 	Origin 	"0 1432 267"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_tankgo"
-	// 	Origin 	"706 -700 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_threaten"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_threaten2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_keepertarget"
-	// 	Origin 	"620 1430 267"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_deskblock"
-	// 	Origin 	"0 488 192"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_engiblock"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_cover"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_leap"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_leap_tele"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_screen"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_screenblu"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_spawns"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_fog"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_fogold"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_nohud1"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name	"p_nohud2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_fade1"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_fade2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_fade3"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_fade4"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_fade5"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_shutter_pusher"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_shutter_pusher2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_brokenwall_pusher"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_ledgefix_left"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_ledgefix_right"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_brokenwall_pusher2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_yeet_failsafe"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_yeet"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_yeet2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_yeet3"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_yeet4"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_mapblock"
-	// }
-
-	// //SpawnTemplate  
-	// //{
-	// //	Name   "p_bonus"
-	// //}
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "viro_music"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_hhhteleporter"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_teleporter_brush"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_teleporter_brush_finale"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_finale_facer"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_finale_facerblu"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_teleporter"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_teleporterfinale"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_beer"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_brokenstairs_clip"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barrel"
-	// 	Origin "647 375 189"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barrel"
-	// 	Origin "660 375 189"
-	// 	Angles "0 -180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "r_cade_relay_last"
-	// 	Origin "720 1280 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_shitcade"
-	// 	Origin "0 250 -85"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_shitcade2"
-	// 	Origin "75 250 -85"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_shitcade2"
-	// 	Origin "-75 250 -85"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_shitcade2"
-	// 	Origin "75 240 -85"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_shitcade2"
-	// 	Origin "-75 240 -85"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_box_intro"
-	// 	Origin "9 320 -25"
-	// 	Angles "0 -15 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_crate_intro"
-	// 	Origin "45 380 -65"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_crate_intro"
-	// 	Origin "-30 380 -65"
-	// 	Angles "0 110 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_chair_intro"
-	// 	Origin "0 300 60"
-	// 	Angles "130 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_chair_intro"
-	// 	Origin "-33 320 64"
-	// 	Angles "170 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_chair_intro"
-	// 	Origin "127 332 -65"
-	// 	Angles "-30 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_chair_intro"
-	// 	Origin "-100 332 -65"
-	// 	Angles "-30 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_desk_intro"
-	// 	Origin "9 320 -65"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_table2"
-	// 	Origin "-184 1000 -65"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_crate"
-	// 	Origin "-164 1007 -17"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_crate"
-	// 	Origin "-197 993 -65"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_plank2"
-	// 	Origin "-223 1600 220"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_plank2"
-	// 	Origin "-287 1600 220"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_plank"
-	// 	Origin "-300 1575 205"
-	// 	Angles "45 90 90"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_plank"
-	// 	Origin "-250 1575 205"
-	// 	Angles "45 90 90"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_plank"
-	// 	Origin "-350 1575 205"
-	// 	Angles "45 90 90"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_table"
-	// 	Origin "462 854 -65"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_desk_intro"
-	// 	Origin "19 315 -25"
-	// 	Angles "0 0 90"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_nolevel"
-	// 	Origin "-650 250 -85"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_bookcase"
-	// 	Origin "555 792 -65"
-	// 	Angles "0 -90 0"
-	// }
-
-	// //SpawnTemplate  
-	// //{
-	// //	Name   "p_barricade_nolevel2"
-	// //	Origin "390 2020 382"
-	// //	Angles "0 90 0"
-	// //}
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_nolevel2"
-	// 	Origin "390 2050 285"
-	// 	Angles "90 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_nolevel3"
-	// 	Origin "390 1925 345"
-	// 	Angles "-90 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "r_cade_relay"
-	// 	Origin "720 1280 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "r_cade_relay_lower"
-	// 	Origin "720 1280 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "r_cade_relay_window"
-	// 	Origin "720 1280 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "r_respawn_relay"
-	// 	Origin "720 1280 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_newlife"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_cabinet"
-	// 	Origin "720 1296 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_shopengi"
-	// 	Origin "945 1616 192"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_spook"
-	// 	Origin "578 235 215"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_spook2"
-	// 	Origin "520 220 225"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_spook3"
-	// 	Origin "570 220 195"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_cargodoor"
-	// 	Origin "636 1435 190"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_cargoshop1"
-	// 	Origin "936 1603 198"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_cargoshop2"
-	// 	Origin "936 1603 335"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_cargoshop3"
-	// 	Origin "855 1520 255"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_desk"
-	// 	Origin "0 488 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_rick"
-	// 	Origin "0 -35 788"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_level1"
-	// 	Origin "575 252 277"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_level1"
-	// 	Origin "515 252 277"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_level2"
-	// 	Origin "-698 900 -65"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_plate2"
-	// 	Origin "-715 810 -65"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_level2"
-	// 	Origin "-710 350 -50"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_level2"
-	// 	Origin "700 415 -65"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_plate2"
-	// 	Origin "720 515 -65"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_plate2"
-	// 	Origin "700 515 -85"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_level3a"
-	// 	Origin "-475 1610 240"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_plate3"
-	// 	Origin "-540 1640 185"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_level3a"
-	// 	Origin "500 1610 310"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_plate3"
-	// 	Origin "540 1640 185"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_level3b"
-	// 	Origin "-225 1600 350"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_level3a"
-	// 	Origin "-715 1280 280"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_barricade_plate3"
-	// 	Origin "-735 1150 185"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_box"
-	// 	Origin "-630 550 192"
-	// 	Angles "0 -25 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_fullkit"
-	// 	Origin "697 617 350"
-	// 	Angles "90 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_fullammo"
-	// 	Origin "-697 895 350"
-	// 	Angles "90 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_mediumkit"
-	// 	Origin "-655 1225 30"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_mediumammo"
-	// 	Origin "-84 1258 80"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_mediumammo"
-	// 	Origin "400 1039 176"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammo"
-	// 	Origin "20 498 230"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammo"
-	// 	Origin "-20 498 230"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammo"
-	// 	Origin "0 474 230"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammo"
-	// 	Origin "-671 1436 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammo"
-	// 	Origin "-671 1462 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammo"
-	// 	Origin "-671 1410 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_fullammo"
-	// 	Origin "444 262 93"
-	// 	Angles "90 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammoskin"
-	// 	Origin "1130 2525 212"
-	// 	Angles "-90 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammoskin"
-	// 	Origin "1130 2505 212"
-	// 	Angles "-90 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammoskin"
-	// 	Origin "1130 2545 212"
-	// 	Angles "-90 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallmedkitskin"
-	// 	Origin "1115 2525 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallmedkitskin"
-	// 	Origin "1115 2505 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallmedkitskin"
-	// 	Origin "1115 2545 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_fullkit"
-	// 	Origin "554 793 93"
-	// 	Angles "90 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallmedkit"
-	// 	Origin "20 298 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallmedkit"
-	// 	Origin "-20 298 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallmedkit"
-	// 	Origin "0 325 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallmedkit"
-	// 	Origin "671 971 -65"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallmedkit"
-	// 	Origin "671 945 -65"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallmedkit"
-	// 	Origin "671 919 -65"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammo"
-	// 	Origin "671 893 -65"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammo"
-	// 	Origin "671 867 -65"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_smallammo"
-	// 	Origin "671 841 -65"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_chair"
-	// 	Origin "0 450 192"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_bookcase3"
-	// 	Origin "339 1270 -45"
-	// 	Angles "0 -90 -25"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_bookcase"
-	// 	Origin "447 265 -65"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_bookcase"
-	// 	Origin "-696 895 192"
-	// 	Angles "0 0 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_bookcase"
-	// 	Origin "696 620 192"
-	// 	Angles "0 180 0"
-	// }
-
-	// //SpawnTemplate  
-	// //{
-	// //	Name   "p_beam"
-	// //	Origin "360 1200 162"
-	// //	Angles "0 0 0"
-	// //}
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_stair"
-	// 	Origin "710 250 105"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_monstercage"
-	// 	Origin "-655 1225 -65"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_crate"
-	// 	Origin "-597 1245 -65"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_crate"
-	// 	Origin "-660 1146 -65"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_heli"
-	// 	Origin "1200 3200 500"
-	// 	Angles "36 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_crash"
-	// 	Origin "1200 3500 500"
-	// }	
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_crate"
-	// 	Origin "275 2350 100"
-	// 	Angles "5 90 -5"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_zombie"
-	// 	Origin "562 1600 -140"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_beam"
-	// 	Origin "562 1500 -50"
-	// 	Angles "0 -90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name   "p_beam"
-	// 	Origin "562 1500 -25"
-	// 	Angles "0 90 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower1"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower2"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower3"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower4"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower5"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower6"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower7"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower8"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_slower9"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_leet"
-	// 	Origin "-152 1255 -65"
-	// 	Angles "0 45 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_leet"
-	// 	Origin "345 1662 187"
-	// 	Angles "0 180 0"
-	// }
-
-	// SpawnTemplate  
-	// {
-	// 	Name "p_crate2"
-	// 	Origin "345 1640 150"
-	// 	Angles "0 0 0"
-	// }
+	SpawnTemplate  
+	{
+		Name	"p_shopitem5"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_virofix"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_virofix2"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_spawnfix"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"sentry_collision_template"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_pusher"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_pusher2"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_mvm_beat"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"r_virobeat"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"r_virobeatoff"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"r_beatson"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"r_beatsoff"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_kaboom"
+		Origin 	"0 1163 70"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_kaboom"
+		Origin 	"0 560 -55"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_kaboom"
+		Origin 	"0 -240 -80"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_kaboom"
+		Origin 	"0 80 -80"
+		Angles "-35 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_kaboom"
+		Origin 	"0 1792 178"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_kaboom"
+		Origin 	"532 2522 267"
+		Angles "0 45 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_kaboom"
+		Origin 	"-835 1705 200"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_kaboom"
+		Origin 	"852 1445 200"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_nuke"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_introcam"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_survrelay1"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_survrelay2"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_survrelay3"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_navblocker"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_navblocker2"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_survmoveup"
+		Origin 	"0 380 267"
+		//Origin 	"230 1312 267"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_survmoveup2"
+		Origin 	"-647 465 267"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_survmoveup3"
+		Origin "626 -942 -90"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_survshop1"
+		Origin 	"800 1514 267"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_survshop2"
+		Origin 	"870 1514 267"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_survshop3"
+		Origin 	"940 1514 267"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_marketgardener"
+		Origin 	"0 676 10"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_marketgardener2"
+		Origin 	"-5 1113 139"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_marketgardener3"
+		Origin 	"0 1432 267"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_tankgo"
+		Origin 	"706 -700 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_threaten"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_threaten2"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_keepertarget"
+		Origin 	"620 1430 267"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_deskblock"
+		Origin 	"0 488 192"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_engiblock"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_cover"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_leap"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_leap_tele"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_screen"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_screenblu"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_spawns"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_fog"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_fogold"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_nohud1"
+	}
+
+	SpawnTemplate  
+	{
+		Name	"p_nohud2"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_fade1"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_fade2"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_fade3"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_fade4"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_fade5"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_shutter_pusher"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_shutter_pusher2"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_brokenwall_pusher"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_ledgefix_left"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_ledgefix_right"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_brokenwall_pusher2"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_yeet_failsafe"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_yeet"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_yeet2"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_yeet3"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_yeet4"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_mapblock"
+	}
+
+	//SpawnTemplate  
+	//{
+	//	Name   "p_bonus"
+	//}
+
+	SpawnTemplate  
+	{
+		Name   "viro_music"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_hhhteleporter"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_teleporter_brush"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_teleporter_brush_finale"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_finale_facer"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_finale_facerblu"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_teleporter"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_teleporterfinale"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_beer"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_brokenstairs_clip"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barrel"
+		Origin "647 375 189"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barrel"
+		Origin "660 375 189"
+		Angles "0 -180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "r_cade_relay_last"
+		Origin "720 1280 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_shitcade"
+		Origin "0 250 -85"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_shitcade2"
+		Origin "75 250 -85"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_shitcade2"
+		Origin "-75 250 -85"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_shitcade2"
+		Origin "75 240 -85"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_shitcade2"
+		Origin "-75 240 -85"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_box_intro"
+		Origin "9 320 -25"
+		Angles "0 -15 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_crate_intro"
+		Origin "45 380 -65"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_crate_intro"
+		Origin "-30 380 -65"
+		Angles "0 110 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_chair_intro"
+		Origin "0 300 60"
+		Angles "130 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_chair_intro"
+		Origin "-33 320 64"
+		Angles "170 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_chair_intro"
+		Origin "127 332 -65"
+		Angles "-30 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_chair_intro"
+		Origin "-100 332 -65"
+		Angles "-30 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_desk_intro"
+		Origin "9 320 -65"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_table2"
+		Origin "-184 1000 -65"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_crate"
+		Origin "-164 1007 -17"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_crate"
+		Origin "-197 993 -65"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_plank2"
+		Origin "-223 1600 220"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_plank2"
+		Origin "-287 1600 220"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_plank"
+		Origin "-300 1575 205"
+		Angles "45 90 90"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_plank"
+		Origin "-250 1575 205"
+		Angles "45 90 90"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_plank"
+		Origin "-350 1575 205"
+		Angles "45 90 90"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_table"
+		Origin "462 854 -65"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_desk_intro"
+		Origin "19 315 -25"
+		Angles "0 0 90"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_nolevel"
+		Origin "-650 250 -85"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_bookcase"
+		Origin "555 792 -65"
+		Angles "0 -90 0"
+	}
+
+	//SpawnTemplate  
+	//{
+	//	Name   "p_barricade_nolevel2"
+	//	Origin "390 2020 382"
+	//	Angles "0 90 0"
+	//}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_nolevel2"
+		Origin "390 2050 285"
+		Angles "90 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_nolevel3"
+		Origin "390 1925 345"
+		Angles "-90 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "r_cade_relay"
+		Origin "720 1280 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "r_cade_relay_lower"
+		Origin "720 1280 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "r_cade_relay_window"
+		Origin "720 1280 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "r_respawn_relay"
+		Origin "720 1280 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_newlife"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_cabinet"
+		Origin "720 1296 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_shopengi"
+		Origin "945 1616 192"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_spook"
+		Origin "578 235 215"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_spook2"
+		Origin "520 220 225"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_spook3"
+		Origin "570 220 195"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_cargodoor"
+		Origin "636 1435 190"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_cargoshop1"
+		Origin "936 1603 198"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_cargoshop2"
+		Origin "936 1603 335"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_cargoshop3"
+		Origin "855 1520 255"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_desk"
+		Origin "0 488 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_rick"
+		Origin "0 -35 788"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_level1"
+		Origin "575 252 277"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_level1"
+		Origin "515 252 277"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_level2"
+		Origin "-698 900 -65"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_plate2"
+		Origin "-715 810 -65"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_level2"
+		Origin "-710 350 -50"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_level2"
+		Origin "700 415 -65"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_plate2"
+		Origin "720 515 -65"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_plate2"
+		Origin "700 515 -85"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_level3a"
+		Origin "-475 1610 240"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_plate3"
+		Origin "-540 1640 185"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_level3a"
+		Origin "500 1610 310"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_plate3"
+		Origin "540 1640 185"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_level3b"
+		Origin "-225 1600 350"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_level3a"
+		Origin "-715 1280 280"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_barricade_plate3"
+		Origin "-735 1150 185"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_box"
+		Origin "-630 550 192"
+		Angles "0 -25 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_fullkit"
+		Origin "697 617 350"
+		Angles "90 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_fullammo"
+		Origin "-697 895 350"
+		Angles "90 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_mediumkit"
+		Origin "-655 1225 30"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_mediumammo"
+		Origin "-84 1258 80"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_mediumammo"
+		Origin "400 1039 176"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammo"
+		Origin "20 498 230"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammo"
+		Origin "-20 498 230"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammo"
+		Origin "0 474 230"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammo"
+		Origin "-671 1436 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammo"
+		Origin "-671 1462 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammo"
+		Origin "-671 1410 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_fullammo"
+		Origin "444 262 93"
+		Angles "90 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammoskin"
+		Origin "1130 2525 212"
+		Angles "-90 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammoskin"
+		Origin "1130 2505 212"
+		Angles "-90 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammoskin"
+		Origin "1130 2545 212"
+		Angles "-90 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallmedkitskin"
+		Origin "1115 2525 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallmedkitskin"
+		Origin "1115 2505 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallmedkitskin"
+		Origin "1115 2545 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_fullkit"
+		Origin "554 793 93"
+		Angles "90 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallmedkit"
+		Origin "20 298 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallmedkit"
+		Origin "-20 298 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallmedkit"
+		Origin "0 325 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallmedkit"
+		Origin "671 971 -65"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallmedkit"
+		Origin "671 945 -65"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallmedkit"
+		Origin "671 919 -65"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammo"
+		Origin "671 893 -65"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammo"
+		Origin "671 867 -65"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_smallammo"
+		Origin "671 841 -65"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_chair"
+		Origin "0 450 192"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_bookcase3"
+		Origin "339 1270 -45"
+		Angles "0 -90 -25"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_bookcase"
+		Origin "447 265 -65"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_bookcase"
+		Origin "-696 895 192"
+		Angles "0 0 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_bookcase"
+		Origin "696 620 192"
+		Angles "0 180 0"
+	}
+
+	//SpawnTemplate  
+	//{
+	//	Name   "p_beam"
+	//	Origin "360 1200 162"
+	//	Angles "0 0 0"
+	//}
+
+	SpawnTemplate  
+	{
+		Name   "p_stair"
+		Origin "710 250 105"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_monstercage"
+		Origin "-655 1225 -65"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_crate"
+		Origin "-597 1245 -65"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_crate"
+		Origin "-660 1146 -65"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_heli"
+		Origin "1200 3200 500"
+		Angles "36 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_crash"
+		Origin "1200 3500 500"
+	}	
+
+	SpawnTemplate  
+	{
+		Name   "p_crate"
+		Origin "275 2350 100"
+		Angles "5 90 -5"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_zombie"
+		Origin "562 1600 -140"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_beam"
+		Origin "562 1500 -50"
+		Angles "0 -90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name   "p_beam"
+		Origin "562 1500 -25"
+		Angles "0 90 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower0"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower1"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower2"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower3"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower4"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower5"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower6"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower7"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower8"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_slower9"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_leet"
+		Origin "-152 1255 -65"
+		Angles "0 45 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_leet"
+		Origin "345 1662 187"
+		Angles "0 180 0"
+	}
+
+	SpawnTemplate  
+	{
+		Name "p_crate2"
+		Origin "345 1640 150"
+		Angles "0 0 0"
+	}

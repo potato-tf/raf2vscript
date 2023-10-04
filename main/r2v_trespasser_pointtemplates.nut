@@ -59,38 +59,29 @@
 }
 __CollectGameEventCallbacks(::r2v_events)
 
-::overlay_stuff <- function(Vector(0, 0, 0), 0, 0, 0)
+::overlay_stuff <- function(org, ang)
 {
 	local logic_relay1 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "aliveblu_checker,Trigger,,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION1"
 	})
-
-	if(origin != null)
-		logic_relay1.SetOrigin(origin)
-	if(angles != null)
-		logic_relay1.SetAngles(angles)
+	logic_relay1.SetOrigin(org)
+	logic_relay1.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay2 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "overlay_command_relay,Trigger,,0.21,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION2"
 	})
-
-	if(origin != null)
-		logic_relay2.SetOrigin(origin)
-	if(angles != null)
-		logic_relay2.SetAngles(angles)
+	logic_relay2.SetOrigin(org)
+	logic_relay2.SetAngles(ang[0], ang[1], ang[2])
 
 	local point_clientcommand3 = SpawnEntityFromTable("point_clientcommand", {
 	    targetname = "commandme"
 	})
-
-	if(origin != null)
-		point_clientcommand3.SetOrigin(origin)
-	if(angles != null)
-		point_clientcommand3.SetAngles(angles)
+	point_clientcommand3.SetOrigin(org)
+	point_clientcommand3.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_multiple_brush1 = SpawnEntityFromTable("trigger_multiple", {
 	    spawnflags = 1,
@@ -110,11 +101,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#1": "commandme,Command,r_screenoverlay effects/combine_binocoverlay,0,-1",
 	    StartDisabled = 1
 	})
-
-	if(origin != null)
-		logic_relay4.SetOrigin(origin)
-	if(angles != null)
-		logic_relay4.SetAngles(angles)
+	logic_relay4.SetOrigin(org)
+	logic_relay4.SetAngles(ang[0], ang[1], ang[2])
 
 	local filter_activator_name5 = SpawnEntityFromTable("filter_activator_name", {
 	    targetname = "filter_aliveblu_overlay",
@@ -123,11 +111,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnFail#2": "overlay_command_relay,Disable,,0,-1",
 	    "OnFail#3": "clear_overlay_brush,Enable,,0,-1"
 	})
-
-	if(origin != null)
-		filter_activator_name5.SetOrigin(origin)
-	if(angles != null)
-		filter_activator_name5.SetAngles(angles)
+	filter_activator_name5.SetOrigin(org)
+	filter_activator_name5.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay6 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "aliveblu_checker",
@@ -135,198 +120,153 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#1": "!self,Trigger,,0.1,-1",
 	    "OnTrigger#2": "filter_aliveblu_overlay,TestActivator,!activator,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay6.SetOrigin(origin)
-	if(angles != null)
-		logic_relay6.SetAngles(angles)
+	logic_relay6.SetOrigin(org)
+	logic_relay6.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::ModelandScale_FailSafe_Scout <- function(Vector(0, 0, 0), 0, 0, 0)
+::ModelandScale_FailSafe_Scout <- function(org, ang)
 {
 	local logic_relay7 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/scout.mdl0.1-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION3"
 	})
-
-	if(origin != null)
-		logic_relay7.SetOrigin(origin)
-	if(angles != null)
-		logic_relay7.SetAngles(angles)
+	logic_relay7.SetOrigin(org)
+	logic_relay7.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::ModelandScale_FailSafe_Soldier <- function(Vector(0, 0, 0), 0, 0, 0)
+::ModelandScale_FailSafe_Soldier <- function(org, ang)
 {
 	local logic_relay8 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/soldier.mdl0.1-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION4"
 	})
-
-	if(origin != null)
-		logic_relay8.SetOrigin(origin)
-	if(angles != null)
-		logic_relay8.SetAngles(angles)
+	logic_relay8.SetOrigin(org)
+	logic_relay8.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::ModelandScale_FailSafe_Pyro <- function(Vector(0, 0, 0), 0, 0, 0)
+::ModelandScale_FailSafe_Pyro <- function(org, ang)
 {
 	local logic_relay9 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/pyro.mdl0.1-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION5"
 	})
-
-	if(origin != null)
-		logic_relay9.SetOrigin(origin)
-	if(angles != null)
-		logic_relay9.SetAngles(angles)
+	logic_relay9.SetOrigin(org)
+	logic_relay9.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::ModelandScale_FailSafe_Demo <- function(Vector(0, 0, 0), 0, 0, 0)
+::ModelandScale_FailSafe_Demo <- function(org, ang)
 {
 	local logic_relay10 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/demo.mdl0.1-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION6"
 	})
-
-	if(origin != null)
-		logic_relay10.SetOrigin(origin)
-	if(angles != null)
-		logic_relay10.SetAngles(angles)
+	logic_relay10.SetOrigin(org)
+	logic_relay10.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::ModelandScale_FailSafe_Heavy <- function(Vector(0, 0, 0), 0, 0, 0)
+::ModelandScale_FailSafe_Heavy <- function(org, ang)
 {
 	local logic_relay11 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/heavy.mdl0.1-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION7"
 	})
-
-	if(origin != null)
-		logic_relay11.SetOrigin(origin)
-	if(angles != null)
-		logic_relay11.SetAngles(angles)
+	logic_relay11.SetOrigin(org)
+	logic_relay11.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::ModelandScale_FailSafe_Engie <- function(Vector(0, 0, 0), 0, 0, 0)
+::ModelandScale_FailSafe_Engie <- function(org, ang)
 {
 	local logic_relay12 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/engineer.mdl0.1-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION8"
 	})
-
-	if(origin != null)
-		logic_relay12.SetOrigin(origin)
-	if(angles != null)
-		logic_relay12.SetAngles(angles)
+	logic_relay12.SetOrigin(org)
+	logic_relay12.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::ModelandScale_FailSafe_Medic <- function(Vector(0, 0, 0), 0, 0, 0)
+::ModelandScale_FailSafe_Medic <- function(org, ang)
 {
 	local logic_relay13 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/medic.mdl0.1-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION9"
 	})
-
-	if(origin != null)
-		logic_relay13.SetOrigin(origin)
-	if(angles != null)
-		logic_relay13.SetAngles(angles)
+	logic_relay13.SetOrigin(org)
+	logic_relay13.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::ModelandScale_FailSafe_Sniper <- function(Vector(0, 0, 0), 0, 0, 0)
+::ModelandScale_FailSafe_Sniper <- function(org, ang)
 {
 	local logic_relay14 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/sniper.mdl0.1-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION10"
 	})
-
-	if(origin != null)
-		logic_relay14.SetOrigin(origin)
-	if(angles != null)
-		logic_relay14.SetAngles(angles)
+	logic_relay14.SetOrigin(org)
+	logic_relay14.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::ModelandScale_FailSafe_Spy <- function(Vector(0, 0, 0), 0, 0, 0)
+::ModelandScale_FailSafe_Spy <- function(org, ang)
 {
 	local logic_relay15 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/spy.mdl0.1-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION11"
 	})
-
-	if(origin != null)
-		logic_relay15.SetOrigin(origin)
-	if(angles != null)
-		logic_relay15.SetAngles(angles)
+	logic_relay15.SetOrigin(org)
+	logic_relay15.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::reviveredasblu_player <- function(Vector(0, 0, 0), 0, 0, 0)
+::reviveredasblu_player <- function(org, ang)
 {
 	local logic_relay16 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "lastcounter,subtract,1,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "PARENTKILLEDOUTPUT_CONVERSION1"
 	})
-
-	if(origin != null)
-		logic_relay16.SetOrigin(origin)
-	if(angles != null)
-		logic_relay16.SetAngles(angles)
+	logic_relay16.SetOrigin(org)
+	logic_relay16.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay17 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "lastcounter,add,1,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION12"
 	})
-
-	if(origin != null)
-		logic_relay17.SetOrigin(origin)
-	if(angles != null)
-		logic_relay17.SetAngles(angles)
+	logic_relay17.SetOrigin(org)
+	logic_relay17.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay18 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "users,trigger,,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION13"
 	})
-
-	if(origin != null)
-		logic_relay18.SetOrigin(origin)
-	if(angles != null)
-		logic_relay18.SetAngles(angles)
+	logic_relay18.SetOrigin(org)
+	logic_relay18.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay19 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,addoutput,targetname deadred,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "PARENTKILLEDOUTPUT_CONVERSION2"
 	})
-
-	if(origin != null)
-		logic_relay19.SetOrigin(origin)
-	if(angles != null)
-		logic_relay19.SetAngles(angles)
+	logic_relay19.SetOrigin(org)
+	logic_relay19.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay20 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "users",
 	    "ontrigger#1": "!activator,addoutput,onuser1 !selfRunScriptCodeself.AddCustomAttribute(`cancel falling damage`, 1, -1)0-1,0,-1",
 	    "ontrigger#2": "!activator,addoutput,onuser1 !selfRunScriptCodeself.RemoveCustomAttribute(`cancel falling damage`)5-1,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay20.SetOrigin(origin)
-	if(angles != null)
-		logic_relay20.SetAngles(angles)
+	logic_relay20.SetOrigin(org)
+	logic_relay20.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::reviveredasblu <- function(Vector(0, 0, 0), 0, 0, 0)
+::reviveredasblu <- function(org, ang)
 {
 	local logic_relay21 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "newlifetoblu",
@@ -336,42 +276,30 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "ontrigger#4": "redtargetname,enable,,0.5,-1",
 	    "ontrigger#5": "deadredtele,disable,,0.5,-1"
 	})
-
-	if(origin != null)
-		logic_relay21.SetOrigin(origin)
-	if(angles != null)
-		logic_relay21.SetAngles(angles)
+	logic_relay21.SetOrigin(org)
+	logic_relay21.SetAngles(ang[0], ang[1], ang[2])
 
 	local filter_activator_name22 = SpawnEntityFromTable("filter_activator_name", {
 	    targetname = "filter_deadred",
 	    filtername = "deadred"
 	})
-
-	if(origin != null)
-		filter_activator_name22.SetOrigin(origin)
-	if(angles != null)
-		filter_activator_name22.SetAngles(angles)
+	filter_activator_name22.SetOrigin(org)
+	filter_activator_name22.SetAngles(ang[0], ang[1], ang[2])
 
 	local filter_activator_name23 = SpawnEntityFromTable("filter_activator_name", {
 	    targetname = "filter_aliveblu_no",
 	    negated = 1,
 	    filtername = "aliveblu"
 	})
-
-	if(origin != null)
-		filter_activator_name23.SetOrigin(origin)
-	if(angles != null)
-		filter_activator_name23.SetAngles(angles)
+	filter_activator_name23.SetOrigin(org)
+	filter_activator_name23.SetAngles(ang[0], ang[1], ang[2])
 
 	local filter_activator_name24 = SpawnEntityFromTable("filter_activator_name", {
 	    targetname = "filter_aliveblu",
 	    filtername = "aliveblu"
 	})
-
-	if(origin != null)
-		filter_activator_name24.SetOrigin(origin)
-	if(angles != null)
-		filter_activator_name24.SetAngles(angles)
+	filter_activator_name24.SetOrigin(org)
+	filter_activator_name24.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_multiple_brush2 = SpawnEntityFromTable("trigger_multiple", {
 	    mins = "-152 -368 -160",
@@ -402,11 +330,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "bluspawnpoint",
 	    origin = Vector(-1885, -561, 60)
 	})
-
-	if(origin != null)
-		info_teleport_destination25.SetOrigin(origin)
-	if(angles != null)
-		info_teleport_destination25.SetAngles(angles)
+	info_teleport_destination25.SetOrigin(org)
+	info_teleport_destination25.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_multiple_brush4 = SpawnEntityFromTable("trigger_multiple", {
 	    origin = Vector(-1885, -561, 60),
@@ -447,21 +372,18 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush5.KeyValueFromString("maxs", "9999 9999 9999")
 
 }
-::p_tankcolored <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_tankcolored <- function(org, ang)
 {
 	local logic_relay26 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,color,0 0 0,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION14"
 	})
-
-	if(origin != null)
-		logic_relay26.SetOrigin(origin)
-	if(angles != null)
-		logic_relay26.SetAngles(angles)
+	logic_relay26.SetOrigin(org)
+	logic_relay26.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_money <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_money <- function(org, ang)
 {
 	local info_particle_system27 = SpawnEntityFromTable("info_particle_system", {
 	    targetname = "money",
@@ -469,14 +391,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    flag_as_weather = 0,
 	    start_active = 1
 	})
-
-	if(origin != null)
-		info_particle_system27.SetOrigin(origin)
-	if(angles != null)
-		info_particle_system27.SetAngles(angles)
+	info_particle_system27.SetOrigin(org)
+	info_particle_system27.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_kaboom <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_kaboom <- function(org, ang)
 {
 	local info_particle_system28 = SpawnEntityFromTable("info_particle_system", {
 	    targetname = "kaboom",
@@ -484,14 +403,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    flag_as_weather = 0,
 	    start_active = 0
 	})
-
-	if(origin != null)
-		info_particle_system28.SetOrigin(origin)
-	if(angles != null)
-		info_particle_system28.SetAngles(angles)
+	info_particle_system28.SetOrigin(org)
+	info_particle_system28.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_rock_pusher <- function()
+::p_rock_pusher <- function(org, ang)
 {
 	local trigger_push_brush6 = SpawnEntityFromTable("trigger_push", {
 	    origin = Vector(-1088, 984, 48),
@@ -507,21 +423,18 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush6.KeyValueFromString("maxs", "112 40 144")
 
 }
-::p_crash <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_crash <- function(org, ang)
 {
 	local info_particle_system29 = SpawnEntityFromTable("info_particle_system", {
 	    effect_name = "hightower_smoke",
 	    flag_as_weather = 0,
 	    start_active = 1
 	})
-
-	if(origin != null)
-		info_particle_system29.SetOrigin(origin)
-	if(angles != null)
-		info_particle_system29.SetAngles(angles)
+	info_particle_system29.SetOrigin(org)
+	info_particle_system29.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barnaclehead <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barnaclehead <- function(org, ang)
 {
 	local prop_dynamic30 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "barnacle1",
@@ -534,14 +447,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    disableshadows = 1,
 	    DefaultAnim = "chew_humanoid"
 	})
-
-	if(origin != null)
-		prop_dynamic30.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic30.SetAngles(angles)
+	prop_dynamic30.SetOrigin(org)
+	prop_dynamic30.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_virofix <- function()
+::p_virofix <- function(org, ang)
 {
 	local trigger_push_brush7 = SpawnEntityFromTable("trigger_push", {
 	    filtername = "filter_virophage",
@@ -591,11 +501,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#1": "jump_barrel,Disable,,0,-1",
 	    "OnTrigger#2": "jump_barrel,Enable,,2,-1"
 	})
-
-	if(origin != null)
-		logic_relay31.SetOrigin(origin)
-	if(angles != null)
-		logic_relay31.SetAngles(angles)
+	logic_relay31.SetOrigin(org)
+	logic_relay31.SetAngles(ang[0], ang[1], ang[2])
 
 	local filter_tf_bot_has_tag32 = SpawnEntityFromTable("filter_tf_bot_has_tag", {
 	    Negated = "Allow entities that match criteria",
@@ -603,24 +510,18 @@ __CollectGameEventCallbacks(::r2v_events)
 	    tags = "bot_virophage",
 	    targetname = "filter_virophage"
 	})
-
-	if(origin != null)
-		filter_tf_bot_has_tag32.SetOrigin(origin)
-	if(angles != null)
-		filter_tf_bot_has_tag32.SetAngles(angles)
+	filter_tf_bot_has_tag32.SetOrigin(org)
+	filter_tf_bot_has_tag32.SetAngles(ang[0], ang[1], ang[2])
 
 	local info_target33 = SpawnEntityFromTable("info_target", {
 	    targetname = "jumptarget_barrel",
 	    origin = Vector(675, 282, 144)
 	})
-
-	if(origin != null)
-		info_target33.SetOrigin(origin)
-	if(angles != null)
-		info_target33.SetAngles(angles)
+	info_target33.SetOrigin(org)
+	info_target33.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_virofix2 <- function()
+::p_virofix2 <- function(org, ang)
 {
 	local trigger_multiple_brush9 = SpawnEntityFromTable("trigger_multiple", {
 	    spawnflags = 1,
@@ -669,24 +570,18 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#1": "jump_generator,Disable,,0,-1",
 	    "OnTrigger#2": "jump_generator,Enable,,3,-1"
 	})
-
-	if(origin != null)
-		logic_relay34.SetOrigin(origin)
-	if(angles != null)
-		logic_relay34.SetAngles(angles)
+	logic_relay34.SetOrigin(org)
+	logic_relay34.SetAngles(ang[0], ang[1], ang[2])
 
 	local info_target35 = SpawnEntityFromTable("info_target", {
 	    targetname = "jumptarget_generator",
 	    origin = Vector(34, 1248, 250)
 	})
-
-	if(origin != null)
-		info_target35.SetOrigin(origin)
-	if(angles != null)
-		info_target35.SetAngles(angles)
+	info_target35.SetOrigin(org)
+	info_target35.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_spawnfix <- function()
+::p_spawnfix <- function(org, ang)
 {
 	local func_brush_brush11 = SpawnEntityFromTable("func_brush", {
 	    mins = "-32 -64 -398",
@@ -697,20 +592,17 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_brush_brush11.KeyValueFromString("maxs", "32 64 398")
 
 }
-::sentry_collision_template <- function(Vector(0, 0, 0), 0, 0, 0)
+::sentry_collision_template <- function(org, ang)
 {
 	local logic_timer36 = SpawnEntityFromTable("logic_timer", {
 	    refiretime = 3,
 	    "ontimer#1": "obj_sentrygunRunScriptCodeNetProps.SetPropInt(self, `m_CollisionGroup`, 3)0-1"
 	})
-
-	if(origin != null)
-		logic_timer36.SetOrigin(origin)
-	if(angles != null)
-		logic_timer36.SetAngles(angles)
+	logic_timer36.SetOrigin(org)
+	logic_timer36.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_skullhead <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_skullhead <- function(org, ang)
 {
 	local prop_dynamic37 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "skull1",
@@ -723,14 +615,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    disableshadows = 1,
 	    lightingorigin = "barnacle1"
 	})
-
-	if(origin != null)
-		prop_dynamic37.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic37.SetAngles(angles)
+	prop_dynamic37.SetOrigin(org)
+	prop_dynamic37.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_fade1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_fade1 <- function(org, ang)
 {
 	local env_fade38 = SpawnEntityFromTable("env_fade", {
 	    targetname = "fade",
@@ -739,14 +628,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    rendercolor = "0 0 0",
 	    spawnflags = 8
 	})
-
-	if(origin != null)
-		env_fade38.SetOrigin(origin)
-	if(angles != null)
-		env_fade38.SetAngles(angles)
+	env_fade38.SetOrigin(org)
+	env_fade38.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_fade2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_fade2 <- function(org, ang)
 {
 	local env_fade39 = SpawnEntityFromTable("env_fade", {
 	    targetname = "fade2",
@@ -755,14 +641,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    rendercolor = "0 0 0",
 	    spawnflags = 1
 	})
-
-	if(origin != null)
-		env_fade39.SetOrigin(origin)
-	if(angles != null)
-		env_fade39.SetAngles(angles)
+	env_fade39.SetOrigin(org)
+	env_fade39.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_fade3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_fade3 <- function(org, ang)
 {
 	local env_fade40 = SpawnEntityFromTable("env_fade", {
 	    targetname = "fade3",
@@ -771,14 +654,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    rendercolor = "85 0 0",
 	    spawnflags = 1
 	})
-
-	if(origin != null)
-		env_fade40.SetOrigin(origin)
-	if(angles != null)
-		env_fade40.SetAngles(angles)
+	env_fade40.SetOrigin(org)
+	env_fade40.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_fade4 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_fade4 <- function(org, ang)
 {
 	local env_fade41 = SpawnEntityFromTable("env_fade", {
 	    targetname = "fade4",
@@ -787,14 +667,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    rendercolor = "0 0 0",
 	    spawnflags = 1
 	})
-
-	if(origin != null)
-		env_fade41.SetOrigin(origin)
-	if(angles != null)
-		env_fade41.SetAngles(angles)
+	env_fade41.SetOrigin(org)
+	env_fade41.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_fade5 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_fade5 <- function(org, ang)
 {
 	local env_fade42 = SpawnEntityFromTable("env_fade", {
 	    targetname = "fade5",
@@ -803,14 +680,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    rendercolor = "0 0 0",
 	    spawnflags = 1
 	})
-
-	if(origin != null)
-		env_fade42.SetOrigin(origin)
-	if(angles != null)
-		env_fade42.SetAngles(angles)
+	env_fade42.SetOrigin(org)
+	env_fade42.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_finale_facer <- function()
+::p_finale_facer <- function(org, ang)
 {
 	local trigger_teleport_brush12 = SpawnEntityFromTable("trigger_teleport", {
 	    mins = "-3392 -3392 -704",
@@ -831,14 +705,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(617, -609, 0),
 	    angles = QAngle(5.98, -53.51, 0)
 	})
-
-	if(origin != null)
-		info_target43.SetOrigin(origin)
-	if(angles != null)
-		info_target43.SetAngles(angles)
+	info_target43.SetOrigin(org)
+	info_target43.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_finale_facerblu <- function()
+::p_finale_facerblu <- function(org, ang)
 {
 	local trigger_teleport_brush13 = SpawnEntityFromTable("trigger_teleport", {
 	    mins = "-3392 -3392 -704",
@@ -859,14 +730,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(413, -280, 0),
 	    angles = QAngle(5.98, -53.51, 0)
 	})
-
-	if(origin != null)
-		info_target44.SetOrigin(origin)
-	if(angles != null)
-		info_target44.SetAngles(angles)
+	info_target44.SetOrigin(org)
+	info_target44.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_teleporter_brush <- function()
+::p_teleporter_brush <- function(org, ang)
 {
 	local trigger_teleport_brush14 = SpawnEntityFromTable("trigger_teleport", {
 	    mins = "-224 -452 -576",
@@ -881,7 +749,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_teleport_brush14.KeyValueFromString("maxs", "224 452 576")
 
 }
-::p_teleporter_brush_finale <- function()
+::p_teleporter_brush_finale <- function(org, ang)
 {
 	local trigger_teleport_brush15 = SpawnEntityFromTable("trigger_teleport", {
 	    mins = "-224 -452 -576",
@@ -896,35 +764,29 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_teleport_brush15.KeyValueFromString("maxs", "224 452 576")
 
 }
-::p_teleporter <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_teleporter <- function(org, ang)
 {
 	local info_teleport_destination45 = SpawnEntityFromTable("info_teleport_destination", {
 	    targetname = "info_tele",
 	    origin = Vector(550, 292, 250),
 	    angles = QAngle(0, 90, 0)
 	})
-
-	if(origin != null)
-		info_teleport_destination45.SetOrigin(origin)
-	if(angles != null)
-		info_teleport_destination45.SetAngles(angles)
+	info_teleport_destination45.SetOrigin(org)
+	info_teleport_destination45.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_teleporterfinale <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_teleporterfinale <- function(org, ang)
 {
 	local info_teleport_destination46 = SpawnEntityFromTable("info_teleport_destination", {
 	    targetname = "parachute_tele",
 	    origin = Vector(628, -752, 1165),
 	    angles = QAngle(90, 90, 0)
 	})
-
-	if(origin != null)
-		info_teleport_destination46.SetOrigin(origin)
-	if(angles != null)
-		info_teleport_destination46.SetAngles(angles)
+	info_teleport_destination46.SetOrigin(org)
+	info_teleport_destination46.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_lastbot <- function()
+::p_lastbot <- function(org, ang)
 {
 	local trigger_multiple_brush16 = SpawnEntityFromTable("trigger_multiple", {
 	    mins = "-224 -452 -576",
@@ -939,7 +801,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_multiple_brush16.KeyValueFromString("maxs", "224 452 576")
 
 }
-::p_voice <- function()
+::p_voice <- function(org, ang)
 {
 	local trigger_multiple_brush17 = SpawnEntityFromTable("trigger_multiple", {
 	    mins = "-8000 -8000 -1000",
@@ -956,30 +818,24 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_multiple_brush17.KeyValueFromString("maxs", "8000 8000 1000")
 
 }
-::p_newlife <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_newlife <- function(org, ang)
 {
 	local game_forcerespawn47 = SpawnEntityFromTable("game_forcerespawn", {
 	    targetname = "NEWLIFE"
 	})
-
-	if(origin != null)
-		game_forcerespawn47.SetOrigin(origin)
-	if(angles != null)
-		game_forcerespawn47.SetAngles(angles)
+	game_forcerespawn47.SetOrigin(org)
+	game_forcerespawn47.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay48 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "bots_win,Kill,,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION15"
 	})
-
-	if(origin != null)
-		logic_relay48.SetOrigin(origin)
-	if(angles != null)
-		logic_relay48.SetAngles(angles)
+	logic_relay48.SetOrigin(org)
+	logic_relay48.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_chat1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_chat1 <- function(org, ang)
 {
 	local training_annotation49 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "signchat",
@@ -987,14 +843,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 8,
 	    origin = Vector(945, 1600, 275)
 	})
-
-	if(origin != null)
-		training_annotation49.SetOrigin(origin)
-	if(angles != null)
-		training_annotation49.SetAngles(angles)
+	training_annotation49.SetOrigin(org)
+	training_annotation49.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_signbomb <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_signbomb <- function(org, ang)
 {
 	local training_annotation50 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "signbomb",
@@ -1002,14 +855,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 8,
 	    origin = Vector(-1180, -486, 203)
 	})
-
-	if(origin != null)
-		training_annotation50.SetOrigin(origin)
-	if(angles != null)
-		training_annotation50.SetAngles(angles)
+	training_annotation50.SetOrigin(org)
+	training_annotation50.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_badsign <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_badsign <- function(org, ang)
 {
 	local training_annotation51 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "badsign",
@@ -1017,14 +867,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 8,
 	    origin = Vector(727, 1300, 310)
 	})
-
-	if(origin != null)
-		training_annotation51.SetOrigin(origin)
-	if(angles != null)
-		training_annotation51.SetAngles(angles)
+	training_annotation51.SetOrigin(org)
+	training_annotation51.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign666 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign666 <- function(org, ang)
 {
 	local training_annotation52 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign666",
@@ -1032,14 +879,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 8,
 	    origin = Vector(10, 1235, 165)
 	})
-
-	if(origin != null)
-		training_annotation52.SetOrigin(origin)
-	if(angles != null)
-		training_annotation52.SetAngles(angles)
+	training_annotation52.SetOrigin(org)
+	training_annotation52.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign0 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign0 <- function(org, ang)
 {
 	local training_annotation53 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign0",
@@ -1047,14 +891,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 10,
 	    origin = Vector(10, 1235, 165)
 	})
-
-	if(origin != null)
-		training_annotation53.SetOrigin(origin)
-	if(angles != null)
-		training_annotation53.SetAngles(angles)
+	training_annotation53.SetOrigin(org)
+	training_annotation53.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign1 <- function(org, ang)
 {
 	local training_annotation54 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign1",
@@ -1062,14 +903,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 8,
 	    origin = Vector(-680, -139, 66)
 	})
-
-	if(origin != null)
-		training_annotation54.SetOrigin(origin)
-	if(angles != null)
-		training_annotation54.SetAngles(angles)
+	training_annotation54.SetOrigin(org)
+	training_annotation54.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign2 <- function(org, ang)
 {
 	local training_annotation55 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign2",
@@ -1077,14 +915,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 5,
 	    origin = Vector(0, 121, 53)
 	})
-
-	if(origin != null)
-		training_annotation55.SetOrigin(origin)
-	if(angles != null)
-		training_annotation55.SetAngles(angles)
+	training_annotation55.SetOrigin(org)
+	training_annotation55.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign3 <- function(org, ang)
 {
 	local training_annotation56 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign3",
@@ -1092,14 +927,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 56.25,
 	    origin = Vector(856, 1530, 360)
 	})
-
-	if(origin != null)
-		training_annotation56.SetOrigin(origin)
-	if(angles != null)
-		training_annotation56.SetAngles(angles)
+	training_annotation56.SetOrigin(org)
+	training_annotation56.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign4 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign4 <- function(org, ang)
 {
 	local training_annotation57 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign4",
@@ -1107,14 +939,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 1,
 	    origin = Vector(856, 1530, 360)
 	})
-
-	if(origin != null)
-		training_annotation57.SetOrigin(origin)
-	if(angles != null)
-		training_annotation57.SetAngles(angles)
+	training_annotation57.SetOrigin(org)
+	training_annotation57.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign5 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign5 <- function(org, ang)
 {
 	local training_annotation58 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign5",
@@ -1122,14 +951,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 1,
 	    origin = Vector(856, 1530, 360)
 	})
-
-	if(origin != null)
-		training_annotation58.SetOrigin(origin)
-	if(angles != null)
-		training_annotation58.SetAngles(angles)
+	training_annotation58.SetOrigin(org)
+	training_annotation58.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign6 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign6 <- function(org, ang)
 {
 	local training_annotation59 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign6",
@@ -1137,14 +963,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 1,
 	    origin = Vector(856, 1530, 360)
 	})
-
-	if(origin != null)
-		training_annotation59.SetOrigin(origin)
-	if(angles != null)
-		training_annotation59.SetAngles(angles)
+	training_annotation59.SetOrigin(org)
+	training_annotation59.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign7 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign7 <- function(org, ang)
 {
 	local training_annotation60 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign7",
@@ -1152,14 +975,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 1,
 	    origin = Vector(856, 1530, 360)
 	})
-
-	if(origin != null)
-		training_annotation60.SetOrigin(origin)
-	if(angles != null)
-		training_annotation60.SetAngles(angles)
+	training_annotation60.SetOrigin(org)
+	training_annotation60.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign8 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign8 <- function(org, ang)
 {
 	local training_annotation61 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign8",
@@ -1167,14 +987,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 1,
 	    origin = Vector(856, 1530, 360)
 	})
-
-	if(origin != null)
-		training_annotation61.SetOrigin(origin)
-	if(angles != null)
-		training_annotation61.SetAngles(angles)
+	training_annotation61.SetOrigin(org)
+	training_annotation61.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign9 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign9 <- function(org, ang)
 {
 	local training_annotation62 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign9",
@@ -1182,14 +999,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 15,
 	    origin = Vector(622, -942, 151)
 	})
-
-	if(origin != null)
-		training_annotation62.SetOrigin(origin)
-	if(angles != null)
-		training_annotation62.SetAngles(angles)
+	training_annotation62.SetOrigin(org)
+	training_annotation62.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_sign10 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_sign10 <- function(org, ang)
 {
 	local training_annotation63 = SpawnEntityFromTable("training_annotation", {
 	    targetname = "sign10",
@@ -1197,14 +1011,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lifetime = 10,
 	    origin = Vector(685, -685, 925)
 	})
-
-	if(origin != null)
-		training_annotation63.SetOrigin(origin)
-	if(angles != null)
-		training_annotation63.SetAngles(angles)
+	training_annotation63.SetOrigin(org)
+	training_annotation63.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_leap <- function()
+::p_leap <- function(org, ang)
 {
 	local trigger_catapult_brush18 = SpawnEntityFromTable("trigger_catapult", {
 	    useThresholdCheck = 0,
@@ -1237,11 +1048,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "jumptarget_column",
 	    origin = Vector(0, 598, 330)
 	})
-
-	if(origin != null)
-		info_target64.SetOrigin(origin)
-	if(angles != null)
-		info_target64.SetAngles(angles)
+	info_target64.SetOrigin(org)
+	info_target64.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_catapult_brush19 = SpawnEntityFromTable("trigger_catapult", {
 	    origin = Vector(-178, 974, -28),
@@ -1274,14 +1082,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "jumptarget_stairs",
 	    origin = Vector(-170, 1000, 180)
 	})
-
-	if(origin != null)
-		info_target65.SetOrigin(origin)
-	if(angles != null)
-		info_target65.SetAngles(angles)
+	info_target65.SetOrigin(org)
+	info_target65.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_leap_tele <- function()
+::p_leap_tele <- function(org, ang)
 {
 	local trigger_teleport_brush20 = SpawnEntityFromTable("trigger_teleport", {
 	    mins = "-134.5 -0.5 -217.5",
@@ -1303,11 +1108,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "leap_telehere",
 	    origin = Vector(225, 1451, 459)
 	})
-
-	if(origin != null)
-		info_target66.SetOrigin(origin)
-	if(angles != null)
-		info_target66.SetAngles(angles)
+	info_target66.SetOrigin(org)
+	info_target66.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_teleport_brush21 = SpawnEntityFromTable("trigger_teleport", {
 	    mins = "-134.5 -0.5 -217.5",
@@ -1329,14 +1131,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "leap_telehere2",
 	    origin = Vector(225, 1184, 459)
 	})
-
-	if(origin != null)
-		info_target67.SetOrigin(origin)
-	if(angles != null)
-		info_target67.SetAngles(angles)
+	info_target67.SetOrigin(org)
+	info_target67.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_deskblock <- function()
+::p_deskblock <- function(org, ang)
 {
 	local func_nobuild_brush22 = SpawnEntityFromTable("func_nobuild", {
 	    mins = "-76 -63 -29",
@@ -1350,7 +1149,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_nobuild_brush22.KeyValueFromString("maxs", "76 63 29")
 
 }
-::p_engiblock <- function()
+::p_engiblock <- function(org, ang)
 {
 	local func_nobuild_brush23 = SpawnEntityFromTable("func_nobuild", {
 	    mins = "-8000 -8000 -1000",
@@ -1364,49 +1163,40 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_nobuild_brush23.KeyValueFromString("maxs", "8000 8000 1000")
 
 }
-::p_survrelay1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_survrelay1 <- function(org, ang)
 {
 	local logic_relay68 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "SURVIVORAISTART",
 	    "OnTrigger#1": "point_populator_interfaceChangeBotAttributesShop0-1"
 	})
-
-	if(origin != null)
-		logic_relay68.SetOrigin(origin)
-	if(angles != null)
-		logic_relay68.SetAngles(angles)
+	logic_relay68.SetOrigin(org)
+	logic_relay68.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_survrelay2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_survrelay2 <- function(org, ang)
 {
 	local logic_relay69 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "SURVIVORAIEND",
 	    "OnTrigger#1": "point_populator_interfaceChangeBotAttributesDefense0-1"
 	})
-
-	if(origin != null)
-		logic_relay69.SetOrigin(origin)
-	if(angles != null)
-		logic_relay69.SetAngles(angles)
+	logic_relay69.SetOrigin(org)
+	logic_relay69.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_survrelay3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_survrelay3 <- function(org, ang)
 {
 	local logic_relay70 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "SURVIVORAIEXIT",
 	    "OnTrigger#1": "point_populator_interfaceChangeBotAttributesExit0-1"
 	})
-
-	if(origin != null)
-		logic_relay70.SetOrigin(origin)
-	if(angles != null)
-		logic_relay70.SetAngles(angles)
+	logic_relay70.SetOrigin(org)
+	logic_relay70.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_introcam <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_introcam <- function(org, ang)
 {
 	local logic_relay71 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
@@ -1414,23 +1204,17 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#1": "camera4,$EnableAll,,0,-1",
 	    "OnTrigger#2": "camera4,$DisableAll,,3,-1"
 	})
-
-	if(origin != null)
-		logic_relay71.SetOrigin(origin)
-	if(angles != null)
-		logic_relay71.SetAngles(angles)
+	logic_relay71.SetOrigin(org)
+	logic_relay71.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_beginrelay <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_beginrelay <- function(org, ang)
 {
 	local tf_point_nav_interface72 = SpawnEntityFromTable("tf_point_nav_interface", {
 	    targetname = "nav_refresh"
 	})
-
-	if(origin != null)
-		tf_point_nav_interface72.SetOrigin(origin)
-	if(angles != null)
-		tf_point_nav_interface72.SetAngles(angles)
+	tf_point_nav_interface72.SetOrigin(org)
+	tf_point_nav_interface72.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_auto73 = SpawnEntityFromTable("logic_auto", {
 	    "OnMapSpawn#1": "aliveblu,addoutput,targetname alivered,0,-1",
@@ -1462,14 +1246,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnMapSpawn#27": "shopgear,setattached,fam,0,-1",
 	    "OnMapSpawn#28": "shopgear,setlightingorigin,fam,0,-1"
 	})
-
-	if(origin != null)
-		logic_auto73.SetOrigin(origin)
-	if(angles != null)
-		logic_auto73.SetAngles(angles)
+	logic_auto73.SetOrigin(org)
+	logic_auto73.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_cabinet <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_cabinet <- function(org, ang)
 {
 	local prop_dynamic74 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "locker_model",
@@ -1480,11 +1261,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    rendermode = 1,
 	    renderamt = 125
 	})
-
-	if(origin != null)
-		prop_dynamic74.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic74.SetAngles(angles)
+	prop_dynamic74.SetOrigin(org)
+	prop_dynamic74.SetAngles(ang[0], ang[1], ang[2])
 
 	local filter_tf_bot_has_tag75 = SpawnEntityFromTable("filter_tf_bot_has_tag", {
 	    Negated = 0,
@@ -1492,11 +1270,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    tags = "noregen",
 	    targetname = "filter_redbot"
 	})
-
-	if(origin != null)
-		filter_tf_bot_has_tag75.SetOrigin(origin)
-	if(angles != null)
-		filter_tf_bot_has_tag75.SetAngles(angles)
+	filter_tf_bot_has_tag75.SetOrigin(org)
+	filter_tf_bot_has_tag75.SetAngles(ang[0], ang[1], ang[2])
 
 	local func_regenerate_brush24 = SpawnEntityFromTable("func_regenerate", {
 	    associatedmodel = "locker_model",
@@ -1512,49 +1287,40 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_regenerate_brush24.KeyValueFromString("maxs", "152 468 160")
 
 }
-::p_spawnremover1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_spawnremover1 <- function(org, ang)
 {
 	local logic_relay76 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "door_1,kill,,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION16"
 	})
-
-	if(origin != null)
-		logic_relay76.SetOrigin(origin)
-	if(angles != null)
-		logic_relay76.SetAngles(angles)
+	logic_relay76.SetOrigin(org)
+	logic_relay76.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_spawnremover2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_spawnremover2 <- function(org, ang)
 {
 	local logic_relay77 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "spawn_red,kill,,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION17"
 	})
-
-	if(origin != null)
-		logic_relay77.SetOrigin(origin)
-	if(angles != null)
-		logic_relay77.SetAngles(angles)
+	logic_relay77.SetOrigin(org)
+	logic_relay77.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_spawnremover3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_spawnremover3 <- function(org, ang)
 {
 	local logic_relay78 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "func_respawnroomvisualizer,kill,,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION18"
 	})
-
-	if(origin != null)
-		logic_relay78.SetOrigin(origin)
-	if(angles != null)
-		logic_relay78.SetAngles(angles)
+	logic_relay78.SetOrigin(org)
+	logic_relay78.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_leet <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_leet <- function(org, ang)
 {
 	local obj_dispenser79 = SpawnEntityFromTable("obj_dispenser", {
 	    targetname = "superdisp",
@@ -1564,25 +1330,19 @@ __CollectGameEventCallbacks(::r2v_events)
 	    defaultupgrade = 0,
 	    lightingorigin = "spawnbot_surprise2"
 	})
-
-	if(origin != null)
-		obj_dispenser79.SetOrigin(origin)
-	if(angles != null)
-		obj_dispenser79.SetAngles(angles)
+	obj_dispenser79.SetOrigin(org)
+	obj_dispenser79.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay80 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "superdisp,skin,1,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION19"
 	})
-
-	if(origin != null)
-		logic_relay80.SetOrigin(origin)
-	if(angles != null)
-		logic_relay80.SetAngles(angles)
+	logic_relay80.SetOrigin(org)
+	logic_relay80.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_leet2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_leet2 <- function(org, ang)
 {
 	local obj_dispenser81 = SpawnEntityFromTable("obj_dispenser", {
 	    targetname = "superdisp2",
@@ -1591,25 +1351,19 @@ __CollectGameEventCallbacks(::r2v_events)
 	    SolidToPlayer = 0,
 	    defaultupgrade = 0
 	})
-
-	if(origin != null)
-		obj_dispenser81.SetOrigin(origin)
-	if(angles != null)
-		obj_dispenser81.SetAngles(angles)
+	obj_dispenser81.SetOrigin(org)
+	obj_dispenser81.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay82 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "superdisp2,skin,1,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION20"
 	})
-
-	if(origin != null)
-		logic_relay82.SetOrigin(origin)
-	if(angles != null)
-		logic_relay82.SetAngles(angles)
+	logic_relay82.SetOrigin(org)
+	logic_relay82.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_mvm_beat <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_mvm_beat <- function(org, ang)
 {
 	local ambient_generic83 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "mvm_beat1",
@@ -1632,14 +1386,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic83.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic83.SetAngles(angles)
+	ambient_generic83.SetOrigin(org)
+	ambient_generic83.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::viro_music <- function(Vector(0, 0, 0), 0, 0, 0)
+::viro_music <- function(org, ang)
 {
 	local ambient_generic84 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "virospook",
@@ -1662,11 +1413,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic84.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic84.SetAngles(angles)
+	ambient_generic84.SetOrigin(org)
+	ambient_generic84.SetAngles(ang[0], ang[1], ang[2])
 
 	local ambient_generic85 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "virospook2",
@@ -1689,11 +1437,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic85.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic85.SetAngles(angles)
+	ambient_generic85.SetOrigin(org)
+	ambient_generic85.SetAngles(ang[0], ang[1], ang[2])
 
 	local ambient_generic86 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "osprey",
@@ -1716,11 +1461,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic86.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic86.SetAngles(angles)
+	ambient_generic86.SetOrigin(org)
+	ambient_generic86.SetAngles(ang[0], ang[1], ang[2])
 
 	local ambient_generic87 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "horizon",
@@ -1743,14 +1485,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic87.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic87.SetAngles(angles)
+	ambient_generic87.SetOrigin(org)
+	ambient_generic87.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::lose_music <- function(Vector(0, 0, 0), 0, 0, 0)
+::lose_music <- function(org, ang)
 {
 	local ambient_generic88 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "gameover",
@@ -1773,14 +1512,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic88.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic88.SetAngles(angles)
+	ambient_generic88.SetOrigin(org)
+	ambient_generic88.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::lose_music2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::lose_music2 <- function(org, ang)
 {
 	local ambient_generic89 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "gameover2",
@@ -1803,70 +1539,55 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic89.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic89.SetAngles(angles)
+	ambient_generic89.SetOrigin(org)
+	ambient_generic89.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::r_virobeat <- function(Vector(0, 0, 0), 0, 0, 0)
+::r_virobeat <- function(org, ang)
 {
 	local logic_relay90 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "viro_beaton",
 	    "OnTrigger#1": "virospook,PlaySound,,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay90.SetOrigin(origin)
-	if(angles != null)
-		logic_relay90.SetAngles(angles)
+	logic_relay90.SetOrigin(org)
+	logic_relay90.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::r_virobeatoff <- function(Vector(0, 0, 0), 0, 0, 0)
+::r_virobeatoff <- function(org, ang)
 {
 	local logic_relay91 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "viro_beatoff",
 	    "OnTrigger#1": "virospook,StopSound,,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay91.SetOrigin(origin)
-	if(angles != null)
-		logic_relay91.SetAngles(angles)
+	logic_relay91.SetOrigin(org)
+	logic_relay91.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::r_beatson <- function(Vector(0, 0, 0), 0, 0, 0)
+::r_beatson <- function(org, ang)
 {
 	local logic_relay92 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "mvm_beaton",
 	    "OnTrigger#1": "mvm_beat1,PlaySound,,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay92.SetOrigin(origin)
-	if(angles != null)
-		logic_relay92.SetAngles(angles)
+	logic_relay92.SetOrigin(org)
+	logic_relay92.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::r_beatsoff <- function(Vector(0, 0, 0), 0, 0, 0)
+::r_beatsoff <- function(org, ang)
 {
 	local logic_relay93 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "mvm_beatoff",
 	    "OnTrigger#1": "mvm_beat1,StopSound,,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay93.SetOrigin(origin)
-	if(angles != null)
-		logic_relay93.SetAngles(angles)
+	logic_relay93.SetOrigin(org)
+	logic_relay93.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::r_cade_relay <- function(Vector(0, 0, 0), 0, 0, 0)
+::r_cade_relay <- function(org, ang)
 {
 	local logic_relay94 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
@@ -1876,69 +1597,54 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#3": "shitcade_intro,Kill,,2.5,-1",
 	    "OnTrigger#4": "permadeath_detect_player_spell,Enable,,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay94.SetOrigin(origin)
-	if(angles != null)
-		logic_relay94.SetAngles(angles)
+	logic_relay94.SetOrigin(org)
+	logic_relay94.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::r_cade_relay_lower <- function(Vector(0, 0, 0), 0, 0, 0)
+::r_cade_relay_lower <- function(org, ang)
 {
 	local logic_relay95 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "relay2",
 	    "OnTrigger#1": "barricade_level2,Kill,,0.25,-1"
 	})
-
-	if(origin != null)
-		logic_relay95.SetOrigin(origin)
-	if(angles != null)
-		logic_relay95.SetAngles(angles)
+	logic_relay95.SetOrigin(org)
+	logic_relay95.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::r_cade_relay_window <- function(Vector(0, 0, 0), 0, 0, 0)
+::r_cade_relay_window <- function(org, ang)
 {
 	local logic_relay96 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "relay3",
 	    "OnTrigger#1": "barricade_level1,Kill,,0.25,-1"
 	})
-
-	if(origin != null)
-		logic_relay96.SetOrigin(origin)
-	if(angles != null)
-		logic_relay96.SetAngles(angles)
+	logic_relay96.SetOrigin(org)
+	logic_relay96.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::r_cade_relay_last <- function(Vector(0, 0, 0), 0, 0, 0)
+::r_cade_relay_last <- function(org, ang)
 {
 	local logic_relay97 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "relay4",
 	    "OnTrigger#1": "barricade_level3,Kill,,0.25,-1"
 	})
-
-	if(origin != null)
-		logic_relay97.SetOrigin(origin)
-	if(angles != null)
-		logic_relay97.SetAngles(angles)
+	logic_relay97.SetOrigin(org)
+	logic_relay97.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::r_respawn_relay <- function(Vector(0, 0, 0), 0, 0, 0)
+::r_respawn_relay <- function(org, ang)
 {
 	local logic_relay98 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "life_relay",
 	    "OnTrigger#1": "NEWLIFE,ForceTeamRespawn,2,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay98.SetOrigin(origin)
-	if(angles != null)
-		logic_relay98.SetAngles(angles)
+	logic_relay98.SetOrigin(org)
+	logic_relay98.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shake <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shake <- function(org, ang)
 {
 	local env_shake99 = SpawnEntityFromTable("env_shake", {
 	    id = 3,
@@ -1951,14 +1657,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "shakeit",
 	    origin = Vector(-189.888, 17.0933, 65)
 	})
-
-	if(origin != null)
-		env_shake99.SetOrigin(origin)
-	if(angles != null)
-		env_shake99.SetAngles(angles)
+	env_shake99.SetOrigin(org)
+	env_shake99.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shakelong <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shakelong <- function(org, ang)
 {
 	local env_shake100 = SpawnEntityFromTable("env_shake", {
 	    id = 3,
@@ -1971,14 +1674,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "shakeit2",
 	    origin = Vector(-189.888, 17.0933, 65)
 	})
-
-	if(origin != null)
-		env_shake100.SetOrigin(origin)
-	if(angles != null)
-		env_shake100.SetAngles(angles)
+	env_shake100.SetOrigin(org)
+	env_shake100.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_rick <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_rick <- function(org, ang)
 {
 	local entity_soldier_statue101 = SpawnEntityFromTable("entity_soldier_statue", {
 	    id = 3,
@@ -1987,14 +1687,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    disableshadows = 1,
 	    lightingorigin = "spawnbot_surprise2"
 	})
-
-	if(origin != null)
-		entity_soldier_statue101.SetOrigin(origin)
-	if(angles != null)
-		entity_soldier_statue101.SetAngles(angles)
+	entity_soldier_statue101.SetOrigin(org)
+	entity_soldier_statue101.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shopengi <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shopengi <- function(org, ang)
 {
 	local prop_dynamic102 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "fam",
@@ -2027,14 +1724,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(0, 0, 0),
 	    model = "models/player/engineer.mdl"
 	})
-
-	if(origin != null)
-		prop_dynamic102.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic102.SetAngles(angles)
+	prop_dynamic102.SetOrigin(org)
+	prop_dynamic102.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shopitem1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shopitem1 <- function(org, ang)
 {
 	local prop_dynamic_ornament103 = SpawnEntityFromTable("prop_dynamic_ornament", {
 	    targetname = "shopgear",
@@ -2046,14 +1740,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    initialowner = "fam",
 	    model = "models/workshop/player/items/engineer/jul13_king_pants/jul13_king_pants.mdl"
 	})
-
-	if(origin != null)
-		prop_dynamic_ornament103.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic_ornament103.SetAngles(angles)
+	prop_dynamic_ornament103.SetOrigin(org)
+	prop_dynamic_ornament103.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shopitem2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shopitem2 <- function(org, ang)
 {
 	local prop_dynamic_ornament104 = SpawnEntityFromTable("prop_dynamic_ornament", {
 	    targetname = "shopgear",
@@ -2065,14 +1756,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    initialowner = "fam",
 	    model = "models/workshop/player/items/engineer/spr17_double_observatory/spr17_double_observatory.mdl"
 	})
-
-	if(origin != null)
-		prop_dynamic_ornament104.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic_ornament104.SetAngles(angles)
+	prop_dynamic_ornament104.SetOrigin(org)
+	prop_dynamic_ornament104.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shopitem3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shopitem3 <- function(org, ang)
 {
 	local prop_dynamic_ornament105 = SpawnEntityFromTable("prop_dynamic_ornament", {
 	    targetname = "shopgear",
@@ -2084,14 +1772,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    initialowner = "fam",
 	    model = "models/workshop/player/items/all_class/fall17_jungle_ops/fall17_jungle_ops_engineer.mdl"
 	})
-
-	if(origin != null)
-		prop_dynamic_ornament105.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic_ornament105.SetAngles(angles)
+	prop_dynamic_ornament105.SetOrigin(org)
+	prop_dynamic_ornament105.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shopitem4 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shopitem4 <- function(org, ang)
 {
 	local prop_dynamic_ornament106 = SpawnEntityFromTable("prop_dynamic_ornament", {
 	    targetname = "shopgear",
@@ -2103,14 +1788,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    color = "124 108 87",
 	    model = "models/workshop/player/items/all_class/fall2013_the_cuban_coverup/fall2013_the_cuban_coverup_engineer.mdl"
 	})
-
-	if(origin != null)
-		prop_dynamic_ornament106.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic_ornament106.SetAngles(angles)
+	prop_dynamic_ornament106.SetOrigin(org)
+	prop_dynamic_ornament106.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shopitem5 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shopitem5 <- function(org, ang)
 {
 	local prop_dynamic_ornament107 = SpawnEntityFromTable("prop_dynamic_ornament", {
 	    targetname = "shopgear",
@@ -2122,14 +1804,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    initialowner = "fam",
 	    model = "models/workshop/player/items/engineer/all_work_and_no_plaid/all_work_and_no_plaid.mdl"
 	})
-
-	if(origin != null)
-		prop_dynamic_ornament107.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic_ornament107.SetAngles(angles)
+	prop_dynamic_ornament107.SetOrigin(org)
+	prop_dynamic_ornament107.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_spook <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_spook <- function(org, ang)
 {
 	local prop_dynamic108 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "bro",
@@ -2163,14 +1842,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(0, 0, 0),
 	    model = "models/bots/skeleton_sniper/skeleton_sniper.mdl"
 	})
-
-	if(origin != null)
-		prop_dynamic108.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic108.SetAngles(angles)
+	prop_dynamic108.SetOrigin(org)
+	prop_dynamic108.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_spook2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_spook2 <- function(org, ang)
 {
 	local prop_dynamic109 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "bro2",
@@ -2204,14 +1880,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(0, 0, 0),
 	    model = "models/bots/skeleton_sniper/skeleton_sniper.mdl"
 	})
-
-	if(origin != null)
-		prop_dynamic109.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic109.SetAngles(angles)
+	prop_dynamic109.SetOrigin(org)
+	prop_dynamic109.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_spook3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_spook3 <- function(org, ang)
 {
 	local prop_dynamic110 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "bro3",
@@ -2245,14 +1918,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(0, 0, 0),
 	    model = "models/bots/skeleton_sniper/skeleton_sniper.mdl"
 	})
-
-	if(origin != null)
-		prop_dynamic110.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic110.SetAngles(angles)
+	prop_dynamic110.SetOrigin(org)
+	prop_dynamic110.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_viewblocker_window <- function()
+::p_viewblocker_window <- function(org, ang)
 {
 	local func_brush_brush25 = SpawnEntityFromTable("func_brush", {
 	    mins = "-320.5 -4 -144",
@@ -2263,7 +1933,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_brush_brush25.KeyValueFromString("maxs", "320.5 4 144")
 
 }
-::p_plane <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_plane <- function(org, ang)
 {
 	local prop_dynamic111 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "plane",
@@ -2278,11 +1948,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(1900, -745, -109),
 	    angles = QAngle(0, -5, 0)
 	})
-
-	if(origin != null)
-		prop_dynamic111.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic111.SetAngles(angles)
+	prop_dynamic111.SetOrigin(org)
+	prop_dynamic111.SetAngles(ang[0], ang[1], ang[2])
 
 	local obj_sentrygun112 = SpawnEntityFromTable("obj_sentrygun", {
 	    targetname = "planesentry",
@@ -2294,53 +1961,41 @@ __CollectGameEventCallbacks(::r2v_events)
 	    defaultupgrade = 0,
 	    modelscale = 0.75
 	})
-
-	if(origin != null)
-		obj_sentrygun112.SetOrigin(origin)
-	if(angles != null)
-		obj_sentrygun112.SetAngles(angles)
+	obj_sentrygun112.SetOrigin(org)
+	obj_sentrygun112.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_musicmaker1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_musicmaker1 <- function(org, ang)
 {
 	local env_entity_maker113 = SpawnEntityFromTable("env_entity_maker", {
 	    targetname = "music_maker",
 	    EntityTemplate = "lose_music"
 	})
-
-	if(origin != null)
-		env_entity_maker113.SetOrigin(origin)
-	if(angles != null)
-		env_entity_maker113.SetAngles(angles)
+	env_entity_maker113.SetOrigin(org)
+	env_entity_maker113.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_musicmaker2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_musicmaker2 <- function(org, ang)
 {
 	local env_entity_maker114 = SpawnEntityFromTable("env_entity_maker", {
 	    targetname = "music_maker2",
 	    EntityTemplate = "lose_music2"
 	})
-
-	if(origin != null)
-		env_entity_maker114.SetOrigin(origin)
-	if(angles != null)
-		env_entity_maker114.SetAngles(angles)
+	env_entity_maker114.SetOrigin(org)
+	env_entity_maker114.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_planemaker <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_planemaker <- function(org, ang)
 {
 	local env_entity_maker115 = SpawnEntityFromTable("env_entity_maker", {
 	    targetname = "plane_maker",
 	    EntityTemplate = "p_plane"
 	})
-
-	if(origin != null)
-		env_entity_maker115.SetOrigin(origin)
-	if(angles != null)
-		env_entity_maker115.SetAngles(angles)
+	env_entity_maker115.SetOrigin(org)
+	env_entity_maker115.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_cargodoor <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_cargodoor <- function(org, ang)
 {
 	local prop_dynamic116 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "cargodoor",
@@ -2353,14 +2008,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic116.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic116.SetAngles(angles)
+	prop_dynamic116.SetOrigin(org)
+	prop_dynamic116.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_brushbug_fix <- function()
+::p_brushbug_fix <- function(org, ang)
 {
 	local trigger_multiple_brush26 = SpawnEntityFromTable("trigger_multiple", {
 	    origin = Vector(136, 112, 160),
@@ -2377,7 +2029,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_multiple_brush26.KeyValueFromString("maxs", "152 468 160")
 
 }
-::p_cargoshop1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_cargoshop1 <- function(org, ang)
 {
 	local prop_dynamic117 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "cargoshop1",
@@ -2392,14 +2044,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lightingorigin = "desk",
 	    startdisabled = 1
 	})
-
-	if(origin != null)
-		prop_dynamic117.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic117.SetAngles(angles)
+	prop_dynamic117.SetOrigin(org)
+	prop_dynamic117.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_cargoshop2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_cargoshop2 <- function(org, ang)
 {
 	local prop_dynamic118 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "cargoshop2",
@@ -2414,14 +2063,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lightingorigin = "desk",
 	    startdisabled = 1
 	})
-
-	if(origin != null)
-		prop_dynamic118.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic118.SetAngles(angles)
+	prop_dynamic118.SetOrigin(org)
+	prop_dynamic118.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_cargoshop3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_cargoshop3 <- function(org, ang)
 {
 	local prop_dynamic119 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "cargoshop3",
@@ -2436,14 +2082,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lightingorigin = "item_ammopack_large",
 	    startdisabled = 1
 	})
-
-	if(origin != null)
-		prop_dynamic119.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic119.SetAngles(angles)
+	prop_dynamic119.SetOrigin(org)
+	prop_dynamic119.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_pusher <- function()
+::p_pusher <- function(org, ang)
 {
 	local trigger_push_brush27 = SpawnEntityFromTable("trigger_push", {
 	    filtername = "filter_leaper",
@@ -2466,14 +2109,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    tags = "bot_leaper",
 	    targetname = "filter_leaper"
 	})
-
-	if(origin != null)
-		filter_tf_bot_has_tag120.SetOrigin(origin)
-	if(angles != null)
-		filter_tf_bot_has_tag120.SetAngles(angles)
+	filter_tf_bot_has_tag120.SetOrigin(org)
+	filter_tf_bot_has_tag120.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_pusher2 <- function()
+::p_pusher2 <- function(org, ang)
 {
 	local trigger_push_brush28 = SpawnEntityFromTable("trigger_push", {
 	    filtername = "filter_virophage",
@@ -2491,7 +2131,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush28.KeyValueFromString("maxs", "74 62 544")
 
 }
-::p_table <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_table <- function(org, ang)
 {
 	local prop_dynamic121 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "table",
@@ -2504,14 +2144,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic121.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic121.SetAngles(angles)
+	prop_dynamic121.SetOrigin(org)
+	prop_dynamic121.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_table2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_table2 <- function(org, ang)
 {
 	local prop_dynamic122 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "table",
@@ -2524,14 +2161,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 0,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic122.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic122.SetAngles(angles)
+	prop_dynamic122.SetOrigin(org)
+	prop_dynamic122.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_desk <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_desk <- function(org, ang)
 {
 	local prop_dynamic123 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "desk",
@@ -2544,14 +2178,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 0,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic123.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic123.SetAngles(angles)
+	prop_dynamic123.SetOrigin(org)
+	prop_dynamic123.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_desk_intro <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_desk_intro <- function(org, ang)
 {
 	local prop_dynamic124 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "shitcade",
@@ -2564,14 +2195,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic124.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic124.SetAngles(angles)
+	prop_dynamic124.SetOrigin(org)
+	prop_dynamic124.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_chair_intro <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_chair_intro <- function(org, ang)
 {
 	local prop_dynamic125 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "shitcade",
@@ -2584,14 +2212,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic125.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic125.SetAngles(angles)
+	prop_dynamic125.SetOrigin(org)
+	prop_dynamic125.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_urn <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_urn <- function(org, ang)
 {
 	local prop_dynamic126 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -2603,116 +2228,89 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic126.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic126.SetAngles(angles)
+	prop_dynamic126.SetOrigin(org)
+	prop_dynamic126.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_smallammo <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_smallammo <- function(org, ang)
 {
 	local item_ammopack_small127 = SpawnEntityFromTable("item_ammopack_small", {
 	    classname = "item_ammopack_small",
 	    disableshadows = 0
 	})
-
-	if(origin != null)
-		item_ammopack_small127.SetOrigin(origin)
-	if(angles != null)
-		item_ammopack_small127.SetAngles(angles)
+	item_ammopack_small127.SetOrigin(org)
+	item_ammopack_small127.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_smallammoskin <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_smallammoskin <- function(org, ang)
 {
 	local item_ammopack_small128 = SpawnEntityFromTable("item_ammopack_small", {
 	    powerup_model = "models/weapons/w_models/w_rocket.mdl",
 	    disableshadows = 0
 	})
-
-	if(origin != null)
-		item_ammopack_small128.SetOrigin(origin)
-	if(angles != null)
-		item_ammopack_small128.SetAngles(angles)
+	item_ammopack_small128.SetOrigin(org)
+	item_ammopack_small128.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_mediumammo <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_mediumammo <- function(org, ang)
 {
 	local item_ammopack_medium129 = SpawnEntityFromTable("item_ammopack_medium", {
 	    classname = "item_ammopack_medium",
 	    disableshadows = 0
 	})
-
-	if(origin != null)
-		item_ammopack_medium129.SetOrigin(origin)
-	if(angles != null)
-		item_ammopack_medium129.SetAngles(angles)
+	item_ammopack_medium129.SetOrigin(org)
+	item_ammopack_medium129.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_fullammo <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_fullammo <- function(org, ang)
 {
 	local item_ammopack_full130 = SpawnEntityFromTable("item_ammopack_full", {
 	    classname = "item_ammopack_full",
 	    disableshadows = 0
 	})
-
-	if(origin != null)
-		item_ammopack_full130.SetOrigin(origin)
-	if(angles != null)
-		item_ammopack_full130.SetAngles(angles)
+	item_ammopack_full130.SetOrigin(org)
+	item_ammopack_full130.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_smallmedkit <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_smallmedkit <- function(org, ang)
 {
 	local item_healthkit_small131 = SpawnEntityFromTable("item_healthkit_small", {
 	    classname = "item_healthkit_small"
 	})
-
-	if(origin != null)
-		item_healthkit_small131.SetOrigin(origin)
-	if(angles != null)
-		item_healthkit_small131.SetAngles(angles)
+	item_healthkit_small131.SetOrigin(org)
+	item_healthkit_small131.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_smallmedkitskin <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_smallmedkitskin <- function(org, ang)
 {
 	local item_healthkit_small132 = SpawnEntityFromTable("item_healthkit_small", {
 	    classname = "item_healthkit_small",
 	    powerup_model = "models/items/medkit_small_bday.mdl"
 	})
-
-	if(origin != null)
-		item_healthkit_small132.SetOrigin(origin)
-	if(angles != null)
-		item_healthkit_small132.SetAngles(angles)
+	item_healthkit_small132.SetOrigin(org)
+	item_healthkit_small132.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_mediumkit <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_mediumkit <- function(org, ang)
 {
 	local item_healthkit_medium133 = SpawnEntityFromTable("item_healthkit_medium", {
 	    classname = "item_healthkit_medium"
 	})
-
-	if(origin != null)
-		item_healthkit_medium133.SetOrigin(origin)
-	if(angles != null)
-		item_healthkit_medium133.SetAngles(angles)
+	item_healthkit_medium133.SetOrigin(org)
+	item_healthkit_medium133.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_fullkit <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_fullkit <- function(org, ang)
 {
 	local item_healthpack_medium134 = SpawnEntityFromTable("item_healthpack_medium", {
 	    classname = "item_healthkit_full",
 	    disableshadows = 0
 	})
-
-	if(origin != null)
-		item_healthpack_medium134.SetOrigin(origin)
-	if(angles != null)
-		item_healthpack_medium134.SetAngles(angles)
+	item_healthpack_medium134.SetOrigin(org)
+	item_healthpack_medium134.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_beam <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_beam <- function(org, ang)
 {
 	local prop_dynamic135 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "beam",
@@ -2725,14 +2323,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic135.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic135.SetAngles(angles)
+	prop_dynamic135.SetOrigin(org)
+	prop_dynamic135.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_stair <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_stair <- function(org, ang)
 {
 	local prop_dynamic136 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "stair",
@@ -2746,14 +2341,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    spawnflags = 0,
 	    lightingorigin = "info_tele"
 	})
-
-	if(origin != null)
-		prop_dynamic136.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic136.SetAngles(angles)
+	prop_dynamic136.SetOrigin(org)
+	prop_dynamic136.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_chair <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_chair <- function(org, ang)
 {
 	local prop_dynamic137 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "chair",
@@ -2766,14 +2358,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 0,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic137.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic137.SetAngles(angles)
+	prop_dynamic137.SetOrigin(org)
+	prop_dynamic137.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_box_intro <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_box_intro <- function(org, ang)
 {
 	local prop_dynamic138 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "shitcade",
@@ -2786,14 +2375,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic138.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic138.SetAngles(angles)
+	prop_dynamic138.SetOrigin(org)
+	prop_dynamic138.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_box <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_box <- function(org, ang)
 {
 	local prop_dynamic139 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "box",
@@ -2806,14 +2392,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic139.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic139.SetAngles(angles)
+	prop_dynamic139.SetOrigin(org)
+	prop_dynamic139.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_bookcase <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_bookcase <- function(org, ang)
 {
 	local prop_dynamic140 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "bookcase",
@@ -2826,14 +2409,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic140.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic140.SetAngles(angles)
+	prop_dynamic140.SetOrigin(org)
+	prop_dynamic140.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_bookcase3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_bookcase3 <- function(org, ang)
 {
 	local prop_dynamic141 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -2845,14 +2425,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 0,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic141.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic141.SetAngles(angles)
+	prop_dynamic141.SetOrigin(org)
+	prop_dynamic141.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_monstercage <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_monstercage <- function(org, ang)
 {
 	local prop_dynamic142 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "monstercage",
@@ -2865,14 +2442,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic142.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic142.SetAngles(angles)
+	prop_dynamic142.SetOrigin(org)
+	prop_dynamic142.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barrel <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barrel <- function(org, ang)
 {
 	local prop_dynamic143 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -2884,14 +2458,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic143.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic143.SetAngles(angles)
+	prop_dynamic143.SetOrigin(org)
+	prop_dynamic143.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_beer <- function()
+::p_beer <- function(org, ang)
 {
 	local func_wall_brush29 = SpawnEntityFromTable("func_wall", {
 	    mins = "-49 -65 -224",
@@ -2902,7 +2473,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_wall_brush29.KeyValueFromString("maxs", "49 65 224")
 
 }
-::p_brokenstairs_clip <- function()
+::p_brokenstairs_clip <- function(org, ang)
 {
 	local func_wall_brush30 = SpawnEntityFromTable("func_wall", {
 	    mins = "-36 -32 -77",
@@ -2961,7 +2532,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_wall_brush36.KeyValueFromString("maxs", "4 8 112")
 
 }
-::p_crate <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_crate <- function(org, ang)
 {
 	local prop_dynamic144 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "crate",
@@ -2975,14 +2546,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    spawnflags = 0,
 	    minhealthdmg = 9999
 	})
-
-	if(origin != null)
-		prop_dynamic144.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic144.SetAngles(angles)
+	prop_dynamic144.SetOrigin(org)
+	prop_dynamic144.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_ledgefix_left <- function()
+::p_ledgefix_left <- function(org, ang)
 {
 	local func_brush_brush37 = SpawnEntityFromTable("func_brush", {
 	    mins = "-112 -8 -104",
@@ -3009,7 +2577,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_brush_brush39.KeyValueFromString("maxs", "112 8 104")
 
 }
-::p_ledgefix_right <- function()
+::p_ledgefix_right <- function(org, ang)
 {
 	local func_brush_brush40 = SpawnEntityFromTable("func_brush", {
 	    mins = "-112 -8 -104",
@@ -3036,7 +2604,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_brush_brush42.KeyValueFromString("maxs", "112 8 104")
 
 }
-::p_crate2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_crate2 <- function(org, ang)
 {
 	local prop_dynamic145 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -3050,14 +2618,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    lightingorigin = "spawnbot_surprise2",
 	    minhealthdmg = 9999
 	})
-
-	if(origin != null)
-		prop_dynamic145.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic145.SetAngles(angles)
+	prop_dynamic145.SetOrigin(org)
+	prop_dynamic145.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_tomb <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_tomb <- function(org, ang)
 {
 	local prop_dynamic146 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "tomb",
@@ -3071,14 +2636,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    spawnflags = 0,
 	    minhealthdmg = 9999
 	})
-
-	if(origin != null)
-		prop_dynamic146.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic146.SetAngles(angles)
+	prop_dynamic146.SetOrigin(org)
+	prop_dynamic146.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_heli <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_heli <- function(org, ang)
 {
 	local prop_dynamic147 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -3090,14 +2652,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 0,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic147.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic147.SetAngles(angles)
+	prop_dynamic147.SetOrigin(org)
+	prop_dynamic147.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_cratesmall <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_cratesmall <- function(org, ang)
 {
 	local prop_dynamic148 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -3110,14 +2669,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    spawnflags = 0,
 	    minhealthdmg = 9999
 	})
-
-	if(origin != null)
-		prop_dynamic148.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic148.SetAngles(angles)
+	prop_dynamic148.SetOrigin(org)
+	prop_dynamic148.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_crate_intro <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_crate_intro <- function(org, ang)
 {
 	local prop_dynamic149 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "shitcade",
@@ -3131,14 +2687,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    spawnflags = 0,
 	    minhealthdmg = 9999
 	})
-
-	if(origin != null)
-		prop_dynamic149.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic149.SetAngles(angles)
+	prop_dynamic149.SetOrigin(org)
+	prop_dynamic149.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shitcade <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shitcade <- function(org, ang)
 {
 	local prop_dynamic150 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "shitcade_intro",
@@ -3152,14 +2705,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    spawnflags = 0,
 	    DefaultAnim = "idle"
 	})
-
-	if(origin != null)
-		prop_dynamic150.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic150.SetAngles(angles)
+	prop_dynamic150.SetOrigin(org)
+	prop_dynamic150.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shitcade2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_shitcade2 <- function(org, ang)
 {
 	local prop_dynamic151 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "shitcade",
@@ -3172,14 +2722,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic151.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic151.SetAngles(angles)
+	prop_dynamic151.SetOrigin(org)
+	prop_dynamic151.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barricade_level1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barricade_level1 <- function(org, ang)
 {
 	local prop_dynamic152 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "barricade_level1",
@@ -3192,14 +2739,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic152.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic152.SetAngles(angles)
+	prop_dynamic152.SetOrigin(org)
+	prop_dynamic152.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barricade_nolevel <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barricade_nolevel <- function(org, ang)
 {
 	local prop_dynamic153 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "barricade_level",
@@ -3212,14 +2756,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic153.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic153.SetAngles(angles)
+	prop_dynamic153.SetOrigin(org)
+	prop_dynamic153.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barricade_nolevel2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barricade_nolevel2 <- function(org, ang)
 {
 	local prop_dynamic154 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -3231,14 +2772,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic154.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic154.SetAngles(angles)
+	prop_dynamic154.SetOrigin(org)
+	prop_dynamic154.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barricade_nolevel3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barricade_nolevel3 <- function(org, ang)
 {
 	local prop_dynamic155 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -3250,14 +2788,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 0,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic155.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic155.SetAngles(angles)
+	prop_dynamic155.SetOrigin(org)
+	prop_dynamic155.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barricade_level2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barricade_level2 <- function(org, ang)
 {
 	local prop_dynamic156 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "barricade_level2",
@@ -3270,14 +2805,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic156.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic156.SetAngles(angles)
+	prop_dynamic156.SetOrigin(org)
+	prop_dynamic156.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barricade_level3a <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barricade_level3a <- function(org, ang)
 {
 	local prop_dynamic157 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "barricade_level3",
@@ -3290,14 +2822,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic157.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic157.SetAngles(angles)
+	prop_dynamic157.SetOrigin(org)
+	prop_dynamic157.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barricade_level3b <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barricade_level3b <- function(org, ang)
 {
 	local prop_dynamic158 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "barricade_level3",
@@ -3310,14 +2839,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic158.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic158.SetAngles(angles)
+	prop_dynamic158.SetOrigin(org)
+	prop_dynamic158.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barricade_plate2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barricade_plate2 <- function(org, ang)
 {
 	local prop_dynamic159 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "barricade_level2",
@@ -3330,14 +2856,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic159.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic159.SetAngles(angles)
+	prop_dynamic159.SetOrigin(org)
+	prop_dynamic159.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_barricade_plate3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_barricade_plate3 <- function(org, ang)
 {
 	local prop_dynamic160 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "barricade_level3",
@@ -3350,14 +2873,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic160.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic160.SetAngles(angles)
+	prop_dynamic160.SetOrigin(org)
+	prop_dynamic160.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_zombie <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_zombie <- function(org, ang)
 {
 	local prop_dynamic161 = SpawnEntityFromTable("prop_dynamic", {
 	    targetname = "zombie",
@@ -3373,14 +2893,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 6,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		prop_dynamic161.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic161.SetAngles(angles)
+	prop_dynamic161.SetOrigin(org)
+	prop_dynamic161.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_hhhteleporter <- function()
+::p_hhhteleporter <- function(org, ang)
 {
 	local trigger_teleport_brush43 = SpawnEntityFromTable("trigger_teleport", {
 	    origin = Vector(0, 2176, 48),
@@ -3402,24 +2919,18 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(300, 2395, 200),
 	    angles = QAngle(0, 90, 0)
 	})
-
-	if(origin != null)
-		info_teleport_destination162.SetOrigin(origin)
-	if(angles != null)
-		info_teleport_destination162.SetAngles(angles)
+	info_teleport_destination162.SetOrigin(org)
+	info_teleport_destination162.SetAngles(ang[0], ang[1], ang[2])
 
 	local filter_activator_class163 = SpawnEntityFromTable("filter_activator_class", {
 	    filterclass = "headless_hatman",
 	    targetname = "filter_headless"
 	})
-
-	if(origin != null)
-		filter_activator_class163.SetOrigin(origin)
-	if(angles != null)
-		filter_activator_class163.SetAngles(angles)
+	filter_activator_class163.SetOrigin(org)
+	filter_activator_class163.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_slower0 <- function()
+::p_slower0 <- function(org, ang)
 {
 	local trigger_stun_brush44 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3442,7 +2953,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush44.KeyValueFromString("maxs", "8000 8000 1000")
 
 }
-::p_slower1 <- function()
+::p_slower1 <- function(org, ang)
 {
 	local trigger_stun_brush45 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3465,7 +2976,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush45.KeyValueFromString("maxs", "384 160 80")
 
 }
-::p_slower2 <- function()
+::p_slower2 <- function(org, ang)
 {
 	local trigger_stun_brush46 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3488,7 +2999,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush46.KeyValueFromString("maxs", "480 128 104")
 
 }
-::p_slower3 <- function()
+::p_slower3 <- function(org, ang)
 {
 	local trigger_stun_brush47 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3511,7 +3022,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush47.KeyValueFromString("maxs", "448 192 104")
 
 }
-::p_slower4 <- function()
+::p_slower4 <- function(org, ang)
 {
 	local trigger_stun_brush48 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3534,7 +3045,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush48.KeyValueFromString("maxs", "288 336 104")
 
 }
-::p_slower5 <- function()
+::p_slower5 <- function(org, ang)
 {
 	local trigger_stun_brush49 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3557,7 +3068,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush49.KeyValueFromString("maxs", "104 140 104")
 
 }
-::p_slower6 <- function()
+::p_slower6 <- function(org, ang)
 {
 	local trigger_stun_brush50 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3580,7 +3091,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush50.KeyValueFromString("maxs", "288 928 104")
 
 }
-::p_slower7 <- function()
+::p_slower7 <- function(org, ang)
 {
 	local trigger_stun_brush51 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3603,7 +3114,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush51.KeyValueFromString("maxs", "1360 528 55")
 
 }
-::p_slower8 <- function()
+::p_slower8 <- function(org, ang)
 {
 	local trigger_stun_brush52 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3626,7 +3137,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush52.KeyValueFromString("maxs", "784 544 104")
 
 }
-::p_slower9 <- function()
+::p_slower9 <- function(org, ang)
 {
 	local trigger_stun_brush53 = SpawnEntityFromTable("trigger_stun", {
 	    TeamNum = 0,
@@ -3649,7 +3160,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_stun_brush53.KeyValueFromString("maxs", "96 160 104")
 
 }
-::p_controlpoint <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_controlpoint <- function(org, ang)
 {
 	local prop_dynamic164 = SpawnEntityFromTable("prop_dynamic", {
 	    model = "models/props_gameplay/cap_point_base.mdl",
@@ -3657,11 +3168,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    solid = 0,
 	    skin = 0
 	})
-
-	if(origin != null)
-		prop_dynamic164.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic164.SetAngles(angles)
+	prop_dynamic164.SetOrigin(org)
+	prop_dynamic164.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_capture_area_brush54 = SpawnEntityFromTable("trigger_capture_area", {
 	    area_cap_point = "cap_point",
@@ -3714,11 +3222,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    team_timedpoints_3 = 0,
 	    origin = Vector(0, 0, 4)
 	})
-
-	if(origin != null)
-		team_control_point165.SetOrigin(origin)
-	if(angles != null)
-		team_control_point165.SetAngles(angles)
+	team_control_point165.SetOrigin(org)
+	team_control_point165.SetAngles(ang[0], ang[1], ang[2])
 
 	local team_control_point_master166 = SpawnEntityFromTable("team_control_point_master", {
 	    classname = "team_control_point_master",
@@ -3735,11 +3240,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    team_base_icon_2 = "sprites/obj_icons/icon_base_red",
 	    team_base_icon_3 = "sprites/obj_icons/icon_base_blu"
 	})
-
-	if(origin != null)
-		team_control_point_master166.SetOrigin(origin)
-	if(angles != null)
-		team_control_point_master166.SetAngles(angles)
+	team_control_point_master166.SetOrigin(org)
+	team_control_point_master166.SetAngles(ang[0], ang[1], ang[2])
 
 	local game_round_win167 = SpawnEntityFromTable("game_round_win", {
 	    classname = "game_round_win",
@@ -3748,36 +3250,27 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "red_win",
 	    TeamNum = 2
 	})
-
-	if(origin != null)
-		game_round_win167.SetOrigin(origin)
-	if(angles != null)
-		game_round_win167.SetAngles(angles)
+	game_round_win167.SetOrigin(org)
+	game_round_win167.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay168 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "cap_area,SetControlPoint,cap_point,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION21"
 	})
-
-	if(origin != null)
-		logic_relay168.SetOrigin(origin)
-	if(angles != null)
-		logic_relay168.SetAngles(angles)
+	logic_relay168.SetOrigin(org)
+	logic_relay168.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay169 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "cap_master,RoundSpawn,,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION22"
 	})
-
-	if(origin != null)
-		logic_relay169.SetOrigin(origin)
-	if(angles != null)
-		logic_relay169.SetAngles(angles)
+	logic_relay169.SetOrigin(org)
+	logic_relay169.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_cover <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_cover <- function(org, ang)
 {
 	local prop_dynamic170 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -3792,11 +3285,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    Angles = "0 105 10",
 	    minhealthdmg = 9999
 	})
-
-	if(origin != null)
-		prop_dynamic170.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic170.SetAngles(angles)
+	prop_dynamic170.SetOrigin(org)
+	prop_dynamic170.SetAngles(ang[0], ang[1], ang[2])
 
 	local prop_dynamic171 = SpawnEntityFromTable("prop_dynamic", {
 	    classname = "prop_dynamic",
@@ -3811,40 +3301,31 @@ __CollectGameEventCallbacks(::r2v_events)
 	    Angles = "0 105 10",
 	    minhealthdmg = 9999
 	})
-
-	if(origin != null)
-		prop_dynamic171.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic171.SetAngles(angles)
+	prop_dynamic171.SetOrigin(org)
+	prop_dynamic171.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_pointmaker <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_pointmaker <- function(org, ang)
 {
 	local env_entity_maker172 = SpawnEntityFromTable("env_entity_maker", {
 	    targetname = "point_maker",
 	    EntityTemplate = "p_controlpoint"
 	})
-
-	if(origin != null)
-		env_entity_maker172.SetOrigin(origin)
-	if(angles != null)
-		env_entity_maker172.SetAngles(angles)
+	env_entity_maker172.SetOrigin(org)
+	env_entity_maker172.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_pointmaker2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_pointmaker2 <- function(org, ang)
 {
 	local env_entity_maker173 = SpawnEntityFromTable("env_entity_maker", {
 	    targetname = "point_maker2",
 	    EntityTemplate = "p_leet2"
 	})
-
-	if(origin != null)
-		env_entity_maker173.SetOrigin(origin)
-	if(angles != null)
-		env_entity_maker173.SetAngles(angles)
+	env_entity_maker173.SetOrigin(org)
+	env_entity_maker173.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_shutter_pusher <- function()
+::p_shutter_pusher <- function(org, ang)
 {
 	local trigger_push_brush55 = SpawnEntityFromTable("trigger_push", {
 	    origin = Vector(232, 249, 521),
@@ -3860,7 +3341,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush55.KeyValueFromString("maxs", "456 7 7.5")
 
 }
-::p_shutter_pusher2 <- function()
+::p_shutter_pusher2 <- function(org, ang)
 {
 	local trigger_push_brush56 = SpawnEntityFromTable("trigger_push", {
 	    origin = Vector(125, 244, 345),
@@ -3876,7 +3357,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush56.KeyValueFromString("maxs", "349 12.5 168.5")
 
 }
-::p_brokenwall_pusher <- function()
+::p_brokenwall_pusher <- function(org, ang)
 {
 	local trigger_push_brush57 = SpawnEntityFromTable("trigger_push", {
 	    origin = Vector(388, 2182, 587),
@@ -3892,7 +3373,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush57.KeyValueFromString("maxs", "4 5.5 85")
 
 }
-::p_brokenwall_pusher2 <- function()
+::p_brokenwall_pusher2 <- function(org, ang)
 {
 	local trigger_push_brush58 = SpawnEntityFromTable("trigger_push", {
 	    origin = Vector(-388, 1761, 365),
@@ -3921,7 +3402,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush59.KeyValueFromString("maxs", "24 15.5 40.5")
 
 }
-::p_yeet_failsafe <- function()
+::p_yeet_failsafe <- function(org, ang)
 {
 	local trigger_teleport_brush60 = SpawnEntityFromTable("trigger_teleport", {
 	    mins = "-82.5 -41 -20",
@@ -3940,14 +3421,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(0, 488, 300),
 	    angles = QAngle(0, 90, 0)
 	})
-
-	if(origin != null)
-		info_target174.SetOrigin(origin)
-	if(angles != null)
-		info_target174.SetAngles(angles)
+	info_target174.SetOrigin(org)
+	info_target174.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_yeet <- function()
+::p_yeet <- function(org, ang)
 {
 	local func_forcefield_brush61 = SpawnEntityFromTable("func_forcefield", {
 	    mins = "-82.5 -41 -20.5",
@@ -3961,7 +3439,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush61.KeyValueFromString("maxs", "82.5 41 20.5")
 
 }
-::p_yeet2 <- function()
+::p_yeet2 <- function(org, ang)
 {
 	local trigger_push_brush62 = SpawnEntityFromTable("trigger_push", {
 	    mins = "-16 -156 -16",
@@ -3991,7 +3469,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_rotating_brush63.KeyValueFromString("maxspeed", "50")
 
 }
-::p_yeet3 <- function()
+::p_yeet3 <- function(org, ang)
 {
 	local trigger_catapult_brush64 = SpawnEntityFromTable("trigger_catapult", {
 	    useThresholdCheck = 0,
@@ -4024,14 +3502,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "jumptarget_lonepillar",
 	    origin = Vector(400, 1040, 315)
 	})
-
-	if(origin != null)
-		info_target175.SetOrigin(origin)
-	if(angles != null)
-		info_target175.SetAngles(angles)
+	info_target175.SetOrigin(org)
+	info_target175.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_yeet4 <- function()
+::p_yeet4 <- function(org, ang)
 {
 	local trigger_push_brush65 = SpawnEntityFromTable("trigger_push", {
 	    origin = Vector(416, -1056, 576),
@@ -4049,7 +3524,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush65.KeyValueFromString("maxs", "32 32 704")
 
 }
-::p_mapblock <- function()
+::p_mapblock <- function(org, ang)
 {
 	local func_forcefield_brush66 = SpawnEntityFromTable("func_forcefield", {
 	    mins = "-288 -62 -704",
@@ -4063,7 +3538,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush66.KeyValueFromString("maxs", "288 62 704")
 
 }
-::p_bonus <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_bonus <- function(org, ang)
 {
 	local filter_tf_bot_has_tag176 = SpawnEntityFromTable("filter_tf_bot_has_tag", {
 	    negated = 1,
@@ -4071,22 +3546,16 @@ __CollectGameEventCallbacks(::r2v_events)
 	    tags = "bot_notplayer",
 	    targetname = "filter_notplayer"
 	})
-
-	if(origin != null)
-		filter_tf_bot_has_tag176.SetOrigin(origin)
-	if(angles != null)
-		filter_tf_bot_has_tag176.SetAngles(angles)
+	filter_tf_bot_has_tag176.SetOrigin(org)
+	filter_tf_bot_has_tag176.SetAngles(ang[0], ang[1], ang[2])
 
 	local filter_multi177 = SpawnEntityFromTable("filter_multi", {
 	    targetname = "filter_redplayer",
 	    filter01 = "filter_red",
 	    filter02 = "filter_notplayer"
 	})
-
-	if(origin != null)
-		filter_multi177.SetOrigin(origin)
-	if(angles != null)
-		filter_multi177.SetAngles(angles)
+	filter_multi177.SetOrigin(org)
+	filter_multi177.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_add_tf_player_condition_brush67 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
 	    condition = 40,
@@ -4109,22 +3578,16 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "ontimer#1": "lastcrits,enable,,0,-1",
 	    "ontimer#2": "lastcrits,disable,,0.5,-1"
 	})
-
-	if(origin != null)
-		logic_timer178.SetOrigin(origin)
-	if(angles != null)
-		logic_timer178.SetAngles(angles)
+	logic_timer178.SetOrigin(org)
+	logic_timer178.SetAngles(ang[0], ang[1], ang[2])
 
 	local math_counter179 = SpawnEntityFromTable("math_counter", {
 	    targetname = "lastcounter",
 	    max = 6,
 	    "outvalue#1": "lastcountercompare,setvaluecompare,,0,-1"
 	})
-
-	if(origin != null)
-		math_counter179.SetOrigin(origin)
-	if(angles != null)
-		math_counter179.SetAngles(angles)
+	math_counter179.SetOrigin(org)
+	math_counter179.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_compare180 = SpawnEntityFromTable("logic_compare", {
 	    targetname = "lastcountercompare",
@@ -4134,11 +3597,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "onequalto#3": "lastenable_relay,trigger,,0,-1",
 	    "onequalto#4": "lastdisable_relay,enable,,0,-1"
 	})
-
-	if(origin != null)
-		logic_compare180.SetOrigin(origin)
-	if(angles != null)
-		logic_compare180.SetAngles(angles)
+	logic_compare180.SetOrigin(org)
+	logic_compare180.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay181 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "enable_lastenable_relay",
@@ -4148,11 +3608,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "onspawn#3": "wave_start_relay,addoutput,ontrigger lastenable_relay:enable::0:-1,0,-1",
 	    "onspawn#4": "wave_start_relay,addoutput,ontrigger lastcountercompare:compare::1:-1,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay181.SetOrigin(origin)
-	if(angles != null)
-		logic_relay181.SetAngles(angles)
+	logic_relay181.SetOrigin(org)
+	logic_relay181.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay182 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "lastenable_relay",
@@ -4169,11 +3626,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "ontrigger#10": "obj_sentrygun,removehealth,9999,2.5,-1",
 	    "ontrigger#11": "obj_teleporter,removehealth,9999,2.5,-1"
 	})
-
-	if(origin != null)
-		logic_relay182.SetOrigin(origin)
-	if(angles != null)
-		logic_relay182.SetAngles(angles)
+	logic_relay182.SetOrigin(org)
+	logic_relay182.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay183 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "lastdisable_relay",
@@ -4187,14 +3641,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "ontrigger#7": "virospook,stopsound,,0,-1",
 	    "ontrigger#8": "playerRunScriptCodeself.AddCustomAttribute(`mult dmg vs tanks`, 1, -1)0-1"
 	})
-
-	if(origin != null)
-		logic_relay183.SetOrigin(origin)
-	if(angles != null)
-		logic_relay183.SetAngles(angles)
+	logic_relay183.SetOrigin(org)
+	logic_relay183.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_fog <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_fog <- function(org, ang)
 {
 	local env_fog_controller184 = SpawnEntityFromTable("env_fog_controller", {
 	    farz = -1.0,
@@ -4210,11 +3661,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    spawnflags = 1,
 	    targetname = "mist"
 	})
-
-	if(origin != null)
-		env_fog_controller184.SetOrigin(origin)
-	if(angles != null)
-		env_fog_controller184.SetAngles(angles)
+	env_fog_controller184.SetOrigin(org)
+	env_fog_controller184.SetAngles(ang[0], ang[1], ang[2])
 
 	local sky_camera185 = SpawnEntityFromTable("sky_camera", {
 	    fogmaxdensity = 1,
@@ -4229,11 +3677,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    scale = 16,
 	    targetname = "mist_camera"
 	})
-
-	if(origin != null)
-		sky_camera185.SetOrigin(origin)
-	if(angles != null)
-		sky_camera185.SetAngles(angles)
+	sky_camera185.SetOrigin(org)
+	sky_camera185.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_multiple_brush68 = SpawnEntityFromTable("trigger_multiple", {
 	    origin = Vector(1847, -4007, 71),
@@ -4248,7 +3693,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_multiple_brush68.KeyValueFromString("maxs", "9999 9999 9999")
 
 }
-::p_navblocker <- function()
+::p_navblocker <- function(org, ang)
 {
 	local func_nav_blocker_brush69 = SpawnEntityFromTable("func_nav_blocker", {
 	    start_disabled = 0,
@@ -4266,14 +3711,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION23"
 	})
-
-	if(origin != null)
-		logic_relay186.SetOrigin(origin)
-	if(angles != null)
-		logic_relay186.SetAngles(angles)
+	logic_relay186.SetOrigin(org)
+	logic_relay186.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_navblocker2 <- function()
+::p_navblocker2 <- function(org, ang)
 {
 	local func_brush_brush70 = SpawnEntityFromTable("func_brush", {
 	    mins = "-224 -50 -650",
@@ -4288,233 +3730,179 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_brush_brush70.KeyValueFromString("maxs", "224 50 650")
 
 }
-::p_survmoveup <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_survmoveup <- function(org, ang)
 {
 	local info_target187 = SpawnEntityFromTable("info_target", {
 	    targetname = "moveup"
 	})
-
-	if(origin != null)
-		info_target187.SetOrigin(origin)
-	if(angles != null)
-		info_target187.SetAngles(angles)
+	info_target187.SetOrigin(org)
+	info_target187.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_survmoveup2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_survmoveup2 <- function(org, ang)
 {
 	local info_target188 = SpawnEntityFromTable("info_target", {
 	    targetname = "moveup2"
 	})
-
-	if(origin != null)
-		info_target188.SetOrigin(origin)
-	if(angles != null)
-		info_target188.SetAngles(angles)
+	info_target188.SetOrigin(org)
+	info_target188.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_survmoveup3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_survmoveup3 <- function(org, ang)
 {
 	local info_target189 = SpawnEntityFromTable("info_target", {
 	    targetname = "moveup3"
 	})
-
-	if(origin != null)
-		info_target189.SetOrigin(origin)
-	if(angles != null)
-		info_target189.SetAngles(angles)
+	info_target189.SetOrigin(org)
+	info_target189.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_survshop1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_survshop1 <- function(org, ang)
 {
 	local info_target190 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_shop1"
 	})
-
-	if(origin != null)
-		info_target190.SetOrigin(origin)
-	if(angles != null)
-		info_target190.SetAngles(angles)
+	info_target190.SetOrigin(org)
+	info_target190.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_survshop2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_survshop2 <- function(org, ang)
 {
 	local info_target191 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_shop2"
 	})
-
-	if(origin != null)
-		info_target191.SetOrigin(origin)
-	if(angles != null)
-		info_target191.SetAngles(angles)
+	info_target191.SetOrigin(org)
+	info_target191.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_survshop3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_survshop3 <- function(org, ang)
 {
 	local info_target192 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_shop3"
 	})
-
-	if(origin != null)
-		info_target192.SetOrigin(origin)
-	if(angles != null)
-		info_target192.SetAngles(angles)
+	info_target192.SetOrigin(org)
+	info_target192.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_keepertarget <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_keepertarget <- function(org, ang)
 {
 	local info_target193 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_keeper"
 	})
-
-	if(origin != null)
-		info_target193.SetOrigin(origin)
-	if(angles != null)
-		info_target193.SetAngles(angles)
+	info_target193.SetOrigin(org)
+	info_target193.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_marketgardener <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_marketgardener <- function(org, ang)
 {
 	local info_target194 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_mg"
 	})
-
-	if(origin != null)
-		info_target194.SetOrigin(origin)
-	if(angles != null)
-		info_target194.SetAngles(angles)
+	info_target194.SetOrigin(org)
+	info_target194.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_marketgardener2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_marketgardener2 <- function(org, ang)
 {
 	local info_target195 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_mg2"
 	})
-
-	if(origin != null)
-		info_target195.SetOrigin(origin)
-	if(angles != null)
-		info_target195.SetAngles(angles)
+	info_target195.SetOrigin(org)
+	info_target195.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_marketgardener3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_marketgardener3 <- function(org, ang)
 {
 	local info_target196 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_mg3"
 	})
-
-	if(origin != null)
-		info_target196.SetOrigin(origin)
-	if(angles != null)
-		info_target196.SetAngles(angles)
+	info_target196.SetOrigin(org)
+	info_target196.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_marketgardener4 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_marketgardener4 <- function(org, ang)
 {
 	local info_target197 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_mg4"
 	})
-
-	if(origin != null)
-		info_target197.SetOrigin(origin)
-	if(angles != null)
-		info_target197.SetAngles(angles)
+	info_target197.SetOrigin(org)
+	info_target197.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_tank <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_tank <- function(org, ang)
 {
 	local info_target198 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_tank"
 	})
-
-	if(origin != null)
-		info_target198.SetOrigin(origin)
-	if(angles != null)
-		info_target198.SetAngles(angles)
+	info_target198.SetOrigin(org)
+	info_target198.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_tankgo <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_tankgo <- function(org, ang)
 {
 	local info_target199 = SpawnEntityFromTable("info_target", {
 	    targetname = "target_tankgo"
 	})
-
-	if(origin != null)
-		info_target199.SetOrigin(origin)
-	if(angles != null)
-		info_target199.SetAngles(angles)
+	info_target199.SetOrigin(org)
+	info_target199.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_threaten <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_threaten <- function(org, ang)
 {
 	local logic_relay200 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "threat",
 	    "OnTrigger#1": "player*RunScriptCodeClientPrint(self, 4, `KILL KILL KILL KILL KILL KILL`)0-1"
 	})
-
-	if(origin != null)
-		logic_relay200.SetOrigin(origin)
-	if(angles != null)
-		logic_relay200.SetAngles(angles)
+	logic_relay200.SetOrigin(org)
+	logic_relay200.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_threaten2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_threaten2 <- function(org, ang)
 {
 	local logic_relay201 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "threat2",
 	    "OnTrigger#1": "player*RunScriptCodeClientPrint(self, 4, `LAST CHANCE FOR PURCHASES`)0-1"
 	})
-
-	if(origin != null)
-		logic_relay201.SetOrigin(origin)
-	if(angles != null)
-		logic_relay201.SetAngles(angles)
+	logic_relay201.SetOrigin(org)
+	logic_relay201.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_fogold <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_fogold <- function(org, ang)
 {
 	local logic_relay202 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "fog_old",
 	    "OnTrigger#1": "player*,SetFogController,fog_controller,0.01,-1"
 	})
-
-	if(origin != null)
-		logic_relay202.SetOrigin(origin)
-	if(angles != null)
-		logic_relay202.SetAngles(angles)
+	logic_relay202.SetOrigin(org)
+	logic_relay202.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_nohud1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_nohud1 <- function(org, ang)
 {
 	local logic_relay203 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "hudbgone",
 	    "OnTrigger#1": "player*,SetHUDVisibility,0,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay203.SetOrigin(origin)
-	if(angles != null)
-		logic_relay203.SetAngles(angles)
+	logic_relay203.SetOrigin(org)
+	logic_relay203.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_nohud2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_nohud2 <- function(org, ang)
 {
 	local logic_relay204 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "hudcome",
 	    "OnTrigger#1": "player*,SetHUDVisibility,1,0,-1"
 	})
-
-	if(origin != null)
-		logic_relay204.SetOrigin(origin)
-	if(angles != null)
-		logic_relay204.SetAngles(angles)
+	logic_relay204.SetOrigin(org)
+	logic_relay204.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_spawns <- function()
+::p_spawns <- function(org, ang)
 {
 	local func_forcefield_brush71 = SpawnEntityFromTable("func_forcefield", {
 	    mins = "-224 -20 -464",
@@ -4627,7 +4015,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush80.KeyValueFromString("maxs", "75 46 632")
 
 }
-::p_screen <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_screen <- function(org, ang)
 {
 	local env_screenoverlay205 = SpawnEntityFromTable("env_screenoverlay", {
 	    targetname = "overlay",
@@ -4643,14 +4031,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    OverlayTime9 = 1.0,
 	    OverlayTime10 = 1.0
 	})
-
-	if(origin != null)
-		env_screenoverlay205.SetOrigin(origin)
-	if(angles != null)
-		env_screenoverlay205.SetAngles(angles)
+	env_screenoverlay205.SetOrigin(org)
+	env_screenoverlay205.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_screenblu <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_screenblu <- function(org, ang)
 {
 	local env_screenoverlay206 = SpawnEntityFromTable("env_screenoverlay", {
 	    targetname = "overlayrobo",
@@ -4666,14 +4051,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    OverlayTime9 = 1.0,
 	    OverlayTime10 = 1.0
 	})
-
-	if(origin != null)
-		env_screenoverlay206.SetOrigin(origin)
-	if(angles != null)
-		env_screenoverlay206.SetAngles(angles)
+	env_screenoverlay206.SetOrigin(org)
+	env_screenoverlay206.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_plank <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_plank <- function(org, ang)
 {
 	local prop_dynamic207 = SpawnEntityFromTable("prop_dynamic", {
 	    id = 3,
@@ -4706,14 +4088,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(0, 0, 0),
 	    lightingorigin = "spawnbot_surprise2"
 	})
-
-	if(origin != null)
-		prop_dynamic207.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic207.SetAngles(angles)
+	prop_dynamic207.SetOrigin(org)
+	prop_dynamic207.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_plank2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_plank2 <- function(org, ang)
 {
 	local prop_dynamic208 = SpawnEntityFromTable("prop_dynamic", {
 	    id = 3,
@@ -4746,14 +4125,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(0, 0, 0),
 	    lightingorigin = "spawnbot_surprise2"
 	})
-
-	if(origin != null)
-		prop_dynamic208.SetOrigin(origin)
-	if(angles != null)
-		prop_dynamic208.SetAngles(angles)
+	prop_dynamic208.SetOrigin(org)
+	prop_dynamic208.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_camera <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_camera <- function(org, ang)
 {
 	local point_viewcontrol209 = SpawnEntityFromTable("point_viewcontrol", {
 	    acceleration = 0,
@@ -4766,14 +4142,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(-1619, -580, 988),
 	    angles = QAngle(23.32, 39.84, 0)
 	})
-
-	if(origin != null)
-		point_viewcontrol209.SetOrigin(origin)
-	if(angles != null)
-		point_viewcontrol209.SetAngles(angles)
+	point_viewcontrol209.SetOrigin(org)
+	point_viewcontrol209.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_camera2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_camera2 <- function(org, ang)
 {
 	local point_viewcontrol210 = SpawnEntityFromTable("point_viewcontrol", {
 	    acceleration = 0,
@@ -4786,14 +4159,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(800, 1056, 267),
 	    angles = QAngle(0, 90, 0)
 	})
-
-	if(origin != null)
-		point_viewcontrol210.SetOrigin(origin)
-	if(angles != null)
-		point_viewcontrol210.SetAngles(angles)
+	point_viewcontrol210.SetOrigin(org)
+	point_viewcontrol210.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_camera3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_camera3 <- function(org, ang)
 {
 	local point_viewcontrol211 = SpawnEntityFromTable("point_viewcontrol", {
 	    moveto = "camera_path2",
@@ -4801,14 +4171,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(253, -196, 59),
 	    angles = QAngle(5.98, -53.51, 0)
 	})
-
-	if(origin != null)
-		point_viewcontrol211.SetOrigin(origin)
-	if(angles != null)
-		point_viewcontrol211.SetAngles(angles)
+	point_viewcontrol211.SetOrigin(org)
+	point_viewcontrol211.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_camera4 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_camera4 <- function(org, ang)
 {
 	local point_viewcontrol212 = SpawnEntityFromTable("point_viewcontrol", {
 	    acceleration = 0,
@@ -4821,14 +4188,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    origin = Vector(-257, 402, 430),
 	    angles = QAngle(22, 60, 0)
 	})
-
-	if(origin != null)
-		point_viewcontrol212.SetOrigin(origin)
-	if(angles != null)
-		point_viewcontrol212.SetAngles(angles)
+	point_viewcontrol212.SetOrigin(org)
+	point_viewcontrol212.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_nuke <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_nuke <- function(org, ang)
 {
 	local game_round_win213 = SpawnEntityFromTable("game_round_win", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
@@ -4838,11 +4202,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    force_map_reset = 1,
 	    classname = "game_round_win"
 	})
-
-	if(origin != null)
-		game_round_win213.SetOrigin(origin)
-	if(angles != null)
-		game_round_win213.SetAngles(angles)
+	game_round_win213.SetOrigin(org)
+	game_round_win213.SetAngles(ang[0], ang[1], ang[2])
 
 	local env_fade214 = SpawnEntityFromTable("env_fade", {
 	    targetname = "fadenuke2",
@@ -4852,11 +4213,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    renderamt = 50,
 	    spawnflags = 0
 	})
-
-	if(origin != null)
-		env_fade214.SetOrigin(origin)
-	if(angles != null)
-		env_fade214.SetAngles(angles)
+	env_fade214.SetOrigin(org)
+	env_fade214.SetAngles(ang[0], ang[1], ang[2])
 
 	local env_fade215 = SpawnEntityFromTable("env_fade", {
 	    targetname = "fadenuke",
@@ -4866,11 +4224,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    rendercolor = "0 0 0",
 	    spawnflags = 9
 	})
-
-	if(origin != null)
-		env_fade215.SetOrigin(origin)
-	if(angles != null)
-		env_fade215.SetAngles(angles)
+	env_fade215.SetOrigin(org)
+	env_fade215.SetAngles(ang[0], ang[1], ang[2])
 
 	local env_viewpunch216 = SpawnEntityFromTable("env_viewpunch", {
 	    punchangle = "-90 0 0",
@@ -4879,11 +4234,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "punch",
 	    origin = Vector(1184, 512, 388)
 	})
-
-	if(origin != null)
-		env_viewpunch216.SetOrigin(origin)
-	if(angles != null)
-		env_viewpunch216.SetAngles(angles)
+	env_viewpunch216.SetOrigin(org)
+	env_viewpunch216.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_hurt_brush81 = SpawnEntityFromTable("trigger_hurt", {
 	    origin = Vector(0, 0, 0),
@@ -4923,11 +4275,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic217.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic217.SetAngles(angles)
+	ambient_generic217.SetOrigin(org)
+	ambient_generic217.SetAngles(ang[0], ang[1], ang[2])
 
 	local ambient_generic218 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "explode2",
@@ -4950,11 +4299,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic218.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic218.SetAngles(angles)
+	ambient_generic218.SetOrigin(org)
+	ambient_generic218.SetAngles(ang[0], ang[1], ang[2])
 
 	local ambient_generic219 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "explode3",
@@ -4977,11 +4323,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic219.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic219.SetAngles(angles)
+	ambient_generic219.SetOrigin(org)
+	ambient_generic219.SetAngles(ang[0], ang[1], ang[2])
 
 	local ambient_generic220 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "explode3",
@@ -5004,11 +4347,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic220.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic220.SetAngles(angles)
+	ambient_generic220.SetOrigin(org)
+	ambient_generic220.SetAngles(ang[0], ang[1], ang[2])
 
 	local ambient_generic221 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "explode4",
@@ -5031,11 +4371,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic221.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic221.SetAngles(angles)
+	ambient_generic221.SetOrigin(org)
+	ambient_generic221.SetAngles(ang[0], ang[1], ang[2])
 
 	local ambient_generic222 = SpawnEntityFromTable("ambient_generic", {
 	    targetname = "explode5",
@@ -5058,11 +4395,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    fadeinsecs = 0,
 	    cspinup = 0
 	})
-
-	if(origin != null)
-		ambient_generic222.SetOrigin(origin)
-	if(angles != null)
-		ambient_generic222.SetAngles(angles)
+	ambient_generic222.SetOrigin(org)
+	ambient_generic222.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay223 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
@@ -5087,260 +4421,1675 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#18": "obj_sentrygun,RemoveHealth,5000,0.25,-1",
 	    "OnTrigger#19": "obj_teleporter,RemoveHealth,5000,0.25,-1"
 	})
-
-	if(origin != null)
-		logic_relay223.SetOrigin(origin)
-	if(angles != null)
-		logic_relay223.SetAngles(angles)
+	logic_relay223.SetOrigin(org)
+	logic_relay223.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay224 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "capturezone_blu,AddOutput,OnCapture nuke_relay:Trigger:0:-1,0.0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION24"
 	})
-
-	if(origin != null)
-		logic_relay224.SetOrigin(origin)
-	if(angles != null)
-		logic_relay224.SetAngles(angles)
+	logic_relay224.SetOrigin(org)
+	logic_relay224.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_switcharoo1 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_switcharoo1 <- function(org, ang)
 {
 	local logic_relay225 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,$RemoveItem,Darwin's Danger Shield,0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION25"
 	})
-
-	if(origin != null)
-		logic_relay225.SetOrigin(origin)
-	if(angles != null)
-		logic_relay225.SetAngles(angles)
+	logic_relay225.SetOrigin(org)
+	logic_relay225.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay226 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook `,1152, null)0-1",
+	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)0-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION26"
 	})
-
-	if(origin != null)
-		logic_relay226.SetOrigin(origin)
-	if(angles != null)
-		logic_relay226.SetAngles(angles)
+	logic_relay226.SetOrigin(org)
+	logic_relay226.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_switcharoo2 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_switcharoo2 <- function(org, ang)
 {
 	local logic_relay227 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,$RemoveItem,The Razorback,0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION27"
 	})
-
-	if(origin != null)
-		logic_relay227.SetOrigin(origin)
-	if(angles != null)
-		logic_relay227.SetAngles(angles)
+	logic_relay227.SetOrigin(org)
+	logic_relay227.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay228 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook `,1152, null)0-1",
+	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)0-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION28"
 	})
-
-	if(origin != null)
-		logic_relay228.SetOrigin(origin)
-	if(angles != null)
-		logic_relay228.SetAngles(angles)
+	logic_relay228.SetOrigin(org)
+	logic_relay228.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::p_switcharoo3 <- function(Vector(0, 0, 0), 0, 0, 0)
+::p_switcharoo3 <- function(org, ang)
 {
 	local logic_relay229 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,$RemoveItem,The Cozy Camper,0,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION29"
 	})
-
-	if(origin != null)
-		logic_relay229.SetOrigin(origin)
-	if(angles != null)
-		logic_relay229.SetAngles(angles)
+	logic_relay229.SetOrigin(org)
+	logic_relay229.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay230 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook `,1152, null)0-1",
+	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)0-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION30"
 	})
-
-	if(origin != null)
-		logic_relay230.SetOrigin(origin)
-	if(angles != null)
-		logic_relay230.SetAngles(angles)
+	logic_relay230.SetOrigin(org)
+	logic_relay230.SetAngles(ang[0], ang[1], ang[2])
 
 }
+::SpawnTemplate "p_brushbug_fix" <- function(org, ang)
+{
+	local 231 = SpawnEntityFromTable("", {
+	    SpawnTemplate = "p_brushbug_fix",
+	    SpawnTemplate = "reviveredasblu",
+	    SpawnTemplate = "p_beginrelay",
+	    SpawnTemplate = "p_spawnremover1",
+	    SpawnTemplate = "p_spawnremover2",
+	    SpawnTemplate = "p_spawnremover3",
+	    SpawnTemplate = "p_shake",
+	    SpawnTemplate = "p_shakelong",
+	    SpawnTemplate = "p_rock_pusher",
+	    Name = "p_voice"
+	})
+	231.SetOrigin(org)
+	231.SetAngles(ang[0], ang[1], ang[2])
 
-overlay_stuff()
-ModelandScale_FailSafe_Scout()
-ModelandScale_FailSafe_Soldier()
-ModelandScale_FailSafe_Pyro()
-ModelandScale_FailSafe_Demo()
-ModelandScale_FailSafe_Heavy()
-ModelandScale_FailSafe_Engie()
-ModelandScale_FailSafe_Medic()
-ModelandScale_FailSafe_Sniper()
-ModelandScale_FailSafe_Spy()
-reviveredasblu_player()
-reviveredasblu()
-p_tankcolored()
-p_money()
-p_kaboom()
-p_crash()
-p_barnaclehead()
-sentry_collision_template()
-p_skullhead()
-p_fade1()
-p_fade2()
-p_fade3()
-p_fade4()
-p_fade5()
-p_teleporter()
-p_teleporterfinale()
-p_newlife()
-p_chat1()
-p_signbomb()
-p_badsign()
-p_sign666()
-p_sign0()
-p_sign1()
-p_sign2()
-p_sign3()
-p_sign4()
-p_sign5()
-p_sign6()
-p_sign7()
-p_sign8()
-p_sign9()
-p_sign10()
-p_survrelay1()
-p_survrelay2()
-p_survrelay3()
-p_introcam()
-p_beginrelay()
-p_cabinet()
-p_spawnremover1()
-p_spawnremover2()
-p_spawnremover3()
-p_leet()
-p_leet2()
-p_mvm_beat()
-viro_music()
-lose_music()
-lose_music2()
-r_virobeat()
-r_virobeatoff()
-r_beatson()
-r_beatsoff()
-r_cade_relay()
-r_cade_relay_lower()
-r_cade_relay_window()
-r_cade_relay_last()
-r_respawn_relay()
-p_shake()
-p_shakelong()
-p_rick()
-p_shopengi()
-p_shopitem1()
-p_shopitem2()
-p_shopitem3()
-p_shopitem4()
-p_shopitem5()
-p_spook()
-p_spook2()
-p_spook3()
-p_plane()
-p_musicmaker1()
-p_musicmaker2()
-p_planemaker()
-p_cargodoor()
-p_cargoshop1()
-p_cargoshop2()
-p_cargoshop3()
-p_table()
-p_table2()
-p_desk()
-p_desk_intro()
-p_chair_intro()
-p_urn()
-p_smallammo()
-p_smallammoskin()
-p_mediumammo()
-p_fullammo()
-p_smallmedkit()
-p_smallmedkitskin()
-p_mediumkit()
-p_fullkit()
-p_beam()
-p_stair()
-p_chair()
-p_box_intro()
-p_box()
-p_bookcase()
-p_bookcase3()
-p_monstercage()
-p_barrel()
-p_crate()
-p_crate2()
-p_tomb()
-p_heli()
-p_cratesmall()
-p_crate_intro()
-p_shitcade()
-p_shitcade2()
-p_barricade_level1()
-p_barricade_nolevel()
-p_barricade_nolevel2()
-p_barricade_nolevel3()
-p_barricade_level2()
-p_barricade_level3a()
-p_barricade_level3b()
-p_barricade_plate2()
-p_barricade_plate3()
-p_zombie()
-p_controlpoint()
-p_cover()
-p_pointmaker()
-p_pointmaker2()
-p_bonus()
-p_fog()
-p_survmoveup()
-p_survmoveup2()
-p_survmoveup3()
-p_survshop1()
-p_survshop2()
-p_survshop3()
-p_keepertarget()
-p_marketgardener()
-p_marketgardener2()
-p_marketgardener3()
-p_marketgardener4()
-p_tank()
-p_tankgo()
-p_threaten()
-p_threaten2()
-p_fogold()
-p_nohud1()
-p_nohud2()
-p_screen()
-p_screenblu()
-p_plank()
-p_plank2()
-p_camera()
-p_camera2()
-p_camera3()
-p_camera4()
-p_nuke()
-p_switcharoo1()
-p_switcharoo2()
-p_switcharoo3()
+}
+::SpawnTemplate <- function(org, ang)
+{
+	local 232 = SpawnEntityFromTable("", {
+	    Name = "p_lastbot"
+	})
+	232.SetOrigin(org)
+	232.SetAngles(ang[0], ang[1], ang[2])
+
+	local 233 = SpawnEntityFromTable("", {
+	    Name = "p_camera"
+	})
+	233.SetOrigin(org)
+	233.SetAngles(ang[0], ang[1], ang[2])
+
+	local 234 = SpawnEntityFromTable("", {
+	    Name = "p_camera2"
+	})
+	234.SetOrigin(org)
+	234.SetAngles(ang[0], ang[1], ang[2])
+
+	local 235 = SpawnEntityFromTable("", {
+	    Name = "p_camera3"
+	})
+	235.SetOrigin(org)
+	235.SetAngles(ang[0], ang[1], ang[2])
+
+	local 236 = SpawnEntityFromTable("", {
+	    Name = "p_camera4"
+	})
+	236.SetOrigin(org)
+	236.SetAngles(ang[0], ang[1], ang[2])
+
+	local 237 = SpawnEntityFromTable("", {
+	    Name = "p_pointmaker",
+	    Origin = "626 -942 -85",
+	    Angles = "0 0 0"
+	})
+	237.SetOrigin(org)
+	237.SetAngles(ang[0], ang[1], ang[2])
+
+	local 238 = SpawnEntityFromTable("", {
+	    Name = "p_pointmaker2",
+	    Origin = "500 -985 -80",
+	    Angles = "0 25 0"
+	})
+	238.SetOrigin(org)
+	238.SetAngles(ang[0], ang[1], ang[2])
+
+	local 239 = SpawnEntityFromTable("", {
+	    
+	})
+	239.SetOrigin(org)
+	239.SetAngles(ang[0], ang[1], ang[2])
+
+	local 240 = SpawnEntityFromTable("", {
+	    
+	})
+	240.SetOrigin(org)
+	240.SetAngles(ang[0], ang[1], ang[2])
+
+	local 241 = SpawnEntityFromTable("", {
+	    
+	})
+	241.SetOrigin(org)
+	241.SetAngles(ang[0], ang[1], ang[2])
+
+	local 242 = SpawnEntityFromTable("", {
+	    
+	})
+	242.SetOrigin(org)
+	242.SetAngles(ang[0], ang[1], ang[2])
+
+	local 243 = SpawnEntityFromTable("", {
+	    
+	})
+	243.SetOrigin(org)
+	243.SetAngles(ang[0], ang[1], ang[2])
+
+	local 244 = SpawnEntityFromTable("", {
+	    
+	})
+	244.SetOrigin(org)
+	244.SetAngles(ang[0], ang[1], ang[2])
+
+	local 245 = SpawnEntityFromTable("", {
+	    
+	})
+	245.SetOrigin(org)
+	245.SetAngles(ang[0], ang[1], ang[2])
+
+	local 246 = SpawnEntityFromTable("", {
+	    
+	})
+	246.SetOrigin(org)
+	246.SetAngles(ang[0], ang[1], ang[2])
+
+	local 247 = SpawnEntityFromTable("", {
+	    
+	})
+	247.SetOrigin(org)
+	247.SetAngles(ang[0], ang[1], ang[2])
+
+	local 248 = SpawnEntityFromTable("", {
+	    
+	})
+	248.SetOrigin(org)
+	248.SetAngles(ang[0], ang[1], ang[2])
+
+	local 249 = SpawnEntityFromTable("", {
+	    
+	})
+	249.SetOrigin(org)
+	249.SetAngles(ang[0], ang[1], ang[2])
+
+	local 250 = SpawnEntityFromTable("", {
+	    
+	})
+	250.SetOrigin(org)
+	250.SetAngles(ang[0], ang[1], ang[2])
+
+	local 251 = SpawnEntityFromTable("", {
+	    
+	})
+	251.SetOrigin(org)
+	251.SetAngles(ang[0], ang[1], ang[2])
+
+	local 252 = SpawnEntityFromTable("", {
+	    
+	})
+	252.SetOrigin(org)
+	252.SetAngles(ang[0], ang[1], ang[2])
+
+	local 253 = SpawnEntityFromTable("", {
+	    
+	})
+	253.SetOrigin(org)
+	253.SetAngles(ang[0], ang[1], ang[2])
+
+	local 254 = SpawnEntityFromTable("", {
+	    
+	})
+	254.SetOrigin(org)
+	254.SetAngles(ang[0], ang[1], ang[2])
+
+	local 255 = SpawnEntityFromTable("", {
+	    
+	})
+	255.SetOrigin(org)
+	255.SetAngles(ang[0], ang[1], ang[2])
+
+	local 256 = SpawnEntityFromTable("", {
+	    
+	})
+	256.SetOrigin(org)
+	256.SetAngles(ang[0], ang[1], ang[2])
+
+	local 257 = SpawnEntityFromTable("", {
+	    
+	})
+	257.SetOrigin(org)
+	257.SetAngles(ang[0], ang[1], ang[2])
+
+	local 258 = SpawnEntityFromTable("", {
+	    
+	})
+	258.SetOrigin(org)
+	258.SetAngles(ang[0], ang[1], ang[2])
+
+	local 259 = SpawnEntityFromTable("", {
+	    
+	})
+	259.SetOrigin(org)
+	259.SetAngles(ang[0], ang[1], ang[2])
+
+	local 260 = SpawnEntityFromTable("", {
+	    
+	})
+	260.SetOrigin(org)
+	260.SetAngles(ang[0], ang[1], ang[2])
+
+	local 261 = SpawnEntityFromTable("", {
+	    
+	})
+	261.SetOrigin(org)
+	261.SetAngles(ang[0], ang[1], ang[2])
+
+	local 262 = SpawnEntityFromTable("", {
+	    
+	})
+	262.SetOrigin(org)
+	262.SetAngles(ang[0], ang[1], ang[2])
+
+	local 263 = SpawnEntityFromTable("", {
+	    
+	})
+	263.SetOrigin(org)
+	263.SetAngles(ang[0], ang[1], ang[2])
+
+	local 264 = SpawnEntityFromTable("", {
+	    
+	})
+	264.SetOrigin(org)
+	264.SetAngles(ang[0], ang[1], ang[2])
+
+	local 265 = SpawnEntityFromTable("", {
+	    
+	})
+	265.SetOrigin(org)
+	265.SetAngles(ang[0], ang[1], ang[2])
+
+	local 266 = SpawnEntityFromTable("", {
+	    
+	})
+	266.SetOrigin(org)
+	266.SetAngles(ang[0], ang[1], ang[2])
+
+	local 267 = SpawnEntityFromTable("", {
+	    
+	})
+	267.SetOrigin(org)
+	267.SetAngles(ang[0], ang[1], ang[2])
+
+	local 268 = SpawnEntityFromTable("", {
+	    
+	})
+	268.SetOrigin(org)
+	268.SetAngles(ang[0], ang[1], ang[2])
+
+	local 269 = SpawnEntityFromTable("", {
+	    
+	})
+	269.SetOrigin(org)
+	269.SetAngles(ang[0], ang[1], ang[2])
+
+	local 270 = SpawnEntityFromTable("", {
+	    
+	})
+	270.SetOrigin(org)
+	270.SetAngles(ang[0], ang[1], ang[2])
+
+	local 271 = SpawnEntityFromTable("", {
+	    
+	})
+	271.SetOrigin(org)
+	271.SetAngles(ang[0], ang[1], ang[2])
+
+	local 272 = SpawnEntityFromTable("", {
+	    
+	})
+	272.SetOrigin(org)
+	272.SetAngles(ang[0], ang[1], ang[2])
+
+	local 273 = SpawnEntityFromTable("", {
+	    
+	})
+	273.SetOrigin(org)
+	273.SetAngles(ang[0], ang[1], ang[2])
+
+	local 274 = SpawnEntityFromTable("", {
+	    Origin = "0 1163 70",
+	    Angles = "0 -90 0"
+	})
+	274.SetOrigin(org)
+	274.SetAngles(ang[0], ang[1], ang[2])
+
+	local 275 = SpawnEntityFromTable("", {
+	    Origin = "0 560 -55",
+	    Angles = "0 -90 0"
+	})
+	275.SetOrigin(org)
+	275.SetAngles(ang[0], ang[1], ang[2])
+
+	local 276 = SpawnEntityFromTable("", {
+	    Origin = "0 -240 -80",
+	    Angles = "0 -90 0"
+	})
+	276.SetOrigin(org)
+	276.SetAngles(ang[0], ang[1], ang[2])
+
+	local 277 = SpawnEntityFromTable("", {
+	    Origin = "0 80 -80",
+	    Angles = "-35 -90 0"
+	})
+	277.SetOrigin(org)
+	277.SetAngles(ang[0], ang[1], ang[2])
+
+	local 278 = SpawnEntityFromTable("", {
+	    Origin = "0 1792 178",
+	    Angles = "0 90 0"
+	})
+	278.SetOrigin(org)
+	278.SetAngles(ang[0], ang[1], ang[2])
+
+	local 279 = SpawnEntityFromTable("", {
+	    Origin = "532 2522 267",
+	    Angles = "0 45 0"
+	})
+	279.SetOrigin(org)
+	279.SetAngles(ang[0], ang[1], ang[2])
+
+	local 280 = SpawnEntityFromTable("", {
+	    Origin = "-835 1705 200",
+	    Angles = "0 90 0"
+	})
+	280.SetOrigin(org)
+	280.SetAngles(ang[0], ang[1], ang[2])
+
+	local 281 = SpawnEntityFromTable("", {
+	    Origin = "852 1445 200",
+	    Angles = "0 180 0"
+	})
+	281.SetOrigin(org)
+	281.SetAngles(ang[0], ang[1], ang[2])
+
+	local 282 = SpawnEntityFromTable("", {
+	    
+	})
+	282.SetOrigin(org)
+	282.SetAngles(ang[0], ang[1], ang[2])
+
+	local 283 = SpawnEntityFromTable("", {
+	    
+	})
+	283.SetOrigin(org)
+	283.SetAngles(ang[0], ang[1], ang[2])
+
+	local 284 = SpawnEntityFromTable("", {
+	    
+	})
+	284.SetOrigin(org)
+	284.SetAngles(ang[0], ang[1], ang[2])
+
+	local 285 = SpawnEntityFromTable("", {
+	    
+	})
+	285.SetOrigin(org)
+	285.SetAngles(ang[0], ang[1], ang[2])
+
+	local 286 = SpawnEntityFromTable("", {
+	    
+	})
+	286.SetOrigin(org)
+	286.SetAngles(ang[0], ang[1], ang[2])
+
+	local 287 = SpawnEntityFromTable("", {
+	    
+	})
+	287.SetOrigin(org)
+	287.SetAngles(ang[0], ang[1], ang[2])
+
+	local 288 = SpawnEntityFromTable("", {
+	    
+	})
+	288.SetOrigin(org)
+	288.SetAngles(ang[0], ang[1], ang[2])
+
+	local 289 = SpawnEntityFromTable("", {
+	    Origin = "0 380 267"
+	})
+	289.SetOrigin(org)
+	289.SetAngles(ang[0], ang[1], ang[2])
+
+	local 290 = SpawnEntityFromTable("", {
+	    Origin = "-647 465 267"
+	})
+	290.SetOrigin(org)
+	290.SetAngles(ang[0], ang[1], ang[2])
+
+	local 291 = SpawnEntityFromTable("", {
+	    Origin = "626 -942 -90"
+	})
+	291.SetOrigin(org)
+	291.SetAngles(ang[0], ang[1], ang[2])
+
+	local 292 = SpawnEntityFromTable("", {
+	    Origin = "800 1514 267"
+	})
+	292.SetOrigin(org)
+	292.SetAngles(ang[0], ang[1], ang[2])
+
+	local 293 = SpawnEntityFromTable("", {
+	    Origin = "870 1514 267"
+	})
+	293.SetOrigin(org)
+	293.SetAngles(ang[0], ang[1], ang[2])
+
+	local 294 = SpawnEntityFromTable("", {
+	    Origin = "940 1514 267"
+	})
+	294.SetOrigin(org)
+	294.SetAngles(ang[0], ang[1], ang[2])
+
+	local 295 = SpawnEntityFromTable("", {
+	    Origin = "0 676 10"
+	})
+	295.SetOrigin(org)
+	295.SetAngles(ang[0], ang[1], ang[2])
+
+	local 296 = SpawnEntityFromTable("", {
+	    Origin = "-5 1113 139"
+	})
+	296.SetOrigin(org)
+	296.SetAngles(ang[0], ang[1], ang[2])
+
+	local 297 = SpawnEntityFromTable("", {
+	    Origin = "0 1432 267"
+	})
+	297.SetOrigin(org)
+	297.SetAngles(ang[0], ang[1], ang[2])
+
+	local 298 = SpawnEntityFromTable("", {
+	    Origin = "706 -700 0"
+	})
+	298.SetOrigin(org)
+	298.SetAngles(ang[0], ang[1], ang[2])
+
+	local 299 = SpawnEntityFromTable("", {
+	    
+	})
+	299.SetOrigin(org)
+	299.SetAngles(ang[0], ang[1], ang[2])
+
+	local 300 = SpawnEntityFromTable("", {
+	    
+	})
+	300.SetOrigin(org)
+	300.SetAngles(ang[0], ang[1], ang[2])
+
+	local 301 = SpawnEntityFromTable("", {
+	    Origin = "620 1430 267"
+	})
+	301.SetOrigin(org)
+	301.SetAngles(ang[0], ang[1], ang[2])
+
+	local 302 = SpawnEntityFromTable("", {
+	    Origin = "0 488 192"
+	})
+	302.SetOrigin(org)
+	302.SetAngles(ang[0], ang[1], ang[2])
+
+	local 303 = SpawnEntityFromTable("", {
+	    
+	})
+	303.SetOrigin(org)
+	303.SetAngles(ang[0], ang[1], ang[2])
+
+	local 304 = SpawnEntityFromTable("", {
+	    
+	})
+	304.SetOrigin(org)
+	304.SetAngles(ang[0], ang[1], ang[2])
+
+	local 305 = SpawnEntityFromTable("", {
+	    
+	})
+	305.SetOrigin(org)
+	305.SetAngles(ang[0], ang[1], ang[2])
+
+	local 306 = SpawnEntityFromTable("", {
+	    
+	})
+	306.SetOrigin(org)
+	306.SetAngles(ang[0], ang[1], ang[2])
+
+	local 307 = SpawnEntityFromTable("", {
+	    
+	})
+	307.SetOrigin(org)
+	307.SetAngles(ang[0], ang[1], ang[2])
+
+	local 308 = SpawnEntityFromTable("", {
+	    
+	})
+	308.SetOrigin(org)
+	308.SetAngles(ang[0], ang[1], ang[2])
+
+	local 309 = SpawnEntityFromTable("", {
+	    
+	})
+	309.SetOrigin(org)
+	309.SetAngles(ang[0], ang[1], ang[2])
+
+	local 310 = SpawnEntityFromTable("", {
+	    
+	})
+	310.SetOrigin(org)
+	310.SetAngles(ang[0], ang[1], ang[2])
+
+	local 311 = SpawnEntityFromTable("", {
+	    
+	})
+	311.SetOrigin(org)
+	311.SetAngles(ang[0], ang[1], ang[2])
+
+	local 312 = SpawnEntityFromTable("", {
+	    
+	})
+	312.SetOrigin(org)
+	312.SetAngles(ang[0], ang[1], ang[2])
+
+	local 313 = SpawnEntityFromTable("", {
+	    
+	})
+	313.SetOrigin(org)
+	313.SetAngles(ang[0], ang[1], ang[2])
+
+	local 314 = SpawnEntityFromTable("", {
+	    Name = "p_fade1"
+	})
+	314.SetOrigin(org)
+	314.SetAngles(ang[0], ang[1], ang[2])
+
+	local 315 = SpawnEntityFromTable("", {
+	    Name = "p_fade2"
+	})
+	315.SetOrigin(org)
+	315.SetAngles(ang[0], ang[1], ang[2])
+
+	local 316 = SpawnEntityFromTable("", {
+	    Name = "p_fade3"
+	})
+	316.SetOrigin(org)
+	316.SetAngles(ang[0], ang[1], ang[2])
+
+	local 317 = SpawnEntityFromTable("", {
+	    Name = "p_fade4"
+	})
+	317.SetOrigin(org)
+	317.SetAngles(ang[0], ang[1], ang[2])
+
+	local 318 = SpawnEntityFromTable("", {
+	    Name = "p_fade5"
+	})
+	318.SetOrigin(org)
+	318.SetAngles(ang[0], ang[1], ang[2])
+
+	local 319 = SpawnEntityFromTable("", {
+	    Name = "p_shutter_pusher"
+	})
+	319.SetOrigin(org)
+	319.SetAngles(ang[0], ang[1], ang[2])
+
+	local 320 = SpawnEntityFromTable("", {
+	    Name = "p_shutter_pusher2"
+	})
+	320.SetOrigin(org)
+	320.SetAngles(ang[0], ang[1], ang[2])
+
+	local 321 = SpawnEntityFromTable("", {
+	    Name = "p_brokenwall_pusher"
+	})
+	321.SetOrigin(org)
+	321.SetAngles(ang[0], ang[1], ang[2])
+
+	local 322 = SpawnEntityFromTable("", {
+	    Name = "p_ledgefix_left"
+	})
+	322.SetOrigin(org)
+	322.SetAngles(ang[0], ang[1], ang[2])
+
+	local 323 = SpawnEntityFromTable("", {
+	    Name = "p_ledgefix_right"
+	})
+	323.SetOrigin(org)
+	323.SetAngles(ang[0], ang[1], ang[2])
+
+	local 324 = SpawnEntityFromTable("", {
+	    Name = "p_brokenwall_pusher2"
+	})
+	324.SetOrigin(org)
+	324.SetAngles(ang[0], ang[1], ang[2])
+
+	local 325 = SpawnEntityFromTable("", {
+	    Name = "p_yeet_failsafe"
+	})
+	325.SetOrigin(org)
+	325.SetAngles(ang[0], ang[1], ang[2])
+
+	local 326 = SpawnEntityFromTable("", {
+	    Name = "p_yeet"
+	})
+	326.SetOrigin(org)
+	326.SetAngles(ang[0], ang[1], ang[2])
+
+	local 327 = SpawnEntityFromTable("", {
+	    Name = "p_yeet2"
+	})
+	327.SetOrigin(org)
+	327.SetAngles(ang[0], ang[1], ang[2])
+
+	local 328 = SpawnEntityFromTable("", {
+	    Name = "p_yeet3"
+	})
+	328.SetOrigin(org)
+	328.SetAngles(ang[0], ang[1], ang[2])
+
+	local 329 = SpawnEntityFromTable("", {
+	    Name = "p_yeet4"
+	})
+	329.SetOrigin(org)
+	329.SetAngles(ang[0], ang[1], ang[2])
+
+	local 330 = SpawnEntityFromTable("", {
+	    Name = "p_mapblock"
+	})
+	330.SetOrigin(org)
+	330.SetAngles(ang[0], ang[1], ang[2])
+
+	local 331 = SpawnEntityFromTable("", {
+	    Name = "viro_music"
+	})
+	331.SetOrigin(org)
+	331.SetAngles(ang[0], ang[1], ang[2])
+
+	local 332 = SpawnEntityFromTable("", {
+	    Name = "p_hhhteleporter"
+	})
+	332.SetOrigin(org)
+	332.SetAngles(ang[0], ang[1], ang[2])
+
+	local 333 = SpawnEntityFromTable("", {
+	    Name = "p_teleporter_brush"
+	})
+	333.SetOrigin(org)
+	333.SetAngles(ang[0], ang[1], ang[2])
+
+	local 334 = SpawnEntityFromTable("", {
+	    Name = "p_teleporter_brush_finale"
+	})
+	334.SetOrigin(org)
+	334.SetAngles(ang[0], ang[1], ang[2])
+
+	local 335 = SpawnEntityFromTable("", {
+	    Name = "p_finale_facer"
+	})
+	335.SetOrigin(org)
+	335.SetAngles(ang[0], ang[1], ang[2])
+
+	local 336 = SpawnEntityFromTable("", {
+	    Name = "p_finale_facerblu"
+	})
+	336.SetOrigin(org)
+	336.SetAngles(ang[0], ang[1], ang[2])
+
+	local 337 = SpawnEntityFromTable("", {
+	    Name = "p_teleporter"
+	})
+	337.SetOrigin(org)
+	337.SetAngles(ang[0], ang[1], ang[2])
+
+	local 338 = SpawnEntityFromTable("", {
+	    Name = "p_teleporterfinale"
+	})
+	338.SetOrigin(org)
+	338.SetAngles(ang[0], ang[1], ang[2])
+
+	local 339 = SpawnEntityFromTable("", {
+	    Name = "p_beer"
+	})
+	339.SetOrigin(org)
+	339.SetAngles(ang[0], ang[1], ang[2])
+
+	local 340 = SpawnEntityFromTable("", {
+	    Name = "p_brokenstairs_clip"
+	})
+	340.SetOrigin(org)
+	340.SetAngles(ang[0], ang[1], ang[2])
+
+	local 341 = SpawnEntityFromTable("", {
+	    Name = "p_barrel",
+	    Origin = "647 375 189",
+	    Angles = "0 180 0"
+	})
+	341.SetOrigin(org)
+	341.SetAngles(ang[0], ang[1], ang[2])
+
+	local 342 = SpawnEntityFromTable("", {
+	    Name = "p_barrel",
+	    Origin = "660 375 189",
+	    Angles = "0 -180 0"
+	})
+	342.SetOrigin(org)
+	342.SetAngles(ang[0], ang[1], ang[2])
+
+	local 343 = SpawnEntityFromTable("", {
+	    Name = "r_cade_relay_last",
+	    Origin = "720 1280 192",
+	    Angles = "0 0 0"
+	})
+	343.SetOrigin(org)
+	343.SetAngles(ang[0], ang[1], ang[2])
+
+	local 344 = SpawnEntityFromTable("", {
+	    Name = "p_shitcade",
+	    Origin = "0 250 -85",
+	    Angles = "0 180 0"
+	})
+	344.SetOrigin(org)
+	344.SetAngles(ang[0], ang[1], ang[2])
+
+	local 345 = SpawnEntityFromTable("", {
+	    Name = "p_shitcade2",
+	    Origin = "75 250 -85",
+	    Angles = "0 90 0"
+	})
+	345.SetOrigin(org)
+	345.SetAngles(ang[0], ang[1], ang[2])
+
+	local 346 = SpawnEntityFromTable("", {
+	    Name = "p_shitcade2",
+	    Origin = "-75 250 -85",
+	    Angles = "0 90 0"
+	})
+	346.SetOrigin(org)
+	346.SetAngles(ang[0], ang[1], ang[2])
+
+	local 347 = SpawnEntityFromTable("", {
+	    Name = "p_shitcade2",
+	    Origin = "75 240 -85",
+	    Angles = "0 -90 0"
+	})
+	347.SetOrigin(org)
+	347.SetAngles(ang[0], ang[1], ang[2])
+
+	local 348 = SpawnEntityFromTable("", {
+	    Name = "p_shitcade2",
+	    Origin = "-75 240 -85",
+	    Angles = "0 -90 0"
+	})
+	348.SetOrigin(org)
+	348.SetAngles(ang[0], ang[1], ang[2])
+
+	local 349 = SpawnEntityFromTable("", {
+	    Name = "p_box_intro",
+	    Origin = "9 320 -25",
+	    Angles = "0 -15 0"
+	})
+	349.SetOrigin(org)
+	349.SetAngles(ang[0], ang[1], ang[2])
+
+	local 350 = SpawnEntityFromTable("", {
+	    Name = "p_crate_intro",
+	    Origin = "45 380 -65",
+	    Angles = "0 90 0"
+	})
+	350.SetOrigin(org)
+	350.SetAngles(ang[0], ang[1], ang[2])
+
+	local 351 = SpawnEntityFromTable("", {
+	    Name = "p_crate_intro",
+	    Origin = "-30 380 -65",
+	    Angles = "0 110 0"
+	})
+	351.SetOrigin(org)
+	351.SetAngles(ang[0], ang[1], ang[2])
+
+	local 352 = SpawnEntityFromTable("", {
+	    Name = "p_chair_intro",
+	    Origin = "0 300 60",
+	    Angles = "130 0 0"
+	})
+	352.SetOrigin(org)
+	352.SetAngles(ang[0], ang[1], ang[2])
+
+	local 353 = SpawnEntityFromTable("", {
+	    Name = "p_chair_intro",
+	    Origin = "-33 320 64",
+	    Angles = "170 180 0"
+	})
+	353.SetOrigin(org)
+	353.SetAngles(ang[0], ang[1], ang[2])
+
+	local 354 = SpawnEntityFromTable("", {
+	    Name = "p_chair_intro",
+	    Origin = "127 332 -65",
+	    Angles = "-30 90 0"
+	})
+	354.SetOrigin(org)
+	354.SetAngles(ang[0], ang[1], ang[2])
+
+	local 355 = SpawnEntityFromTable("", {
+	    Name = "p_chair_intro",
+	    Origin = "-100 332 -65",
+	    Angles = "-30 90 0"
+	})
+	355.SetOrigin(org)
+	355.SetAngles(ang[0], ang[1], ang[2])
+
+	local 356 = SpawnEntityFromTable("", {
+	    Name = "p_desk_intro",
+	    Origin = "9 320 -65",
+	    Angles = "0 0 0"
+	})
+	356.SetOrigin(org)
+	356.SetAngles(ang[0], ang[1], ang[2])
+
+	local 357 = SpawnEntityFromTable("", {
+	    Name = "p_table2",
+	    Origin = "-184 1000 -65",
+	    Angles = "0 0 0"
+	})
+	357.SetOrigin(org)
+	357.SetAngles(ang[0], ang[1], ang[2])
+
+	local 358 = SpawnEntityFromTable("", {
+	    Name = "p_crate",
+	    Origin = "-164 1007 -17",
+	    Angles = "0 90 0"
+	})
+	358.SetOrigin(org)
+	358.SetAngles(ang[0], ang[1], ang[2])
+
+	local 359 = SpawnEntityFromTable("", {
+	    Name = "p_crate",
+	    Origin = "-197 993 -65",
+	    Angles = "0 90 0"
+	})
+	359.SetOrigin(org)
+	359.SetAngles(ang[0], ang[1], ang[2])
+
+	local 360 = SpawnEntityFromTable("", {
+	    Name = "p_plank2",
+	    Origin = "-223 1600 220",
+	    Angles = "0 90 0"
+	})
+	360.SetOrigin(org)
+	360.SetAngles(ang[0], ang[1], ang[2])
+
+	local 361 = SpawnEntityFromTable("", {
+	    Name = "p_plank2",
+	    Origin = "-287 1600 220",
+	    Angles = "0 90 0"
+	})
+	361.SetOrigin(org)
+	361.SetAngles(ang[0], ang[1], ang[2])
+
+	local 362 = SpawnEntityFromTable("", {
+	    Name = "p_plank",
+	    Origin = "-300 1575 205",
+	    Angles = "45 90 90"
+	})
+	362.SetOrigin(org)
+	362.SetAngles(ang[0], ang[1], ang[2])
+
+	local 363 = SpawnEntityFromTable("", {
+	    Name = "p_plank",
+	    Origin = "-250 1575 205",
+	    Angles = "45 90 90"
+	})
+	363.SetOrigin(org)
+	363.SetAngles(ang[0], ang[1], ang[2])
+
+	local 364 = SpawnEntityFromTable("", {
+	    Name = "p_plank",
+	    Origin = "-350 1575 205",
+	    Angles = "45 90 90"
+	})
+	364.SetOrigin(org)
+	364.SetAngles(ang[0], ang[1], ang[2])
+
+	local 365 = SpawnEntityFromTable("", {
+	    Name = "p_table",
+	    Origin = "462 854 -65",
+	    Angles = "0 90 0"
+	})
+	365.SetOrigin(org)
+	365.SetAngles(ang[0], ang[1], ang[2])
+
+	local 366 = SpawnEntityFromTable("", {
+	    Name = "p_desk_intro",
+	    Origin = "19 315 -25",
+	    Angles = "0 0 90"
+	})
+	366.SetOrigin(org)
+	366.SetAngles(ang[0], ang[1], ang[2])
+
+	local 367 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_nolevel",
+	    Origin = "-650 250 -85",
+	    Angles = "0 180 0"
+	})
+	367.SetOrigin(org)
+	367.SetAngles(ang[0], ang[1], ang[2])
+
+	local 368 = SpawnEntityFromTable("", {
+	    Name = "p_bookcase",
+	    Origin = "555 792 -65",
+	    Angles = "0 -90 0"
+	})
+	368.SetOrigin(org)
+	368.SetAngles(ang[0], ang[1], ang[2])
+
+	local 369 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_nolevel2",
+	    Origin = "390 2050 285",
+	    Angles = "90 90 0"
+	})
+	369.SetOrigin(org)
+	369.SetAngles(ang[0], ang[1], ang[2])
+
+	local 370 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_nolevel3",
+	    Origin = "390 1925 345",
+	    Angles = "-90 90 0"
+	})
+	370.SetOrigin(org)
+	370.SetAngles(ang[0], ang[1], ang[2])
+
+	local 371 = SpawnEntityFromTable("", {
+	    Name = "r_cade_relay",
+	    Origin = "720 1280 192",
+	    Angles = "0 0 0"
+	})
+	371.SetOrigin(org)
+	371.SetAngles(ang[0], ang[1], ang[2])
+
+	local 372 = SpawnEntityFromTable("", {
+	    Name = "r_cade_relay_lower",
+	    Origin = "720 1280 192",
+	    Angles = "0 0 0"
+	})
+	372.SetOrigin(org)
+	372.SetAngles(ang[0], ang[1], ang[2])
+
+	local 373 = SpawnEntityFromTable("", {
+	    Name = "r_cade_relay_window",
+	    Origin = "720 1280 192",
+	    Angles = "0 0 0"
+	})
+	373.SetOrigin(org)
+	373.SetAngles(ang[0], ang[1], ang[2])
+
+	local 374 = SpawnEntityFromTable("", {
+	    Name = "r_respawn_relay",
+	    Origin = "720 1280 192",
+	    Angles = "0 0 0"
+	})
+	374.SetOrigin(org)
+	374.SetAngles(ang[0], ang[1], ang[2])
+
+	local 375 = SpawnEntityFromTable("", {
+	    Name = "p_newlife"
+	})
+	375.SetOrigin(org)
+	375.SetAngles(ang[0], ang[1], ang[2])
+
+	local 376 = SpawnEntityFromTable("", {
+	    Name = "p_cabinet",
+	    Origin = "720 1296 192",
+	    Angles = "0 0 0"
+	})
+	376.SetOrigin(org)
+	376.SetAngles(ang[0], ang[1], ang[2])
+
+	local 377 = SpawnEntityFromTable("", {
+	    Name = "p_shopengi",
+	    Origin = "945 1616 192",
+	    Angles = "0 -90 0"
+	})
+	377.SetOrigin(org)
+	377.SetAngles(ang[0], ang[1], ang[2])
+
+	local 378 = SpawnEntityFromTable("", {
+	    Name = "p_spook",
+	    Origin = "578 235 215",
+	    Angles = "0 90 0"
+	})
+	378.SetOrigin(org)
+	378.SetAngles(ang[0], ang[1], ang[2])
+
+	local 379 = SpawnEntityFromTable("", {
+	    Name = "p_spook2",
+	    Origin = "520 220 225",
+	    Angles = "0 90 0"
+	})
+	379.SetOrigin(org)
+	379.SetAngles(ang[0], ang[1], ang[2])
+
+	local 380 = SpawnEntityFromTable("", {
+	    Name = "p_spook3",
+	    Origin = "570 220 195",
+	    Angles = "0 90 0"
+	})
+	380.SetOrigin(org)
+	380.SetAngles(ang[0], ang[1], ang[2])
+
+	local 381 = SpawnEntityFromTable("", {
+	    Name = "p_cargodoor",
+	    Origin = "636 1435 190",
+	    Angles = "0 -90 0"
+	})
+	381.SetOrigin(org)
+	381.SetAngles(ang[0], ang[1], ang[2])
+
+	local 382 = SpawnEntityFromTable("", {
+	    Name = "p_cargoshop1",
+	    Origin = "936 1603 198",
+	    Angles = "0 180 0"
+	})
+	382.SetOrigin(org)
+	382.SetAngles(ang[0], ang[1], ang[2])
+
+	local 383 = SpawnEntityFromTable("", {
+	    Name = "p_cargoshop2",
+	    Origin = "936 1603 335",
+	    Angles = "0 180 0"
+	})
+	383.SetOrigin(org)
+	383.SetAngles(ang[0], ang[1], ang[2])
+
+	local 384 = SpawnEntityFromTable("", {
+	    Name = "p_cargoshop3",
+	    Origin = "855 1520 255",
+	    Angles = "0 -90 0"
+	})
+	384.SetOrigin(org)
+	384.SetAngles(ang[0], ang[1], ang[2])
+
+	local 385 = SpawnEntityFromTable("", {
+	    Name = "p_desk",
+	    Origin = "0 488 192",
+	    Angles = "0 0 0"
+	})
+	385.SetOrigin(org)
+	385.SetAngles(ang[0], ang[1], ang[2])
+
+	local 386 = SpawnEntityFromTable("", {
+	    Name = "p_rick",
+	    Origin = "0 -35 788",
+	    Angles = "0 -90 0"
+	})
+	386.SetOrigin(org)
+	386.SetAngles(ang[0], ang[1], ang[2])
+
+	local 387 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_level1",
+	    Origin = "575 252 277",
+	    Angles = "0 180 0"
+	})
+	387.SetOrigin(org)
+	387.SetAngles(ang[0], ang[1], ang[2])
+
+	local 388 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_level1",
+	    Origin = "515 252 277",
+	    Angles = "0 0 0"
+	})
+	388.SetOrigin(org)
+	388.SetAngles(ang[0], ang[1], ang[2])
+
+	local 389 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_level2",
+	    Origin = "-698 900 -65",
+	    Angles = "0 90 0"
+	})
+	389.SetOrigin(org)
+	389.SetAngles(ang[0], ang[1], ang[2])
+
+	local 390 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_plate2",
+	    Origin = "-715 810 -65",
+	    Angles = "0 0 0"
+	})
+	390.SetOrigin(org)
+	390.SetAngles(ang[0], ang[1], ang[2])
+
+	local 391 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_level2",
+	    Origin = "-710 350 -50",
+	    Angles = "0 -90 0"
+	})
+	391.SetOrigin(org)
+	391.SetAngles(ang[0], ang[1], ang[2])
+
+	local 392 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_level2",
+	    Origin = "700 415 -65",
+	    Angles = "0 -90 0"
+	})
+	392.SetOrigin(org)
+	392.SetAngles(ang[0], ang[1], ang[2])
+
+	local 393 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_plate2",
+	    Origin = "720 515 -65",
+	    Angles = "0 180 0"
+	})
+	393.SetOrigin(org)
+	393.SetAngles(ang[0], ang[1], ang[2])
+
+	local 394 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_plate2",
+	    Origin = "700 515 -85",
+	    Angles = "0 0 0"
+	})
+	394.SetOrigin(org)
+	394.SetAngles(ang[0], ang[1], ang[2])
+
+	local 395 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_level3a",
+	    Origin = "-475 1610 240",
+	    Angles = "0 0 0"
+	})
+	395.SetOrigin(org)
+	395.SetAngles(ang[0], ang[1], ang[2])
+
+	local 396 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_plate3",
+	    Origin = "-540 1640 185",
+	    Angles = "0 -90 0"
+	})
+	396.SetOrigin(org)
+	396.SetAngles(ang[0], ang[1], ang[2])
+
+	local 397 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_level3a",
+	    Origin = "500 1610 310",
+	    Angles = "0 180 0"
+	})
+	397.SetOrigin(org)
+	397.SetAngles(ang[0], ang[1], ang[2])
+
+	local 398 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_plate3",
+	    Origin = "540 1640 185",
+	    Angles = "0 -90 0"
+	})
+	398.SetOrigin(org)
+	398.SetAngles(ang[0], ang[1], ang[2])
+
+	local 399 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_level3b",
+	    Origin = "-225 1600 350",
+	    Angles = "0 0 0"
+	})
+	399.SetOrigin(org)
+	399.SetAngles(ang[0], ang[1], ang[2])
+
+	local 400 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_level3a",
+	    Origin = "-715 1280 280",
+	    Angles = "0 90 0"
+	})
+	400.SetOrigin(org)
+	400.SetAngles(ang[0], ang[1], ang[2])
+
+	local 401 = SpawnEntityFromTable("", {
+	    Name = "p_barricade_plate3",
+	    Origin = "-735 1150 185",
+	    Angles = "0 0 0"
+	})
+	401.SetOrigin(org)
+	401.SetAngles(ang[0], ang[1], ang[2])
+
+	local 402 = SpawnEntityFromTable("", {
+	    Name = "p_box",
+	    Origin = "-630 550 192",
+	    Angles = "0 -25 0"
+	})
+	402.SetOrigin(org)
+	402.SetAngles(ang[0], ang[1], ang[2])
+
+	local 403 = SpawnEntityFromTable("", {
+	    Name = "p_fullkit",
+	    Origin = "697 617 350",
+	    Angles = "90 180 0"
+	})
+	403.SetOrigin(org)
+	403.SetAngles(ang[0], ang[1], ang[2])
+
+	local 404 = SpawnEntityFromTable("", {
+	    Name = "p_fullammo",
+	    Origin = "-697 895 350",
+	    Angles = "90 0 0"
+	})
+	404.SetOrigin(org)
+	404.SetAngles(ang[0], ang[1], ang[2])
+
+	local 405 = SpawnEntityFromTable("", {
+	    Name = "p_mediumkit",
+	    Origin = "-655 1225 30",
+	    Angles = "0 0 0"
+	})
+	405.SetOrigin(org)
+	405.SetAngles(ang[0], ang[1], ang[2])
+
+	local 406 = SpawnEntityFromTable("", {
+	    Name = "p_mediumammo",
+	    Origin = "-84 1258 80",
+	    Angles = "0 0 0"
+	})
+	406.SetOrigin(org)
+	406.SetAngles(ang[0], ang[1], ang[2])
+
+	local 407 = SpawnEntityFromTable("", {
+	    Name = "p_mediumammo",
+	    Origin = "400 1039 176",
+	    Angles = "0 0 0"
+	})
+	407.SetOrigin(org)
+	407.SetAngles(ang[0], ang[1], ang[2])
+
+	local 408 = SpawnEntityFromTable("", {
+	    Name = "p_smallammo",
+	    Origin = "20 498 230",
+	    Angles = "0 0 0"
+	})
+	408.SetOrigin(org)
+	408.SetAngles(ang[0], ang[1], ang[2])
+
+	local 409 = SpawnEntityFromTable("", {
+	    Name = "p_smallammo",
+	    Origin = "-20 498 230",
+	    Angles = "0 0 0"
+	})
+	409.SetOrigin(org)
+	409.SetAngles(ang[0], ang[1], ang[2])
+
+	local 410 = SpawnEntityFromTable("", {
+	    Name = "p_smallammo",
+	    Origin = "0 474 230",
+	    Angles = "0 0 0"
+	})
+	410.SetOrigin(org)
+	410.SetAngles(ang[0], ang[1], ang[2])
+
+	local 411 = SpawnEntityFromTable("", {
+	    Name = "p_smallammo",
+	    Origin = "-671 1436 192",
+	    Angles = "0 0 0"
+	})
+	411.SetOrigin(org)
+	411.SetAngles(ang[0], ang[1], ang[2])
+
+	local 412 = SpawnEntityFromTable("", {
+	    Name = "p_smallammo",
+	    Origin = "-671 1462 192",
+	    Angles = "0 0 0"
+	})
+	412.SetOrigin(org)
+	412.SetAngles(ang[0], ang[1], ang[2])
+
+	local 413 = SpawnEntityFromTable("", {
+	    Name = "p_smallammo",
+	    Origin = "-671 1410 192",
+	    Angles = "0 0 0"
+	})
+	413.SetOrigin(org)
+	413.SetAngles(ang[0], ang[1], ang[2])
+
+	local 414 = SpawnEntityFromTable("", {
+	    Name = "p_fullammo",
+	    Origin = "444 262 93",
+	    Angles = "90 90 0"
+	})
+	414.SetOrigin(org)
+	414.SetAngles(ang[0], ang[1], ang[2])
+
+	local 415 = SpawnEntityFromTable("", {
+	    Name = "p_smallammoskin",
+	    Origin = "1130 2525 212",
+	    Angles = "-90 0 0"
+	})
+	415.SetOrigin(org)
+	415.SetAngles(ang[0], ang[1], ang[2])
+
+	local 416 = SpawnEntityFromTable("", {
+	    Name = "p_smallammoskin",
+	    Origin = "1130 2505 212",
+	    Angles = "-90 0 0"
+	})
+	416.SetOrigin(org)
+	416.SetAngles(ang[0], ang[1], ang[2])
+
+	local 417 = SpawnEntityFromTable("", {
+	    Name = "p_smallammoskin",
+	    Origin = "1130 2545 212",
+	    Angles = "-90 0 0"
+	})
+	417.SetOrigin(org)
+	417.SetAngles(ang[0], ang[1], ang[2])
+
+	local 418 = SpawnEntityFromTable("", {
+	    Name = "p_smallmedkitskin",
+	    Origin = "1115 2525 192",
+	    Angles = "0 0 0"
+	})
+	418.SetOrigin(org)
+	418.SetAngles(ang[0], ang[1], ang[2])
+
+	local 419 = SpawnEntityFromTable("", {
+	    Name = "p_smallmedkitskin",
+	    Origin = "1115 2505 192",
+	    Angles = "0 0 0"
+	})
+	419.SetOrigin(org)
+	419.SetAngles(ang[0], ang[1], ang[2])
+
+	local 420 = SpawnEntityFromTable("", {
+	    Name = "p_smallmedkitskin",
+	    Origin = "1115 2545 192",
+	    Angles = "0 0 0"
+	})
+	420.SetOrigin(org)
+	420.SetAngles(ang[0], ang[1], ang[2])
+
+	local 421 = SpawnEntityFromTable("", {
+	    Name = "p_fullkit",
+	    Origin = "554 793 93",
+	    Angles = "90 -90 0"
+	})
+	421.SetOrigin(org)
+	421.SetAngles(ang[0], ang[1], ang[2])
+
+	local 422 = SpawnEntityFromTable("", {
+	    Name = "p_smallmedkit",
+	    Origin = "20 298 192",
+	    Angles = "0 0 0"
+	})
+	422.SetOrigin(org)
+	422.SetAngles(ang[0], ang[1], ang[2])
+
+	local 423 = SpawnEntityFromTable("", {
+	    Name = "p_smallmedkit",
+	    Origin = "-20 298 192",
+	    Angles = "0 0 0"
+	})
+	423.SetOrigin(org)
+	423.SetAngles(ang[0], ang[1], ang[2])
+
+	local 424 = SpawnEntityFromTable("", {
+	    Name = "p_smallmedkit",
+	    Origin = "0 325 192",
+	    Angles = "0 0 0"
+	})
+	424.SetOrigin(org)
+	424.SetAngles(ang[0], ang[1], ang[2])
+
+	local 425 = SpawnEntityFromTable("", {
+	    Name = "p_smallmedkit",
+	    Origin = "671 971 -65",
+	    Angles = "0 0 0"
+	})
+	425.SetOrigin(org)
+	425.SetAngles(ang[0], ang[1], ang[2])
+
+	local 426 = SpawnEntityFromTable("", {
+	    Name = "p_smallmedkit",
+	    Origin = "671 945 -65",
+	    Angles = "0 0 0"
+	})
+	426.SetOrigin(org)
+	426.SetAngles(ang[0], ang[1], ang[2])
+
+	local 427 = SpawnEntityFromTable("", {
+	    Name = "p_smallmedkit",
+	    Origin = "671 919 -65",
+	    Angles = "0 0 0"
+	})
+	427.SetOrigin(org)
+	427.SetAngles(ang[0], ang[1], ang[2])
+
+	local 428 = SpawnEntityFromTable("", {
+	    Name = "p_smallammo",
+	    Origin = "671 893 -65",
+	    Angles = "0 0 0"
+	})
+	428.SetOrigin(org)
+	428.SetAngles(ang[0], ang[1], ang[2])
+
+	local 429 = SpawnEntityFromTable("", {
+	    Name = "p_smallammo",
+	    Origin = "671 867 -65",
+	    Angles = "0 0 0"
+	})
+	429.SetOrigin(org)
+	429.SetAngles(ang[0], ang[1], ang[2])
+
+	local 430 = SpawnEntityFromTable("", {
+	    Name = "p_smallammo",
+	    Origin = "671 841 -65",
+	    Angles = "0 0 0"
+	})
+	430.SetOrigin(org)
+	430.SetAngles(ang[0], ang[1], ang[2])
+
+	local 431 = SpawnEntityFromTable("", {
+	    Name = "p_chair",
+	    Origin = "0 450 192",
+	    Angles = "0 90 0"
+	})
+	431.SetOrigin(org)
+	431.SetAngles(ang[0], ang[1], ang[2])
+
+	local 432 = SpawnEntityFromTable("", {
+	    Name = "p_bookcase3",
+	    Origin = "339 1270 -45",
+	    Angles = "0 -90 -25"
+	})
+	432.SetOrigin(org)
+	432.SetAngles(ang[0], ang[1], ang[2])
+
+	local 433 = SpawnEntityFromTable("", {
+	    Name = "p_bookcase",
+	    Origin = "447 265 -65",
+	    Angles = "0 90 0"
+	})
+	433.SetOrigin(org)
+	433.SetAngles(ang[0], ang[1], ang[2])
+
+	local 434 = SpawnEntityFromTable("", {
+	    Name = "p_bookcase",
+	    Origin = "-696 895 192",
+	    Angles = "0 0 0"
+	})
+	434.SetOrigin(org)
+	434.SetAngles(ang[0], ang[1], ang[2])
+
+	local 435 = SpawnEntityFromTable("", {
+	    Name = "p_bookcase",
+	    Origin = "696 620 192",
+	    Angles = "0 180 0"
+	})
+	435.SetOrigin(org)
+	435.SetAngles(ang[0], ang[1], ang[2])
+
+	local 436 = SpawnEntityFromTable("", {
+	    Name = "p_stair",
+	    Origin = "710 250 105",
+	    Angles = "0 90 0"
+	})
+	436.SetOrigin(org)
+	436.SetAngles(ang[0], ang[1], ang[2])
+
+	local 437 = SpawnEntityFromTable("", {
+	    Name = "p_monstercage",
+	    Origin = "-655 1225 -65",
+	    Angles = "0 90 0"
+	})
+	437.SetOrigin(org)
+	437.SetAngles(ang[0], ang[1], ang[2])
+
+	local 438 = SpawnEntityFromTable("", {
+	    Name = "p_crate",
+	    Origin = "-597 1245 -65",
+	    Angles = "0 180 0"
+	})
+	438.SetOrigin(org)
+	438.SetAngles(ang[0], ang[1], ang[2])
+
+	local 439 = SpawnEntityFromTable("", {
+	    Name = "p_crate",
+	    Origin = "-660 1146 -65",
+	    Angles = "0 90 0"
+	})
+	439.SetOrigin(org)
+	439.SetAngles(ang[0], ang[1], ang[2])
+
+	local 440 = SpawnEntityFromTable("", {
+	    Name = "p_heli",
+	    Origin = "1200 3200 500",
+	    Angles = "36 90 0"
+	})
+	440.SetOrigin(org)
+	440.SetAngles(ang[0], ang[1], ang[2])
+
+	local 441 = SpawnEntityFromTable("", {
+	    Name = "p_crash",
+	    Origin = "1200 3500 500",
+	    Name = "p_crate",
+	    Origin = "275 2350 100",
+	    Angles = "5 90 -5"
+	})
+	441.SetOrigin(org)
+	441.SetAngles(ang[0], ang[1], ang[2])
+
+	local 442 = SpawnEntityFromTable("", {
+	    Name = "p_zombie",
+	    Origin = "562 1600 -140",
+	    Angles = "0 -90 0"
+	})
+	442.SetOrigin(org)
+	442.SetAngles(ang[0], ang[1], ang[2])
+
+	local 443 = SpawnEntityFromTable("", {
+	    Name = "p_beam",
+	    Origin = "562 1500 -50",
+	    Angles = "0 -90 0"
+	})
+	443.SetOrigin(org)
+	443.SetAngles(ang[0], ang[1], ang[2])
+
+	local 444 = SpawnEntityFromTable("", {
+	    Name = "p_beam",
+	    Origin = "562 1500 -25",
+	    Angles = "0 90 0"
+	})
+	444.SetOrigin(org)
+	444.SetAngles(ang[0], ang[1], ang[2])
+
+	local 445 = SpawnEntityFromTable("", {
+	    Name = "p_slower0"
+	})
+	445.SetOrigin(org)
+	445.SetAngles(ang[0], ang[1], ang[2])
+
+	local 446 = SpawnEntityFromTable("", {
+	    Name = "p_slower1"
+	})
+	446.SetOrigin(org)
+	446.SetAngles(ang[0], ang[1], ang[2])
+
+	local 447 = SpawnEntityFromTable("", {
+	    Name = "p_slower2"
+	})
+	447.SetOrigin(org)
+	447.SetAngles(ang[0], ang[1], ang[2])
+
+	local 448 = SpawnEntityFromTable("", {
+	    Name = "p_slower3"
+	})
+	448.SetOrigin(org)
+	448.SetAngles(ang[0], ang[1], ang[2])
+
+	local 449 = SpawnEntityFromTable("", {
+	    Name = "p_slower4"
+	})
+	449.SetOrigin(org)
+	449.SetAngles(ang[0], ang[1], ang[2])
+
+	local 450 = SpawnEntityFromTable("", {
+	    Name = "p_slower5"
+	})
+	450.SetOrigin(org)
+	450.SetAngles(ang[0], ang[1], ang[2])
+
+	local 451 = SpawnEntityFromTable("", {
+	    Name = "p_slower6"
+	})
+	451.SetOrigin(org)
+	451.SetAngles(ang[0], ang[1], ang[2])
+
+	local 452 = SpawnEntityFromTable("", {
+	    Name = "p_slower7"
+	})
+	452.SetOrigin(org)
+	452.SetAngles(ang[0], ang[1], ang[2])
+
+	local 453 = SpawnEntityFromTable("", {
+	    Name = "p_slower8"
+	})
+	453.SetOrigin(org)
+	453.SetAngles(ang[0], ang[1], ang[2])
+
+	local 454 = SpawnEntityFromTable("", {
+	    Name = "p_slower9"
+	})
+	454.SetOrigin(org)
+	454.SetAngles(ang[0], ang[1], ang[2])
+
+	local 455 = SpawnEntityFromTable("", {
+	    Name = "p_leet",
+	    Origin = "-152 1255 -65",
+	    Angles = "0 45 0"
+	})
+	455.SetOrigin(org)
+	455.SetAngles(ang[0], ang[1], ang[2])
+
+	local 456 = SpawnEntityFromTable("", {
+	    Name = "p_leet",
+	    Origin = "345 1662 187",
+	    Angles = "0 180 0"
+	})
+	456.SetOrigin(org)
+	456.SetAngles(ang[0], ang[1], ang[2])
+
+	local 457 = SpawnEntityFromTable("", {
+	    Name = "p_crate2",
+	    Origin = "345 1640 150",
+	    Angles = "0 0 0"
+	})
+	457.SetOrigin(org)
+	457.SetAngles(ang[0], ang[1], ang[2])
+
+}

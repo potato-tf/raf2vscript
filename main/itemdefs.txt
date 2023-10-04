@@ -1,0 +1,9502 @@
+Copied straight from the alliedmodders wiki
+
+|-
+! scope="row" | 13
+| Scattergun || tf_weapon_scattergun
+
+|-
+! scope="row" | 200
+| Scattergun (Renamed/Strange) || tf_weapon_scattergun
+
+|-
+! scope="row" | 45
+| Force-A-Nature || tf_weapon_scattergun
+
+|-
+! scope="row" | 220
+| The Shortstop || tf_weapon_handgun_scout_primary || Special Delivery'''*'''
+
+|-
+! scope="row" | 448
+| The Soda Popper || tf_weapon_soda_popper || Bonk Fan 
+
+|-
+! scope="row" | 669
+| Festive Scattergun || tf_weapon_scattergun
+
+|-
+! scope="row" | 772
+| Baby Face's Blaster || tf_weapon_pep_brawler_blaster || The Public Enemy
+
+|-
+! scope="row" | 799
+| Silver Botkiller Scattergun Mk.I || tf_weapon_scattergun
+
+|-
+! scope="row" | 808
+| Gold Botkiller Scattergun Mk.I || tf_weapon_scattergun
+
+|-
+! scope="row" | 888
+| Rust Botkiller Scattergun Mk.I || tf_weapon_scattergun
+
+|-
+! scope="row" | 897
+| Blood Botkiller Scattergun Mk.I || tf_weapon_scattergun
+
+|-
+! scope="row" | 906
+| Carbonado Botkiller Scattergun Mk.I || tf_weapon_scattergun
+
+|-
+! scope="row" | 915
+| Diamond Botkiller Scattergun Mk.I || tf_weapon_scattergun
+
+|-
+! scope="row" | 964
+| Silver Botkiller Scattergun Mk.II || tf_weapon_scattergun
+
+|-
+! scope="row" | 973
+| Gold Botkiller Scattergun Mk.II || tf_weapon_scattergun
+
+|-
+! scope="row" | 1078
+| Festive Force-A-Nature || tf_weapon_scattergun
+
+|-
+! scope="row" | 1103
+| The Back Scatter || tf_weapon_scattergun
+
+|-
+! scope="row" | 15002
+| Night Terror || tf_weapon_scattergun
+
+|-
+! scope="row" | 15015
+| Tartan Torpedo || tf_weapon_scattergun
+
+|-
+! scope="row" | 15021
+| Country Crusher || tf_weapon_scattergun
+
+|-
+! scope="row" | 15029
+| Backcountry Blaster || tf_weapon_scattergun
+
+|-
+! scope="row" | 15036
+| Spruce Deuce || tf_weapon_scattergun
+
+|-
+! scope="row" | 15053
+| Current Event || tf_weapon_scattergun
+
+|-
+! scope="row" | 15065
+| Macabre Web || tf_weapon_scattergun
+
+|-
+! scope="row" | 15069
+| Nutcracker || tf_weapon_scattergun
+
+|-
+! scope="row" | 15106
+| Blue Mew || tf_weapon_scattergun
+
+|-
+! scope="row" | 15107
+| Flower Power || tf_weapon_scattergun
+
+|-
+! scope="row" | 15108
+| Shot to Hell || tf_weapon_scattergun
+
+|-
+! scope="row" | 15131
+| Coffin Nail || tf_weapon_scattergun
+
+|-
+! scope="row" | 15151
+| Killer Bee || tf_weapon_scattergun
+
+|-
+! scope="row" | 15157
+| Corsair || tf_weapon_scattergun
+
+|}
+
+====Secondary [Slot 1]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 23 
+| Scout's Pistol || tf_weapon_pistol
+
+|-
+! scope="row" | 209 
+| Pistol (Renamed/Strange) || tf_weapon_pistol
+
+|-
+! scope="row" | 46 
+| Bonk! Atomic Punch || tf_weapon_lunchbox_drink
+
+|-
+! scope="row" | 160
+| Vintage Lugermorph || tf_weapon_pistol
+
+|-
+! scope="row" | 163
+| Crit-a-Cola || tf_weapon_lunchbox_drink
+
+|-
+! scope="row" | 222
+| Mad Milk || tf_weapon_jar_milk || Special Delivery'''*'''
+
+|-
+! scope="row" | 294
+| Lugermorph || tf_weapon_pistol
+
+|-
+! scope="row" | 449
+| The Winger || tf_weapon_handgun_scout_secondary || Bonk Fan
+
+|-
+! scope="row" | 773
+| Pretty Boy's Pocket Pistol || tf_weapon_handgun_scout_secondary || The Public Enemy
+
+|-
+! scope="row" | 812
+| The Flying Guillotine || tf_weapon_cleaver
+
+|-
+! scope="row" | 833
+| The Flying Guillotine (Genuine) || tf_weapon_cleaver
+
+|-
+! scope="row" | 1121
+| Mutated Milk || tf_weapon_jar_milk
+
+|-
+! scope="row" | 1145
+| Festive Bonk! || tf_weapon_lunchbox_drink
+
+|-
+! scope="row" | 15013
+| Red Rock Roscoe || tf_weapon_pistol
+
+|-
+! scope="row" | 15018
+| Homemade Heater || tf_weapon_pistol
+
+|-
+! scope="row" | 15035
+| Hickory Holepuncher || tf_weapon_pistol
+
+|-
+! scope="row" | 15041
+| Local Hero || tf_weapon_pistol
+
+|-
+! scope="row" | 15046
+| Black Dahlia || tf_weapon_pistol
+
+|-
+! scope="row" | 15056
+| Sandstone Special || tf_weapon_pistol
+
+|-
+! scope="row" | 15060
+| Macabre Web || tf_weapon_pistol
+
+|-
+! scope="row" | 15061
+| Nutcracker || tf_weapon_pistol
+
+|-
+! scope="row" | 15100
+| Blue Mew || tf_weapon_pistol
+
+|-
+! scope="row" | 15101
+| Brain Candy || tf_weapon_pistol
+
+|-
+! scope="row" | 15102
+| Shot to Hell || tf_weapon_pistol
+
+|-
+! scope="row" | 15126
+| Dressed To Kill || tf_weapon_pistol
+
+|-
+! scope="row" | 15148
+| Blitzkrieg || tf_weapon_pistol
+
+|-
+! scope="row" | 30666
+| The C.A.P.P.E.R. || tf_weapon_pistol
+
+|}
+
+====Melee [Slot 2]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 0
+| Bat || tf_weapon_bat
+
+|-
+! scope="row" | 190
+| Bat (Renamed/Strange) || tf_weapon_bat
+
+|-
+! scope="row" | 44
+| The Sandman || tf_weapon_bat_wood
+
+|-
+! scope="row" | 221
+| The Holy Mackerel || tf_weapon_bat_fish || Special Delivery'''*'''
+
+|-
+! scope="row" | 264
+| Frying Pan || saxxy
+
+|-
+! scope="row" | 317
+| The Candy Cane || tf_weapon_bat
+
+|-
+! scope="row" | 325
+| The Boston Basher || tf_weapon_bat
+
+|-
+! scope="row" | 349
+| Sun-on-a-Stick || tf_weapon_bat
+
+|-
+! scope="row" | 355
+| The Fan O'War || tf_weapon_bat
+
+|-
+! scope="row" | 423
+| Saxxy || saxxy
+
+|-
+! scope="row" | 450
+| The Atomizer || tf_weapon_bat || Bonk Fan
+
+|-
+! scope="row" | 452
+| Three-Rune Blade || tf_weapon_bat
+
+|-
+! scope="row" | 474
+| The Conscientious Objector || saxxy
+
+|-
+! scope="row" | 572
+| Unarmed Combat || tf_weapon_bat_fish
+
+|-
+! scope="row" | 648
+| The Wrap Assassin || tf_weapon_bat_giftwrap || Santa's Little Accomplice
+
+|-
+! scope="row" | 660
+| Festive Bat || tf_weapon_bat
+
+|-
+! scope="row" | 880
+| The Freedom Staff || saxxy
+
+|-
+! scope="row" | 939
+| The Bat Outta Hell || saxxy
+
+|-
+! scope="row" | 954
+| The Memory Maker || saxxy
+
+|-
+! scope="row" | 999
+| Festive Holy Mackerel || tf_weapon_bat_fish || Special Delivery'''*'''
+
+|-
+! scope="row" | 1013
+| The Ham Shank || saxxy
+
+|-
+! scope="row" | 1071
+| Gold Frying Pan || saxxy
+
+|-
+! scope="row" | 1123
+| The Necro Smasher || saxxy
+
+|-
+! scope="row" | 1127
+| The Crossing Guard || saxxy
+
+|-
+! scope="row" | 30667
+| Batsaber || tf_weapon_bat
+
+|-
+! scope="row" | 30758
+| Prinny Machete || saxxy
+
+|}
+
+===Soldier===
+
+====Primary [Slot 0]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 18
+| Rocket Launcher || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 205
+| Rocket Launcher (Renamed/Strange) || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 127
+| The Direct Hit || tf_weapon_rocketlauncher_directhit
+
+|-
+! scope="row" | 228
+| The Black Box || tf_weapon_rocketlauncher || Tank Buster'''*'''
+
+|-
+! scope="row" | 237
+| Rocket Jumper || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 414
+| The Liberty Launcher || tf_weapon_rocketlauncher || Airborne Armaments
+
+|-
+! scope="row" | 441
+| The Cow Mangler 5000 || tf_weapon_particle_cannon || Dr. Grordbort's Victory Pack
+
+|-
+! scope="row" | 513
+| The Original || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 658
+| Festive Rocket Launcher || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 730
+| The Beggar's Bazooka || tf_weapon_rocketlauncher || The Dumpster Diver
+
+|-
+! scope="row" | 800
+| Silver Botkiller Rocket Launcher Mk.I || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 809
+| Gold Botkiller Rocket Launcher Mk.I || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 889
+| Rust Botkiller Rocket Launcher Mk.I || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 898
+| Blood Botkiller Rocket Launcher Mk.I || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 907
+| Carbonado Botkiller Rocket Launcher Mk.I || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 916
+| Diamond Botkiller Rocket Launcher Mk.I || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 965
+| Silver Botkiller Rocket Launcher Mk.II || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 974
+| Gold Botkiller Rocket Launcher Mk.II || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 1085
+| Festive Black Box || tf_weapon_rocketlauncher || Tank Buster'''*'''
+
+|-
+! scope="row" | 1104
+| The Air Strike || tf_weapon_rocketlauncher_airstrike
+
+|-
+! scope="row" | 15006
+| Woodland Warrior || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15014
+| Sand Cannon || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15028
+| American Pastoral || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15043
+| Smalltown Bringdown || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15052
+| Shell Shocker || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15057
+| Aqua Marine || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15081
+| Autumn || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15104
+| Blue Mew || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15105
+| Brain Candy || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15129
+| Coffin Nail || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15130
+| High Roller's || tf_weapon_rocketlauncher
+
+|-
+! scope="row" | 15150
+| Warhawk || tf_weapon_rocketlauncher
+
+|}
+
+====Secondary [Slot 1]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 10
+| Soldier's Shotgun || tf_weapon_shotgun_soldier
+
+|-
+! scope="row" | 199
+| Shotgun (Renamed/Strange) || tf_weapon_shotgun
+
+|-
+! scope="row" | 129
+| The Buff Banner || tf_weapon_buff_item || || back
+
+|-
+! scope="row" | 133
+| Gunboats || tf_wearable || || feet
+
+|-
+! scope="row" | 226
+| The Battalion's Backup || tf_weapon_buff_item || Tank Buster'''*''' || back
+
+|-
+! scope="row" | 354
+| The Concheror || tf_weapon_buff_item || || back
+
+|-
+! scope="row" | 415
+| The Reserve Shooter || tf_weapon_shotgun || Airborne Armaments
+
+|-
+! scope="row" | 442
+| The Righteous Bison || tf_weapon_raygun || Dr. Grordbort's Victory Pack
+
+|-
+! scope="row" | 444
+| The Mantreads || tf_wearable || The General's Formals || feet
+
+|-
+! scope="row" | 1001
+| Festive Buff Banner || tf_weapon_buff_item || || back
+
+|-
+! scope="row" | 1101
+| The B.A.S.E. Jumper || tf_weapon_parachute
+
+|-
+! scope="row" | 1141
+| Festive Shotgun || tf_weapon_shotgun
+
+|-
+! scope="row" | 1153
+| Panic Attack || tf_weapon_shotgun
+
+|-
+! scope="row" | 15003
+| Backwoods Boomstick || tf_weapon_shotgun
+
+|-
+! scope="row" | 15016
+| Rustic Ruiner || tf_weapon_shotgun
+
+|-
+! scope="row" | 15044
+| Civic Duty || tf_weapon_shotgun
+
+|-
+! scope="row" | 15047
+| Lightning Rod || tf_weapon_shotgun
+
+|-
+! scope="row" | 15085
+| Autumn || tf_weapon_shotgun
+
+|-
+! scope="row" | 15109
+| Flower Power || tf_weapon_shotgun
+
+|-
+! scope="row" | 15132
+| Coffin Nail || tf_weapon_shotgun
+
+|-
+! scope="row" | 15133
+| Dressed to Kill || tf_weapon_shotgun
+
+|-
+! scope="row" | 15152
+| Red Bear || tf_weapon_shotgun
+
+|}
+
+====Melee [Slot 2]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 6
+| Shovel || tf_weapon_shovel
+
+|-
+! scope="row" | 196
+| Shovel (Renamed/Strange) || tf_weapon_shovel
+
+|-
+! scope="row" | 128
+| The Equalizer || tf_weapon_shovel
+
+|-
+! scope="row" | 154
+| The Pain Train || tf_weapon_shovel
+
+|-
+! scope="row" | 264
+| Frying Pan || tf_weapon_shovel
+
+|-
+! scope="row" | 357
+| The Half-Zatoichi || tf_weapon_katana
+
+|-
+! scope="row" | 416
+| The Market Gardener || tf_weapon_shovel || Airborne Armaments
+
+|-
+! scope="row" | 423
+| Saxxy || saxxy
+
+|-
+! scope="row" | 447
+| The Disciplinary Action || tf_weapon_shovel || The General's Formals
+
+|-
+! scope="row" | 474
+| The Conscientious Objector || saxxy
+
+|-
+! scope="row" | 775
+| The Escape Plan || tf_weapon_shovel
+
+|-
+! scope="row" | 880
+| The Freedom Staff || saxxy
+
+|-
+! scope="row" | 939
+| The Bat Outta Hell || saxxy
+
+|-
+! scope="row" | 954
+| The Memory Maker || saxxy
+
+|-
+! scope="row" | 1013
+| The Ham Shank || saxxy
+
+|-
+! scope="row" | 1071
+| Gold Frying Pan || saxxy
+
+|-
+! scope="row" | 1123
+| The Necro Smasher || saxxy
+
+|-
+! scope="row" | 1127
+| The Crossing Guard || saxxy
+
+|-
+! scope="row" | 30758
+| Prinny Machete || saxxy
+
+|}
+
+===Pyro===
+
+====Primary [Slot 0]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 21
+| Flame Thrower || tf_weapon_flamethrower
+
+|-
+! scope="row" | 208
+| Flame Thrower (Renamed/Strange) || tf_weapon_flamethrower
+
+|-
+! scope="row" | 40
+| The Backburner || tf_weapon_flamethrower
+
+|-
+! scope="row" | 215
+| The Degreaser || tf_weapon_flamethrower || The Gas Jockey's Gear'''*'''
+
+|-
+! scope="row" | 594
+| The Phlogistinator || tf_weapon_flamethrower || Dr. Grordbort's Moonman Pack
+
+|-
+! scope="row" | 659
+| Festive Flame Thrower || tf_weapon_flamethrower
+
+|-
+! scope="row" | 741
+| The Rainblower || tf_weapon_flamethrower
+
+|-
+! scope="row" | 798
+| Silver Botkiller Flame Thrower Mk.I || tf_weapon_flamethrower
+
+|-
+! scope="row" | 807
+| Gold Botkiller Flame Thrower Mk.I || tf_weapon_flamethrower
+
+|-
+! scope="row" | 887
+| Rust Botkiller Flame Thrower Mk.I || tf_weapon_flamethrower
+
+|-
+! scope="row" | 896
+| Blood Botkiller Flame Thrower Mk.I || tf_weapon_flamethrower
+
+|-
+! scope="row" | 905
+| Carbonado Botkiller Flame Thrower Mk.I || tf_weapon_flamethrower
+
+|-
+! scope="row" | 914
+| Diamond Botkiller Flame Thrower Mk.I || tf_weapon_flamethrower
+
+|-
+! scope="row" | 963
+| Silver Botkiller Flame Thrower Mk.II || tf_weapon_flamethrower
+
+|-
+! scope="row" | 972
+| Gold Botkiller Flame Thrower Mk.II || tf_weapon_flamethrower
+
+|-
+! scope="row" | 1146
+| Festive Backburner || tf_weapon_flamethrower
+
+|-
+! scope="row" | 1178
+| Dragon's Fury || tf_weapon_rocketlauncher_fireball
+
+|-
+! scope="row" | 15005
+| Forest Fire || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15017
+| Barn Burner || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15030
+| Bovine Blazemaker || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15034
+| Earth, Sky and Fire || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15049
+| Flash Fryer || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15054
+| Turbine Torcher || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15066
+| Autumn || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15067
+| Pumpkin Patch || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15068
+| Nutcracker || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15089
+| Balloonicorn || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15090
+| Rainbow || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15115
+| Coffin Nail || tf_weapon_flamethrower
+
+|-
+! scope="row" | 15141
+| Warhawk || tf_weapon_flamethrower
+
+|-
+! scope="row" | 30474
+| Nostromo Napalmer || tf_weapon_flamethrower || || The Isolated Merc
+
+|}
+
+====Secondary [Slot 1]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 12
+| Pyro's Shotgun || tf_weapon_shotgun_pyro
+
+|-
+! scope="row" | 199
+| Shotgun (Renamed/Strange) || tf_weapon_shotgun
+
+|-
+! scope="row" | 39
+| The Flare Gun || tf_weapon_flaregun
+
+|-
+! scope="row" | 351
+| The Detonator || tf_weapon_flaregun
+
+|-
+! scope="row" | 415
+| The Reserve Shooter || tf_weapon_shotgun
+
+|-
+! scope="row" | 595
+| The Manmelter || tf_weapon_flaregun_revenge || Dr. Grordbort's Moonman Pack
+
+|-
+! scope="row" | 740
+| The Scorch Shot || tf_weapon_flaregun
+
+|-
+! scope="row" | 1081
+| Festive Flare Gun || tf_weapon_flaregun
+
+|-
+! scope="row" | 1141
+| Festive Shotgun || tf_weapon_shotgun
+
+|-
+! scope="row" | 1153
+| Panic Attack || tf_weapon_shotgun
+
+|-
+! scope="row" | 1179
+| Thermal Thruster || tf_weapon_rocketpack
+
+|-
+! scope="row" | 1180
+| Gas Passer || tf_weapon_jar_gas
+
+|-
+! scope="row" | 15003
+| Backwoods Boomstick || tf_weapon_shotgun
+
+|-
+! scope="row" | 15016
+| Rustic Ruiner || tf_weapon_shotgun
+
+|-
+! scope="row" | 15044
+| Civic Duty || tf_weapon_shotgun
+
+|-
+! scope="row" | 15047
+| Lightning Rod || tf_weapon_shotgun
+
+|-
+! scope="row" | 15085
+| Autumn || tf_weapon_shotgun
+
+|-
+! scope="row" | 15109
+| Flower Power || tf_weapon_shotgun
+
+|-
+! scope="row" | 15132
+| Coffin Nail || tf_weapon_shotgun
+
+|-
+! scope="row" | 15133
+| Dressed to Kill || tf_weapon_shotgun
+
+|-
+! scope="row" | 15152
+| Red Bear || tf_weapon_shotgun
+
+|}
+
+====Melee [Slot 2]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 2
+| Fire Axe || tf_weapon_fireaxe
+
+|-
+! scope="row" | 192
+| Fire Axe (Renamed/Strange) || tf_weapon_fireaxe
+
+|-
+! scope="row" | 38
+| The Axtinguisher || tf_weapon_fireaxe
+
+|-
+! scope="row" | 153
+| Homewrecker || tf_weapon_fireaxe
+
+|-
+! scope="row" | 214
+| The Powerjack || tf_weapon_fireaxe || The Gas Jockey's Gear'''*'''
+
+|-
+! scope="row" | 264
+| Frying Pan || saxxy
+
+|-
+! scope="row" | 326
+| The Back Scratcher || tf_weapon_fireaxe
+
+|-
+! scope="row" | 348
+| Sharpened Volcano Fragment || tf_weapon_fireaxe
+
+|-
+! scope="row" | 423
+| Saxxy || saxxy
+
+|-
+! scope="row" | 457
+| The Postal Pummeler || tf_weapon_fireaxe
+
+|-
+! scope="row" | 466
+| The Maul || tf_weapon_fireaxe
+
+|-
+! scope="row" | 474
+| The Conscientious Objector || saxxy
+
+|-
+! scope="row" | 593
+| The Third Degree || tf_weapon_fireaxe || Dr. Grordbort's Moonman Pack
+
+|-
+! scope="row" | 739
+| The Lollichop || tf_weapon_fireaxe
+
+|-
+! scope="row" | 813
+| Neon Annihilator || tf_weapon_breakable_sign
+
+|-
+! scope="row" | 834
+| Neon Annihilator (Genuine) || tf_weapon_breakable_sign
+
+|-
+! scope="row" | 880
+| The Freedom Staff || saxxy
+
+|-
+! scope="row" | 939
+| The Bat Outta Hell || saxxy
+
+|-
+! scope="row" | 954
+| The Memory Maker || saxxy
+
+|-
+! scope="row" | 1000
+| The Festive Axtinguisher || tf_weapon_fireaxe
+
+|-
+! scope="row" | 1013
+| The Ham Shank || saxxy
+
+|-
+! scope="row" | 1071
+| Gold Frying Pan || saxxy
+
+|-
+! scope="row" | 1123
+| The Necro Smasher || saxxy
+
+|-
+! scope="row" | 1127
+| The Crossing Guard || saxxy
+
+|-
+! scope="row" | 1181
+| Hot Hand || tf_weapon_slap
+
+|-
+! scope="row" | 30758
+| Prinny Machete || saxxy
+
+|}
+
+===Demoman===
+
+====Primary [Slot 0]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 19
+| Grenade Launcher || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 206
+| Grenade Launcher (Renamed/Strange) || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 308
+| The Loch-n-Load || tf_weapon_grenadelauncher || Expert's Ordnance'''*'''
+
+|-
+! scope="row" | 405
+| Ali Baba's Wee Booties || tf_wearable || One Thousand and One Demoknights || feet
+
+|-
+! scope="row" | 608
+| The Bootlegger || tf_wearable || Swashbuckler's Swag || feet
+
+|-
+! scope="row" | 996
+| The Loose Cannon || tf_weapon_cannon
+
+|-
+! scope="row" | 1007
+| Festive Grenade Launcher || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 1101
+| The B.A.S.E. Jumper || tf_weapon_parachute
+
+|-
+! scope="row" | 1151
+| The Iron Bomber || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 15077
+| Autumn || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 15079
+| Macabre Web || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 15091
+| Rainbow || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 15092
+| Sweet Dreams || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 15116
+| Coffin Nail || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 15117
+| Top Shelf || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 15142
+| Warhawk || tf_weapon_grenadelauncher
+
+|-
+! scope="row" | 15158
+| Butcher Bird || tf_weapon_grenadelauncher
+
+|}
+
+====Secondary [Slot 1]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 20
+| Stickybomb Launcher || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 207
+| Stickybomb Launcher (Renamed/Strange) || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 130
+| The Scottish Resistance || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 131
+| The Chargin' Targe || tf_wearable_demoshield
+
+|-
+! scope="row" | 265
+| Sticky Jumper || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 406
+| The Splendid Screen || tf_wearable_demoshield || One Thousand and One Demoknights
+
+|-
+! scope="row" | 661
+| Festive Stickybomb Launcher || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 797
+| Silver Botkiller Stickybomb Launcher Mk.I || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 806
+| Gold Botkiller Stickybomb Launcher Mk.I || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 886
+| Rust Botkiller Stickybomb Launcher Mk.I || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 895
+| Blood Botkiller Stickybomb Launcher Mk.I || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 904
+| Carbonado Botkiller Stickybomb Launcher Mk.I || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 913
+| Diamond Botkiller Stickybomb Launcher Mk.I || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 962
+| Silver Botkiller Stickybomb Launcher Mk.II || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 971
+| Gold Botkiller Stickybomb Launcher Mk.II || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 1099
+| The Tide Turner || tf_wearable_demoshield
+
+|-
+! scope="row" | 1144
+| Festive Targe || tf_wearable_demoshield
+
+|-
+! scope="row" | 1150
+| The Quickiebomb Launcher || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15009
+| Sudden Flurry || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15012
+| Carpet Bomber || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15024
+| Blasted Bombardier || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15038
+| Rooftop Wrangler || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15045
+| Liquid Asset || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15048
+| Pink Elephant || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15082
+| Autumn || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15083
+| Pumpkin Patch || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15084
+| Macabre Web || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15113
+| Sweet Dreams || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15137
+| Coffin Nail || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15138
+| Dressed to Kill || tf_weapon_pipebomblauncher
+
+|-
+! scope="row" | 15155
+| Blitzkrieg || tf_weapon_pipebomblauncher
+
+|}
+
+====Melee [Slot 2]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 1
+| Bottle || tf_weapon_bottle
+
+|-
+! scope="row" | 191
+| Bottle (Renamed/Strange) || tf_weapon_bottle
+
+|-
+! scope="row" | 132
+| The Eyelander || tf_weapon_sword
+
+|-
+! scope="row" | 154
+| The Pain Train || tf_weapon_shovel
+
+|-
+! scope="row" | 172
+| The Scotsman's Skullcutter || tf_weapon_sword
+
+|-
+! scope="row" | 264
+| Frying Pan || saxxy
+
+|-
+! scope="row" | 266
+| Horseless Headless Horsemann's Headtaker || tf_weapon_sword
+
+|-
+! scope="row" | 307
+| Ullapool Caber || tf_weapon_stickbomb || Expert's Ordnance'''*'''
+
+|-
+! scope="row" | 327
+| The Claidheamh Mòr || tf_weapon_sword
+
+|-
+! scope="row" | 357
+| The Half-Zatoichi || tf_weapon_katana
+
+|-
+! scope="row" | 404
+| The Persian Persuader || tf_weapon_sword || One Thousand and One Demoknights
+
+|-
+! scope="row" | 423
+| Saxxy || saxxy
+
+|-
+! scope="row" | 474
+| The Conscientious Objector || saxxy
+
+|-
+! scope="row" | 482
+| Nessie's Nine Iron || tf_weapon_sword
+
+|-
+! scope="row" | 609
+| The Scottish Handshake || tf_weapon_bottle || Swashbuckler's Swag
+
+|-
+! scope="row" | 880
+| The Freedom Staff || saxxy
+
+|-
+! scope="row" | 939
+| The Bat Outta Hell || saxxy
+
+|-
+! scope="row" | 954
+| The Memory Maker || saxxy
+
+|-
+! scope="row" | 1013
+| The Ham Shank || saxxy
+
+|-
+! scope="row" | 1071
+| Gold Frying Pan || saxxy
+
+|-
+! scope="row" | 1082
+| Festive Eyelander || tf_weapon_sword
+
+|-
+! scope="row" | 1123
+| The Necro Smasher || saxxy
+
+|-
+! scope="row" | 1127
+| The Crossing Guard || saxxy
+
+|-
+! scope="row" | 30758
+| Prinny Machete || saxxy
+
+|}
+
+===Heavy===
+
+====Primary [Slot 0]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 15
+| Minigun || tf_weapon_minigun
+
+|-
+! scope="row" | 202
+| Minigun (Renamed/Strange) || tf_weapon_minigun
+
+|-
+! scope="row" | 41
+| Natascha || tf_weapon_minigun
+
+|-
+! scope="row" | 298
+| Iron Curtain || tf_weapon_minigun
+
+|-
+! scope="row" | 312
+| The Brass Beast || tf_weapon_minigun || The Hibernating Bear'''*'''
+
+|-
+! scope="row" | 424
+| Tomislav || tf_weapon_minigun || Black Market Business
+
+|-
+! scope="row" | 654
+| Festive Minigun || tf_weapon_minigun
+
+|-
+! scope="row" | 793
+| Silver Botkiller Minigun Mk.I || tf_weapon_minigun
+
+|-
+! scope="row" | 802
+| Gold Botkiller Minigun Mk.I || tf_weapon_minigun
+
+|-
+! scope="row" | 811
+| The Huo-Long Heater || tf_weapon_minigun
+
+|-
+! scope="row" | 832
+| The Huo-Long Heater (Genuine) || tf_weapon_minigun
+
+|-
+! scope="row" | 850
+| Deflector (MvM only?) || tf_weapon_minigun
+
+|-
+! scope="row" | 882
+| Rust Botkiller Minigun Mk.I || tf_weapon_minigun
+
+|-
+! scope="row" | 891
+| Blood Botkiller Minigun Mk.I || tf_weapon_minigun
+
+|-
+! scope="row" | 900
+| Carbonado Botkiller Minigun Mk.I || tf_weapon_minigun
+
+|-
+! scope="row" | 909
+| Diamond Botkiller Minigun Mk.I || tf_weapon_minigun
+
+|-
+! scope="row" | 958
+| Silver Botkiller Minigun Mk.II || tf_weapon_minigun
+
+|-
+! scope="row" | 967
+| Gold Botkiller Minigun Mk.II || tf_weapon_minigun
+
+|-
+! scope="row" | 15004
+| King of the Jungle || tf_weapon_minigun
+
+|-
+! scope="row" | 15020
+| Iron Wood || tf_weapon_minigun
+
+|-
+! scope="row" | 15026
+| Antique Annihilator || tf_weapon_minigun
+
+|-
+! scope="row" | 15031
+| War Room || tf_weapon_minigun
+
+|-
+! scope="row" | 15040
+| Citizen Pain || tf_weapon_minigun
+
+|-
+! scope="row" | 15055
+| Brick House || tf_weapon_minigun
+
+|-
+! scope="row" | 15086
+| Macabre Web || tf_weapon_minigun
+
+|-
+! scope="row" | 15087
+| Pumpkin Patch || tf_weapon_minigun
+
+|-
+! scope="row" | 15088
+| Nutcracker || tf_weapon_minigun
+
+|-
+! scope="row" | 15098
+| Brain Candy || tf_weapon_minigun
+
+|-
+! scope="row" | 15099
+| Mister Cuddles || tf_weapon_minigun
+
+|-
+! scope="row" | 15123
+| Coffin Nail || tf_weapon_minigun
+
+|-
+! scope="row" | 15124
+| Dressed to Kill || tf_weapon_minigun
+
+|-
+! scope="row" | 15125
+| Top Shelf || tf_weapon_minigun
+
+|-
+! scope="row" | 15147
+| Butcher Bird || tf_weapon_minigun
+
+|}
+
+====Secondary [Slot 1]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 11
+| Heavy's Shotgun || tf_weapon_shotgun_hwg
+
+|-
+! scope="row" | 199
+| Shotgun (Renamed/Strange) || tf_weapon_shotgun
+
+|-
+! scope="row" | 42
+| Sandvich || tf_weapon_lunchbox
+
+|-
+! scope="row" | 159
+| The Dalokohs Bar || tf_weapon_lunchbox
+
+|-
+! scope="row" | 311
+| The Buffalo Steak Sandvich || tf_weapon_lunchbox || The Hibernating Bear'''*'''
+
+|-
+! scope="row" | 425
+| The Family Business || tf_weapon_shotgun_hwg || Black Market Business
+
+|-
+! scope="row" | 433
+| Fishcake || tf_weapon_lunchbox
+
+|-
+! scope="row" | 863
+| Robo-Sandvich || tf_weapon_lunchbox
+
+|-
+! scope="row" | 1002
+| Festive Sandvich || tf_weapon_lunchbox
+
+|-
+! scope="row" | 1141
+| Festive Shotgun || tf_weapon_shotgun
+
+|-
+! scope="row" | 1153
+| Panic Attack || tf_weapon_shotgun
+
+|-
+! scope="row" | 1190
+| Second Banana || tf_weapon_lunchbox
+
+|-
+! scope="row" | 15003
+| Backwoods Boomstick || tf_weapon_shotgun
+
+|-
+! scope="row" | 15016
+| Rustic Ruiner || tf_weapon_shotgun
+
+|-
+! scope="row" | 15044
+| Civic Duty || tf_weapon_shotgun
+
+|-
+! scope="row" | 15047
+| Lightning Rod || tf_weapon_shotgun
+
+|-
+! scope="row" | 15085
+| Autumn || tf_weapon_shotgun
+
+|-
+! scope="row" | 15109
+| Flower Power || tf_weapon_shotgun
+
+|-
+! scope="row" | 15132
+| Coffin Nail || tf_weapon_shotgun
+
+|-
+! scope="row" | 15133
+| Dressed to Kill || tf_weapon_shotgun
+
+|-
+! scope="row" | 15152
+| Red Bear || tf_weapon_shotgun
+
+|}
+
+====Melee [Slot 2]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 5
+| Fists || tf_weapon_fists
+
+|-
+! scope="row" | 195
+| Fists (Renamed/Strange) || tf_weapon_fists
+
+|-
+! scope="row" | 43
+| The Killing Gloves of Boxing ||| tf_weapon_fists
+
+|-
+! scope="row" | 239
+| Gloves of Running Urgently || tf_weapon_fists
+
+|-
+! scope="row" | 264
+| Frying Pan || saxxy
+
+|-
+! scope="row" | 310
+| Warrior's Spirit || tf_weapon_fists || The Hibernating Bear'''*'''
+
+|-
+! scope="row" | 331
+| Fists of Steel || tf_weapon_fists
+
+|-
+! scope="row" | 423
+| Saxxy || saxxy
+
+|-
+! scope="row" | 426
+| The Eviction Notice || tf_weapon_fists || Black Market Business
+
+|-
+! scope="row" | 474
+| The Conscientious Objector || saxxy
+
+|-
+! scope="row" | 587
+| Apoco-Fists || tf_weapon_fists
+
+|-
+! scope="row" | 656
+| The Holiday Punch || tf_weapon_fists
+
+|-
+! scope="row" | 880
+| The Freedom Staff || saxxy
+
+|-
+! scope="row" | 939
+| The Bat Outta Hell || saxxy
+
+|-
+! scope="row" | 954
+| The Memory Maker || saxxy
+
+|-
+! scope="row" | 1013
+| The Ham Shank || saxxy
+
+|-
+! scope="row" | 1071
+| Gold Frying Pan || saxxy
+
+|-
+! scope="row" | 1084
+| Festive Gloves of Running Urgently (G.R.U.) || tf_weapon_fists
+
+|-
+! scope="row" | 1100
+| The Bread Bite || tf_weapon_fists
+
+|-
+! scope="row" | 1123
+| The Necro Smasher || saxxy
+
+|-
+! scope="row" | 1127
+| The Crossing Guard || saxxy
+
+|-
+! scope="row" | 1184
+| Gloves of Running Urgently MvM || tf_weapon_fists
+
+|-
+! scope="row" | 30758
+| Prinny Machete || saxxy
+
+|}
+
+===Engineer===
+
+====Primary [Slot 0]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 9
+| Engineer's Shotgun || tf_weapon_shotgun_primary
+
+|-
+! scope="row" | 199
+| Shotgun (Renamed/Strange) || tf_weapon_shotgun
+
+|-
+! scope="row" | 141
+| The Frontier Justice || tf_weapon_sentry_revenge
+
+|-
+! scope="row" | 527
+| The Widowmaker || tf_weapon_shotgun_primary
+
+|-
+! scope="row" | 588
+| The Pomson 6000 || tf_weapon_drg_pomson || Dr. Grordbort's Braniac Pack
+
+|-
+! scope="row" | 997
+| The Rescue Ranger || tf_weapon_shotgun_building_rescue
+
+|-
+! scope="row" | 1004
+| Festive Frontier Justice || tf_weapon_sentry_revenge
+
+|-
+! scope="row" | 1141
+| Festive Shotgun || tf_weapon_shotgun
+
+|-
+! scope="row" | 1153
+| Panic Attack || tf_weapon_shotgun
+
+|-
+! scope="row" | 15003
+| Backwoods Boomstick || tf_weapon_shotgun
+
+|-
+! scope="row" | 15016
+| Rustic Ruiner || tf_weapon_shotgun
+
+|-
+! scope="row" | 15044
+| Civic Duty || tf_weapon_shotgun
+
+|-
+! scope="row" | 15047
+| Lightning Rod || tf_weapon_shotgun
+
+|-
+! scope="row" | 15085
+| Autumn || tf_weapon_shotgun
+
+|-
+! scope="row" | 15109
+| Flower Power || tf_weapon_shotgun
+
+|-
+! scope="row" | 15132
+| Coffin Nail || tf_weapon_shotgun
+
+|-
+! scope="row" | 15133
+| Dressed to Kill || tf_weapon_shotgun
+
+|-
+! scope="row" | 15152
+| Red Bear || tf_weapon_shotgun
+
+|}
+
+====Secondary [Slot 1]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 22
+| Engineer's Pistol || tf_weapon_pistol
+
+|-
+! scope="row" | 209
+| Pistol (Renamed/Strange) || tf_weapon_pistol
+
+|-
+! scope="row" | 140
+| The Wrangler || tf_weapon_laser_pointer
+
+|-
+! scope="row" | 160
+| Vintage Lugermorph || tf_weapon_pistol
+
+|-
+! scope="row" | 294
+| Lugermorph || tf_weapon_pistol
+
+|-
+! scope="row" | 528
+| The Short Circuit || tf_weapon_mechanical_arm
+
+|-
+! scope="row" | 1086
+| Festive Wrangler || tf_weapon_laser_pointer
+
+|-
+! scope="row" | 15013
+| Red Rock Roscoe || tf_weapon_pistol
+
+|-
+! scope="row" | 15018
+| Homemade Heater || tf_weapon_pistol
+
+|-
+! scope="row" | 15035
+| Hickory Holepuncher || tf_weapon_pistol
+
+|-
+! scope="row" | 15041
+| Local Hero || tf_weapon_pistol
+
+|-
+! scope="row" | 15046
+| Black Dahlia || tf_weapon_pistol
+
+|-
+! scope="row" | 15056
+| Sandstone Special || tf_weapon_pistol
+
+|-
+! scope="row" | 15060
+| Macabre Web || tf_weapon_pistol
+
+|-
+! scope="row" | 15061
+| Nutcracker || tf_weapon_pistol
+
+|-
+! scope="row" | 15100
+| Blue Mew || tf_weapon_pistol
+
+|-
+! scope="row" | 15101
+| Brain Candy || tf_weapon_pistol
+
+|-
+! scope="row" | 15102
+| Shot to Hell || tf_weapon_pistol
+
+|-
+! scope="row" | 15126
+| Dressed To Kill || tf_weapon_pistol
+
+|-
+! scope="row" | 15148
+| Blitzkrieg || tf_weapon_pistol
+
+|-
+! scope="row" | 30666
+| The C.A.P.P.E.R. || tf_weapon_pistol
+
+|-
+! scope="row" | 30668
+| The Gigar Counter || tf_weapon_laser_pointer
+
+|}
+
+====Melee [Slot 2]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 7
+| Wrench || tf_weapon_wrench
+
+|-
+! scope="row" | 197
+| Wrench (Renamed/Strange) || tf_weapon_wrench
+
+|-
+! scope="row" | 142
+| The Gunslinger || tf_weapon_robot_arm
+
+|-
+! scope="row" | 155
+| The Southern Hospitality || tf_weapon_wrench
+
+|-
+! scope="row" | 169
+| Golden Wrench || tf_weapon_wrench
+
+|-
+! scope="row" | 329
+| The Jag || tf_weapon_wrench
+
+|-
+! scope="row" | 423
+| Saxxy || saxxy
+
+|-
+! scope="row" | 589
+| The Eureka Effect || tf_weapon_wrench || Dr. Grordbort's Braniac Pack
+
+|-
+! scope="row" | 662
+| Festive Wrench || tf_weapon_wrench
+
+|-
+! scope="row" | 795
+| Silver Botkiller Wrench Mk.I || tf_weapon_wrench
+
+|-
+! scope="row" | 804
+| Gold Botkiller Wrench Mk.I || tf_weapon_wrench
+
+|-
+! scope="row" | 884
+| Rust Botkiller Wrench Mk.I || tf_weapon_wrench
+
+|-
+! scope="row" | 893
+| Blood Botkiller Wrench Mk.I || tf_weapon_wrench
+
+|-
+! scope="row" | 902
+| Carbonado Botkiller Wrench Mk.I || tf_weapon_wrench
+
+|-
+! scope="row" | 911
+| Diamond Botkiller Wrench Mk.I || tf_weapon_wrench
+
+|-
+! scope="row" | 960
+| Silver Botkiller Wrench Mk.II || tf_weapon_wrench
+
+|-
+! scope="row" | 969
+| Gold Botkiller Wrench Mk.II || tf_weapon_wrench
+
+|-
+! scope="row" | 1071
+| Gold Frying Pan || saxxy
+
+|-
+! scope="row" | 1123
+| The Necro Smasher || saxxy
+
+|-
+! scope="row" | 15073
+| Nutcracker || tf_weapon_wrench
+
+|-
+! scope="row" | 15074
+| Autumn || tf_weapon_wrench
+
+|-
+! scope="row" | 15075
+| Boneyard || tf_weapon_wrench
+
+|-
+! scope="row" | 15139
+| Dressed to Kill || tf_weapon_wrench
+
+|-
+! scope="row" | 15140
+| Top Shelf || tf_weapon_wrench
+
+|-
+! scope="row" | 15114
+| Torqued to Hell || tf_weapon_wrench
+
+|-
+! scope="row" | 15156
+| Airwolf || tf_weapon_wrench
+
+|-
+! scope="row" | 30758
+| Prinny Machete || saxxy
+
+|}
+
+====PDA [Slot 3]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 25
+| Construction PDA || tf_weapon_pda_engineer_build
+
+|-
+! scope="row" | 737
+| Construction PDA (Renamed/Strange) || tf_weapon_pda_engineer_build
+
+|}
+
+====PDA2 (not in loadout) [Slot 4]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 26
+| Destruction PDA || tf_weapon_pda_engineer_destroy
+
+|}
+
+====Building (not in loadout) [Slot 5]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 28
+| PDA (ed: Toolbox) || tf_weapon_builder
+
+|}
+
+===Medic===
+
+====Primary [Slot 0]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 17
+| Syringe Gun || tf_weapon_syringegun_medic
+
+|-
+! scope="row" | 204
+| Syringe Gun (Renamed/Strange) || tf_weapon_syringegun_medic
+
+|-
+! scope="row" | 36
+| The Blutsauger || tf_weapon_syringegun_medic
+
+|-
+! scope="row" | 305
+| Crusader's Crossbow || tf_weapon_crossbow || The Medieval Medic'''*'''
+
+|-
+! scope="row" | 412
+| The Overdose || tf_weapon_syringegun_medic || The Clinical Trial
+
+|-
+! scope="row" | 1079
+| Festive Crusader's Crossbow || tf_weapon_crossbow || The Medieval Medic'''*'''
+
+|}
+
+====Secondary [Slot 1]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 29
+| Medi Gun || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 211
+| Medi Gun(Renamed/Strange) || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 35
+| The Kritzkrieg || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 411
+| The Quick-Fix || tf_weapon_medigun || The Clinical Trial || medigun_backpack
+
+|-
+! scope="row" | 663
+| Festive Medi Gun|| tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 796
+| Silver Botkiller Medi Gun Mk.I || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 805
+| Gold Botkiller Medi Gun Mk.I || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 885
+| Rust Botkiller Medi Gun Mk.I || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 894
+| Blood Botkiller Medi Gun Mk.I || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 903
+| Carbonado Botkiller Medi Gun Mk.I || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 912
+| Diamond Botkiller Medi Gun Mk.I || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 961
+| Silver Botkiller Medi Gun Mk.II || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 970
+| Gold Botkiller Medi Gun Mk.II || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 998
+| The Vaccinator || tf_weapon_medigun || || back
+
+|-
+! scope="row" | 15008
+| Masked Mender || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15010
+| Wrapped Reviver || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15025
+| Reclaimed Reanimator || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15039
+| Civil Servant || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15050
+| Spark of Life || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15078
+| Wildwood || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15097
+| Flower Power || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15121
+| Dressed To Kill || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15122
+| High Roller's || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15123
+| Coffin Nail || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15145
+| Blitzkrieg || tf_weapon_medigun || || medigun_backpack
+
+|-
+! scope="row" | 15146
+| Corsair || tf_weapon_medigun || || medigun_backpack
+
+|}
+
+====Melee [Slot 2]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 8
+| Bonesaw || tf_weapon_bonesaw
+
+|-
+! scope="row" | 198
+| Bonesaw (Renamed/Strange) || tf_weapon_bonesaw
+
+|-
+! scope="row" | 37
+| The Ubersaw || tf_weapon_bonesaw
+
+|-
+! scope="row" | 173
+| The Vita-Saw || tf_weapon_bonesaw
+
+|-
+! scope="row" | 264
+| Frying Pan || saxxy
+
+|-
+! scope="row" | 304
+| Amputator || tf_weapon_bonesaw || The Medieval Medic'''*'''
+
+|-
+! scope="row" | 413
+| The Solemn Vow || tf_weapon_bonesaw || The Clinical Trial
+
+|-
+! scope="row" | 423
+| Saxxy || saxxy
+
+|-
+! scope="row" | 474
+| The Conscientious Objector || saxxy
+
+|-
+! scope="row" | 880
+| The Freedom Staff || saxxy
+
+|-
+! scope="row" | 939
+| The Bat Outta Hell || saxxy
+
+|-
+! scope="row" | 954
+| The Memory Maker || saxxy
+
+|-
+! scope="row" | 1003
+| Festive Ubersaw || tf_weapon_bonesaw
+
+|-
+! scope="row" | 1013
+| The Ham Shank || saxxy
+
+|-
+! scope="row" | 1071
+| Gold Frying Pan || saxxy
+
+|-
+! scope="row" | 1123
+| The Necro Smasher || saxxy
+
+|-
+! scope="row" | 1127
+| The Crossing Guard || saxxy
+
+|-
+! scope="row" | 1143
+| Festive Bonesaw || tf_weapon_bonesaw
+
+|-
+! scope="row" | 30758
+| Prinny Machete || saxxy
+
+|}
+
+===Sniper===
+
+====Primary [Slot 0]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 14
+| Sniper Rifle || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 201
+| Sniper Rifle (Renamed/Strange) || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 56
+| The Huntsman || tf_weapon_compound_bow || Dual-Purpose Fruit
+
+|-
+! scope="row" | 230
+| The Sydney Sleeper || tf_weapon_sniperrifle || The Croc-o-Style Kit'''*'''
+
+|-
+! scope="row" | 402
+| The Bazaar Bargain || tf_weapon_sniperrifle_decap || Lawrence of Australia
+
+|-
+! scope="row" | 526
+| The Machina || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 664
+| Festive Sniper Rifle || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 752
+| The Hitman's Heatmaker || tf_weapon_sniperrifle || The Urban Professional
+
+|-
+! scope="row" | 792
+| Silver Botkiller Sniper Rifle Mk.I || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 801
+| Gold Botkiller Sniper Rifle Mk.I || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 851
+| The AWPer Hand || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 881
+| Rust Botkiller Sniper Rifle Mk.I || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 890
+| Blood Botkiller Sniper Rifle Mk.I || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 899
+| Carbonado Botkiller Sniper Rifle Mk.I || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 908
+| Diamond Botkiller Sniper Rifle Mk.I || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 957
+| Silver Botkiller Sniper Rifle Mk.II || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 966
+| Gold Botkiller Sniper Rifle Mk.II || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 1005
+| Festive Huntsman || tf_weapon_compound_bow
+
+|-
+! scope="row" | 1092
+| The Fortified Compound || tf_weapon_compound_bow
+
+|-
+! scope="row" | 1098
+| The Classic || tf_weapon_sniperrifle_classic
+
+|-
+! scope="row" | 15000
+| Night Owl || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15007
+| Purple Range || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15019
+| Lumber From Down Under || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15023
+| Shot in the Dark || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15033
+| Bogtrotter || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15059
+| Thunderbolt || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15070
+| Pumpkin Patch || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15071
+| Boneyard || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15072
+| Wildwood || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15111
+| Balloonicorn || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15112
+| Rainbow || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15135
+| Coffin Nail || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15136
+| Dressed to Kill || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 15154
+| Airwolf || tf_weapon_sniperrifle
+
+|-
+! scope="row" | 30665
+| Shooting Star || tf_weapon_sniperrifle
+
+|}
+
+====Secondary [Slot 1]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 16
+| SMG || tf_weapon_smg
+
+|-
+! scope="row" | 203
+| SMG (Renamed/Strange) || tf_weapon_smg
+
+|-
+! scope="row" | 57
+| The Razorback || tf_wearable_razorback || || back
+
+|-
+! scope="row" | 58
+| Jarate || tf_weapon_jar
+
+|-
+! scope="row" | 231
+| Darwin's Danger Shield || tf_wearable || The Croc-o-Style Kit'''*''' || back
+
+|-
+! scope="row" | 642
+| Cozy Camper || tf_wearable || || back
+
+|-
+! scope="row" | 751
+| The Cleaner's Carbine || tf_weapon_charged_smg || The Urban Professional
+
+|-
+! scope="row" | 1083
+| Festive Jarate || tf_weapon_jar
+
+|-
+! scope="row" | 1105
+| The Self-Aware Beauty Mark || tf_weapon_jar
+
+|-
+! scope="row" | 1149
+| Festive SMG || tf_weapon_smg
+
+|-
+! scope="row" | 15001
+| Woodsy Widowmaker || tf_weapon_smg
+
+|-
+! scope="row" | 15022
+| Plaid Potshotter || tf_weapon_smg
+
+|-
+! scope="row" | 15032
+| Treadplate Tormenter || tf_weapon_smg
+
+|-
+! scope="row" | 15037
+| Team Sprayer || tf_weapon_smg
+
+|-
+! scope="row" | 15058
+| Low Profile || tf_weapon_smg
+
+|-
+! scope="row" | 15076
+| Wildwood || tf_weapon_smg
+
+|-
+! scope="row" | 15110
+| Blue Mew || tf_weapon_smg
+
+|-
+! scope="row" | 15134
+| High Roller's || tf_weapon_smg
+
+|-
+! scope="row" | 15153
+| Blitzkrieg || tf_weapon_smg
+
+|}
+
+====Melee [Slot 2]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 3
+| Kukri || tf_weapon_club
+
+|-
+! scope="row" | 193
+| Kukri (Renamed/Strange) || tf_weapon_club
+
+|-
+! scope="row" | 171
+| The Tribalman's Shiv || tf_weapon_club
+
+|-
+! scope="row" | 232
+| The Bushwacka || tf_weapon_club || The Croc-o-Style Kit'''*'''
+
+|-
+! scope="row" | 264
+| Frying Pan || saxxy
+
+|-
+! scope="row" | 401
+| The Shahanshah || tf_weapon_club || Lawrence of Australia
+
+|-
+! scope="row" | 423
+| Saxxy || saxxy
+
+|-
+! scope="row" | 474
+| The Conscientious Objector || saxxy
+
+|-
+! scope="row" | 880
+| The Freedom Staff || saxxy
+
+|-
+! scope="row" | 939
+| The Bat Outta Hell || saxxy
+
+|-
+! scope="row" | 954
+| The Memory Maker || saxxy
+
+|-
+! scope="row" | 1013
+| The Ham Shank || saxxy
+
+|-
+! scope="row" | 1071
+| Gold Frying Pan || saxxy
+
+|-
+! scope="row" | 1123
+| The Necro Smasher || saxxy
+
+|-
+! scope="row" | 1127
+| The Crossing Guard || saxxy
+
+|-
+! scope="row" | 30758
+| Prinny Machete || saxxy
+
+|}
+
+===Spy===
+
+====Secondary [Slot 0]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 24
+| Revolver || tf_weapon_revolver
+
+|-
+! scope="row" | 210
+| Revolver (Renamed/Strange) || tf_weapon_revolver
+
+|-
+! scope="row" | 61
+| The Ambassador || tf_weapon_revolver
+
+|-
+! scope="row" | 161
+| Big Kill || tf_weapon_revolver
+
+|-
+! scope="row" | 224
+| L'Etranger || tf_weapon_revolver || Saharan Spy'''*'''
+
+|-
+! scope="row" | 460
+| The Enforcer || tf_weapon_revolver || The Man of Honor
+
+|-
+! scope="row" | 525
+| The Diamondback || tf_weapon_revolver
+
+|-
+! scope="row" | 1006
+| Festive Ambassador || tf_weapon_revolver
+
+|-
+! scope="row" | 1142
+| Festive Revolver || tf_weapon_revolver
+
+|-
+! scope="row" | 15011
+| Psychedelic Slugger || tf_weapon_revolver
+
+|-
+! scope="row" | 15027
+| Old Country || tf_weapon_revolver
+
+|-
+! scope="row" | 15042
+| Mayor || tf_weapon_revolver
+
+|-
+! scope="row" | 15051
+| Dead Reckoner || tf_weapon_revolver
+
+|-
+! scope="row" | 15062
+| Boneyard || tf_weapon_revolver
+
+|-
+! scope="row" | 15063
+| Wildwood || tf_weapon_revolver
+
+|-
+! scope="row" | 15064
+| Macabre Web || tf_weapon_revolver
+
+|-
+! scope="row" | 15103
+| Flower Power || tf_weapon_revolver
+
+|-
+! scope="row" | 15128
+| Top Shelf || tf_weapon_revolver
+
+|-
+! scope="row" | 15127
+| Coffin Nail || tf_weapon_revolver
+
+|-
+! scope="row" | 15149
+| Blitzkrieg || tf_weapon_revolver
+
+|}
+
+====Building [Slot 1]====
+Note: Labeled "PDA" in loadout<br>
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 735
+| Sapper || tf_weapon_builder
+
+|-
+! scope="row" | 736
+| Sapper (Renamed/Strange) || tf_weapon_builder
+
+|-
+! scope="row" | 810
+| The Red-Tape Recorder || tf_weapon_sapper
+
+|-
+! scope="row" | 831
+| The Red-Tape Recorder (Genuine) || tf_weapon_sapper
+
+|-
+! scope="row" | 933
+| The Ap-Sap (Genuine) || tf_weapon_sapper
+
+|-
+! scope="row" | 1080
+| Festive Sapper || tf_weapon_sapper
+
+|-
+! scope="row" | 1102
+| The Snack Attack || tf_weapon_sapper
+
+|}
+
+====Melee [Slot 2]====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 4
+| Knife || tf_weapon_knife
+
+|-
+! scope="row" | 194
+| Knife (Renamed/Strange) || tf_weapon_knife
+
+|-
+! scope="row" | 225
+| Your Eternal Reward || tf_weapon_knife || Saharan Spy'''*'''
+
+|-
+! scope="row" | 356
+| Conniver's Kunai || tf_weapon_knife
+
+|-
+! scope="row" | 423
+| Saxxy || saxxy
+
+|-
+! scope="row" | 461
+| The Big Earner || tf_weapon_knife || The Man of Honor
+
+|-
+! scope="row" | 574
+| The Wanga Prick || tf_weapon_knife
+
+|-
+! scope="row" | 638
+| The Sharp Dresser || tf_weapon_knife
+
+|-
+! scope="row" | 649
+| The Spy-cicle || tf_weapon_knife
+
+|-
+! scope="row" | 665
+| Festive Knife || tf_weapon_knife
+
+|-
+! scope="row" | 727
+| The Black Rose || tf_weapon_knife
+
+|-
+! scope="row" | 794
+| Silver Botkiller Knife Mk.I || tf_weapon_knife
+
+|-
+! scope="row" | 803
+| Gold Botkiller Knife Mk.I || tf_weapon_knife
+
+|-
+! scope="row" | 883
+| Rust Botkiller Knife Mk.I || tf_weapon_knife
+
+|-
+! scope="row" | 892
+| Blood Botkiller Knife Mk.I || tf_weapon_knife
+
+|-
+! scope="row" | 901
+| Carbonado Botkiller Knife Mk.I || tf_weapon_knife
+
+|-
+! scope="row" | 910
+| Diamond Botkiller Knife Mk.I || tf_weapon_knife
+
+|-
+! scope="row" | 959
+| Silver Botkiller Knife Mk.II || tf_weapon_knife
+
+|-
+! scope="row" | 968
+| Gold Botkiller Knife Mk.II || tf_weapon_knife
+
+|-
+! scope="row" | 1071
+| Gold Frying Pan || saxxy
+
+|-
+! scope="row" | 15062
+| Boneyard || tf_weapon_knife
+
+|-
+! scope="row" | 15094
+| Blue Mew || tf_weapon_knife
+
+|-
+! scope="row" | 15095
+| Brain Candy || tf_weapon_knife
+
+|-
+! scope="row" | 15096
+| Stabbed to Hell || tf_weapon_knife
+
+|-
+! scope="row" | 15118
+| Dressed to Kill || tf_weapon_knife
+
+|-
+! scope="row" | 15119
+| Top Shelf || tf_weapon_knife
+
+|-
+! scope="row" | 15143
+| Blitzkrieg || tf_weapon_knife
+
+|-
+! scope="row" | 15144
+| Airwolf || tf_weapon_knife
+
+|-
+! scope="row" | 30758
+| Prinny Machete || saxxy
+
+|}
+
+====PDA (not in loadout) [Slot 3]====
+Note: Not available if attribute 155 has been used on one of the weapons.<br>
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 27
+| Disguise Kit PDA || tf_weapon_pda_spy
+
+|}
+
+====PDA2 [Slot 4]====
+Note: Labeled "PDA" in loadout<br>
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 30
+| Invis Watch || tf_weapon_invis
+
+|-
+! scope="row" | 212
+| Invis Watch (Renamed/Strange) || tf_weapon_invis
+
+|-
+! scope="row" | 59
+| The Dead Ringer || tf_weapon_invis
+
+|-
+! scope="row" | 60
+| The Cloak and Dagger || tf_weapon_invis
+
+|-
+! scope="row" | 297
+| Enthusiast's Timepiece || tf_weapon_invis
+
+|-
+! scope="row" | 947
+| The Quackenbirdt || tf_weapon_invis
+
+|}
+
+== Cosmetic ==
+These are wearables that go in the three Cosmetic slots.<br>
+All cosmetic items are the tf_wearable class<br>
+
+=== Scout ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 52
+| Batter's Helmet || hat
+
+|-
+! scope="row" | 106
+| Bonk Helm || hat
+
+|-
+! scope="row" | 107
+| Ye Olde Baker Boy || hat
+
+|-
+! scope="row" | 111
+| Baseball Bill's Sports Shine (Hatless Scout) || hat
+
+|-
+! scope="row" | 150
+| Troublemaker's Tossle Cap || hat
+
+|-
+! scope="row" | 174
+| Whoopee Cap || hat
+
+|-
+! scope="row" | 219
+| The Milkman || hat || Special Delivery'''*'''
+
+|-
+! scope="row" | 249
+| Bombing Run || hat
+
+|-
+! scope="row" | 324
+| Flipped Trilby || hat
+
+|-
+! scope="row" | 346
+| The Superfan || hat
+
+|-
+! scope="row" | 347
+| The Essential Accessories || arms, feet
+
+|-
+! scope="row" | 451
+| Bonk Boy || head_skin || Bonk Fan
+
+|-
+! scope="row" | 453
+| Hero's Tail || hat
+
+|-
+! scope="row" | 454
+| Sign of the Wolf's School || necklace
+
+|-
+! scope="row" | 468
+| Planeswalker Goggles || glasses
+
+|-
+! scope="row" | 490
+| Flip-Flops || feet
+
+|-
+! scope="row" | 491
+| Lucky No. 42 || back
+
+|-
+! scope="row" | 539
+| The El Jefe || hat
+
+|-
+! scope="row" | 540
+| Ball-Kicking Boots || feet
+
+|-
+! scope="row" | 614
+| The Hot Dogger || hat
+
+|-
+! scope="row" | 617
+| The Backwards Ballcap || hat
+
+|-
+! scope="row" | 630
+| The Stereoscopic Shades || glasses
+
+|-
+! scope="row" | 633
+| The Hermes || hat
+
+|-
+! scope="row" | 652
+| The Big Elfin Deal || hat || Santa's Little Accomplice
+
+|-
+! scope="row" | 653
+| The Bootie Time || arms, feet || Santa's Little Accomplice
+
+|-
+! scope="row" | 707
+| The Boston Boom-Bringer || scout_backpack
+
+|-
+! scope="row" | 722
+| The Fast Learner || scout_shirt
+
+|-
+! scope="row" | 734
+| The Teufort Tooth Kicker || feet
+
+|-
+! scope="row" | 760
+| The Front Runner || hat
+
+|-
+! scope="row" | 765
+| The Cross-Comm Express || hat
+
+|-
+! scope="row" | 780
+| The Fed-Fightin' Fedora || hat || The Public Enemy
+
+|-
+! scope="row" | 781
+| Dillinger's Duffel || scout_backpack || The Public Enemy
+
+|-
+! scope="row" | 788
+| The Void Monk Hair || hat
+
+|-
+! scope="row" | 814
+| The Triad Trinket || necklace
+
+|-
+! scope="row" | 815
+| The Champ Stamp || arm_tatoos
+
+|-
+! scope="row" | 835
+| The Triad Trinket (Genuine) || necklace
+
+|-
+! scope="row" | 836
+| The Champ Stamp (Genuine) || arm_tatoos
+
+|-
+! scope="row" | 846
+| The Robot Running Man || hat
+
+|-
+! scope="row" | 853
+| The Crafty Hair || hat
+
+|-
+! scope="row" | 924
+| The Spooky Shoes || shoes_socks
+
+|-
+! scope="row" | 925
+| The Spooky Sleeves || arms
+
+|-
+! scope="row" | 983
+| The Digit Divulger || scout_hands
+
+|-
+! scope="row" | 1012
+| The Wilson Weave || hat
+
+|-
+! scope="row" | 1016
+| Buck Turner All-Stars || feet, shoes, shoes_socks
+
+|-
+! scope="row" | 1026
+| The Tomb Wrapper || scout_bandages
+
+|-
+! scope="row" | 1032
+| The Long Fall Loafers || shoes_socks
+
+|-
+! scope="row" | 1040
+| The Bacteria Blocker || hat
+
+|-
+! scope="row" | 1057
+| MvM GateBot Light Scout || hat
+
+|-
+! scope="row" | 1075
+| The Sack Fulla Smissmas || scout_backpack
+
+|-
+! scope="row" | 30018
+| The Bot Dogger || hat
+
+|-
+! scope="row" | 30019
+| Ye Oiled Baker Boy || hat
+
+|-
+! scope="row" | 30027
+| Bolt Boy || head_skin
+
+|-
+! scope="row" | 30030
+| Bonk Leadwear || hat
+
+|-
+! scope="row" | 30059
+| The Beastly Bonnet || whole_head
+
+|-
+! scope="row" | 30060
+| The Cheet Sheet || shoes_socks
+
+|-
+! scope="row" | 30068
+| The Breakneck Baggies || scout_pants
+
+|-
+! scope="row" | 30076
+| The Bigg Mann on Campus || shirt
+
+|-
+! scope="row" | 30077
+| The Cool Cat Cardigan || shirt
+
+|-
+! scope="row" | 30078
+| Greased Lightning || hat
+
+|-
+! scope="row" | 30083
+| The Caffeine Cooler || scout_backpack
+
+|-
+! scope="row" | 30084
+| The Half-Pipe Hurdler || scout_backpack
+
+|-
+! scope="row" | 30085
+| The Macho Mann || glasses
+
+|-
+! scope="row" | 30134
+| The Delinquent's Down Vest || shirt
+
+|-
+! scope="row" | 30185
+| The Flapjack || shirt
+
+|-
+! scope="row" | 30320
+| Chucklenuts || left_shoulder
+
+|-
+! scope="row" | 30325
+| The Little Drummer Mann || shirt
+
+|-
+! scope="row" | 30326
+| The Scout Shako || hat
+
+|-
+! scope="row" | 30332
+| Runner's Warm-up || hat
+
+|-
+! scope="row" | 30376
+| The Ticket Boy || shirt
+
+|-
+! scope="row" | 30394
+| The Frickin' Sweet Ninja Hood || hat, beard || The Wicked Good Ninja Pack
+
+|-
+! scope="row" | 30395
+| The Southie Shinobi || shirt, arm_tatoos || The Wicked Good Ninja Pack
+
+|-
+! scope="row" | 30396
+| The Red Socks || feet || The Wicked Good Ninja Pack
+
+|-
+! scope="row" | 30426
+| The Paisley Pro || shirt, arm_tatoos || The Retro Rebel Pack
+
+|-
+! scope="row" | 30427
+| The Argyle Ace || feet || The Retro Rebel Pack
+
+|-
+! scope="row" | 30428
+| The Pomade Prince || hat, headphones || The Retro Rebel Pack
+
+|-
+! scope="row" | 30479
+| Thirst Blood || hat
+
+|-
+! scope="row" | 30540
+| Brooklyn Booties || feet
+
+|-
+! scope="row" | 30552
+| Thermal Tracker || shirt
+
+|-
+! scope="row" | 30561
+| The Bootenkhamuns || feet
+
+|-
+! scope="row" | 30564
+| Orion's Belt || feet
+
+|-
+! scope="row" | 30573
+| Mountebank's Masque || hat
+
+|-
+! scope="row" | 30574
+| Courtier's Collar || shirt
+
+|-
+! scope="row" | 30575
+| Harlequin's Hooves || feet
+
+|-
+! scope="row" | 30576
+| Co-Pilot || hat
+
+|-
+! scope="row" | 30636
+| Fortunate Son || hat
+
+|-
+! scope="row" | 30637
+| Flak Jack || shirt
+
+|-
+! scope="row" | 30661
+| Cadet Visor || glasses
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 546
+| Wrap Battler || hat || The Curse-a-Nature
+
+|-
+! scope="row" | 547
+| B-ankh! || arms || The Curse-a-Nature
+
+|-
+! scope="row" | 548
+| Futankhamun || feet || The Curse-a-Nature
+
+|-
+! scope="row" | 5617
+| Voodoo-Cursed Scout Soul || zombie_body
+
+|-
+! scope="row" | 30200
+| The Baphomet Trotters || feet
+
+|-
+! scope="row" | 30207
+| The Hound's Hood || hat || The Boston Bulldog
+
+|-
+! scope="row" | 30208
+| The Terrier Trousers || scout_pants, feet || The Boston Bulldog
+
+|-
+! scope="row" | 30211
+| The Horrific Head of Hate || hat
+
+|-
+! scope="row" | 30231
+| The Face Plante || face
+
+|-
+! scope="row" | 30247
+| Faun Feet || feet
+
+|-
+! scope="row" | 30248
+| The Halloweiner || hat
+
+|-
+! scope="row" | 30253
+| The Sprinting Cephalopod || feet
+
+|-
+! scope="row" | 30470
+| The Biomech Backpack || back || The Isolationist Pack
+
+|-
+! scope="row" | 30471
+| The Alien Cranium || hat || The Isolationist Pack
+
+|-
+! scope="row" | 30472
+| The Xeno Suit || feet || The Isolationist Pack
+
+|-
+! scope="row" | 30491
+| Nugget Noggin || whole_head, necklace || The Deep-Fried Dummy
+
+|-
+! scope="row" | 30492
+| Fowl Fists || arms || The Deep-Fried Dummy
+
+|-
+! scope="row" | 30493
+| Talon Trotters || feet || The Deep-Fried Dummy
+
+|-
+! scope="row" | 30494
+| Head Hunter || hat, necklace || The Rooftop Rebel
+
+|-
+! scope="row" | 30495
+| Claws and Infect || scout_hands || The Rooftop Rebel
+
+|-
+! scope="row" | 30496
+| Crazy Legs || scout_pants, feet || The Rooftop Rebel
+
+|}
+
+==== Vision Restriction: Romevision ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 30153
+| Scoutbot Armor || shirt
+
+|-
+! scope="row" | 30154
+| Scoutbot Hat || hat
+
+|}
+
+=== Soldier ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 54
+| Soldier's Stash || hat
+
+|-
+! scope="row" | 98
+| Stainless Pot || hat
+
+|-
+! scope="row" | 99
+| Tyrant's Helm || hat
+
+|-
+! scope="row" | 121
+| Service Medal || medal
+
+|-
+! scope="row" | 152
+| Killer's Kabuto || hat
+
+|-
+! scope="row" | 183
+| Sergeant's Drill Hat || hat
+
+|-
+! scope="row" | 227
+| The Grenadier's Softcap || hat || Tank Buster'''*'''
+
+|-
+! scope="row" | 240
+| Lumbricus Lid || hat
+
+|-
+! scope="row" | 250
+| Chieftain's Challenge || hat
+
+|-
+! scope="row" | 251
+| Stout Shako || hat
+
+|-
+! scope="row" | 252
+| Dr's Dapper Topper || hat
+
+|-
+! scope="row" | 339
+| Exquisite Rack || hat
+
+|-
+! scope="row" | 340
+| Defiant Spartan || hat
+
+|-
+! scope="row" | 360
+| Hero's Hachimaki || hat
+
+|-
+! scope="row" | 378
+| The Team Captain || hat
+
+|-
+! scope="row" | 391
+| Honcho's Headgear || hat
+
+|-
+! scope="row" | 392
+| Pocket Medic || soldier_pocket
+
+|-
+! scope="row" | 395
+| Furious Fukaamigasa || hat
+
+|-
+! scope="row" | 417
+| Jumper's Jeepcap || hat || Airborne Armaments
+
+|-
+! scope="row" | 434
+| Brain Bucket || hat
+
+|-
+! scope="row" | 439
+| Lord Cockswain's Pith Helmet || hat || Dr. Grordbort's Victory Pack
+
+|-
+! scope="row" | 440
+| Lord Cockswain's Novelty Mutton Chops and Pipe || beard || Dr. Grodbort's Victory Pack
+
+|-
+! scope="row" | 445
+| Armored Authority || hat || The General's Formals
+
+|-
+! scope="row" | 446
+| Fancy Dress Uniform || shirt || The General's Formals
+
+|-
+! scope="row" | 516
+| Stahlhelm || hat
+
+|-
+! scope="row" | 575
+| The Infernal Impaler || hat
+
+|-
+! scope="row" | 611
+| The Salty Dog || hat
+
+|-
+! scope="row" | 631
+| The Hat With No Name || hat
+
+|-
+! scope="row" | 641
+| The Ornament Armament || grenades
+
+|-
+! scope="row" | 647
+| The All-Father || beard
+
+|-
+! scope="row" | 650
+| The Kringle Collection || shirt
+
+|-
+! scope="row" | 701
+| The Lucky Shot || hat
+
+|-
+! scope="row" | 719
+| The Battle Bob || hat
+
+|-
+! scope="row" | 721
+| The Conquistador || hat
+
+|-
+! scope="row" | 731
+| The Captain's Cocktails || grenades || The Dumpster Diver
+
+|-
+! scope="row" | 734
+| The Teufort Tooth Kicker || feet
+
+|-
+! scope="row" | 764
+| The Cross-Comm Crash Helmet || hat
+
+|-
+! scope="row" | 766
+| The Doublecross-Comm || hat
+
+|-
+! scope="row" | 768
+| The Professor's Pineapple || grenades
+
+|-
+! scope="row" | 732
+| The Helmet Without a Name || hat || The Dumpster Diver
+
+|-
+! scope="row" | 829
+| The War Pig || hat
+
+|-
+! scope="row" | 844
+| The Tin Pot || hat
+
+|-
+! scope="row" | 852
+| The Soldier's Stogie || soldier_cigar
+
+|-
+! scope="row" | 853
+| The Crafty Hair || hat
+
+|-
+! scope="row" | 875
+| The Menpo || beard
+
+|-
+! scope="row" | 922
+| The Bonedolier || grenades
+
+|-
+! scope="row" | 945
+| The Chief Constable || hat
+
+|-
+! scope="row" | 948
+| The Deadliest Duckling || grenades
+
+|-
+! scope="row" | 980
+| Soldier's Slope Scopers || hat
+
+|-
+! scope="row" | 1021
+| The Doe-Boy || hat
+
+|-
+! scope="row" | 1063
+| MvM GateBot Light Soldier || hat
+
+|-
+! scope="row" | 1073
+| The War on Smissmas Battle Hood || hat
+
+|-
+! scope="row" | 1074
+| The War on Smissmas Battle Socks || grenades
+
+|-
+! scope="row" | 1090
+| Big Daddy || whole_head
+
+|-
+! scope="row" | 1091
+| The First American || whole_head
+
+|-
+! scope="row" | 1093
+| The Gilded Guard || hat
+
+|-
+! scope="row" | 30014
+| Tyrantium Helmet || hat
+
+|-
+! scope="row" | 30017
+| Steel Shako || hat
+
+|-
+! scope="row" | 30026
+| Full Metal Drill Hat || hat
+
+|-
+! scope="row" | 30033
+| Soldier's Sparkplug || soldier_cigar
+
+|-
+! scope="row" | 30071
+| The Cloud Crasher || hat
+
+|-
+! scope="row" | 30085
+| The Macho Mann || glasses
+
+|-
+! scope="row" | 30114
+| The Valley Forge || hat
+
+|-
+! scope="row" | 30115
+| The Compatriot || left_shoulder
+
+|-
+! scope="row" | 30116
+| The Caribbean Conqueror || hat
+
+|-
+! scope="row" | 30117
+| The Colonial Clogs || feet
+
+|-
+! scope="row" | 30118
+| The Whirly Warrior || whole_head
+
+|-
+! scope="row" | 30119
+| The Federal Casemaker || hat
+
+|-
+! scope="row" | 30120
+| The Rebel Rouser || hat
+
+|-
+! scope="row" | 30126
+| The Shotgun's Shoulder Guard || arms
+
+|-
+! scope="row" | 30129
+| The Hornblower || soldier_coat
+
+|-
+! scope="row" | 30130
+| Lieutenant Bites || soldier_pocket
+
+|-
+! scope="row" | 30131
+| The Brawling Buccaneer || soldier_coat
+
+|-
+! scope="row" | 30142
+| The Founding Father || shirt
+
+|-
+! scope="row" | 30164
+| The Viking Braider || beard
+
+|-
+! scope="row" | 30314
+| The Slo-Poke || hat
+
+|-
+! scope="row" | 30331
+| Anarctic Parka || soldier_coat
+
+|-
+! scope="row" | 30335
+| Marshall's Mutton Chops || face
+
+|-
+! scope="row" | 30338
+| Ground Control || shirt
+
+|-
+! scope="row" | 30339
+| The Killer's Kit || soldier_legs
+
+|-
+! scope="row" | 30388
+| The Classified Coif || soldier_coat || The Federal Express Pack
+
+|-
+! scope="row" | 30390
+| The Spook Specs || hat || The Federal Express Pack
+
+|-
+! scope="row" | 30392
+| The Man in Slacks || soldier_legs || The Federal Express Pack
+
+|-
+! scope="row" | 30477
+| The Lone Survivor || beard
+
+|-
+! scope="row" | 30543
+| Snow Stompers || feet
+
+|-
+! scope="row" | 30548
+| Screamin' Eagle || hat
+
+|-
+! scope="row" | 30553
+| Condor Cap || hat
+
+|-
+! scope="row" | 30554
+| Mistaken Movember || beard
+
+|-
+! scope="row" | 30558
+| Coldfront Curbstompers || feet
+
+|-
+! scope="row" | 30578
+| Skullcap || hat
+
+|-
+! scope="row" | 30601
+| Cold Snap Coat || soldier_coat
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 555
+| Idiot Box || hat || The Tin Soldier
+
+|-
+! scope="row" | 556
+| Steel Pipes || arms || The Tin Soldier
+
+|-
+! scope="row" | 557
+| Shoestring Budget || feet || The Tin Soldier
+
+|-
+! scope="row" | 926
+| The Zipperface || hat
+
+|-
+! scope="row" | 5618
+| Voodoo-Cursed Soldier Soul || zombie_body
+
+|-
+! scope="row" | 30221
+| Grub Grenades || grenades
+
+|-
+! scope="row" | 30227
+| The Faux Manchu || beard || The Terracotta Trooper
+
+|-
+! scope="row" | 30228
+| The Hidden Dragon || hat || The Terracotta Trooper
+
+|-
+! scope="row" | 30236
+| Pin Pals || grenades
+
+|-
+! scope="row" | 30239
+| The Freedom Feathers || whole_head
+
+|-
+! scope="row" | 30242
+| The Candleer || grenades
+
+|-
+! scope="row" | 30251
+| Cadaver's Capper || hat, glasses
+
+|-
+! scope="row" | 30264
+| The Hardium Helm || hat, glasses || The Rocket Ranger
+
+|-
+! scope="row" | 30265
+| The Jupiter Jumpers || feet || The Rocket Ranger
+
+|-
+! scope="row" | 30266
+| The Space Bracers || arms || The Rocket Ranger
+
+|-
+! scope="row" | 30268
+| The Spellbinder's Bonnet || hat
+
+|-
+! scope="row" | 30276
+| Lieutenant Bites the Dust || soldier_pocket
+
+|-
+! scope="row" | 30281
+| The Shaolin Sash || soldier_pocket || The Terracotta Trooper
+
+|-
+! scope="row" | 30294
+| The Larval Lid || hat
+
+|-
+! scope="row" | 30520
+| Ghoul Gibbin' Gear || grenades || The Sgt. Helsing
+
+|-
+! scope="row" | 30521
+| Hellhunter's Headpiece || hat || The Sgt. Helsing
+
+|-
+! scope="row" | 30522
+| Supernatural Stalker || face || The Sgt. Helsing
+
+|-
+! scope="row" | 30520
+| Battle Bird || hat
+
+|}
+
+==== Vision Restriction: Romevision ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 30157
+| Soldierbot Armor || hat
+
+|-
+! scope="row" | 30158
+| Soldierbot Helmet || hat
+
+|}
+
+=== Pyro ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 51
+| Pyro's Beanie || hat
+|-
+! scope="row" | 102
+| Respectless Rubber Glove || hat
+
+|-
+! scope="row" | 105
+| Brigade Helm || hat
+
+|-
+! scope="row" | 151
+| Triboniophorus Tyrannus || hat
+
+|-
+! scope="row" | 182
+| Vintage Merryweather || hat
+
+|-
+! scope="row" | 175
+| Whiskered Gentleman || face, beard
+
+|-
+! scope="row" | 213
+| The Attendant || hat || The Gas Jockey's Gear'''*'''
+
+|-
+! scope="row" | 247
+| Old Guadalajara || hat
+
+|-
+! scope="row" | 248
+| Napper's Respite || hat
+
+|-
+! scope="row" | 253
+| Handyman's Handle || hat
+
+|-
+! scope="row" | 316
+| Pyromancer's Mask || hat
+
+|-
+! scope="row" | 318
+| Prancer's Pride || hat
+
+|-
+! scope="row" | 321
+| Madame Dixie || hat
+
+|-
+! scope="row" | 335
+| Foster's Facade || pyro_head_replacement
+
+|-
+! scope="row" | 336
+| Stockbroker's Scarf || shirt
+
+|-
+! scope="row" | 377
+| Hottie's Hoodie || hat
+
+|-
+! scope="row" | 387
+| Sight for Sore Eyes || glasses, lenses
+
+|-
+! scope="row" | 394
+| Connoisseur's Cap || hat
+
+|-
+! scope="row" | 435
+| Dead Cone || hat
+
+|-
+! scope="row" | 481
+| Stately Steel Toe || hat
+
+|-
+! scope="row" | 570
+| The Last Breath || pyro_head_replacement
+
+|-
+! scope="row" | 571
+| Apparition's Aspect || pyro_head_replacement
+
+|-
+! scope="row" | 596
+| The Moonman Backpack || pyro_tank || Dr. Grordbort's Moonman Pack
+
+|-
+! scope="row" | 597
+| The Bubble Pipe || hat || Dr. Grordbort's Moonman Pack
+
+|-
+! scope="row" | 612
+| The Little Buddy || hat
+
+|-
+! scope="row" | 615
+| The Birdcage || hat
+
+|-
+! scope="row" | 627
+| The Flamboyant Flamenco || hat
+
+|-
+! scope="row" | 632
+| The Cremator's Conscience || grenades
+
+|-
+! scope="row" | 641
+| The Ornament Armament || grenades
+
+|-
+! scope="row" | 644
+| The Head Warmer || hat
+
+|-
+! scope="row" | 651
+| The Jingle Belt || grenades
+
+|-
+! scope="row" | 745
+| The Infernal Orchestrina || back
+
+|-
+! scope="row" | 746
+| The Burning Bongoes || grenades
+
+|-
+! scope="row" | 753
+| The Waxy Wayfinder || hat
+
+|-
+! scope="row" | 754
+| The Scrap Pack || back
+
+|-
+! scope="row" | 761
+| The Triclops || whole_head
+
+|-
+! scope="row" | 768
+| The Professor's Pineapple || grenades
+
+|-
+! scope="row" | 783
+| The HazMat Headcase || pyro_head_replacement
+
+|-
+! scope="row" | 787
+| The Tribal Bones || necklace
+
+|-
+! scope="row" | 820
+| The Russian Rocketeer || back
+
+|-
+! scope="row" | 842
+| The Pyrobotics Pack || back
+
+|-
+! scope="row" | 854
+| Area 451 || hat
+
+|-
+! scope="row" | 856
+| The Pyrotechnic Tote || back
+
+|-
+! scope="row" | 922
+| The Bonedolier || grenades
+
+|-
+! scope="row" | 937
+| The Wraith Wrap || hat
+
+|-
+! scope="row" | 938
+| The Coffin Kit || back
+
+|-
+! scope="row" | 948
+| The Deadliest Duckling || grenades
+
+|-
+! scope="row" | 949
+| The DethKapp || hat
+
+|-
+! scope="row" | 950
+| Nose Candy || pyro_head_replacement
+
+|-
+! scope="row" | 951
+| Rail Spikes || pyro_spikes
+
+|-
+! scope="row" | 976
+| Winter Wonderland Wrap || pyro_head_replacement
+
+|-
+! scope="row" | 1020
+| The Person in the Iron Mask || pyro_head_replacement
+
+|-
+! scope="row" | 1031
+| The Necronomicrown || hat
+
+|-
+! scope="row" | 1038
+| The Breather Bag || pyro_head_replacement
+
+|-
+! scope="row" | 1058
+| MvM GateBot Light Pyro || hat
+
+|-
+! scope="row" | 1072
+| The Portable Smissmas Spirit Dispenser || back
+
+|-
+! scope="row" | 1124
+| The Nabler || pyro_head_replacement
+
+|-
+! scope="row" | 30020
+| The Scrap Sack || back
+
+|-
+! scope="row" | 30022
+| Plumber's Pipe || head
+
+|-
+! scope="row" | 30025
+| The Electric Escorter || head
+
+|-
+! scope="row" | 30028
+| The Metal Slug || head
+
+|-
+! scope="row" | 30032
+| The Rusty Reaper || pyro_head_replacement
+
+|-
+! scope="row" | 30036
+| The Filamental || pyro_head_replacement
+
+|-
+! scope="row" | 30038
+| Firewall Helmet || head
+
+|-
+! scope="row" | 30039
+| Respectless Robo-Glove || head
+
+|-
+! scope="row" | 30040
+| Pyro's Boron Beanie || head
+
+|-
+! scope="row" | 30053
+| The Googol Glass Eyes || glasses, lenses
+
+|-
+! scope="row" | 30057
+| Bolted Birdcage || head
+
+|-
+! scope="row" | 30062
+| The Steel Sixpack || grenades
+
+|-
+! scope="row" | 30063
+| The Centurion || hat
+
+|-
+! scope="row" | 30075
+| The Mair Mask || pyro_head_replacement
+
+|-
+! scope="row" | 30089
+| El Muchacho || shirt
+
+|-
+! scope="row" | 30090
+| The Backpack Broiler || back
+
+|-
+! scope="row" | 30091
+| The Burning Bandana || hat
+
+|-
+! scope="row" | 30092
+| The Soot Suit || shirt
+
+|-
+! scope="row" | 30093
+| The Hive Minder || hat
+
+|-
+! scope="row" | 30139
+| The Pampered Pyro || hat
+
+|-
+! scope="row" | 30162
+| The Bone Dome || hat
+
+|-
+! scope="row" | 30163
+| The Air Raider || pyro_head_replacement
+
+|-
+! scope="row" | 30169
+| Trickster's Turnout Gear || shirt
+
+|-
+! scope="row" | 30175
+| The Cotton Head || hat
+
+|-
+! scope="row" | 30176
+| Pop-eyes || lenses
+
+|-
+! scope="row" | 30304
+| The Blizzard Breather || pyro_head_replacement
+
+|-
+! scope="row" | 30305
+| The Sub Zero Suit || shirt
+
+|-
+! scope="row" | 30308
+| The Trail-Blazer || back
+
+|-
+! scope="row" | 30321
+| Tiny Timber || back
+
+|-
+! scope="row" | 30327
+| The Toy Tailor || hat
+
+|-
+! scope="row" | 30355
+| Sole Mate || hat
+
+|-
+! scope="row" | 30367
+| The Cute Suit || pyro_head_replacement
+
+|-
+! scope="row" | 30391
+| The Sengoku Scorcher || shirt, grenades || The Ronin Roaster Pack
+
+|-
+! scope="row" | 30398
+| The Gas Guzzler || back || The Sons of Arsonry Pack
+
+|-
+! scope="row" | 30399
+| The Smoking Skid Lid || hat || The Sons of Arsonry Pack
+
+|-
+! scope="row" | 30400
+| The Lunatic's Leathers || shirt, grenades || The Sons of Arsonry Pack
+
+|-
+! scope="row" | 30416
+| Employee of the Mmmph || hat || The Fast Food Firestarter Pack
+
+|-
+! scope="row" | 30417
+| The Frymaster || back || The Fast Food Firestarter Pack
+
+|-
+! scope="row" | 30418
+| The Combustable Kabuto || hat || The Ronin Roaster Pack
+
+|-
+! scope="row" | 30475
+| The Mishap Mercenary || pyro_head_replacement
+
+|-
+! scope="row" | 30538
+| Wartime Warmth || pyro_head_replacement
+
+|-
+! scope="row" | 30544
+| North Polar Fleece || shirt
+
+|-
+! scope="row" | 30580
+| Pyromancer's Hood || hat
+
+|-
+! scope="row" | 30581
+| Pyromancer's Raiments || shirt
+
+|-
+! scope="row" | 30582
+| Black Knight's Bascinet || whole_head
+
+|-
+! scope="row" | 30583
+| Torcher's Tabard || shirt
+
+|-
+! scope="row" | 30584
+| Charred Chainmail || arms
+
+|-
+! scope="row" | 30652
+| Phobos Filter || pyro_head_replacement
+
+|-
+! scope="row" | 30662
+| A Head Full of Hot Air || hat
+
+|-
+! scope="row" | 30663
+| Jupiter Jetpack || back
+
+|-
+! scope="row" | 30664
+| The Space Diver || shirt
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 549
+| Blazing Bull || hat, lenses || The Infernal Imp
+
+|-
+! scope="row" | 550
+| Fallen Angel || pyro_wings || The Infernal Imp
+
+|-
+! scope="row" | 551
+| Tail From the Crypt || pyro_tail || The Infernal Imp
+
+|-
+! scope="row" | 923
+| The Plutonidome || hat
+
+|-
+! scope="row" | 5624
+| Voodoo-Cursed Pyro Soul || zombie_body
+
+|-
+! scope="row" | 30191
+| The Beast From Below || pyro_head_replacement
+
+|-
+! scope="row" | 30192
+| Hard-Headed Hardware || pyro_head_replacement
+
+|-
+! scope="row" | 30194
+| The Spectralnaut || pyro_head_replacement
+
+|-
+! scope="row" | 30196
+| The Maniac's Manacles || pyro_spikes
+
+|-
+! scope="row" | 30203
+| Burny's Boney Bonnet || hat || Burny The Pyrosaur
+
+|-
+! scope="row" | 30204
+| The Crispy Golden Locks || hat || Malice in Pyroland
+
+|-
+! scope="row" | 30205
+| The Scorched Skirt || shirt || Malice in Pyroland
+
+|-
+! scope="row" | 30212
+| The Snaggletoothed Stetson || hat
+
+|-
+! scope="row" | 30213
+| Up Pyroscopes || glasses
+
+|-
+! scope="row" | 30216
+| The External Organ || back
+
+|-
+! scope="row" | 30218
+| The Rugged Respirator || pyro_head_replacement
+
+|-
+! scope="row" | 30220
+| The Hallowhead || pyro_head_replacement
+
+|-
+! scope="row" | 30222
+| The Gothic Guise || whole_head, pyro_head_replacement
+
+|-
+! scope="row" | 30225
+| The Cauterizer's Caudal Appendage || pyro_tail || Burny The Pyrosaur
+
+|-
+! scope="row" | 30235
+| The Muccus Membrain || hat, pyro_head_replacement
+
+|-
+! scope="row" | 30236
+| Pin Pals || grenades
+
+|-
+! scope="row" | 30242
+| The Candleer || grenades
+
+|-
+! scope="row" | 30245
+| Bozo's Bouffant || hat
+
+|-
+! scope="row" | 30257
+| The Death Support Pack || grenades
+
+|-
+! scope="row" | 30259
+| The Monster's Stompers || feet || Burny The Pyrosaur
+
+|-
+! scope="row" | 30267
+| The Handhunter || back
+
+|-
+! scope="row" | 30269
+| The Macabre Mask || whole_head, pyro_head_replacement
+
+|-
+! scope="row" | 30273
+| The Vicious Visage || pyro_head_replacement || The Murky Lurker
+
+|-
+! scope="row" | 30277
+| The Grisly Gumbo || back
+
+|-
+! scope="row" | 30285
+| Corpsemopolitan || hat, pyro_head_replacement
+
+|-
+! scope="row" | 30286
+| The Glob || pyro_head_replacement
+
+|-
+! scope="row" | 30288
+| Carrion Companion || left_shoulder
+
+|-
+! scope="row" | 30290
+| PY-40 Incinibot || pyro_head_replacement
+
+|-
+! scope="row" | 30296
+| The Creature From The Heap || back
+
+|-
+! scope="row" | 30298
+| The Raven's Visage || face
+
+|-
+! scope="row" | 30303
+| The Abhorrent Appendages || arms || The Murky Lurker
+
+|-
+! scope="row" | 30525
+| Creature's Grin || pyro_head_replacement
+
+|-
+! scope="row" | 30526
+| Arsonist Apparatus || arms || The Automated Abnormality
+
+|-
+! scope="row" | 30527
+| Moccasin Machinery || feet || The Automated Abnormality
+
+|-
+! scope="row" | 30528
+| Lollichop Licker || pyro_head_replacement
+
+|-
+! scope="row" | 30529
+| Mr. Juice || pyro_head_replacement
+
+|-
+! scope="row" | 30530
+| Vampyro || pyro_head_replacement
+
+|}
+
+==== Vision Restriction: Romevision ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 30151
+| Pyrobot Armor || shirt
+
+|-
+! scope="row" | 30152
+| Pyrobot Helmet || hat
+
+|}
+
+=== Demoman ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 47
+| Demoman's 'Fro || hat
+
+|-
+! scope="row" | 100
+| Glengarry Bonnet || hat
+
+|-
+! scope="row" | 120
+| Scottsman's Stove Pipe || hat
+
+|-
+! scope="row" | 146
+| Hustler's Hallmark || hat
+
+|-
+! scope="row" | 179
+| Tippler's Tricorne || hat
+
+|-
+! scope="row" | 216
+| Rimmed Raincatcher || hat
+
+|-
+! scope="row" | 255
+| Sober Stuntman || hat
+
+|-
+! scope="row" | 259
+| Carouser's Capotain || hat
+
+|-
+! scope="row" | 295
+| Dangeresque, Too?! || glasses
+
+|-
+! scope="row" | 306
+| Scotch Bonnet || hat
+
+|-
+! scope="row" | 342
+| Prince Tavish's Crown || hat
+
+|-
+! scope="row" | 359
+| Samur-Eye || hat
+
+|-
+! scope="row" | 388
+| Private Eye || hat
+
+|-
+! scope="row" | 390
+| Reggaelator || hat
+
+|-
+! scope="row" | 403
+| Sultan's Ceremonial || hat || One Thousand and One Demoknights
+
+|-
+! scope="row" | 465
+| Conjurer's Cowl || hat
+
+|-
+! scope="row" | 480
+| Tam O'Shanter || hat
+
+|-
+! scope="row" | 514
+| Mask of the Shaman || whole_head
+
+|-
+! scope="row" | 605
+| The Tavish DeGroot Experience || hat
+
+|-
+! scope="row" | 607
+| The Buccaneer's Bicorne || hat || Swashbuckler's Swag
+
+|-
+! scope="row" | 610
+| A Whiff of the Old Brimstone || grenades || Swashbuckler's Swag
+
+|-
+! scope="row" | 641
+| The Ornament Armament || grenades
+
+|-
+! scope="row" | 703
+| The Bolgan || hat
+
+|-
+! scope="row" | 708
+| Aladdin's Private Reserve || demo_belt
+
+|-
+! scope="row" | 709
+| The Snapped Pupil || glasses
+
+|-
+! scope="row" | 734
+| The Teufort Tooth Kicker || feet
+
+|-
+! scope="row" | 768
+| The Professor's Pineapple || grenades
+
+|-
+! scope="row" | 771
+| The Liquor Locker || back, possibly style dependent
+
+|-
+! scope="row" | 776
+| The Bird-Man of Aberdeen || left_shoulder
+
+|-
+! scope="row" | 786
+| The Grenadier Helm || hat
+
+|-
+! scope="row" | 830
+| The Bearded Bombardier || face
+
+|-
+! scope="row" | 845
+| The Battery Bandolier || grenades
+
+|-
+! scope="row" | 874
+| King of Scotland Cape || back
+
+|-
+! scope="row" | 875
+| The Menpo || beard
+
+|-
+! scope="row" | 876
+| The K-9 Mane || hat
+
+|-
+! scope="row" | 922
+| The Bonedolier || grenades
+
+|-
+! scope="row" | 935
+| The Voodoo Juju (Slight Return) || hat
+
+|-
+! scope="row" | 948
+| The Deadliest Duckling || grenades
+
+|-
+! scope="row" | 976
+| The Cool Breeze || demoman_pants
+
+|-
+! scope="row" | 986
+| The Mutton Mann || beard
+
+|-
+! scope="row" | 1012
+| The Wilson Weave || hat
+
+|-
+! scope="row" | 1016
+| Buck Turner All-Stars || feet, shoes, shoes_socks
+
+|-
+! scope="row" | 1019
+| Blind Justice || demo_mustache_eyepatch
+
+|-
+! scope="row" | 1061
+| MvM GateBot Light Demoman || hat
+
+|-
+! scope="row" | 30010
+| The HDMI Patch || glasses
+
+|-
+! scope="row" | 30011
+| Bolted Bombardier || face
+
+|-
+! scope="row" | 30016
+| The FR-0 || hat
+
+|-
+! scope="row" | 30021
+| The Pure Tin Capotain || hat
+
+|-
+! scope="row" | 30024
+| The Cyborg Stunt Helmet || hat
+
+|-
+! scope="row" | 30029
+| The Broadband Bonnet || hat
+
+|-
+! scope="row" | 30034
+| The Bolted Bicorne || hat
+
+|-
+! scope="row" | 30037
+| The Strontium Stovepipe || hat
+
+|-
+! scope="row" | 30055
+| The Scrumpy Strongbox || back
+
+|-
+! scope="row" | 30061
+| The Tartantaloons || demoman_pants
+
+|-
+! scope="row" | 30064
+| The Tartan Shade || whole_head
+
+|-
+! scope="row" | 30073
+| The Dark Age Defender || left_shoulder
+
+|-
+! scope="row" | 30082
+| The Glasgow Great Helm || hat
+
+|-
+! scope="row" | 30085
+| The Macho Mann || glasses
+
+|-
+! scope="row" | 30105
+| The Black Watch || hat
+
+|-
+! scope="row" | 30106
+| The Tartan Spartan || hat
+
+|-
+! scope="row" | 30107
+| The Gaelic Golf Bag || back
+
+|-
+! scope="row" | 30110
+| The Whiskey Bib || shirt
+
+|-
+! scope="row" | 30112
+| The Stormin' Norman || hat
+
+|-
+! scope="row" | 30124
+| The Gaelic Garb || shirt
+
+|-
+! scope="row" | 30179
+| The Hurt Locher || shirt
+
+|-
+! scope="row" | 30180
+| Pirate Bandana || hat
+
+|-
+! scope="row" | 30333
+| Highland High Heels || feet
+
+|-
+! scope="row" | 30334
+| Tartan Tyrolean || hat
+
+|-
+! scope="row" | 30340
+| Stylish Degroot || head_skin
+
+|-
+! scope="row" | 30348
+| Bushi-Dou || shirt
+
+|-
+! scope="row" | 30357
+| The Dark Falkirk Helm || hat
+
+|-
+! scope="row" | 30358
+| The Sole Saviors || feet
+
+|-
+! scope="row" | 30363
+| The Juggernaut Jacket || left_shoulder
+
+|-
+! scope="row" | 30366
+| The Sangu Sleeves || demo_arms
+
+|-
+! scope="row" | 30393
+| The Razor Cut || hat
+
+|-
+! scope="row" | 30421
+| The Frontier Djustice || hat
+
+|-
+! scope="row" | 30429
+| The Allbrero || hat || The South of the Border Pack
+
+|-
+! scope="row" | 30430
+| Seeing Double || glasses || The South of the Border Pack
+
+|-
+! scope="row" | 30431
+| Six Pack Abs || grenades || The South of the Border Pack
+
+|-
+! scope="row" | 30480
+| Mann of the Seven Seas || demo_arms
+
+|-
+! scope="row" | 30541
+| Double Dynamite || grenades
+
+|-
+! scope="row" | 30547
+| Bomber's Bucket Hat || hat
+
+|-
+! scope="row" | 30555
+| Double Dog Dare Demo Pants || pants
+
+|-
+! scope="row" | 30586
+| Valhalla Helm || hat
+
+|-
+! scope="row" | 30587
+| Storm Stompers || feet
+
+|-
+! scope="row" | 30604
+| Scot Bonnet || hat
+
+|-
+! scope="row" | 30627
+| Bruce's Bonnet || hat
+
+|-
+! scope="row" | 30628
+| Outta' Sight || hat
+
+|-
+! scope="row" | 30658
+| Universal Translator || hat
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 543
+| Hair of the Dog || hat || The Highland Hound
+
+|-
+! scope="row" | 544
+| Scottish Snarl || face || The Highland Hound
+
+|-
+! scope="row" | 545
+| Pickled Paws || feet || The Highland Hound
+
+|-
+! scope="row" | 5620
+| Voodoo-Cursed Demoman Soul || zombie_body
+
+|-
+! scope="row" | 30193
+| Cap'n Calamari || face, beard || The Cursed Captain
+
+|-
+! scope="row" | 30195
+| Ethereal Hood || whole_head
+
+|-
+! scope="row" | 30200
+| The Baphomet Trotters || feet
+
+|-
+! scope="row" | 30219
+| The Squid's Lid || hat || The Cursed Captain
+
+|-
+! scope="row" | 30226
+| Polly Putrid || left_shoulder
+
+|-
+! scope="row" | 30240
+| The Headtaker's Hood || whole_head
+
+|-
+! scope="row" | 30241
+| The Transylvania Top || hat || The Count Tavish
+
+|-
+! scope="row" | 30242
+| The Candleer || grenades
+
+|-
+! scope="row" | 30243
+| The Horsemann's Hand-Me-Down || back
+
+|-
+! scope="row" | 30249
+| Lordly Lapels || demoman_collar || The Count Tavish
+
+|-
+! scope="row" | 30282
+| The Mann-Bird of Aberdeen || whole_head
+
+|-
+! scope="row" | 30292
+| The Parasight || face
+
+|-
+! scope="row" | 30516
+| Forgotten King's Restless Head || whole_head || The Forgotten King
+
+|-
+! scope="row" | 30517
+| Forgotten King's Pauldrons || demoman_collar || The Forgotten King
+
+|-
+! scope="row" | 30518
+| Eyeborg || glasses
+
+|-
+! scope="row" | 30519
+| Explosive Mind || hat
+
+|}
+
+==== Vision Restriction: Romevision ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 30143
+| Demobot Armor || shirt
+
+|-
+! scope="row" | 30144
+| Demobot Helmet || hat
+
+|-
+! scope="row" | 30161
+| Sentrybuster (Total War) || shirt
+
+|}
+
+=== Heavy ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 49
+| Football Helmet || hat
+
+|-
+! scope="row" | 96
+| Officer's Ushanka || hat
+
+|-
+! scope="row" | 97
+| Tough Guy's Toque || hat
+
+|-
+! scope="row" | 145
+| Hound Dog || hat
+
+|-
+! scope="row" | 185
+| Heavy Duty Rag || hat
+
+|-
+! scope="row" | 246
+| Pugilist's Protector || hat
+
+|-
+! scope="row" | 254
+| Hard Counter || hat
+
+|-
+! scope="row" | 290
+| Cadaver's Cranium || hat
+
+|-
+! scope="row" | 292
+| Poker Visor || hat
+
+|-
+! scope="row" | 309
+| Big Chief || hat
+
+|-
+! scope="row" | 313
+| Magnificent Mongolian || hat
+
+|-
+! scope="row" | 330
+| Coupe D'isaster || hat
+
+|-
+! scope="row" | 358
+| Dread Knot || hat
+
+|-
+! scope="row" | 378
+| The Team Captain || hat
+
+|-
+! scope="row" | 380
+| Large Luchadore || head_skin
+
+|-
+! scope="row" | 392
+| Pocket Medic || heavy_pocket
+
+|-
+! scope="row" | 427
+| Capo's Capper || hat || Black Market Business
+
+|-
+! scope="row" | 478
+| Copper's Hard Top || hat
+
+|-
+! scope="row" | 479
+| Security Shades || glasses
+
+|-
+! scope="row" | 485
+| Big Steel Jaw of Summer Fun || beard
+
+|-
+! scope="row" | 515
+| Pilotka || hat
+
+|-
+! scope="row" | 517
+| Dragonborn Helmet || hat, face
+
+|-
+! scope="row" | 524
+| The Purity Fist || arms
+
+|-
+! scope="row" | 535
+| Storm Spirit's Jolly Hat || hat
+
+|-
+! scope="row" | 585
+| Cold War Luchador || head_skin
+
+|-
+! scope="row" | 601
+| The One-Man Army || hat
+
+|-
+! scope="row" | 603
+| The Outdoorsman || hat
+
+|-
+! scope="row" | 613
+| The Gym Rat || hat
+
+|-
+! scope="row" | 635
+| War Head || hat, ears
+
+|-
+! scope="row" | 643
+| The Sandvich Safe || heavy_hip
+
+|-
+! scope="row" | 647
+| The All-Father || beard
+
+|-
+! scope="row" | 757
+| The Toss-Proof Towel || shirt
+
+|-
+! scope="row" | 777
+| The Apparatchik's Apparel || scout_or_heavy_shirt
+
+|-
+! scope="row" | 814
+| The Triad Trinket || necklace
+
+|-
+! scope="row" | 815
+| The Champ Stamp || arm_tatoos
+
+|-
+! scope="row" | 835
+| The Triad Trinket (Genuine) || necklace
+
+|-
+! scope="row" | 836
+| The Champ Stamp (Genuine) || arm_tatoos
+
+|-
+! scope="row" | 840
+| The U-clank-a || head
+
+|-
+! scope="row" | 853
+| The Crafty Hair || hat
+
+|-
+! scope="row" | 866
+| The Heavy Artillery Officer's Cap || hat
+
+|-
+! scope="row" | 876
+| The K-9 Mane || hat
+
+|-
+! scope="row" | 946
+| The Siberian Sophisticate || scout_or_heavy_shirt
+
+|-
+! scope="row" | 952
+| Brock's Locks || hat
+
+|-
+! scope="row" | 985
+| Heavy's Hockey Hair || heavy_mullet
+
+|-
+! scope="row" | 989
+| The Carl || hat
+
+|-
+! scope="row" | 990
+| Aqua Flops || feet
+
+|-
+! scope="row" | 991
+| The Hunger Force || scout_or_heavy_shirt, necklace
+
+|-
+! scope="row" | 1012
+| The Wilson Weave || hat
+
+|-
+! scope="row" | 1018
+| The Pounding Father || hat
+
+|-
+! scope="row" | 1028
+| The Samson Skewer || heavy_belt_back
+
+|-
+! scope="row" | 1060
+| MvM GateBot Light Heavy || hat
+
+|-
+! scope="row" | 1097
+| The Little Bear || heavy_hip_pouch
+
+|-
+! scope="row" | 30012
+| The Titanium Towel || shirt
+
+|-
+! scope="row" | 30013
+| The Gridiron Guardian || hat
+
+|-
+! scope="row" | 30049
+| The Tungsten Toque || hat
+
+|-
+! scope="row" | 30054
+| The Bunsen Brave || hat
+
+|-
+! scope="row" | 30074
+| The Tyrutleneck || shirt
+
+|-
+! scope="row" | 30079
+| The Red Army Robin || left_shoulder
+
+|-
+! scope="row" | 30080
+| The Heavy-Weight Champ || heavy_hip
+
+|-
+! scope="row" | 30081
+| The Tsarboosh || hat
+
+|-
+! scope="row" | 30085
+| The Macho Mann || glasses
+
+|-
+! scope="row" | 30094
+| The Katyusha || hat
+
+|-
+! scope="row" | 30108
+| The Borscht Belt || heavy_bullets
+
+|-
+! scope="row" | 30122
+| The Bear Necessities || hat
+
+|-
+! scope="row" | 30138
+| The Bolshevik Biker || shirt
+
+|-
+! scope="row" | 30141
+| The Gabe Glasses || glasses
+
+|-
+! scope="row" | 30164
+| The Viking Braider || beard
+
+|-
+! scope="row" | 30165
+| The Cuban Bristle Crisis || beard
+
+|-
+! scope="row" | 30178
+| Weight Room Warmer || shirt
+
+|-
+! scope="row" | 30306
+| The Dictator || beard
+
+|-
+! scope="row" | 30315
+| Minnesota Slick || hat
+
+|-
+! scope="row" | 30319
+| The Mann of the House || belt_misc
+
+|-
+! scope="row" | 30342
+| The Heavy Lifter || shirt
+
+|-
+! scope="row" | 30343
+| Gone Commando || heavy_hip
+
+|-
+! scope="row" | 30344
+| Bullet Buzz || hat
+
+|-
+! scope="row" | 30345
+| The Leftover Trap || beard
+
+|-
+! scope="row" | 30346
+| The Trash Man || hat
+
+|-
+! scope="row" | 30354
+| The Rat Stompers || feet
+
+|-
+! scope="row" | 30364
+| The Warmth Preserver || shirt
+
+|-
+! scope="row" | 30368
+| The War Goggles || glasses
+
+|-
+! scope="row" | 30369
+| The Eliminators Safeguard || hat
+
+|-
+! scope="row" | 30372
+| Combat Slacks || heavy_hip
+
+|-
+! scope="row" | 30374
+| The Sammy Cap || head
+
+|-
+! scope="row" | 30401
+| Yuri's Revenge || beard
+
+|-
+! scope="row" | 30413
+| The Merc's Mohawk || hat
+
+|-
+! scope="row" | 30482
+| The Unshaved Bear || beard
+
+|-
+! scope="row" | 30545
+| Fur-lined Fighter || hat
+
+|-
+! scope="row" | 30556
+| Sleeveless in Siberia || shirt
+
+|-
+! scope="row" | 30557
+| Hunter Heavy || shirt
+
+|-
+! scope="row" | 30563
+| Jungle Booty || pants
+
+|-
+! scope="row" | 30588
+| Siberian Facehugger || hat
+
+|-
+! scope="row" | 30589
+| Old Man Frost || hat
+
+|-
+! scope="row" | 30633
+| Comissar's Coat || shirt
+
+|-
+! scope="row" | 30644
+| White Russian || hat
+
+|-
+! scope="row" | 30645
+| El Duderino || beard
+
+|-
+! scope="row" | 30653
+| Sucker Slug || hat
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 561
+| Can Opener || hat || The FrankenHeavy
+
+|-
+! scope="row" | 562
+| Soviet Stitch-Up || arms || The FrankenHeavy
+
+|-
+! scope="row" | 563
+| Steel-Toed Stompers || feet || The FrankenHeavy
+
+|-
+! scope="row" | 930
+| The Grand Duchess Tutu || heavy_hip || The Grand Duchess
+
+|-
+! scope="row" | 931
+| The Grand Duchess Fairy Wings || back || The Grand Duchess
+
+|-
+! scope="row" | 932
+| The Grand Duchess Tiara || hat || The Grand Duchess
+
+|-
+! scope="row" | 5619
+| Voodoo-Cursed Heavy Soul || zombie_body
+
+|-
+! scope="row" | 30199
+| The Last Bite || heavy_belt_back
+
+|-
+! scope="row" | 30217
+| Ivan The Inedible || head_skin
+
+|-
+! scope="row" | 30238
+| Chicken Kiev || whole_head
+
+|-
+! scope="row" | 30275
+| The Horned Honcho || hat
+
+|-
+! scope="row" | 30280
+| The Monstrous Mandible || head_skin, beard
+
+|-
+! scope="row" | 30531
+| Bone-Cut Belt || left_shoulder, shirt || The Minsk Beast
+
+|-
+! scope="row" | 30532
+| Bull Locks || beard || The Minsk Beast
+
+|-
+! scope="row" | 30533
+| Minsk Beef || hat || The Minsk Beast
+
+|-
+! scope="row" | 30534
+| Immobile Suit || shirt
+
+|}
+
+==== Vision Restriction: Romevision ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 30147
+| Heavybot Armor || shirt
+
+|-
+! scope="row" | 30148
+| Heavybot Helmet || hat
+
+|}
+
+=== Engineer ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 48
+| Mining Light || hat
+
+|-
+! scope="row" | 94
+| Texas Ten Gallon || hat
+
+|-
+! scope="row" | 95
+| Engineer's Cap || hat
+
+|-
+! scope="row" | 118
+| Texas Slim's Dome Shine (Hatless Engineer) || hat
+
+|-
+! scope="row" | 148
+| Hotrod || hat
+
+|-
+! scope="row" | 178
+| Safe'n'Sound || hat
+
+|-
+! scope="row" | 322
+| Buckaroo's Hat || hat
+
+|-
+! scope="row" | 338
+| Industrial Festivizer || hat
+
+|-
+! scope="row" | 379
+| Western Wear || hat
+
+|-
+! scope="row" | 382
+| Big Country || hat
+
+|-
+! scope="row" | 384
+| Professor's Peculiarity || hat, glasses
+
+|-
+! scope="row" | 386
+| Teddy Roosebelt || engineer_pocket
+
+|-
+! scope="row" | 389
+| Googly Gazer || glasses
+
+|-
+! scope="row" | 399
+| Ol' Geezer || hat
+
+|-
+! scope="row" | 436
+| Hetman's Headpiece || hat
+
+|-
+! scope="row" | 484
+| Prarie Heel Biters || feet
+
+|-
+! scope="row" | 519
+| Pip-Boy || engineer_left_arm
+
+|-
+! scope="row" | 520
+| Wingstick || engineer_belt
+
+|-
+! scope="row" | 533
+| Clockwerk's Helm || hat
+
+|-
+! scope="row" | 590
+| The Brainiac Hairpiece || beard || Dr. Grordbort's Braniac Pack
+
+|-
+! scope="row" | 591
+| The Brainiac Goggles || glasses || Dr. Grordbort's Braniac Pack
+
+|-
+! scope="row" | 605
+| The Pencil Pusher || hat
+
+|-
+! scope="row" | 606
+| The Builder's Blueprints || engineer_pocket
+
+|-
+! scope="row" | 628
+| The Virtual Reality Headset || hat
+
+|-
+! scope="row" | 646
+| The Itsy Bitsy Spyer || engineer_pocket
+
+|-
+! scope="row" | 670
+| The Stocking Stuffer || engineer_pocket
+
+|-
+! scope="row" | 734
+| The Teufort Tooth Kicker || feet
+
+|-
+! scope="row" | 755
+| The Texas Half-Pants || engineer_pants
+
+|-
+! scope="row" | 784
+| The Idea Tube || back
+
+|-
+! scope="row" | 814
+| The Triad Trinket || necklace
+
+|-
+! scope="row" | 815
+| The Champ Stamp || arm_tatoos
+
+|-
+! scope="row" | 835
+| The Triad Trinket (Genuine) || necklace
+
+|-
+! scope="row" | 836
+| The Champ Stamp (Genuine) || arm_tatoos
+
+|-
+! scope="row" | 848
+| The Tin-1000 || hat
+
+|-
+! scope="row" | 853
+| The Crafty Hair || hat
+
+|-
+! scope="row" | 948
+| The Deadliest Duckling || engineer_pocket
+
+|-
+! scope="row" | 986
+| The Mutton Mann || beard
+
+|-
+! scope="row" | 988
+| The Barnstormer || hat
+
+|-
+! scope="row" | 1008
+| The Prize Plushy || engineer_pocket
+
+|-
+! scope="row" | 1009
+| The Grizzled Growth || beard
+
+|-
+! scope="row" | 1010
+| The Last Straw || hat
+
+|-
+! scope="row" | 1012
+| The Wilson Weave || hat
+
+|-
+! scope="row" | 1017
+| Vox Diabolus || hat
+
+|-
+! scope="row" | 1065
+| MvM GateBot Light Engineer || hat
+
+|-
+! scope="row" | 1089
+| Mister Bubbles || engineer_pocket
+
+|-
+! scope="row" | 30023
+| Teddy Robobelt || engineer_pocket
+
+|-
+! scope="row" | 30031
+| The Plug-in Prospector || hat
+
+|-
+! scope="row" | 30035
+| The Timeless Topper || hat
+
+|-
+! scope="row" | 30044
+| Texas Tin-Gallon || hat
+
+|-
+! scope="row" | 30051
+| The Data Mining Light || hat
+
+|-
+! scope="row" | 30056
+| The Dual-Core Devil Doll || engineer_pocket
+
+|-
+! scope="row" | 30070
+| The Pocket Pyro || engineer_pocket
+
+|-
+! scope="row" | 30085
+| The Macho Mann || glasses
+
+|-
+! scope="row" | 30086
+| The Trash Toter || shirt
+
+|-
+! scope="row" | 30087
+| The Dry Gulch Gulp || engineer_pocket
+
+|-
+! scope="row" | 30099
+| The Pardner's Pompadour || hat
+
+|-
+! scope="row" | 30113
+| The Flared Frontiersman || engineer_pants
+
+|-
+! scope="row" | 30164
+| The Viking Braider || beard
+
+|-
+! scope="row" | 30167
+| The Beep Boy || engineer_belt
+
+|-
+! scope="row" | 30168
+| The Special Eyes || glasses
+
+|-
+! scope="row" | 30172
+| The Gold Digger || beard
+
+|-
+! scope="row" | 30322
+| Face Full of Festive || beard
+
+|-
+! scope="row" | 30330
+| The Dogfighter || shirt
+
+|-
+! scope="row" | 30336
+| The Trencher's Topper || hat
+
+|-
+! scope="row" | 30337
+| The Trencher's Tunic || shirt
+
+|-
+! scope="row" | 30341
+| Ein || left_shoulder
+
+|-
+! scope="row" | 30347
+| The Scotch Saver || beard
+
+|-
+! scope="row" | 30377
+| The Antarctic Researcher || shirt
+
+|-
+! scope="row" | 30402
+| The Tools of the Trade || belt_misc || The Builder's Basics Kit
+
+|-
+! scope="row" | 30403
+| The Joe-on-the-Go || back || The Builder's Basics Kit
+
+|-
+! scope="row" | 30406
+| The Peacenik's Ponytail || hat
+
+|-
+! scope="row" | 30407
+| The Level Three Chin || beard || The Texas Tech-hand
+
+|-
+! scope="row" | 30408
+| The Egghead's Overalls || shirt || The Texas Tech-hand
+
+|-
+! scope="row" | 30409
+| The Lonesome Loafers || feet || The Texas Tech-hand
+
+|-
+! scope="row" | 30412
+| The Endothermic Exowear || shirt
+
+|-
+! scope="row" | 30413
+| The Merc's Mohawk || hat
+
+|-
+! scope="row" | 30420
+| The Danger || hat, glasses
+
+|-
+! scope="row" | 30481
+| Hillbilly Speed Bump || engineer_pocket
+
+|-
+! scope="row" | 30539
+| Insulated Inventor || shirt
+
+|-
+! scope="row" | 30590
+| Holstered Heaters || shirt
+
+|-
+! scope="row" | 30591
+| Cop Caller || engineer_pocket
+
+|-
+! scope="row" | 30592
+| Conagher's Combover || hat
+
+|-
+! scope="row" | 30593
+| Clubsy the Seal || engineer_pocket
+
+|-
+! scope="row" | 30605
+| Thermal Insulation Layer || shirt
+
+|-
+! scope="row" | 30629
+| Support Spurs || feetsupport 
+
+|-
+! scope="row" | 30634
+| Sheriff's Stetson || hat
+
+|-
+! scope="row" | 30635
+| Wild West Waistcoat || shirt
+
+|-
+! scope="row" | 30654
+| Life Support System || engineer_pocket
+
+|-
+! scope="row" | 30655
+| Rocket Operator || shirt
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 567
+| Buzz Killer || whole_head || The Brundle Bundle
+
+|-
+! scope="row" | 568
+| Frontier Flyboy || engineer_wings || The Brundle Bundle
+
+|-
+! scope="row" | 569
+| Legend of Bugfoot || feet || The Brundle Bundle
+
+|-
+! scope="row" | 5621
+| Voodoo-Cursed Engineer Soul || zombie_body
+
+|-
+! scope="row" | 918
+| The Master Mind || hat
+
+|-
+! scope="row" | 30212
+| The Snaggletoothed Stetson || hat
+
+|-
+! scope="row" | 30223
+| The Grease Monkey || face
+
+|-
+! scope="row" | 30508
+| Iron Fist || engineer_left_arm
+
+|-
+! scope="row" | 30509
+| Beep Man || whole_head, shirt
+
+|-
+! scope="row" | 30510
+| Soul of 'Spenser's Past || disconnected_floating_item
+
+|-
+! scope="row" | 30511
+| Tiny Texan || hat
+
+|-
+! scope="row" | 30523
+| Garden Bristles || beard
+
+|}
+
+==== Vision Restriction: Romevision ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 30145
+| Engineerbot Armor || shirt
+
+|-
+! scope="row" | 30146
+| Engineerbot Helmet || hat
+
+|}
+
+=== Medic ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 50
+| Prussian Pickelhaube || hat
+
+|-
+! scope="row" | 101
+| Vintage Tyrolean || hat
+
+|-
+! scope="row" | 104
+| Otolaryngologist's Mirror || hat
+
+|-
+! scope="row" | 144
+| Physician's Procedure Mask || face
+
+|-
+! scope="row" | 177
+| Ze Goggles || hat
+
+|-
+! scope="row" | 184
+| Gentleman's Gatsby || hat
+
+|-
+! scope="row" | 303
+| Berliner's Bucket Helm || hat, face
+
+|-
+! scope="row" | 315
+| Blighted Beak || face
+
+|-
+! scope="row" | 323
+| German Gonzila || hat
+
+|-
+! scope="row" | 363
+| Geisha Boy || hat
+
+|-
+! scope="row" | 378
+| The Team Captain || hat
+
+|-
+! scope="row" | 381
+| Medic's Mountain Cap || hat
+
+|-
+! scope="row" | 383
+| Grimm Hatte || hat
+
+|-
+! scope="row" | 388
+| Private Eye || hat || Eliminating The Impossible
+
+|-
+! scope="row" | 398
+| Doctor's Sack || hat
+
+|-
+! scope="row" | 467
+| Planeswalker Helm || hat
+
+|-
+! scope="row" | 616
+| The Surgeon's Stahlhelm || hat
+
+|-
+! scope="row" | 620
+| Couvre Corner || medic_pocket
+
+|-
+! scope="row" | 621
+| The Surgeon's Stethoscope || necklace
+
+|-
+! scope="row" | 639
+| Dr. Whoa || necklace, shirt
+
+|-
+! scope="row" | 657
+| The Nine-Pipe Problem || medic_pipe || Eliminating The Impossible
+
+|-
+! scope="row" | 754
+| The Scrap Pack || back
+
+|-
+! scope="row" | 769
+| The Quadwranlger || medic_gloves
+
+|-
+! scope="row" | 770
+| The Surgeon's Side Satchel || medic_hip
+
+|-
+! scope="row" | 778
+| The Gentlemen's Ushanka || hat
+
+|-
+! scope="row" | 828
+| Archimedes || left_shoulder
+
+|-
+! scope="row" | 843
+| The Medic Mech-bag || back
+
+|-
+! scope="row" | 853
+| The Crafty Hair || hat
+
+|-
+! scope="row" | 867
+| The Combat Medic's Crusher Cap || hat
+
+|-
+! scope="row" | 878
+| The Foppish Physician || shirt
+
+|-
+! scope="row" | 978
+| Der Wintermantel || shirt
+
+|-
+! scope="row" | 982
+| Doc's Holiday || shirt
+
+|-
+! scope="row" | 986
+| The Mutton Mann || beard
+
+|-
+! scope="row" | 1012
+| The Wilson Weave || hat
+
+|-
+! scope="row" | 1039
+| The Weather Master || hat
+
+|-
+! scope="row" | 1059
+| MvM GateBot Light Medic || hat
+
+|-
+! scope="row" | 30041
+| Halogen Head Lamp || hat
+
+|-
+! scope="row" | 30042
+| Platinum Pickelhaube || hat
+
+|-
+! scope="row" | 30043
+| The Virus Doctor || hat
+
+|-
+! scope="row" | 30045
+| Titanium Tyrolean || hat
+
+|-
+! scope="row" | 30046
+| Practitioner's Processing Mask || face
+
+|-
+! scope="row" | 30048
+| Mecha-Medes || left_shoulder
+
+|-
+! scope="row" | 30052
+| The Byte'd Beak || face
+
+|-
+! scope="row" | 30069
+| The Powdered Practitioner || hat
+
+|-
+! scope="row" | 30085
+| The Macho Mann || glasses
+
+|-
+! scope="row" | 30095
+| Das Hazmattenhatten || face
+
+|-
+! scope="row" | 30096
+| Das Feelinbeterbager || medic_hip
+
+|-
+! scope="row" | 30097
+| Das Ubersternmann || hat
+
+|-
+! scope="row" | 30098
+| Das Metalmeatencasen || shirt
+
+|-
+! scope="row" | 30109
+| Das Naggenvatcher || hat
+
+|-
+! scope="row" | 30121
+| Das Maddendoktor || hat
+
+|-
+! scope="row" | 30127
+| Das Gutenkutteharen || hat
+
+|-
+! scope="row" | 30136
+| Baron von Havenaplane || hat
+
+|-
+! scope="row" | 30137
+| Das Fantzipantzen || shirt
+
+|-
+! scope="row" | 30171
+| The Medical Mystery || shirt
+
+|-
+! scope="row" | 30186
+| A Brush with Death || beard
+
+|-
+! scope="row" | 30187
+| The Slick Cut || hat
+
+|-
+! scope="row" | 30190
+| The Ward || shirt
+
+|-
+! scope="row" | 30311
+| The Nunhood || hat
+
+|-
+! scope="row" | 30312
+| The Angel of Death || hat
+
+|-
+! scope="row" | 30318
+| The Mann of Reason || hat
+
+|-
+! scope="row" | 30323
+| The Ruffled Ruprecht || beard
+
+|-
+! scope="row" | 30349
+| The Fashionable Megalomaniac || beard
+
+|-
+! scope="row" | 30350
+| The Dough Puncher || shirt
+
+|-
+! scope="row" | 30351
+| The Teutonic Toque || hat
+
+|-
+! scope="row" | 30352
+| The Mustachioed Mann || face
+
+|-
+! scope="row" | 30356
+| The Heat of Winter || shirt
+
+|-
+! scope="row" | 30361
+| The Colonel's Coat || shirt
+
+|-
+! scope="row" | 30365
+| The Smock Surgeon || shirt
+
+|-
+! scope="row" | 30378
+| Heer's Helm || hat
+
+|-
+! scope="row" | 30379
+| The Gaiter Guards || feet
+
+|-
+! scope="row" | 30410
+| Ze Ubermensch || face
+
+|-
+! scope="row" | 30415
+| The Medicine Manpurse || medic_hip
+
+|-
+! scope="row" | 30419
+| The Chronoscarf || necklace
+
+|-
+! scope="row" | 30483
+| Pocket Heavy || medal
+
+|-
+! scope="row" | 30595
+| Unknown Mann || face
+
+|-
+! scope="row" | 30596
+| Surgeon's Shako || hat
+
+|-
+! scope="row" | 30625
+| The Physician's Protector || hat
+
+|-
+! scope="row" | 30626
+| The Vascular Vestment || shirt
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 552
+| Einstein || hat || The Mad Doktor
+
+|-
+! scope="row" | 553
+| Dr. Googlestache || face || The Mad Doktor
+
+|-
+! scope="row" | 554
+| Emerald Jarate || medigun_accessories || The Mad Doktor
+
+|-
+! scope="row" | 5622
+| Voodoo-Cursed Medic Soul || zombie_body
+
+|-
+! scope="row" | 30197
+| The Second Opinion || head_skin
+
+|-
+! scope="row" | 30224
+| The Alternative Medicine Man || hat, face
+
+|-
+! scope="row" | 30229
+| The Lo-Grav Loafers || feet || Doctor Galactic
+
+|-
+! scope="row" | 30230
+| The Surgeon's Space Suit || shirt || Doctor Galactic
+
+|-
+! scope="row" | 30232
+| Das Blutliebhaber || glasses
+
+|-
+! scope="row" | 30233
+| The Trepanabotomizer || hat
+
+|-
+! scope="row" | 30237
+| Medimedes || whole_head
+
+|-
+! scope="row" | 30263
+| The Vicar's Vestments || shirt
+
+|-
+! scope="row" | 30270
+| The Shaman's Skull || hat
+
+|-
+! scope="row" | 30279
+| Archimedes the Undying || left_shoulder
+
+|-
+! scope="row" | 30293
+| Teutonkahmun || hat, beard || The Sun King
+
+|-
+! scope="row" | 30299
+| Ramses' Regalia || shirt, arms || The Sun King
+
+|-
+! scope="row" | 30486
+| Herzensbrecher || medic_hip, shirt || Canis Ex Machina
+
+|-
+! scope="row" | 30487
+| Hundekopf || whole_head || Canis Ex Machina
+
+|-
+! scope="row" | 30488
+| Kriegsmaschine-9000 || arms || Canis Ex Machina
+
+|-
+! scope="row" | 30489
+| Transylvania Toupe || hat || Dr. Acula
+
+|-
+! scope="row" | 30490
+| Vampiric Vesture || shirt || Dr. Acula
+
+|-
+! scope="row" | 30514
+| Templar's Spirit || whole_head || The Templar
+
+|-
+! scope="row" | 30515
+| Wings of Purity || back || The Templar
+
+|}
+
+==== Vision Restriction: Romevision ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 30149
+| Medicbot Chariot || feet
+
+|-
+! scope="row" | 30150
+| Medicbot Hat || hat
+
+|}
+
+=== Sniper ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 53
+| Trophy Belt || hat
+
+|-
+! scope="row" | 109
+| Professional's Panama || hat
+
+|-
+! scope="row" | 110
+| Master's Yellow Belt || sniper_headband
+
+|-
+! scope="row" | 117
+| Ritzy Rick's Hair Fixative (Hatless Sniper) || hat
+
+|-
+! scope="row" | 158
+| Shooter's Sola Topi || hat
+
+|-
+! scope="row" | 181
+| Bloke's Bucket Hat || hat
+
+|-
+! scope="row" | 229
+| Ol' Snaggletooth || hat || The Croc-o-Style Kit'''*'''
+
+|-
+! scope="row" | 314
+| Larrikin Robin || hat
+
+|-
+! scope="row" | 344
+| Crocleather Slouch || hat
+
+|-
+! scope="row" | 393
+| Villain's Veil || beard
+
+|-
+! scope="row" | 400
+| Desert Maurader || hat || Lawrence of Australia
+
+|-
+! scope="row" | 518
+| The Anger || hat, beard
+
+|-
+! scope="row" | 534
+| Sniper's Snipin' Glass || glasses
+
+|-
+! scope="row" | 600
+| Your Worst Nightmare || hat
+
+|-
+! scope="row" | 618
+| The Crocodile Smile || necklace
+
+|-
+! scope="row" | 626
+| The Swagman's Swatter || hat
+
+|-
+! scope="row" | 645
+| The Outback Intellectual || shirt
+
+|-
+! scope="row" | 646
+| The Itsy Bitsy Spyer || sniper_pocket
+
+|-
+! scope="row" | 720
+| The Bushman's Boonie || hat
+
+|-
+! scope="row" | 734
+| The Teufort Tooth Kicker || feet
+
+|-
+! scope="row" | 759
+| The Fruit Shoot || hat || Dual-Purpose Fruit
+
+|-
+! scope="row" | 762
+| Flamingo Kid || hat
+
+|-
+! scope="row" | 779
+| Liquidator's Lid || hat || The Urban Professional
+
+|-
+! scope="row" | 814
+| The Triad Trinket || necklace
+
+|-
+! scope="row" | 815
+| The Champ Stamp || arm_tatoos
+
+|-
+! scope="row" | 819
+| The Lone Star || hat
+
+|-
+! scope="row" | 835
+| The Triad Trinket (Genuine) || necklace
+
+|-
+! scope="row" | 836
+| The Champ Stamp (Genuine) || arm_tatoos
+
+|-
+! scope="row" | 847
+| The Bolted Bushman || hat
+
+|-
+! scope="row" | 877
+| The Stovepipe Sniper Shako || hat
+
+|-
+! scope="row" | 917
+| Sir Hootsalot || left_shoulder
+
+|-
+! scope="row" | 948
+| The Deadliest Duckling || sniper_pocket
+
+|-
+! scope="row" | 981
+| The Cold Killer || hat
+
+|-
+! scope="row" | 986
+| The Mutton Mann || beard
+
+|-
+! scope="row" | 1022
+| The Sydney Straw Boat || hat
+
+|-
+! scope="row" | 1023
+| The Steel Songbird || left_shoulder
+
+|-
+! scope="row" | 1029
+| The Bloodhound || hat
+
+|-
+! scope="row" | 1062
+| MvM GateBot Light Sniper || hat
+
+|-
+! scope="row" | 1076
+| The Smissmas Caribou || hat
+
+|-
+! scope="row" | 1077
+| Randolph the Blood-Nosed Caribou || hat
+
+|-
+! scope="row" | 1094
+| The Criminal Cloak || sniper_vest
+
+|-
+! scope="row" | 1095
+| The Dread Riding Hood || hat, beard
+
+|-
+! scope="row" | 30002
+| Letch's LED || hat
+
+|-
+! scope="row" | 30004
+| Soldered Sensei || hat
+
+|-
+! scope="row" | 30005
+| Shooter's Tin Topi || hat
+
+|-
+! scope="row" | 30056
+| The Dual-Core Devil Doll || sniper_pocket
+
+|-
+! scope="row" | 30067
+| The Well-Rounded Rifleman || hat
+
+|-
+! scope="row" | 30085
+| The Macho Mann || glasses
+
+|-
+! scope="row" | 30100
+| The Birdman of Australiacatraz || shirt
+
+|-
+! scope="row" | 30101
+| The Cobber Chameleon || left_shoulder
+
+|-
+! scope="row" | 30103
+| The Falconer || arms
+
+|-
+! scope="row" | 30135
+| Wet Works || hat
+
+|-
+! scope="row" | 30170
+| The Chronomancer || shirt
+
+|-
+! scope="row" | 30173
+| Brim-Full Of Bullets || hat
+
+|-
+! scope="row" | 30181
+| Li'l Snaggletooth || sniper_pocket
+
+|-
+! scope="row" | 30310
+| The Snow Scoper || shirt
+
+|-
+! scope="row" | 30316
+| The Toy Soldier || hat
+
+|-
+! scope="row" | 30317
+| The Five-Month Shadow || beard
+
+|-
+! scope="row" | 30324
+| The Golden Garment || shirt
+
+|-
+! scope="row" | 30328
+| The Extra Layer || shirt
+
+|-
+! scope="row" | 30359
+| The Huntman's Essentials || sniper_quiver
+
+|-
+! scope="row" | 30371
+| The Archers Groundings || feet
+
+|-
+! scope="row" | 30373
+| The Toowoomba Tunic || shirt
+
+|-
+! scope="row" | 30375
+| The Deep Cover Operator || hat
+
+|-
+! scope="row" | 30423
+| The Scoper's Smoke || beard || The Straight Shooter Pack
+
+|-
+! scope="row" | 30424
+| The Triggerman's Tacticals || sniper_legs || The Straight Shooter Pack
+
+|-
+! scope="row" | 30478
+| Poacher's Safari Jacket || sniper_vest
+
+|-
+! scope="row" | 30481
+| Hillbilly Speed Bump || sniper_pocket
+
+|-
+! scope="row" | 30597
+| Bushman's Bristles || beard
+
+|-
+! scope="row" | 30598
+| Professional's Ushanka || hat
+
+|-
+! scope="row" | 30599
+| Marksman's Mohair || sniper_vest
+
+|-
+! scope="row" | 30600
+| Wally Pocket || sniper_pocket
+
+|-
+! scope="row" | 30629
+| Support Spurs || feet
+
+|-
+! scope="row" | 30648
+| Corona Australis || whole_head
+
+|-
+! scope="row" | 30649
+| Final Fontiersman || feet
+
+|-
+! scope="row" | 30650
+| Starduster || sniper_vest
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 564
+| Holy Hunter || hat || The Camper Van Helsing
+
+|-
+! scope="row" | 565
+| Silver Bullets || necklace, sniper_bullets || The Camper Van Helsing
+
+|-
+! scope="row" | 566
+| Garlic Flank Stake || sniper_legs || The Camper Van Helsing
+
+|-
+! scope="row" | 5625
+| Voodoo-Cursed Sniper Soul || zombie_body
+
+|-
+! scope="row" | 30212
+| The Snaggletoothed Stetson || hat
+
+|-
+! scope="row" | 30284
+| Sir Shootsalot || whole_head
+
+|-
+! scope="row" | 30258
+| The Carious Chameleon || left_shoulder
+
+|-
+! scope="row" | 30287
+| The Hallowed Headcase || hat, face
+
+|-
+! scope="row" | 30499
+| Conspiratorial Cut || head_skin || The Reptiloid
+
+|-
+! scope="row" | 30500
+| Skinless Slashers || arms || The Reptiloid
+
+|-
+! scope="row" | 30501
+| Marsupial Man || hat
+
+|-
+! scope="row" | 30502
+| Kanga Kickers || feet || The Manngaroo
+
+|-
+! scope="row" | 30503
+| Roo Rippers || arms || The Manngaroo
+
+|-
+! scope="row" | 30504
+| Marsupial Muzzle || whole_head || The Manngaroo
+
+|-
+! scope="row" | 30513
+| Mr. Mundee's Wild Ride || sniper_legs
+
+|}
+
+==== Vision Restriction: Romevision ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 30155
+| Sniperbot Armor || shirt
+
+|-
+! scope="row" | 30156
+| Sniperbot Helmet || hat
+
+|}
+
+=== Spy ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 55
+| Fancy Fedora || hat
+
+|-
+! scope="row" | 103
+| Camera Beard || beard
+
+|-
+! scope="row" | 108
+| Backbiter's Billycock || hat
+
+|-
+! scope="row" | 147
+| Magistrate's Mullet || hat
+
+|-
+! scope="row" | 180
+| Frenchman's Beret || hat
+
+|-
+! scope="row" | 223
+| The Familiar Fez || hat, glasses || Saharan Spy'''*'''
+
+|-
+! scope="row" | 319
+| Detective Noir || hat
+
+|-
+! scope="row" | 337
+| Le Party Phantom || head_skin
+
+|-
+! scope="row" | 361
+| Noh Mercy || hat
+
+|-
+! scope="row" | 388
+| Private Eye || hat
+
+|-
+! scope="row" | 397
+| Charmer's Chapeau || hat
+
+|-
+! scope="row" | 437
+| Janissary Ketche || hat
+
+|-
+! scope="row" | 459
+| Cosa Nostra Cap || hat || The Man of Honor
+
+|-
+! scope="row" | 462
+| The Made Man || medal || The Man of Honor
+
+|-
+! scope="row" | 483
+| Rogue's Col Roule || shirt
+
+|-
+! scope="row" | 521
+| Nanobalaclava || hat
+
+|-
+! scope="row" | 602
+| The Counterfeit Billycock || hat
+
+|-
+! scope="row" | 622
+| L'Inspecteur || hat
+
+|-
+! scope="row" | 629
+| The Spectre's Spectacles || glasses
+
+|-
+! scope="row" | 637
+| The Dashin' Hashshashin || hat, shirt
+
+|-
+! scope="row" | 639
+| Dr. Whoa || necklace, shirt
+
+|-
+! scope="row" | 763
+| The Sneaky Spats of Sneaking || feet
+
+|-
+! scope="row" | 782
+| The Business Casual || shirt
+
+|-
+! scope="row" | 789
+| The Ninja Cowl || hat
+
+|-
+! scope="row" | 814
+| The Triad Trinket || necklace
+
+|-
+! scope="row" | 835
+| The Triad Trinket (Genuine) || necklace
+
+|-
+! scope="row" | 841
+| The Stealth Steeler || hat
+
+|-
+! scope="row" | 872
+| The Lacking Moral Fiber Mask || hat
+
+|-
+! scope="row" | 879
+| The Distinguished Rogue || shirt
+
+|-
+! scope="row" | 919
+| The Scarecrow || face
+
+|-
+! scope="row" | 936
+| The Exorcizor || shirt
+
+|-
+! scope="row" | 977
+| The Cut-Throat Concierge || shirt
+
+|-
+! scope="row" | 1029
+| The Bloodhound || hat
+
+|-
+! scope="row" | 1030
+| The Dapper Disguise || face
+
+|-
+! scope="row" | 1064
+| MvM GateBot Light Spy || hat
+
+|-
+! scope="row" | 30007
+| Base Metal Billycock || hat
+
+|-
+! scope="row" | 30009
+| The Megapixel Beard || beard
+
+|-
+! scope="row" | 30047
+| Bootleg Base Metal Billycock || hat
+
+|-
+! scope="row" | 30072
+| The Pom-Pommed Provocateur || hat
+
+|-
+! scope="row" | 30085
+| The Macho Mann || glasses
+
+|-
+! scope="row" | 30123
+| The Harmburg || hat
+
+|-
+! scope="row" | 30125
+| The Rogue's Brogues || feet
+
+|-
+! scope="row" | 30132
+| The Blood Banker || shirt
+
+|-
+! scope="row" | 30133
+| The After Dark || shirt
+
+|-
+! scope="row" | 30128
+| The Belgian Detective || hat
+
+|-
+! scope="row" | 30182
+| L'homme Burglerre || hat
+
+|-
+! scope="row" | 30183
+| Escapist || shirt
+
+|-
+! scope="row" | 30189
+| The Frenchman's Formals || shirt
+
+|-
+! scope="row" | 30309
+| Dead of Night || shirt
+
+|-
+! scope="row" | 30353
+| The Backstabber's Boomslang || left_shoulder
+
+|-
+! scope="row" | 30360
+| The Napolean Complex || hat
+
+|-
+! scope="row" | 30375
+| The Deep Cover Operator || hat
+
+|-
+! scope="row" | 30389
+| The Rogue's Robe || shirt
+
+|-
+! scope="row" | 30404
+| The Aviator Assassin || hat || The Automatic Pilot Pack
+
+|-
+! scope="row" | 30405
+| The Sky Captain || shirt || The Automatic Pilot Pack
+
+|-
+! scope="row" | 30411
+| The Au Courant Assassin || shirt
+
+|-
+! scope="row" | 30467
+| The Spycrab || left_shoulder
+
+|-
+! scope="row" | 30476
+| The Lady Killer || shirt
+
+|-
+! scope="row" | 30602
+| Puffy Provocateur || shirt
+
+|-
+! scope="row" | 30603
+| Stealthy Scarf || shirt
+
+|-
+! scope="row" | 30606
+| Pocket Momma || medal
+
+|-
+! scope="row" | 30631
+| Lurker's Leathers || shirt
+
+|-
+! scope="row" | 30651
+| The Graylien || head_skin
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 558
+| Under Cover || hat || The Invisible Rogue
+
+|-
+! scope="row" | 559
+| Griffin's Gog || glasses || The Invisible Rogue
+
+|-
+! scope="row" | 560
+| Intangible Ascot || shirt || The Invisible Rogue
+
+|-
+! scope="row" | 5623
+| Voodoo-Cursed Spy Soul || zombie_body
+
+|-
+! scope="row" | 30195
+| Ethereal Hood || whole_head
+
+|-
+! scope="row" | 30256
+| The Hyperbaric Bowler || hat
+
+|-
+! scope="row" | 30260
+| The Bountiful Bow || shirt || The Gravelpit Emperor
+
+|-
+! scope="row" | 30261
+| The Candyman's Cap || hat || The Gravelpit Emperor
+
+|-
+! scope="row" | 30283
+| The Foul Cowl || back
+
+|-
+! scope="row" | 30301
+| Bozo's Brogues || feet || The Gravelpit Emperor
+
+|-
+! scope="row" | 30505
+| Shadowman's Shade || hat
+
+|-
+! scope="row" | 30506
+| Nightmare Hunter || hat
+
+|-
+! scope="row" | 30507
+| Rogue's Rabbit || hat
+
+|-
+! scope="row" | 30512
+| Facepeeler || face
+
+|}
+
+==== Vision Restriction: Romevision ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 30159
+| Spybot Armor || shirt
+
+|-
+! scope="row" | 30160
+| Spybot Hood || hat
+
+|}
+
+=== All-Class ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 116
+| Ghastly Gibus || hat
+
+|-
+! scope="row" | 125
+| Cheater's Lament || hat
+
+|-
+! scope="row" | 126
+| Bill's Hat || hat
+
+|-
+! scope="row" | 134
+| J.Axer's Dapper Topper (custom Towering Pillar of Hats) || hat
+
+|-
+! scope="row" | 135
+| Towering Pillar of Hats || hat
+
+|-
+! scope="row" | 136
+| Amber's Rad As All Hell Hat (custom Noble Amassment of Hats) || hat
+
+|-
+! scope="row" | 137
+| Noble Amassment of Hats || hat
+
+|-
+! scope="row" | 138
+| Uncle Sam (custom Modest Pile of Hat) || hat
+
+|-
+! scope="row" | 139
+| Modest Pile of Hat || hat
+
+|-
+! scope="row" | 143
+| Earbuds || ears
+
+|-
+! scope="row" | 162
+| Max's Severed Head || hat
+
+|-
+! scope="row" | 164
+| Grizzled Veteran || medal
+
+|-
+! scope="row" | 165
+| Soldier of Fortune || medal
+
+|-
+! scope="row" | 166
+| Mercenary || medal
+
+|-
+! scope="row" | 170
+| Primeval Warrior || medal
+
+|-
+! scope="row" | 189
+| Alien Swarm Parasite || hat
+
+|-
+! scope="row" | 242
+| Duel Medal Bronze || medal
+
+|-
+! scope="row" | 243
+| Duel Medal Silver || medal
+
+|-
+! scope="row" | 244
+| Duel Medal Gold || medal
+
+|-
+! scope="row" | 245
+| Duel Medal Plat || medal
+
+|-
+! scope="row" | 260
+| Wiki Cap || hat
+
+|-
+! scope="row" | 261
+| Mann Co. Cap || hat
+
+|-
+! scope="row" | 262
+| Polycount Pin || medal
+
+|-
+! scope="row" | 263
+| Ellis' Hat || hat
+
+|-
+! scope="row" | 277
+| Halloween Mask - Saxton Hale || whole_head
+
+|-
+! scope="row" | 279
+| Ghastlier Gibus || hat
+
+|-
+! scope="row" | 287
+| Spine-Chilling Skull || hat, face
+
+|-
+! scope="row" | 289
+| Voodoo Juju || hat
+
+|-
+! scope="row" | 291
+| Horrific Headsplitter || hat
+
+|-
+! scope="row" | 296
+| License to Maim || medal
+
+|-
+! scope="row" | 299
+| Companion Cube Pin || medal
+
+|-
+! scope="row" | 302
+| Frontline Field Recorder || hat
+
+|-
+! scope="row" | 332
+| Bounty Hat || hat
+
+|-
+! scope="row" | 333
+| Treasure Hat || hat
+
+|-
+! scope="row" | 334
+| Hat of Undeniable Wealth and Respect || hat
+
+|-
+! scope="row" | 341
+| A Rather Festive Tree || hat
+
+|-
+! scope="row" | 343
+| Professor Speks || glasses
+
+|-
+! scope="row" | 345
+| Athletic Supporter || hat
+
+|-
+! scope="row" | 408
+| Humanitarian's Hachimaki || hat
+
+|-
+! scope="row" | 409
+| Benefactor's Kanmuri || hat
+
+|-
+! scope="row" | 410
+| Magnanimous Monarch || hat
+
+|-
+! scope="row" | 420
+| Aperture Labs Hard Hat || hat
+
+|-
+! scope="row" | 422
+| Resurrection Associate Pin || medal
+
+|-
+! scope="row" | 432
+| SpaceChem Pin || medal
+
+|-
+! scope="row" | 443
+| Dr. Grordbort's Crest || medal
+
+|-
+! scope="row" | 470
+| Lo-Fi Longwave || hat
+
+|-
+! scope="row" | 471
+| Proof of Purchase || hat
+
+|-
+! scope="row" | 473
+| Spiral Sallet || hat, face
+
+|-
+! scope="row" | 486
+| Summer Shades || glasses
+
+|-
+! scope="row" | 492
+| Summer Hat || hat
+
+|-
+! scope="row" | 522
+| The Deus Specs || glasses
+
+|-
+! scope="row" | 523
+| Company Man || hat
+
+|-
+! scope="row" | 537
+| Birthday Hat || hat
+
+|-
+! scope="row" | 538
+| Killer Exclusive || hat
+
+|-
+! scope="row" | 541
+| Merc's Pride Scarf || necklace
+
+|-
+! scope="row" | 576
+| Spine-Chilling Skull 2011 || hat, face
+
+|-
+! scope="row" | 578
+| Spine-Chilling Skull 2011: Spine-Tingling Skull || hat, face
+
+|-
+! scope="row" | 579
+| Spine-Chilling Skull 2011: Spine-Cooling Skull || hat, face
+
+|-
+! scope="row" | 580
+| Spine-Chilling Skull 2011: Spine-Twisting Skull || hat, face
+
+|-
+! scope="row" | 583
+| Bombnomicon || medal
+
+|-
+! scope="row" | 584
+| Ghastlierest Gibus || hat
+
+|-
+! scope="row" | 586
+| Mark of the Saint || medal
+
+|-
+! scope="row" | 592
+| Dr. Grordbort's Copper Crest || medal
+
+|-
+! scope="row" | 598
+| Manniversary Paper Hat || hat
+
+|-
+! scope="row" | 619
+| Flair! || flair
+
+|-
+! scope="row" | 623
+| Photo Badge || medal
+
+|-
+! scope="row" | 624
+| Clan Pride || medal
+
+|-
+! scope="row" | 634
+| Point and Shoot || hat
+
+|-
+! scope="row" | 636
+| Dr. Grordbort's Silver Crest || medal
+
+|-
+! scope="row" | 640
+| The Top Notch || whole_head
+
+|-
+! scope="row" | 655
+| The Spirit of Giving [Strange-quality only] || medal
+
+|-
+! scope="row" | 666
+| The B.M.O.C. || hat
+
+|-
+! scope="row" | 667
+| The Holiday Headcase || hat, beard, necklace
+
+|-
+! scope="row" | 668
+| The Full Head of Steam || hat
+
+|-
+! scope="row" | 671
+| The Brown Bomber || hat
+
+|-
+! scope="row" | 675
+| The Ebenezer || hat
+
+|-
+! scope="row" | 702
+| The Warsworn Helmet || hat, face
+
+|-
+! scope="row" | 704
+| The Bolgan Family Crest || medal
+
+|-
+! scope="row" | 711
+| Dueler || hat
+
+|-
+! scope="row" | 712
+| Gifting Man From Gifting Land || hat
+
+|-
+! scope="row" | 713
+| Philateler || hat
+
+|-
+! scope="row" | 717
+| Mapmaker's Medallion || medal
+
+|-
+! scope="row" | 718
+| The Merc Medal || medal
+
+|-
+! scope="row" | 725
+| Tour of Duty Badge || medal
+
+|-
+! scope="row" | 733
+| Pet Robro || disconnected_floating_item
+
+|-
+! scope="row" | 738
+| Pet Balloonicorn || disconnected_floating_item
+
+|-
+! scope="row" | 743
+| Vintage Pyrovision Goggles || glasses
+
+|-
+! scope="row" | 744
+| Pyrovision Goggles || glasses
+
+|-
+! scope="row" | 756
+| The Bolt Action Blitzer || hat
+
+|-
+! scope="row" | 756
+| The Gentle Munitions of Leisure || hat
+
+|-
+! scope="row" | 767
+| The Atomic Accolade || medal
+
+|-
+! scope="row" | 785
+| Robot Chicken Hat || hat
+
+|-
+! scope="row" | 816
+| The Marxman || glasses
+
+|-
+! scope="row" | 817
+| The Human Cannonball || hat
+
+|-
+! scope="row" | 818
+| Awesomenauts Badge || medal
+
+|-
+! scope="row" | 837
+| The Marxman (Genuine) || glasses
+
+|-
+! scope="row" | 838
+| The Human Cannonball (Genuine) || hat
+
+|-
+! scope="row" | 855
+| The Vigilant Pin || medal
+
+|-
+! scope="row" | 864
+| The Friends Forever Companion Square Badge || medal
+
+|-
+! scope="row" | 865
+| The Triple A Badge || medal
+
+|-
+! scope="row" | 868
+| The Heroic Companion Badge || medal
+
+|-
+! scope="row" | 869
+| The Rump-o'-Lantern || engineer_pocket
+
+|-
+! scope="row" | 870
+| Tour of Duty Badge Intermediate 1 || medal
+
+|-
+! scope="row" | 871
+| Tour of Duty Badge Expert 1 || medal
+
+|-
+! scope="row" | 873
+| The Whale Bone Charm || medal
+
+|-
+! scope="row" | 920
+| The Crone's Dome || hat
+
+|-
+! scope="row" | 921
+| The Executioner || hat
+
+|-
+! scope="row" | 940
+| Ghostly Gibus || hat
+
+|-
+! scope="row" | 941
+| The Skull Island Topper || hat
+
+|-
+! scope="row" | 942
+| The Cockfighter || hat
+
+|-
+! scope="row" | 943
+| The Hitt Man Badge || medal
+
+|-
+! scope="row" | 944
+| That '70s Chapeau || hat
+
+|-
+! scope="row" | 953
+| The Saxxy Clapper Badge || medal
+
+|-
+! scope="row" | 955
+| The Tuxxy || scout_or_heavy_shirt
+
+|-
+! scope="row" | 955
+| Faerie Solitaire Pin || medal
+
+|-
+! scope="row" | 975
+| Tour of Duty Badge Advanced 2 || medal
+
+|-
+! scope="row" | 984
+| Tough Stuff Muffs || hat
+
+|-
+! scope="row" | 987
+| The Merc's Muffler || necklace
+
+|-
+! scope="row" | 992
+| Smissmas Wreath || medal
+
+|-
+! scope="row" | 993
+| Antlers || hat
+
+|-
+! scope="row" | 994
+| Mann Co. Online Cap || hat
+
+|-
+! scope="row" | 995
+| Pet Reindoonicorn || disconnected_floating_item
+
+|-
+! scope="row" | 1011
+| Tux || ???
+
+|-
+! scope="row" | 1014
+| The Brutal Bouffant || hat
+
+|-
+! scope="row" | 1024
+| Croft's Crest || medal
+
+|-
+! scope="row" | 1025
+| The Fortune Hunter || cosmetic_axe
+
+|-
+! scope="row" | 1033
+| The TF2VRH || hat
+
+|-
+! scope="row" | 1034
+| The Conspiracy Cap || hat
+
+|-
+! scope="row" | 1035
+| The Public Accessor || hat
+
+|-
+! scope="row" | 1066
+| Tour of Duty Badge Advanced 3 || medal
+
+|-
+! scope="row" | 1067
+| The Grandmaster || hat
+
+|-
+! scope="row" | 1096
+| The Baronial Badge || medal
+
+|-
+! scope="row" | 1122
+| Towering Pillar of Summer Shades || hat
+
+|-
+! scope="row" | 1126
+| Duck Badge || medal
+
+|-
+! scope="row" | 1899
+| World Traveler || hat
+
+|-
+! scope="row" | 5075
+| Something Special For Someone Special || ???
+
+|-
+! scope="row" | 5606
+| Barely-Melted Capacitor || ???
+
+|-
+! scope="row" | 30000
+| The Electric Badge-aloo || medal
+
+|-
+! scope="row" | 30001
+| Modest Metal Pile of Scrap || hat
+
+|-
+! scope="row" | 30003
+| The Galvanized Gibus || hat
+
+|-
+! scope="row" | 30006
+| Noble Nickel Amassment of Hats || hat
+
+|-
+! scope="row" | 30008
+| Towering Titanium Pillar of Hats || hat
+
+|-
+! scope="row" | 30058
+| The Crosslinker's Coil || hat
+
+|-
+! scope="row" | 30065
+| The Hardy Laurel || hat
+
+|-
+! scope="row" | 30066
+| The Brotherhood of Arms || hat
+
+|-
+! scope="row" | 30104
+| Greybanns || glasses
+
+|-
+! scope="row" | 30140
+| The Virtual Viewfinder || hat
+
+|-
+! scope="row" | 30177
+| Hong Kong Cone || hat
+
+|-
+! scope="row" | 30307
+| Neckwear Headwear || hat
+
+|-
+! scope="row" | 30313
+| The Kiss King || hat
+
+|-
+! scope="row" | 30329
+| The Polar Pullover || hat
+
+|-
+! scope="row" | 30362
+| The Law || hat
+
+|-
+! scope="row" | 30397
+| The Bruiser's Bandana || beard
+
+|-
+! scope="row" | 30414
+| The Eye-Catcher || misc
+
+|-
+! scope="row" | 30422
+| Viva La France || hat, headphones
+
+|-
+! scope="row" | 30425
+| Tipped Lid || hat, headphones
+
+|-
+! scope="row" | 30469
+| Horace || hat
+
+|-
+! scope="row" | 30473
+| The MK 50 || hat || The Isolated Merc
+
+|-
+! scope="row" | 30542
+| Coldsnap Cap || hat
+
+|-
+! scope="row" | 30546
+| Boxcar Bomber || hat
+
+|-
+! scope="row" | 30549
+| Winter Woodsman || hat
+
+|-
+! scope="row" | 30550
+| Snow Sleeves || shirt
+
+|-
+! scope="row" | 30551
+| Flashdance Footies || feet
+
+|-
+! scope="row" | 30559
+| End of the Line Community Update Medal || medal
+
+|-
+! scope="row" | 30567
+| Crown of the Old Kingdom || hat
+
+|-
+! scope="row" | 30569
+| Tomb Readers || glasses
+
+|-
+! scope="row" | 30571
+| Brimstone || hat
+
+|-
+! scope="row" | 30607
+| Pocket Raiser || hat
+
+|-
+! scope="row" | 30623
+| The Rotation Sensation || hat
+
+|-
+! scope="row" | 30640
+| Captain Cardbeard Cutthroat || hat
+
+|-
+! scope="row" | 30643
+| Potassium Bonnett || hat
+
+|-
+! scope="row" | 30646
+| Captain Space Mann || hat
+
+|-
+! scope="row" | 30647
+| Phononaut || hat
+
+|-
+! scope="row" | 30669
+| Space Hamster Hammy || disconnect_floating_item
+
+|-
+! scope="row" | 30670
+| Invasion Community Update Medal || medal
+
+|}
+
+==== Holiday Restriction: Halloween or Full Moon ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 115
+| Mildly Disturbing Halloween Mask || whole_head
+
+|-
+! scope="row" | 268
+| Halloween Mask - Scout || whole_head
+
+|-
+! scope="row" | 269
+| Halloween Mask - Sniper || whole_head
+
+|-
+! scope="row" | 270
+| Halloween Mask - Soldier || whole_head
+
+|-
+! scope="row" | 271
+| Halloween Mask - Demoman || whole_head
+
+|-
+! scope="row" | 272
+| Halloween Mask - Medic || whole_head
+
+|-
+! scope="row" | 273
+| Halloween Mask - Heavy || whole_head
+
+|-
+! scope="row" | 274
+| Halloween Mask - Spy || whole_head
+
+|-
+! scope="row" | 275
+| Halloween Mask - Engineer || whole_head
+
+|-
+! scope="row" | 276
+| Halloween Mask - Pyro || whole_head
+
+|-
+! scope="row" | 278
+| Horseless Headless Horsemann's Head || whole_head
+
+|-
+! scope="row" | 581
+| MONOCULUS! || whole_head
+
+|-
+! scope="row" | 582
+| Seal Mask || face
+
+|-
+! scope="row" | 927
+| The Boo Balloon || disconnected_floating_item
+
+|-
+! scope="row" | 929
+| The Unknown Monkeynaut || disconnected_floating_item
+
+|-
+! scope="row" | 934
+| The Dead Little Buddy || disconnected_floating_item
+
+|-
+! scope="row" | 30198
+| The Pocket Horsemann || belt_misc
+
+|-
+! scope="row" | 30206
+| The Accursed Apparition || disconnected_floating_item
+
+|-
+! scope="row" | 30214
+| The One-Way Ticket || hat
+
+|-
+! scope="row" | 30215
+| The Birdie Bonnet || hat
+
+|-
+! scope="row" | 30234
+| The Sackcloth Spook || disconnected_floating_item
+
+|-
+! scope="row" | 30252
+| Guano || disconnected_floating_item
+
+|-
+! scope="row" | 30254
+| Unidentified Following Object || disconnected_floating_item
+
+|-
+! scope="row" | 30255
+| The Beacon From Beyond || disconnected_floating_item
+
+|-
+! scope="row" | 30274
+| The Tuque or Treat || hat
+
+|-
+! scope="row" | 30278
+| The Dark Helm || hat
+
+|-
+! scope="row" | 30289
+| Quoth || disconnected_floating_item
+
+|-
+! scope="row" | 30295
+| The Manneater || hat, glasses
+
+|-
+! scope="row" | 30297
+| The Magical Mercenary || hat
+
+|-
+! scope="row" | 30300
+| The Haunted Hat || hat
+
+|-
+! scope="row" | 30302
+| The Cryptic Keepsake || necklace
+
+|-
+! scope="row" | 30484
+| The Dadliest Catch || hat
+
+|-
+! scope="row" | 30497
+| Ghost of Spies Checked Past || disconnected_floating_item
+
+|-
+! scope="row" | 30498
+| The Hooded Haunter || disconnected_floating_item
+
+|-
+! scope="row" | 30536
+| Cursed Cruise || disconnected_floating_item
+
+|}
+
+=== Tournament Medals ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Cosmetic !! scope="col" style="width: 30em" | Equip Regions !! scope="col" style="width: 20em" | Set
+
+|-
+! scope="row" | 496
+| Tournament Medal - GWJ Winners || medal
+
+|-
+! scope="row" | 497
+| Tournament Medal - GWJ Runnerups || medal
+
+|-
+! scope="row" | 498
+| Tournament Medal - GWJ Participants || medal
+
+|-
+! scope="row" | 499
+| Tournament Medal - ETF2L Highlander Winners || medal
+
+|-
+! scope="row" | 500
+| Tournament Medal - ETF2L Highlander 2nd || medal
+
+|-
+! scope="row" | 501
+| Tournament Medal - ETF2L Highlander 3rd || medal
+
+|-
+! scope="row" | 502
+| Tournament Medal - ETF2L Highlander Participants || medal
+
+|-
+! scope="row" | 503
+| Tournament Medal - UGC Highlander Participants || medal
+
+|-
+! scope="row" | 504
+| Tournament Medal - UGC Highlander Division 1 Winners || medal
+
+|-
+! scope="row" | 505
+| Tournament Medal - UGC Highlander Division 1 2nd || medal
+
+|-
+! scope="row" | 506
+| Tournament Medal - UGC Highlander Division 1 3rd || medal
+
+|-
+! scope="row" | 507
+| Tournament Medal - UGC Highlander Division 2 Winners || medal
+
+|-
+! scope="row" | 508
+| Tournament Medal - UGC Highlander Division 2 2nd || medal
+
+|-
+! scope="row" | 509
+| Tournament Medal - UGC Highlander Division 2 3rd || medal
+
+|-
+! scope="row" | 510
+| Tournament Medal - UGC Highlander Division 3 Winners || medal
+
+|-
+! scope="row" | 511
+| Tournament Medal - UGC Highlander Division 3 2nd || medal
+
+|-
+! scope="row" | 512
+| Tournament Medal - UGC Highlander Division 3 3rd || medal
+
+|-
+! scope="row" | 680
+| UGC Tounament Fall 2011 - Platinum 1st Place || medal
+
+|-
+! scope="row" | 681
+| UGC Tounament Fall 2011 - Platinum 2nd Place || medal
+
+|-
+! scope="row" | 682
+| UGC Tounament Fall 2011 - Platinum 3rd Place || medal
+
+|-
+! scope="row" | 683
+| UGC Tounament Fall 2011 - Platinum Participant || medal
+
+|-
+! scope="row" | 684
+| UGC Tournament Autumn 2011 - Euro Platinum || medal
+
+|-
+! scope="row" | 685
+| UGC Tounament Fall 2011 - Silver 1st Place || medal
+
+|-
+! scope="row" | 686
+| UGC Tounament Fall 2011 - Silver 2nd Place || medal
+
+|-
+! scope="row" | 687
+| UGC Tounament Fall 2011 - Silver 3rd Place || medal
+
+|-
+! scope="row" | 688
+| UGC Tounament Fall 2011 - Silver Participant || medal
+
+|-
+! scope="row" | 689
+| UGC Tournament Autumn 2011 - Euro Silver || medal
+
+|-
+! scope="row" | 690
+| UGC Tounament Fall 2011 - Iron 1st Place || medal
+
+|-
+! scope="row" | 691
+| UGC Tounament Fall 2011 - Iron 2nd Place || medal
+
+|-
+! scope="row" | 692
+| UGC Tounament Fall 2011 - Iron 3rd Place || medal
+
+|-
+! scope="row" | 693
+| UGC Tournament Autumn 2011 - Euro Iron || medal
+
+|-
+! scope="row" | 694
+| UGC Tounament Fall 2011 - Tin 1st Place || medal
+
+|-
+! scope="row" | 695
+| UGC Tounament Fall 2011 - Tin 2nd Place || medal
+
+|-
+! scope="row" | 696
+| UGC Tounament Fall 2011 - Tin 3rd Place || medal
+
+|-
+! scope="row" | 697
+| UGC Tounament Fall 2011 - Participant || medal
+
+|-
+! scope="row" | 698
+| UGC Tournament Autumn 2011 - Euro Tin || medal
+
+|-
+! scope="row" | 8000
+| UGC Highlander 1st Place North American Platinum Season 6 || medal
+
+|-
+! scope="row" | 8001
+| UGC Highlander 2nd Place North American Platinum Season 6 || medal
+
+|-
+! scope="row" | 8002
+| UGC Highlander 3rd Place North American Platinum Season 6 || medal
+
+|-
+! scope="row" | 8003
+| UGC Highlander 1st Place European Platinum Season 6 || medal
+
+|-
+! scope="row" | 8004
+| UGC Highlander 2nd Place European Platinum Season 6 || medal
+
+|-
+! scope="row" | 8005
+| UGC Highlander 3rd Place European Platinum Season 6 || medal
+
+|-
+! scope="row" | 8006
+| UGC Highlander 1st Place South American Platinum Season 6 || medal
+
+|-
+! scope="row" | 8007
+| UGC Highlander 2nd Place South American Platinum Season 6 || medal
+
+|-
+! scope="row" | 8008
+| UGC Highlander 3rd Place South American Platinum Season 6 || medal
+
+|-
+! scope="row" | 8009
+| UGC Highlander 1st Place North American Silver Season 6 || medal
+
+|-
+! scope="row" | 8010
+| UGC Highlander 2nd Place North American Silver Season 6 || medal
+
+|-
+! scope="row" | 8011
+| UGC Highlander 3rd Place North American Silver Season 6 || medal
+
+|-
+! scope="row" | 8012
+| UGC Highlander 1st Place European Silver Season 6 || medal
+
+|-
+! scope="row" | 8013
+| UGC Highlander 2nd Place European Silver Season 6 || medal
+
+|-
+! scope="row" | 8014
+| UGC Highlander 3rd Place European Silver Season 6 || medal
+
+|-
+! scope="row" | 8015
+| UGC Highlander 1st Place South American Silver Season 6 || medal
+
+|-
+! scope="row" | 8016
+| UGC Highlander 2nd Place South American Silver Season 6 || medal
+
+|-
+! scope="row" | 8017
+| UGC Highlander 3rd Place South American Silver Season 6 || medal
+
+|-
+! scope="row" | 8018
+| UGC Highlander 1st Place European Steel Season 6 || medal
+
+|-
+! scope="row" | 8019
+| UGC Highlander 2nd Place European Steel Season 6 || medal
+
+|-
+! scope="row" | 8020
+| UGC Highlander 3rd Place European Steel Season 6 || medal
+
+|-
+! scope="row" | 8021
+| UGC Highlander 1st Place South American Steel Season 6 || medal
+
+|-
+! scope="row" | 8022
+| UGC Highlander 2nd Place South American Steel Season 6 || medal
+
+|-
+! scope="row" | 8023
+| UGC Highlander 3rd Place South American Steel Season 6 || medal
+
+|-
+! scope="row" | 8024
+| UGC Highlander Platinum Participant Season 6 || medal
+
+|-
+! scope="row" | 8025
+| UGC Highlander Silver Participant Season 6 || medal
+
+|-
+! scope="row" | 8026
+| UGC Highlander Steel Participant Season 6 || medal
+
+|-
+! scope="row" | 8027
+| ESL Season VI Premier Division 1st Place || medal
+
+|-
+! scope="row" | 8028
+| ESL Season VI Premier Division 2nd Place || medal
+
+|-
+! scope="row" | 8029
+| ESL Season VI Premier Division 3rd Place || medal
+
+|-
+! scope="row" | 8030
+| ESL Season VI Premier Division Participant || medal
+
+|-
+! scope="row" | 8031
+| ESL Season VI Division 1 1st Place || medal
+
+|-
+! scope="row" | 8032
+| ESL Season VI Division 1 2nd Place || medal
+
+|-
+! scope="row" | 8033
+| ESL Season VI Division 1 3rd Place || medal
+
+|-
+! scope="row" | 8034
+| ESL Season VI Division 1 Participant || medal
+
+|-
+! scope="row" | 8035
+| ESL Season VI Division 2 1st Place || medal
+
+|-
+! scope="row" | 8036
+| ESL Season VI Division 2 2nd Place || medal
+
+|-
+! scope="row" | 8037
+| ESL Season VI Division 2 3rd Place || medal
+
+|-
+! scope="row" | 8038
+| ESL Season VI Division 2 Participant || medal
+
+|-
+! scope="row" | 8039
+| ESL Season VI Division 3 1st Place || medal
+
+|-
+! scope="row" | 8040
+| ESL Season VI Division 3 2nd Place || medal
+
+|-
+! scope="row" | 8041
+| ESL Season VI Division 3 3rd Place || medal
+
+|-
+! scope="row" | 8042
+| ESL Season VI Division 3 Participant || medal
+
+|-
+! scope="row" | 8043
+| ESL Season VI Division 4 1st Place || medal
+
+|-
+! scope="row" | 8044
+| ESL Season VI Division 4 2nd Place || medal
+
+|-
+! scope="row" | 8045
+| ESL Season VI Division 4 3rd Place || medal
+
+|-
+! scope="row" | 8046
+| ESL Season VI Division 4 Participant || medal
+
+|-
+! scope="row" | 8047
+| ESL Season VI Division 5 1st Place || medal
+
+|-
+! scope="row" | 8048
+| ESL Season VI Division 5 2nd Place || medal
+
+|-
+! scope="row" | 8049
+| ESL Season VI Division 5 3rd Place || medal
+
+|-
+! scope="row" | 8050
+| ESL Season VI Division 5 Participant || medal
+
+|-
+! scope="row" | 8051
+| ESL Season VII Premiership Division 1st Place || medal
+
+|-
+! scope="row" | 8052
+| ESL Season VII Premiership Division 2nd Place || medal
+
+|-
+! scope="row" | 8053
+| ESL Season VII Premiership Division 3rd Place || medal
+
+|-
+! scope="row" | 8054
+| ESL Season VII Premiership Division Participant || medal
+
+|-
+! scope="row" | 8055
+| ESL Season VII Division 1 1st Place || medal
+
+|-
+! scope="row" | 8056
+| ESL Season VII Division 1 2nd Place || medal
+
+|-
+! scope="row" | 8057
+| ESL Season VII Division 1 3rd Place || medal
+
+|-
+! scope="row" | 8058
+| ESL Season VII Division 2 1st Place || medal
+
+|-
+! scope="row" | 8059
+| ESL Season VII Division 2 2nd Place || medal
+
+|-
+! scope="row" | 8060
+| ESL Season VII Division 2 Participant || medal
+
+|-
+! scope="row" | 8061
+| ESL Season VII Division 3 Participant || medal
+
+|-
+! scope="row" | 8062
+| ESL Season VII Division 4 1st Place || medal
+
+|-
+! scope="row" | 8063
+| ESL Season VII Division 4 2nd Place || medal
+
+|-
+! scope="row" | 8064
+| ESL Season VII Division 4 3rd Place || medal
+
+|-
+! scope="row" | 8065
+| ESL Season VII Division 4 Participant || medal
+
+|-
+! scope="row" | 8066
+| ESL Season VII Division 5 1st Place || medal
+
+|-
+! scope="row" | 8067
+| ESL Season VII Division 5 2nd Place || medal
+
+|-
+! scope="row" | 8068
+| ESL Season VII Division 5 3rd Place || medal
+
+|-
+! scope="row" | 8069
+| ESL Season VII Division 5 Participant || medal
+
+|-
+! scope="row" | 8070
+| Ready Steady Pan Participant Season 1 || medal
+
+|-
+! scope="row" | 8071
+| Ready Steady Pan Helper Season 1 || medal
+
+|-
+! scope="row" | 8072
+| ETF2L 6v6 Premier Division Gold Medal Season 8 || medal
+
+|-
+! scope="row" | 8073
+| ETF2L 6v6 Premier Division Silver Medal Season 8 || medal
+
+|-
+! scope="row" | 8074
+| ETF2L 6v6 Premier Division Bronze Medal Season 8 || medal
+
+|-
+! scope="row" | 8075
+| ETF2L 6v6 Premier Division Gold Medal Season 9 || medal
+
+|-
+! scope="row" | 8076
+| ETF2L 6v6 Premier Division Silver Medal Season 9 || medal
+
+|-
+! scope="row" | 8077
+| ETF2L 6v6 Premier Division Bronze Medal Season 9 || medal
+
+|-
+! scope="row" | 8078
+| ETF2L 6v6 Premier Division Gold Medal Season 10 || medal
+
+|-
+! scope="row" | 8079
+| ETF2L 6v6 Premier Division Silver Medal Season 10 || medal
+
+|-
+! scope="row" | 8080
+| ETF2L 6v6 Premier Division Bronze Medal Season 10 || medal
+
+|-
+! scope="row" | 8081
+| ETF2L 6v6 Premier Division Gold Medal Season 11 || medal
+
+|-
+! scope="row" | 8082
+| ETF2L 6v6 Premier Division Silver Medal Season 11 || medal
+
+|-
+! scope="row" | 8083
+| ETF2L 6v6 Premier Division Bronze Medal Season 11 || medal
+
+|-
+! scope="row" | 8084
+| ETF2L 6v6 Premier Division Gold Medal Season 12 || medal
+
+|-
+! scope="row" | 8085
+| ETF2L 6v6 Premier Division Silver Medal Season 12 || medal
+
+|-
+! scope="row" | 8086
+| ETF2L 6v6 Premier Division Bronze Medal Season 12 || medal
+
+|-
+! scope="row" | 8087
+| ETF2L 6v6 Premier Division Gold Medal Season 13 || medal
+
+|-
+! scope="row" | 8088
+| ETF2L 6v6 Premier Division Silver Medal Season 13 || medal
+
+|-
+! scope="row" | 8089
+| ETF2L 6v6 Premier Division Bronze Medal Season 13 || medal
+
+|-
+! scope="row" | 8090
+| ETF2L 6v6 Division 1 Group Winner Season 8 || medal
+
+|-
+! scope="row" | 8091
+| ETF2L 6v6 Division 2 Group Winner Season 8 || medal
+
+|-
+! scope="row" | 8092
+| ETF2L 6v6 Division 3 Group Winner Season 8 || medal
+
+|-
+! scope="row" | 8093
+| ETF2L 6v6 Division 4 Group Winner Season 8 || medal
+
+|-
+! scope="row" | 8094
+| ETF2L 6v6 Division 5 Group Winner Season 8 || medal
+
+|-
+! scope="row" | 8095
+| ETF2L 6v6 Division 6 Group Winner Season 8 || medal
+
+|-
+! scope="row" | 8096
+| ETF2L 6v6 Division 1 Group Winner Season 9 || medal
+
+|-
+! scope="row" | 8097
+| ETF2L 6v6 Division 2 Group Winner Season 9 || medal
+
+|-
+! scope="row" | 8098
+| ETF2L 6v6 Division 3 Group Winner Season 9 || medal
+
+|-
+! scope="row" | 8099
+| ETF2L 6v6 Division 4 Group Winner Season 9 || medal
+
+|-
+! scope="row" | 8100
+| ETF2L 6v6 Division 5 Group Winner Season 9 || medal
+
+|-
+! scope="row" | 8101
+| ETF2L 6v6 Division 6 Group Winner Season 9 || medal
+
+|-
+! scope="row" | 8102
+| ETF2L 6v6 Division 1 Group Winner Season 10 || medal
+
+|-
+! scope="row" | 8103
+| ETF2L 6v6 Division 2 Group Winner Season 10 || medal
+
+|-
+! scope="row" | 8104
+| ETF2L 6v6 Division 3 Group Winner Season 10 || medal
+
+|-
+! scope="row" | 8105
+| ETF2L 6v6 Division 4 Group Winner Season 10 || medal
+
+|-
+! scope="row" | 8106
+| ETF2L 6v6 Division 5 Group Winner Season 10 || medal
+
+|-
+! scope="row" | 8107
+| ETF2L 6v6 Division 6 Group Winner Season 10 || medal
+
+|-
+! scope="row" | 8108
+| ETF2L 6v6 Division 1 Group Winner Season 11 || medal
+
+|-
+! scope="row" | 8109
+| ETF2L 6v6 Division 2 Group Winner Season 11 || medal
+
+|-
+! scope="row" | 8110
+| ETF2L 6v6 Division 3 Group Winner Season 11 || medal
+
+|-
+! scope="row" | 8111
+| ETF2L 6v6 Division 4 Group Winner Season 11 || medal
+
+|-
+! scope="row" | 8112
+| ETF2L 6v6 Division 5 Group Winner Season 11 || medal
+
+|-
+! scope="row" | 8113
+| ETF2L 6v6 Division 6 Group Winner Season 11 || medal
+
+|-
+! scope="row" | 8114
+| ETF2L 6v6 Division 1 Group Winner Season 12 || medal
+
+|-
+! scope="row" | 8115
+| ETF2L 6v6 Division 2 Group Winner Season 12 || medal
+
+|-
+! scope="row" | 8116
+| ETF2L 6v6 Division 3 Group Winner Season 12 || medal
+
+|-
+! scope="row" | 8117
+| ETF2L 6v6 Division 4 Group Winner Season 12 || medal
+
+|-
+! scope="row" | 8118
+| ETF2L 6v6 Division 5 Group Winner Season 12 || medal
+
+|-
+! scope="row" | 8119
+| ETF2L 6v6 Division 6 Group Winner Season 12 || medal
+
+|-
+! scope="row" | 8120
+| ETF2L 6v6 Division 1 Group Winner Season 13 || medal
+
+|-
+! scope="row" | 8121
+| ETF2L 6v6 Division 2 Group Winner Season 13 || medal
+
+|-
+! scope="row" | 8122
+| ETF2L 6v6 Division 3 Group Winner Season 13 || medal
+
+|-
+! scope="row" | 8123
+| ETF2L 6v6 Division 4 Group Winner Season 13 || medal
+
+|-
+! scope="row" | 8124
+| ETF2L 6v6 Division 5 Group Winner Season 13 || medal
+
+|-
+! scope="row" | 8125
+| ETF2L 6v6 Division 6 Group Winner Season 13 || medal
+
+|-
+! scope="row" | 8126
+| ETF2L 6v6 Premier Division Participation Medal Season 8 || medal
+
+|-
+! scope="row" | 8127
+| ETF2L 6v6 Division 1 Participation Medal Season 8 || medal
+
+|-
+! scope="row" | 8128
+| ETF2L 6v6 Division 2 Participation Medal Season 8 || medal
+
+|-
+! scope="row" | 8129
+| ETF2L 6v6 Division 3 Participation Medal Season 8 || medal
+
+|-
+! scope="row" | 8130
+| ETF2L 6v6 Division 4 Participation Medal Season 8 || medal
+
+|-
+! scope="row" | 8131
+| ETF2L 6v6 Division 5 Participation Medal Season 8 || medal
+
+|-
+! scope="row" | 8132
+| ETF2L 6v6 Division 6 Participation Medal Season 8 || medal
+
+|-
+! scope="row" | 8133
+| ETF2L 6v6 Premier Division Participation Medal Season 9 || medal
+
+|-
+! scope="row" | 8134
+| ETF2L 6v6 Division 1 Participation Medal Season 9 || medal
+
+|-
+! scope="row" | 8135
+| ETF2L 6v6 Division 2 Participation Medal Season 9 || medal
+
+|-
+! scope="row" | 8136
+| ETF2L 6v6 Division 3 Participation Medal Season 9 || medal
+
+|-
+! scope="row" | 8137
+| ETF2L 6v6 Division 4 Participation Medal Season 9 || medal
+
+|-
+! scope="row" | 8138
+| ETF2L 6v6 Division 5 Participation Medal Season 9 || medal
+
+|-
+! scope="row" | 8139
+| ETF2L 6v6 Division 6 Participation Medal Season 9 || medal
+
+|-
+! scope="row" | 8140
+| ETF2L 6v6 Premier Division Participation Medal Season 10 || medal
+
+|-
+! scope="row" | 8141
+| ETF2L 6v6 Division 1 Participation Medal Season 10 || medal
+
+|-
+! scope="row" | 8142
+| ETF2L 6v6 Division 2 Participation Medal Season 10 || medal
+
+|-
+! scope="row" | 8143
+| ETF2L 6v6 Division 3 Participation Medal Season 10 || medal
+
+|-
+! scope="row" | 8144
+| ETF2L 6v6 Division 4 Participation Medal Season 10 || medal
+
+|-
+! scope="row" | 8145
+| ETF2L 6v6 Division 5 Participation Medal Season 10 || medal
+
+|-
+! scope="row" | 8146
+| ETF2L 6v6 Division 6 Participation Medal Season 10 || medal
+
+|-
+! scope="row" | 8147
+| ETF2L 6v6 Premier Division Participation Medal Season 11 || medal
+
+|-
+! scope="row" | 8148
+| ETF2L 6v6 Division 1 Participation Medal Season 11 || medal
+
+|-
+! scope="row" | 8149
+| ETF2L 6v6 Division 2 Participation Medal Season 11 || medal
+
+|-
+! scope="row" | 8150
+| ETF2L 6v6 Division 3 Participation Medal Season 11 || medal
+
+|-
+! scope="row" | 8151
+| ETF2L 6v6 Division 4 Participation Medal Season 11 || medal
+
+|-
+! scope="row" | 8152
+| ETF2L 6v6 Division 5 Participation Medal Season 11 || medal
+
+|-
+! scope="row" | 8153
+| ETF2L 6v6 Division 6 Participation Medal Season 11 || medal
+
+|-
+! scope="row" | 8154
+| ETF2L 6v6 Premier Division Participation Medal Season 12 || medal
+
+|-
+! scope="row" | 8155
+| ETF2L 6v6 Division 1 Participation Medal Season 12 || medal
+
+|-
+! scope="row" | 8156
+| ETF2L 6v6 Division 2 Participation Medal Season 12 || medal
+
+|-
+! scope="row" | 8157
+| ETF2L 6v6 Division 3 Participation Medal Season 12 || medal
+
+|-
+! scope="row" | 8158
+| ETF2L 6v6 Division 4 Participation Medal Season 12 || medal
+
+|-
+! scope="row" | 8159
+| ETF2L 6v6 Division 5 Participation Medal Season 12 || medal
+
+|-
+! scope="row" | 8160
+| ETF2L 6v6 Division 6 Participation Medal Season 12 || medal
+
+|-
+! scope="row" | 8161
+| ETF2L 6v6 Premier Division Participation Medal Season 13 || medal
+
+|-
+! scope="row" | 8162
+| ETF2L 6v6 Division 1 Participation Medal Season 13 || medal
+
+|-
+! scope="row" | 8163
+| ETF2L 6v6 Division 2 Participation Medal Season 13 || medal
+
+|-
+! scope="row" | 8164
+| ETF2L 6v6 Division 3 Participation Medal Season 13 || medal
+
+|-
+! scope="row" | 8165
+| ETF2L 6v6 Division 4 Participation Medal Season 13 || medal
+
+|-
+! scope="row" | 8166
+| ETF2L 6v6 Division 5 Participation Medal Season 13 || medal
+
+|-
+! scope="row" | 8167
+| ETF2L 6v6 Division 6 Participation Medal Season 13 || medal
+
+|-
+! scope="row" | 8168
+| ETF2L Highlander Division 1 Gold Medal Season 1 || medal
+
+|-
+! scope="row" | 8169
+| ETF2L Highlander Division 1 Silver Medal Season 1 || medal
+
+|-
+! scope="row" | 8170
+| ETF2L Highlander Division 1 Bronze Medal Season 1 || medal
+
+|-
+! scope="row" | 8171
+| ETF2L Highlander Division 1 Gold Medal Season 2 || medal
+
+|-
+! scope="row" | 8172
+| ETF2L Highlander Division 1 Silver Medal Season 2 || medal
+
+|-
+! scope="row" | 8173
+| ETF2L Highlander Division 1 Bronze Medal Season 2 || medal
+
+|-
+! scope="row" | 8174
+| ETF2L Highlander Premier Division Gold Medal Season 3 || medal
+
+|-
+! scope="row" | 8175
+| ETF2L Highlander Premier Division Silver Medal Season 3 || medal
+
+|-
+! scope="row" | 8176
+| ETF2L Highlander Premier Division Bronze Medal Season 3 || medal
+
+|-
+! scope="row" | 8177
+| ETF2L Highlander Division 2 Group Winner Season 1 || medal
+
+|-
+! scope="row" | 8178
+| ETF2L Highlander Division 3 Group Winner Season 1 || medal
+
+|-
+! scope="row" | 8179
+| ETF2L Highlander Division 4 Group Winner Season 1 || medal
+
+|-
+! scope="row" | 8180
+| ETF2L Highlander Division 5 Group Winner Season 1 || medal
+
+|-
+! scope="row" | 8181
+| ETF2L Highlander Division 6 Group Winner Season 1 || medal
+
+|-
+! scope="row" | 8182
+| ETF2L Highlander Division 2 Group Winner Season 2 || medal
+
+|-
+! scope="row" | 8183
+| ETF2L Highlander Division 3 Group Winner Season 2 || medal
+
+|-
+! scope="row" | 8184
+| ETF2L Highlander Division 4 Group Winner Season 2 || medal
+
+|-
+! scope="row" | 8185
+| ETF2L Highlander Division 5 Group Winner Season 2 || medal
+
+|-
+! scope="row" | 8186
+| ETF2L Highlander Division 6 Group Winner Season 2 || medal
+
+|-
+! scope="row" | 8187
+| ETF2L Highlander Division 1 Group Winner Season 3 || medal
+
+|-
+! scope="row" | 8188
+| ETF2L Highlander Division 2 Group Winner Season 3 || medal
+
+|-
+! scope="row" | 8189
+| ETF2L Highlander Division 3 Group Winner Season 3 || medal
+
+|-
+! scope="row" | 8190
+| ETF2L Highlander Division 4 Group Winner Season 3 || medal
+
+|-
+! scope="row" | 8191
+| ETF2L Highlander Division 5 Group Winner Season 3 || medal
+
+|-
+! scope="row" | 8192
+| ETF2L Highlander Division 6 Group Winner Season 3 || medal
+
+|-
+! scope="row" | 8193
+| ETF2L Highlander Division 1 Participation Medal Season 1 || medal
+
+|-
+! scope="row" | 8194
+| ETF2L Highlander Division 2 Participation Medal Season 1 || medal
+
+|-
+! scope="row" | 8195
+| ETF2L Highlander Division 3 Participation Medal Season 1 || medal
+
+|-
+! scope="row" | 8196
+| ETF2L Highlander Division 4 Participation Medal Season 1 || medal
+
+|-
+! scope="row" | 8197
+| ETF2L Highlander Division 5 Participation Medal Season 1 || medal
+
+|-
+! scope="row" | 8198
+| ETF2L Highlander Division 6 Participation Medal Season 1 || medal
+
+|-
+! scope="row" | 8199
+| ETF2L Highlander Division 1 Participation Medal Season 2 || medal
+
+|-
+! scope="row" | 8200
+| ETF2L Highlander Division 2 Participation Medal Season 2 || medal
+
+|-
+! scope="row" | 8201
+| ETF2L Highlander Division 3 Participation Medal Season 2 || medal
+
+|-
+! scope="row" | 8202
+| ETF2L Highlander Division 4 Participation Medal Season 2 || medal
+
+|-
+! scope="row" | 8203
+| ETF2L Highlander Division 5 Participation Medal Season 2 || medal
+
+|-
+! scope="row" | 8204
+| ETF2L Highlander Division 6 Participation Medal Season 2 || medal
+
+|-
+! scope="row" | 8205
+| ETF2L Highlander Premier Division Participation Medal Season 3 || medal
+
+|-
+! scope="row" | 8206
+| ETF2L Highlander Division 1 Participation Medal Season 3 || medal
+
+|-
+! scope="row" | 8207
+| ETF2L Highlander Division 2 Participation Medal Season 3 || medal
+
+|-
+! scope="row" | 8208
+| ETF2L Highlander Division 3 Participation Medal Season 3 || medal
+
+|-
+! scope="row" | 8209
+| ETF2L Highlander Division 4 Participation Medal Season 3 || medal
+
+|-
+! scope="row" | 8210
+| ETF2L Highlander Division 5 Participation Medal Season 3 || medal
+
+|-
+! scope="row" | 8211
+| ETF2L Highlander Division 6 Participation Medal Season 3 || medal
+
+|-
+! scope="row" | 8212
+| ETF2L Ultiduo 1 Gold Medal || medal
+
+|-
+! scope="row" | 8213
+| ETF2L Ultiduo 2 Gold Medal || medal
+
+|-
+! scope="row" | 8214
+| ETF2L Ultiduo 3 Gold Medal || medal
+
+|-
+! scope="row" | 8215
+| ETF2L Ultiduo 4 Gold Medal || medal
+
+|-
+! scope="row" | 8216
+| ESH Ultiduo 1 Gold Medal || medal
+
+|-
+! scope="row" | 8217
+| ESH Ultiduo 2 Gold Medal || medal
+
+|-
+! scope="row" | 8218
+| ESH Ultiduo 3 Gold Medal || medal
+
+|-
+! scope="row" | 8219
+| ESH Ultiduo 4 Gold Medal || medal
+
+|-
+! scope="row" | 8220
+| ESH Ultiduo 5 Gold Medal || medal
+
+|-
+! scope="row" | 8221
+| ESH Ultiduo 6 Gold Medal || medal
+
+|-
+! scope="row" | 8222
+| ESH Ultiduo 7 Gold Medal || medal
+
+|-
+! scope="row" | 8224
+| UGC Highlander 1st Place Platinum Season 8 || medal
+
+|-
+! scope="row" | 8225
+| UGC Highlander 2nd Place Platinum Season 8 || medal
+
+|-
+! scope="row" | 8226
+| UGC Highlander 3rd Place Platinum Season 8 || medal
+
+|-
+! scope="row" | 8227
+| UGC Highlander 1st Place Silver Season 8 || medal
+
+|-
+! scope="row" | 8228
+| UGC Highlander 2nd Place Silver Season 8 || medal
+
+|-
+! scope="row" | 8229
+| UGC Highlander 3rd Place Silver Season 8 || medal
+
+|-
+! scope="row" | 8230
+| UGC Highlander 1st Place Steel Season 8 || medal
+
+|-
+! scope="row" | 8231
+| UGC Highlander 2nd Place Steel Season 8 || medal
+
+|-
+! scope="row" | 8232
+| UGC Highlander 3rd Place Steel Season 8 || medal
+
+|-
+! scope="row" | 8233
+| UGC Highlander 1st Place Iron Season 8 || medal
+
+|-
+! scope="row" | 8234
+| UGC Highlander 2nd Place Iron Season 8 || medal
+
+|-
+! scope="row" | 8235
+| UGC Highlander 3rd Place Iron Season 8 || medal
+
+|-
+! scope="row" | 8236
+| UGC Highlander 1st Place Season 8 || medal
+
+|-
+! scope="row" | 8237
+| UGC Highlander 2nd Place Season 8 || medal
+
+|-
+! scope="row" | 8238
+| UGC Highlander 3rd Place Season 8 || medal
+
+|-
+! scope="row" | 8239
+| UGC Highlander Platinum Participant Season 8 || medal
+
+|-
+! scope="row" | 8240
+| UGC Highlander Silver Participant Season 8 || medal
+
+|-
+! scope="row" | 8241
+| UGC Highlander Steel Participant Season 8 || medal
+
+|-
+! scope="row" | 8242
+| UGC Highlander Participant Season 8 || medal
+
+|-
+! scope="row" | 8243
+| Ready Steady Pan First Place Season 2 || medal
+
+|-
+! scope="row" | 8244
+| Ready Steady Pan Second Place Season 2 || medal
+
+|-
+! scope="row" | 8245
+| Ready Steady Pan Third Place Season 2 || medal
+
+|-
+! scope="row" | 8246
+| Ready Steady Pan Participant Season 2 || medal
+
+|-
+! scope="row" | 8247
+| Ready Steady Pan Helper Season 2 || medal
+
+|}
+
+== Action Items ==
+These go in the Action screen on loadout and are used with H by default
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Item !! scope="col" style="width: 30em" | Item class
+
+|-
+! scope="row" | 241
+| Duel MiniGame || tf_wearable
+
+|-
+! scope="row" | 280
+| Halloween Noise Maker - Black Cat || tf_wearable
+
+|-
+! scope="row" | 281
+| Halloween Noise Maker - Gremlin || tf_wearable
+
+|-
+! scope="row" | 282
+| Halloween Noise Maker - Werewolf || tf_wearable
+
+|-
+! scope="row" | 283
+| Halloween Noise Maker - Witch || tf_wearable
+
+|-
+! scope="row" | 284
+| Halloween Noise Maker - Banshee || tf_wearable
+
+|-
+! scope="row" | 286
+| Halloween Noise Maker - Crazy Laugh || tf_wearable
+
+|-
+! scope="row" | 288
+| Halloween Noise Maker - Stabby || tf_wearable
+
+|-
+! scope="row" | 362
+| Charity Noise Maker - Bell || tf_wearable
+
+|-
+! scope="row" | 364
+| Charity Noise Maker - Gong || tf_wearable
+
+|-
+! scope="row" | 365
+| Charity Noise Maker - Koto || tf_wearable
+
+|-
+! scope="row" | 489
+| Powerup Canteen (MvM) || tf_powerup_bottle
+
+|-
+! scope="row" | 493
+| Promotional Noise Maker - Fireworks || tf_wearable
+
+|-
+! scope="row" | 542
+| Noise Maker - Vuvuzela || tf_wearable
+
+|-
+! scope="row" | 1152
+| Grappling Hook || tf_weapon_grapplinghook
+
+|-
+! scope="row" | 30015
+| Battery Canteens (MvM) || tf_powerup_bottle
+
+|}
+
+==== Spellbooks ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Item !! scope="col" style="width: 30em" | Item class
+
+|-
+! scope="row" | 1069
+| Fancy Spellbook || tf_weapon_spellbook
+
+|-
+! scope="row" | 1070
+| Spellbook Magazine || tf_weapon_spellbook
+
+|-
+! scope="row" | 1132
+| Spellbook Magazine (Stock) || tf_weapon_spellbook
+
+|-
+! scope="row" | 5605
+| Fireproof Secret Diary || tf_weapon_spellbook
+
+|}
+
+=== Holiday Restriction: Halloween or Full Moon ===
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Item !! scope="col" style="width: 30em" | Item class
+
+|-
+! scope="row" | 30535
+| Kritz or Treat Canteen (MvM) || tf_powerup_bottle
+
+|}
+
+==== Holiday Restriction: Birthday ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Item !! scope="col" style="width: 30em" | Item class
+
+|-
+! scope="row" | 536
+| Noise Maker - Birthday || tf_wearable
+
+|}
+
+==== Holiday Restriction: Winter ====
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Item !! scope="col" style="width: 30em" | Item class
+
+|-
+! scope="row" | 673
+| Noise Maker - Winter 2011 || tf_wearable
+
+|}
+
+== Taunt Items ==
+These go in the separate Taunt menu in the loadout and are used with G twice by default
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Item !! scope="col" style="width: 30em" | Player class !! scope="col" style="width: 25em" | Type
+
+|-
+! scope="row" | 167
+| High Five || Any || Hold
+
+|-
+! scope="row" | 438
+| Director's Vision || Any || Single
+
+|-
+! scope="row" | 463
+| Schadenfreude || Any || Single
+
+|-
+! scope="row" | 477
+| Meet the Medic || Medic || Single
+
+|-
+! scope="row" | 1015
+| The Shred Alert || Any || Single
+
+|-
+! scope="row" | 1106
+| Square Dance || Any || Hold
+
+|-
+! scope="row" | 1107
+| Flippin' Awesome || Any || Hold
+
+|-
+! scope="row" | 1108
+| Buy a Life || Spy || Single
+
+|-
+! scope="row" | 1109
+| Results Are In || Medic || Single
+
+|-
+! scope="row" | 1110
+| Rock Paper Scissors || Any || Hold
+
+|-
+! scope="row" | 1111
+| Skullcracker || Any || Hold
+
+|-
+! scope="row" | 1112
+| Party Trick || Pyro || Single
+
+|-
+! scope="row" | 1113
+| Freshly Brewed Victory || Soldier || Single
+
+|-
+! scope="row" | 1114
+| Spent Well Spirits || DemoMan || Single
+
+|-
+! scope="row" | 1115
+| Rancho Relaxo || Engineer || Hold
+
+|-
+! scope="row" | 1116
+| I See You || Sniper || Single
+
+|-
+! scope="row" | 1117
+| Battin' a Thousand || Scout || Single
+
+|-
+! scope="row" | 1118
+| Conga || Any || Group, Continuous
+
+|-
+! scope="row" | 1119
+| Deep Fried Desire || Scout || Single
+
+|-
+! scope="row" | 1120
+| Oblooterated || DemoMan || Single
+
+|-
+! scope="row" | 1157
+| Kazotsky Kick || Any || Group, Continuous
+
+|-
+! scope="row" | 1162
+| Mannrobics || Any || Group, Continuous
+
+|-
+! scope="row" | 30570
+| Pool Party || Pyro || Hold
+
+|-
+! scope="row" | 30609
+| The Killer Solo || Sniper || Single
+
+|-
+! scope="row" | 30572
+| The Boston Breakdance || Scout || Single
+
+|-
+! scope="row" | 30614
+| Most Wanted || Sniper || Single
+
+|-
+! scope="row" | 30615
+| The Boxtrot || Spy || Continuous
+
+|-
+! scope="row" | 30616
+| Proletariat Showoff || Heavy || Single
+
+|-
+! scope="row" | 30618
+| Bucking Bronco || Engineer || Hold
+
+|-
+! scope="row" | 30621
+| Burstchester || Any || Single
+
+|-
+! scope="row" | 30671
+| True Scotsman's Call || DemoMan || Single
+
+|-
+! scope="row" | 30672
+| Zoomin' Broom || Any || Continuous
+
+|-
+! scope="row" | 30673
+| Soldier's Requiem || Soldier || Single
+
+|}
+
+== Powerups ==
+
+Powerups are used by the Mannpower game mode and may or may not appear in a weapon slot.
+
+Note: Critical Hits is not actually a powerup.
+
+{| style="width: 80em" class="wikitable"
+
+|-
+! scope="col" style="width: 5em" | Index !! scope="col" style="width: 25em" | Weapon !! scope="col" style="width: 20em" | Weapon class !! scope="col" style="width: 20em" | Set !! scope="col" style="width: 10em" | Equip Region
+
+|-
+! scope="row" | 1133
+| Powerup: Strength || saxxy
+
+|-
+! scope="row" | 1134
+| Powerup: Haste || saxxy
+
+|-
+! scope="row" | 1135
+| Powerup: Regeneration || saxxy
+
+|-
+! scope="row" | 1136
+| Powerup: Resist|| saxxy
+
+|-
+! scope="row" | 1137
+| Powerup: Vampire || saxxy
+
+|-
+! scope="row" | 1138
+| Powerup: Warlock || saxxy
+
+|-
+! scope="row" | 1139
+| Powerup: Precision || saxxy
+
+|-
+! scope="row" | 1140
+| Powerup: Agility || saxxy
+
+|}
+
+
+== Craft Items ==
+
+These are the items obtained and used primarily through crafting.
+
+'''267''' - Haunted Metal Scrap<br>
+'''429''' - Moustachium Bar<br>
+'''430''' - SpaceChem Fishcake Fragment<br>
+'''431''' - SpaceChem Pin Fragment<br>
+'''699''' - Something Special For Someone Special<br>
+'''725''' - Tour of Duty Ticket<br>
+'''758''' - MvM Squad Surplus Voucher<br>
+'''5000''' - Scrap Metal<br>
+'''5001''' - Reclaimed Metal<br>
+'''5002''' - Refined Metal<br>
+'''5003''' - Scout Class Token<br>
+'''5004''' - Sniper Class Token<br>
+'''5005''' - Soldier Class Token<br>
+'''5006''' - Demoman Class Token<br>
+'''5007''' - Heavy Class Token<br>
+'''5008''' - Medic Class Token<br>
+'''5009''' - Pyro Class Token<br>
+'''5010''' - Spy Class Token<br>
+'''5011''' - Engineer Class Token<br>
+'''5012''' - Primary Slot Token<br>
+'''5013''' - Secondary Slot Token<br>
+'''5014''' - Melee Slot Token<br>
+'''5015''' - Grenade Slot Token<br>
+'''5016''' - Building Slot Token<br>
+'''5017''' - PDA Slot Token<br>
+'''5018''' - PDA2 Slot Token<br>
+'''5019''' - Head Slot Token<br>
+
+== Tools ==
+
+These are items that you use in combination with another via the backpack.
+
+'''5021''' - Mann Co. Supply Crate Key<br />
+'''5022''' - Mann Co. Supply Crate<br />
+'''5023''' - Paint Can<br />
+'''5026''' - Decal Tool<br />
+'''5027''' - Paint: Indubitably Green<br />
+'''5028''' - Paint: Zepheniah's Greed<br />
+'''5029''' - Paint: Noble Hatter's Violet<br />
+'''5030''' - Paint: Color No. 216-190-216<br />
+'''5031''' - Paint: A Deep Commitment to Purple<br />
+'''5032''' - Paint: Mann Co. Orange<br />
+'''5033''' - Paint: Muskelmannbraun<br />
+'''5034''' - Paint: Peculiarly Drab Tincture<br />
+'''5035''' - Paint: Radigan Conagher Brown<br />
+'''5036''' - Paint: Ye Olde Rustic Colour<br />
+'''5037''' - Paint: Australium Gold<br />
+'''5038''' - Paint: Aged Moustache Grey<br />
+'''5039''' - Paint: An Extraordinary Abundance of Tinge<br />
+'''5040''' - Paint: A Distinctive Lack of Hue<br />
+'''5042''' - Gift Wrap<br />
+'''5043''' - A Carefully Wrapped Gift<br />
+'''5044''' - Description Tag<br />
+'''5046''' - Team Paint: Team Spirit<br />
+'''5048''' - Festive Winter Crate<br />
+'''5050''' - Backpack Expander<br />
+'''5051''' - Paint: Pink as Hell<br />
+'''5052''' - Paint: A Color Similar to Slate<br />
+'''5053''' - Paint: Drably Olive<br />
+'''5054''' - Paint: The Bitter Taste of Defeat and Lime<br />
+'''5055''' - Paint: The Color of a Gentlemann's Business Pants<br />
+'''5056''' - Paint: Dark Salmon Injustice<br />
+'''5057''' - Stocking Stuffer Key<br />
+'''5060''' - Team Paint: Operator's Overalls<br />
+'''5061''' - Team Paint: Waterlogged Lab Coat<br />
+'''5062''' - Team Paint: Balaclavas Are Forever<br />
+'''5063''' - Team Paint: An Air of Debonair<br />
+'''5064''' - Team Paint: The Value of Teamwork<br />
+'''5065''' - Team Paint: Cream Spirit<br />
+'''5066''' - Refreshing Summer Cooler<br />
+'''5068''' - Salvaged Mann Co. Supply Crate<br />
+'''5070''' - Naughty Winter Crate<br />
+'''5071''' - Nice Winter Crate<br />
+'''5076''' - Paint: Mann's Mint<br />
+'''5077''' - Paint: After Eight<br />
+'''5500''' - RIFT Well Spun Hat Claim Code<br />
+'''5999''' - Strange Part (Generic)<br>
+
+=== Strange Parts ===
+'''6000''' - Strange Part: Heavies Killed<br>
+'''6001''' - Strange Part: Demomen Killed<br>
+'''6002''' - Strange Part: Soldiers Killed<br>
+'''6003''' - Strange Part: Scouts Killed<br>
+'''6009''' - Strange Part: Building Destroyed<br>
+'''6010''' - Strange Part: Projectiles Reflected<br>
+'''6011''' - Strange Part: Headshot Kills<br>
+'''6012''' - Strange Part: Airborne Enemies Killed<br>
+'''6013''' - Strange Part: Enemies Gibbed<br>
+'''6015''' - Strange Part: Full Moon Kills<br>
+'''6016''' - Strange Part: Domination Kills<br>
+'''6018''' - Strange Part: Revenge Kills<br>
+'''6019''' - Strange Part: Posthumous Kills<br>
+'''6020''' - Strange Part: Allies Extinguished<br>
+'''6021''' - Strange Part: Critical Kills<br>
+'''6022''' - Strange Part: Kills While Explosive-Jumping<br>
+'''6024''' - Strange Part: Cloaked Spies Killed<br>
+'''6025''' - Strange Part: Sappers Destroyed<br>
+'''6026''' - Strange Part: Robots Destroyed<br>
+'''6028''' - Strange Part: Giant Robots Destroyed<br>
+'''6032''' - Strange Part: Low-Health Kills<br>
+'''6033''' - Strange Part: Halloween Kills<br>
+'''6034''' - Strange Part: Robots Destroyed During Halloween<br>
+'''6035''' - Strange Part: Defender Kills<br>
+'''6036''' - Strange Part: Underwater Kills<br>
+'''6037''' - Strange Part: Kills While Ubercharged<br>
+'''6038''' - Strange Part: Tanks Destroyed<br>
+'''6039''' - Strange Part: Long-Distance Kills<br>
+'''6041''' - Strange Part: Kills During Victory Time<br>
+'''6048''' - Strange Part: Robot Spies Destroyed<br>
+'''6051''' - Strange Part: Kills with a Taunt Attack<br>
+'''6052''' - Strange Part: Unusual-Wearing Player Kills<br>
+'''6053''' - Strange Part: Burning Enemy Kills<br>
+'''6054''' - Strange Part: Killstreaks Ended<br>
+'''6055''' - Strange Part: Freezecam Taunt Appearances<br>
+'''6056''' - Strange Part: Damage Dealt<br>
+'''6057''' - Strange Part: Fires Survived<br>
+'''6058''' - Strange Part: Allied Healing Done<br>
+'''6059''' - Strange Part: Point-Blank Kills<br>
+
+=== MvM Robot Parts ===
+'''5700''' - Pristine Robot Currency Digester<br>
+'''5701''' - Pristine Robot Brainstorm Bulb<br>
+'''5702''' - Reinforced Robot Emotion Detector<br>
+'''5703''' - Reinforced Robot Humor Suppression Pump<br>
+'''5704''' - Reinforced Robot Bomb Stabilizer<br>
+'''5705''' - Battle-Worn Robot Taunt Processor<br>
+'''5706''' - Battle-Worn Robot KB-808<br>
+'''5707''' - Battle-Worn Robot Money Furnace<br>
+
+=== Mysterious Tools ===
+'''790''' - What's in the Sandvich Box? (open for Genuine Robo-Sandvich)<br>
+'''791''' - What's in the Companion Square Box? (open for Genuine The Friends Forever Companion Square Badge)<br>
+'''928''' - Portal 2 Soundtrack Promo Package (open for Genuine Ap-Sap)<br>
+
+== Weapon Attributes ==
+
+See Also: [[Team Fortress 2 Item Attribute Indexes]]
