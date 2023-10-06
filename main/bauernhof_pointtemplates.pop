@@ -5631,6 +5631,7 @@
 	SpawnTemplate "Plate_Big"
 	SpawnTemplate "Camera_Crew_Death"
 	SpawnTemplate "DumpsterSpawner"
+	
 	//PlayerSpawnTemplate
 	//{
 	//	Name MedicbagPT

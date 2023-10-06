@@ -58,7 +58,16 @@
 	SpawnEntityFromTable("point_populator_interface", { targetname = "pop_interface" })
 }
 __CollectGameEventCallbacks(::r2v_events)
-
+::StripWeapon <- function(player, slot)
+{
+	for (local i = 0; i < 7; i++)
+	{
+		local weapon = GetPropEntityArray(player, "m_hMyWeapons", i);
+		if (weapon == null || weapon.GetSlot() != slot) continue;
+		weapon.Destroy();
+		break;
+	}
+}
 ::overlay_stuff <- function(org, ang)
 {
 	local logic_relay1 = SpawnEntityFromTable("logic_relay", {
@@ -127,7 +136,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::ModelandScale_FailSafe_Scout <- function(org, ang)
 {
 	local logic_relay7 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/scout.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/scout.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION3"
 	})
@@ -138,7 +147,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::ModelandScale_FailSafe_Soldier <- function(org, ang)
 {
 	local logic_relay8 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/soldier.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/soldier.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION4"
 	})
@@ -149,7 +158,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::ModelandScale_FailSafe_Pyro <- function(org, ang)
 {
 	local logic_relay9 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/pyro.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/pyro.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION5"
 	})
@@ -160,7 +169,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::ModelandScale_FailSafe_Demo <- function(org, ang)
 {
 	local logic_relay10 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/demo.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/demo.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION6"
 	})
@@ -171,7 +180,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::ModelandScale_FailSafe_Heavy <- function(org, ang)
 {
 	local logic_relay11 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/heavy.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/heavy.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION7"
 	})
@@ -182,7 +191,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::ModelandScale_FailSafe_Engie <- function(org, ang)
 {
 	local logic_relay12 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/engineer.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/engineer.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION8"
 	})
@@ -193,7 +202,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::ModelandScale_FailSafe_Medic <- function(org, ang)
 {
 	local logic_relay13 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/medic.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/medic.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION9"
 	})
@@ -204,7 +213,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::ModelandScale_FailSafe_Sniper <- function(org, ang)
 {
 	local logic_relay14 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/sniper.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/sniper.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION10"
 	})
@@ -215,7 +224,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::ModelandScale_FailSafe_Spy <- function(org, ang)
 {
 	local logic_relay15 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorSetCustomModelWithClassAnimationsmodels/player/spy.mdl0.1-1",
+	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/spy.mdl,0.1,-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION11"
 	})
@@ -259,8 +268,8 @@ __CollectGameEventCallbacks(::r2v_events)
 
 	local logic_relay20 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "users",
-	    "ontrigger#1": "!activator,addoutput,onuser1 !selfRunScriptCodeself.AddCustomAttribute(`cancel falling damage`, 1, -1)0-1,0,-1",
-	    "ontrigger#2": "!activator,addoutput,onuser1 !selfRunScriptCodeself.RemoveCustomAttribute(`cancel falling damage`)5-1,0,-1"
+	    "ontrigger#1": "!activatoraddoutputonuser1 !self:RunScriptCode:self.AddCustomAttribute(`cancel falling damage`, 1, -1):0:-10-1",
+	    "ontrigger#2": "!activator,addoutput,onuser1 !self:RunScriptCode:self.RemoveCustomAttribute(`cancel falling damage`):5:-1,0,-1"
 	})
 	logic_relay20.SetOrigin(org)
 	logic_relay20.SetAngles(ang[0], ang[1], ang[2])
@@ -339,20 +348,20 @@ __CollectGameEventCallbacks(::r2v_events)
 	    maxs = "64 64 64",
 	    spawnflags = 1,
 	    "onstarttouch#1": "!activator,addoutput,targetname aliveblu,0,-1",
-	    "onstarttouch#2": "!activatorRunScriptCodeself.AddCond(43)0-1",
-	    "onstarttouch#3": "!activatorRunScriptCodeself.AddCond(114)0-1",
-	    "onstarttouch#4": "!activator,$weaponstripslot,0,0,-1",
-	    "onstarttouch#5": "!activator,$weaponstripslot,1,0,-1",
-	    "onstarttouch#6": "!activator,$weaponstripslot,3,0,-1",
-	    "onstarttouch#7": "!activator,$weaponstripslot,4,0,-1",
-	    "onstarttouch#8": "!activator,$weaponstripslot,5,0,-1",
-	    "onstarttouch#9": "!activator,$weaponstripslot,6,0,-1",
+	    "onstarttouch#2": "!activator,RunScriptCode,self.AddCond(43),0,-1",
+	    "onstarttouch#3": "!activator,RunScriptCode,self.AddCond(114),0,-1",
+	    "onstarttouch#4": "!activatorRunScriptCodeStripWeapon(self, 0)0-1",
+	    "onstarttouch#5": "!activatorRunScriptCodeStripWeapon(self, 1)0-1",
+	    "onstarttouch#6": "!activatorRunScriptCodeStripWeapon(self, 3)0-1",
+	    "onstarttouch#7": "!activatorRunScriptCodeStripWeapon(self, 4)0-1",
+	    "onstarttouch#8": "!activatorRunScriptCodeStripWeapon(self, 5)0-1",
+	    "onstarttouch#9": "!activatorRunScriptCodeStripWeapon(self, 6)0-1",
 	    "onstarttouch#10": "!activatorRunScriptCodeWeaponSwitchSlot(2, self)0-1",
 	    "onstarttouch#11": "!activatorRunScriptCodeself.AddCustomAttribute(`SET BONUS: special dsp`, 38, -1)0-1",
 	    "onstarttouch#12": "!activatorRunScriptCodeself.AddCustomAttribute(`damage penalty`, 0.5, -1)0-1",
 	    "onstarttouch#13": "!activatorRunScriptCodeself.AddCustomAttribute(`increased jump height`, 1, -1)0-1",
 	    "onstarttouch#14": "!activatorRunScriptCodeself.AddCustomAttribute(`dmg taken from crit reduced`, 1, -1)0-1",
-	    "onstarttouch#15": "!activatorSetCustomModelWithClassAnimationsmodels/bots/soldier/bot_soldier_gibby.mdl0.1-1"
+	    "onstarttouch#15": "!activator,SetCustomModelWithClassAnimations,models/bots/soldier/bot_soldier_gibby.mdl,0.1,-1"
 	})
 	trigger_multiple_brush4.KeyValueFromInt("solid", 2)
 	trigger_multiple_brush4.KeyValueFromString("mins", "-64 -64 -64")
@@ -1168,7 +1177,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay68 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "SURVIVORAISTART",
-	    "OnTrigger#1": "point_populator_interfaceChangeBotAttributesShop0-1"
+	    "OnTrigger#1": "point_populator_interface,ChangeBotAttributes,Shop,0,-1"
 	})
 	logic_relay68.SetOrigin(org)
 	logic_relay68.SetAngles(ang[0], ang[1], ang[2])
@@ -1179,7 +1188,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay69 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "SURVIVORAIEND",
-	    "OnTrigger#1": "point_populator_interfaceChangeBotAttributesDefense0-1"
+	    "OnTrigger#1": "point_populator_interface,ChangeBotAttributes,Defense,0,-1"
 	})
 	logic_relay69.SetOrigin(org)
 	logic_relay69.SetAngles(ang[0], ang[1], ang[2])
@@ -1190,7 +1199,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay70 = SpawnEntityFromTable("logic_relay", {
 	    origin = Vector(-1611.31, 4748.55, 169.35),
 	    targetname = "SURVIVORAIEXIT",
-	    "OnTrigger#1": "point_populator_interfaceChangeBotAttributesExit0-1"
+	    "OnTrigger#1": "point_populator_interface,ChangeBotAttributes,Exit,0,-1"
 	})
 	logic_relay70.SetOrigin(org)
 	logic_relay70.SetAngles(ang[0], ang[1], ang[2])
@@ -1242,7 +1251,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnMapSpawn#23": "camera2,kill,,2,-1",
 	    "OnMapSpawn#24": "signchat,Show,,2,-1",
 	    "OnMapSpawn#25": "badsign,Show,,12,-1",
-	    "OnMapSpawn#26": "playerSetCustomModelWithClassAnimations-1",
+	    "OnMapSpawn#26": "player,SetCustomModelWithClassAnimations,,-1",
 	    "OnMapSpawn#27": "shopgear,setattached,fam,0,-1",
 	    "OnMapSpawn#28": "shopgear,setlightingorigin,fam,0,-1"
 	})
@@ -4444,7 +4453,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	logic_relay225.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay226 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)0-1",
+	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152, null)0-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION26"
 	})
@@ -4463,7 +4472,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	logic_relay227.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay228 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)0-1",
+	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152, null)0-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION28"
 	})
@@ -4482,7 +4491,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	logic_relay229.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay230 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)0-1",
+	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152, null)0-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION30"
 	})
@@ -4490,1606 +4499,167 @@ __CollectGameEventCallbacks(::r2v_events)
 	logic_relay230.SetAngles(ang[0], ang[1], ang[2])
 
 }
-::SpawnTemplate "p_brushbug_fix" <- function(org, ang)
-{
-	local 231 = SpawnEntityFromTable("", {
-	    SpawnTemplate = "p_brushbug_fix",
-	    SpawnTemplate = "reviveredasblu",
-	    SpawnTemplate = "p_beginrelay",
-	    SpawnTemplate = "p_spawnremover1",
-	    SpawnTemplate = "p_spawnremover2",
-	    SpawnTemplate = "p_spawnremover3",
-	    SpawnTemplate = "p_shake",
-	    SpawnTemplate = "p_shakelong",
-	    SpawnTemplate = "p_rock_pusher",
-	    Name = "p_voice"
-	})
-	231.SetOrigin(org)
-	231.SetAngles(ang[0], ang[1], ang[2])
 
-}
-::SpawnTemplate <- function(org, ang)
-{
-	local 232 = SpawnEntityFromTable("", {
-	    Name = "p_lastbot"
-	})
-	232.SetOrigin(org)
-	232.SetAngles(ang[0], ang[1], ang[2])
-
-	local 233 = SpawnEntityFromTable("", {
-	    Name = "p_camera"
-	})
-	233.SetOrigin(org)
-	233.SetAngles(ang[0], ang[1], ang[2])
-
-	local 234 = SpawnEntityFromTable("", {
-	    Name = "p_camera2"
-	})
-	234.SetOrigin(org)
-	234.SetAngles(ang[0], ang[1], ang[2])
-
-	local 235 = SpawnEntityFromTable("", {
-	    Name = "p_camera3"
-	})
-	235.SetOrigin(org)
-	235.SetAngles(ang[0], ang[1], ang[2])
-
-	local 236 = SpawnEntityFromTable("", {
-	    Name = "p_camera4"
-	})
-	236.SetOrigin(org)
-	236.SetAngles(ang[0], ang[1], ang[2])
-
-	local 237 = SpawnEntityFromTable("", {
-	    Name = "p_pointmaker",
-	    Origin = "626 -942 -85",
-	    Angles = "0 0 0"
-	})
-	237.SetOrigin(org)
-	237.SetAngles(ang[0], ang[1], ang[2])
-
-	local 238 = SpawnEntityFromTable("", {
-	    Name = "p_pointmaker2",
-	    Origin = "500 -985 -80",
-	    Angles = "0 25 0"
-	})
-	238.SetOrigin(org)
-	238.SetAngles(ang[0], ang[1], ang[2])
-
-	local 239 = SpawnEntityFromTable("", {
-	    
-	})
-	239.SetOrigin(org)
-	239.SetAngles(ang[0], ang[1], ang[2])
-
-	local 240 = SpawnEntityFromTable("", {
-	    
-	})
-	240.SetOrigin(org)
-	240.SetAngles(ang[0], ang[1], ang[2])
-
-	local 241 = SpawnEntityFromTable("", {
-	    
-	})
-	241.SetOrigin(org)
-	241.SetAngles(ang[0], ang[1], ang[2])
-
-	local 242 = SpawnEntityFromTable("", {
-	    
-	})
-	242.SetOrigin(org)
-	242.SetAngles(ang[0], ang[1], ang[2])
-
-	local 243 = SpawnEntityFromTable("", {
-	    
-	})
-	243.SetOrigin(org)
-	243.SetAngles(ang[0], ang[1], ang[2])
-
-	local 244 = SpawnEntityFromTable("", {
-	    
-	})
-	244.SetOrigin(org)
-	244.SetAngles(ang[0], ang[1], ang[2])
-
-	local 245 = SpawnEntityFromTable("", {
-	    
-	})
-	245.SetOrigin(org)
-	245.SetAngles(ang[0], ang[1], ang[2])
-
-	local 246 = SpawnEntityFromTable("", {
-	    
-	})
-	246.SetOrigin(org)
-	246.SetAngles(ang[0], ang[1], ang[2])
-
-	local 247 = SpawnEntityFromTable("", {
-	    
-	})
-	247.SetOrigin(org)
-	247.SetAngles(ang[0], ang[1], ang[2])
-
-	local 248 = SpawnEntityFromTable("", {
-	    
-	})
-	248.SetOrigin(org)
-	248.SetAngles(ang[0], ang[1], ang[2])
-
-	local 249 = SpawnEntityFromTable("", {
-	    
-	})
-	249.SetOrigin(org)
-	249.SetAngles(ang[0], ang[1], ang[2])
-
-	local 250 = SpawnEntityFromTable("", {
-	    
-	})
-	250.SetOrigin(org)
-	250.SetAngles(ang[0], ang[1], ang[2])
-
-	local 251 = SpawnEntityFromTable("", {
-	    
-	})
-	251.SetOrigin(org)
-	251.SetAngles(ang[0], ang[1], ang[2])
-
-	local 252 = SpawnEntityFromTable("", {
-	    
-	})
-	252.SetOrigin(org)
-	252.SetAngles(ang[0], ang[1], ang[2])
-
-	local 253 = SpawnEntityFromTable("", {
-	    
-	})
-	253.SetOrigin(org)
-	253.SetAngles(ang[0], ang[1], ang[2])
-
-	local 254 = SpawnEntityFromTable("", {
-	    
-	})
-	254.SetOrigin(org)
-	254.SetAngles(ang[0], ang[1], ang[2])
-
-	local 255 = SpawnEntityFromTable("", {
-	    
-	})
-	255.SetOrigin(org)
-	255.SetAngles(ang[0], ang[1], ang[2])
-
-	local 256 = SpawnEntityFromTable("", {
-	    
-	})
-	256.SetOrigin(org)
-	256.SetAngles(ang[0], ang[1], ang[2])
-
-	local 257 = SpawnEntityFromTable("", {
-	    
-	})
-	257.SetOrigin(org)
-	257.SetAngles(ang[0], ang[1], ang[2])
-
-	local 258 = SpawnEntityFromTable("", {
-	    
-	})
-	258.SetOrigin(org)
-	258.SetAngles(ang[0], ang[1], ang[2])
-
-	local 259 = SpawnEntityFromTable("", {
-	    
-	})
-	259.SetOrigin(org)
-	259.SetAngles(ang[0], ang[1], ang[2])
-
-	local 260 = SpawnEntityFromTable("", {
-	    
-	})
-	260.SetOrigin(org)
-	260.SetAngles(ang[0], ang[1], ang[2])
-
-	local 261 = SpawnEntityFromTable("", {
-	    
-	})
-	261.SetOrigin(org)
-	261.SetAngles(ang[0], ang[1], ang[2])
-
-	local 262 = SpawnEntityFromTable("", {
-	    
-	})
-	262.SetOrigin(org)
-	262.SetAngles(ang[0], ang[1], ang[2])
-
-	local 263 = SpawnEntityFromTable("", {
-	    
-	})
-	263.SetOrigin(org)
-	263.SetAngles(ang[0], ang[1], ang[2])
-
-	local 264 = SpawnEntityFromTable("", {
-	    
-	})
-	264.SetOrigin(org)
-	264.SetAngles(ang[0], ang[1], ang[2])
-
-	local 265 = SpawnEntityFromTable("", {
-	    
-	})
-	265.SetOrigin(org)
-	265.SetAngles(ang[0], ang[1], ang[2])
-
-	local 266 = SpawnEntityFromTable("", {
-	    
-	})
-	266.SetOrigin(org)
-	266.SetAngles(ang[0], ang[1], ang[2])
-
-	local 267 = SpawnEntityFromTable("", {
-	    
-	})
-	267.SetOrigin(org)
-	267.SetAngles(ang[0], ang[1], ang[2])
-
-	local 268 = SpawnEntityFromTable("", {
-	    
-	})
-	268.SetOrigin(org)
-	268.SetAngles(ang[0], ang[1], ang[2])
-
-	local 269 = SpawnEntityFromTable("", {
-	    
-	})
-	269.SetOrigin(org)
-	269.SetAngles(ang[0], ang[1], ang[2])
-
-	local 270 = SpawnEntityFromTable("", {
-	    
-	})
-	270.SetOrigin(org)
-	270.SetAngles(ang[0], ang[1], ang[2])
-
-	local 271 = SpawnEntityFromTable("", {
-	    
-	})
-	271.SetOrigin(org)
-	271.SetAngles(ang[0], ang[1], ang[2])
-
-	local 272 = SpawnEntityFromTable("", {
-	    
-	})
-	272.SetOrigin(org)
-	272.SetAngles(ang[0], ang[1], ang[2])
-
-	local 273 = SpawnEntityFromTable("", {
-	    
-	})
-	273.SetOrigin(org)
-	273.SetAngles(ang[0], ang[1], ang[2])
-
-	local 274 = SpawnEntityFromTable("", {
-	    Origin = "0 1163 70",
-	    Angles = "0 -90 0"
-	})
-	274.SetOrigin(org)
-	274.SetAngles(ang[0], ang[1], ang[2])
-
-	local 275 = SpawnEntityFromTable("", {
-	    Origin = "0 560 -55",
-	    Angles = "0 -90 0"
-	})
-	275.SetOrigin(org)
-	275.SetAngles(ang[0], ang[1], ang[2])
-
-	local 276 = SpawnEntityFromTable("", {
-	    Origin = "0 -240 -80",
-	    Angles = "0 -90 0"
-	})
-	276.SetOrigin(org)
-	276.SetAngles(ang[0], ang[1], ang[2])
-
-	local 277 = SpawnEntityFromTable("", {
-	    Origin = "0 80 -80",
-	    Angles = "-35 -90 0"
-	})
-	277.SetOrigin(org)
-	277.SetAngles(ang[0], ang[1], ang[2])
-
-	local 278 = SpawnEntityFromTable("", {
-	    Origin = "0 1792 178",
-	    Angles = "0 90 0"
-	})
-	278.SetOrigin(org)
-	278.SetAngles(ang[0], ang[1], ang[2])
-
-	local 279 = SpawnEntityFromTable("", {
-	    Origin = "532 2522 267",
-	    Angles = "0 45 0"
-	})
-	279.SetOrigin(org)
-	279.SetAngles(ang[0], ang[1], ang[2])
-
-	local 280 = SpawnEntityFromTable("", {
-	    Origin = "-835 1705 200",
-	    Angles = "0 90 0"
-	})
-	280.SetOrigin(org)
-	280.SetAngles(ang[0], ang[1], ang[2])
-
-	local 281 = SpawnEntityFromTable("", {
-	    Origin = "852 1445 200",
-	    Angles = "0 180 0"
-	})
-	281.SetOrigin(org)
-	281.SetAngles(ang[0], ang[1], ang[2])
-
-	local 282 = SpawnEntityFromTable("", {
-	    
-	})
-	282.SetOrigin(org)
-	282.SetAngles(ang[0], ang[1], ang[2])
-
-	local 283 = SpawnEntityFromTable("", {
-	    
-	})
-	283.SetOrigin(org)
-	283.SetAngles(ang[0], ang[1], ang[2])
-
-	local 284 = SpawnEntityFromTable("", {
-	    
-	})
-	284.SetOrigin(org)
-	284.SetAngles(ang[0], ang[1], ang[2])
-
-	local 285 = SpawnEntityFromTable("", {
-	    
-	})
-	285.SetOrigin(org)
-	285.SetAngles(ang[0], ang[1], ang[2])
-
-	local 286 = SpawnEntityFromTable("", {
-	    
-	})
-	286.SetOrigin(org)
-	286.SetAngles(ang[0], ang[1], ang[2])
-
-	local 287 = SpawnEntityFromTable("", {
-	    
-	})
-	287.SetOrigin(org)
-	287.SetAngles(ang[0], ang[1], ang[2])
-
-	local 288 = SpawnEntityFromTable("", {
-	    
-	})
-	288.SetOrigin(org)
-	288.SetAngles(ang[0], ang[1], ang[2])
-
-	local 289 = SpawnEntityFromTable("", {
-	    Origin = "0 380 267"
-	})
-	289.SetOrigin(org)
-	289.SetAngles(ang[0], ang[1], ang[2])
-
-	local 290 = SpawnEntityFromTable("", {
-	    Origin = "-647 465 267"
-	})
-	290.SetOrigin(org)
-	290.SetAngles(ang[0], ang[1], ang[2])
-
-	local 291 = SpawnEntityFromTable("", {
-	    Origin = "626 -942 -90"
-	})
-	291.SetOrigin(org)
-	291.SetAngles(ang[0], ang[1], ang[2])
-
-	local 292 = SpawnEntityFromTable("", {
-	    Origin = "800 1514 267"
-	})
-	292.SetOrigin(org)
-	292.SetAngles(ang[0], ang[1], ang[2])
-
-	local 293 = SpawnEntityFromTable("", {
-	    Origin = "870 1514 267"
-	})
-	293.SetOrigin(org)
-	293.SetAngles(ang[0], ang[1], ang[2])
-
-	local 294 = SpawnEntityFromTable("", {
-	    Origin = "940 1514 267"
-	})
-	294.SetOrigin(org)
-	294.SetAngles(ang[0], ang[1], ang[2])
-
-	local 295 = SpawnEntityFromTable("", {
-	    Origin = "0 676 10"
-	})
-	295.SetOrigin(org)
-	295.SetAngles(ang[0], ang[1], ang[2])
-
-	local 296 = SpawnEntityFromTable("", {
-	    Origin = "-5 1113 139"
-	})
-	296.SetOrigin(org)
-	296.SetAngles(ang[0], ang[1], ang[2])
-
-	local 297 = SpawnEntityFromTable("", {
-	    Origin = "0 1432 267"
-	})
-	297.SetOrigin(org)
-	297.SetAngles(ang[0], ang[1], ang[2])
-
-	local 298 = SpawnEntityFromTable("", {
-	    Origin = "706 -700 0"
-	})
-	298.SetOrigin(org)
-	298.SetAngles(ang[0], ang[1], ang[2])
-
-	local 299 = SpawnEntityFromTable("", {
-	    
-	})
-	299.SetOrigin(org)
-	299.SetAngles(ang[0], ang[1], ang[2])
-
-	local 300 = SpawnEntityFromTable("", {
-	    
-	})
-	300.SetOrigin(org)
-	300.SetAngles(ang[0], ang[1], ang[2])
-
-	local 301 = SpawnEntityFromTable("", {
-	    Origin = "620 1430 267"
-	})
-	301.SetOrigin(org)
-	301.SetAngles(ang[0], ang[1], ang[2])
-
-	local 302 = SpawnEntityFromTable("", {
-	    Origin = "0 488 192"
-	})
-	302.SetOrigin(org)
-	302.SetAngles(ang[0], ang[1], ang[2])
-
-	local 303 = SpawnEntityFromTable("", {
-	    
-	})
-	303.SetOrigin(org)
-	303.SetAngles(ang[0], ang[1], ang[2])
-
-	local 304 = SpawnEntityFromTable("", {
-	    
-	})
-	304.SetOrigin(org)
-	304.SetAngles(ang[0], ang[1], ang[2])
-
-	local 305 = SpawnEntityFromTable("", {
-	    
-	})
-	305.SetOrigin(org)
-	305.SetAngles(ang[0], ang[1], ang[2])
-
-	local 306 = SpawnEntityFromTable("", {
-	    
-	})
-	306.SetOrigin(org)
-	306.SetAngles(ang[0], ang[1], ang[2])
-
-	local 307 = SpawnEntityFromTable("", {
-	    
-	})
-	307.SetOrigin(org)
-	307.SetAngles(ang[0], ang[1], ang[2])
-
-	local 308 = SpawnEntityFromTable("", {
-	    
-	})
-	308.SetOrigin(org)
-	308.SetAngles(ang[0], ang[1], ang[2])
-
-	local 309 = SpawnEntityFromTable("", {
-	    
-	})
-	309.SetOrigin(org)
-	309.SetAngles(ang[0], ang[1], ang[2])
-
-	local 310 = SpawnEntityFromTable("", {
-	    
-	})
-	310.SetOrigin(org)
-	310.SetAngles(ang[0], ang[1], ang[2])
-
-	local 311 = SpawnEntityFromTable("", {
-	    
-	})
-	311.SetOrigin(org)
-	311.SetAngles(ang[0], ang[1], ang[2])
-
-	local 312 = SpawnEntityFromTable("", {
-	    
-	})
-	312.SetOrigin(org)
-	312.SetAngles(ang[0], ang[1], ang[2])
-
-	local 313 = SpawnEntityFromTable("", {
-	    
-	})
-	313.SetOrigin(org)
-	313.SetAngles(ang[0], ang[1], ang[2])
-
-	local 314 = SpawnEntityFromTable("", {
-	    Name = "p_fade1"
-	})
-	314.SetOrigin(org)
-	314.SetAngles(ang[0], ang[1], ang[2])
-
-	local 315 = SpawnEntityFromTable("", {
-	    Name = "p_fade2"
-	})
-	315.SetOrigin(org)
-	315.SetAngles(ang[0], ang[1], ang[2])
-
-	local 316 = SpawnEntityFromTable("", {
-	    Name = "p_fade3"
-	})
-	316.SetOrigin(org)
-	316.SetAngles(ang[0], ang[1], ang[2])
-
-	local 317 = SpawnEntityFromTable("", {
-	    Name = "p_fade4"
-	})
-	317.SetOrigin(org)
-	317.SetAngles(ang[0], ang[1], ang[2])
-
-	local 318 = SpawnEntityFromTable("", {
-	    Name = "p_fade5"
-	})
-	318.SetOrigin(org)
-	318.SetAngles(ang[0], ang[1], ang[2])
-
-	local 319 = SpawnEntityFromTable("", {
-	    Name = "p_shutter_pusher"
-	})
-	319.SetOrigin(org)
-	319.SetAngles(ang[0], ang[1], ang[2])
-
-	local 320 = SpawnEntityFromTable("", {
-	    Name = "p_shutter_pusher2"
-	})
-	320.SetOrigin(org)
-	320.SetAngles(ang[0], ang[1], ang[2])
-
-	local 321 = SpawnEntityFromTable("", {
-	    Name = "p_brokenwall_pusher"
-	})
-	321.SetOrigin(org)
-	321.SetAngles(ang[0], ang[1], ang[2])
-
-	local 322 = SpawnEntityFromTable("", {
-	    Name = "p_ledgefix_left"
-	})
-	322.SetOrigin(org)
-	322.SetAngles(ang[0], ang[1], ang[2])
-
-	local 323 = SpawnEntityFromTable("", {
-	    Name = "p_ledgefix_right"
-	})
-	323.SetOrigin(org)
-	323.SetAngles(ang[0], ang[1], ang[2])
-
-	local 324 = SpawnEntityFromTable("", {
-	    Name = "p_brokenwall_pusher2"
-	})
-	324.SetOrigin(org)
-	324.SetAngles(ang[0], ang[1], ang[2])
-
-	local 325 = SpawnEntityFromTable("", {
-	    Name = "p_yeet_failsafe"
-	})
-	325.SetOrigin(org)
-	325.SetAngles(ang[0], ang[1], ang[2])
-
-	local 326 = SpawnEntityFromTable("", {
-	    Name = "p_yeet"
-	})
-	326.SetOrigin(org)
-	326.SetAngles(ang[0], ang[1], ang[2])
-
-	local 327 = SpawnEntityFromTable("", {
-	    Name = "p_yeet2"
-	})
-	327.SetOrigin(org)
-	327.SetAngles(ang[0], ang[1], ang[2])
-
-	local 328 = SpawnEntityFromTable("", {
-	    Name = "p_yeet3"
-	})
-	328.SetOrigin(org)
-	328.SetAngles(ang[0], ang[1], ang[2])
-
-	local 329 = SpawnEntityFromTable("", {
-	    Name = "p_yeet4"
-	})
-	329.SetOrigin(org)
-	329.SetAngles(ang[0], ang[1], ang[2])
-
-	local 330 = SpawnEntityFromTable("", {
-	    Name = "p_mapblock"
-	})
-	330.SetOrigin(org)
-	330.SetAngles(ang[0], ang[1], ang[2])
-
-	local 331 = SpawnEntityFromTable("", {
-	    Name = "viro_music"
-	})
-	331.SetOrigin(org)
-	331.SetAngles(ang[0], ang[1], ang[2])
-
-	local 332 = SpawnEntityFromTable("", {
-	    Name = "p_hhhteleporter"
-	})
-	332.SetOrigin(org)
-	332.SetAngles(ang[0], ang[1], ang[2])
-
-	local 333 = SpawnEntityFromTable("", {
-	    Name = "p_teleporter_brush"
-	})
-	333.SetOrigin(org)
-	333.SetAngles(ang[0], ang[1], ang[2])
-
-	local 334 = SpawnEntityFromTable("", {
-	    Name = "p_teleporter_brush_finale"
-	})
-	334.SetOrigin(org)
-	334.SetAngles(ang[0], ang[1], ang[2])
-
-	local 335 = SpawnEntityFromTable("", {
-	    Name = "p_finale_facer"
-	})
-	335.SetOrigin(org)
-	335.SetAngles(ang[0], ang[1], ang[2])
-
-	local 336 = SpawnEntityFromTable("", {
-	    Name = "p_finale_facerblu"
-	})
-	336.SetOrigin(org)
-	336.SetAngles(ang[0], ang[1], ang[2])
-
-	local 337 = SpawnEntityFromTable("", {
-	    Name = "p_teleporter"
-	})
-	337.SetOrigin(org)
-	337.SetAngles(ang[0], ang[1], ang[2])
-
-	local 338 = SpawnEntityFromTable("", {
-	    Name = "p_teleporterfinale"
-	})
-	338.SetOrigin(org)
-	338.SetAngles(ang[0], ang[1], ang[2])
-
-	local 339 = SpawnEntityFromTable("", {
-	    Name = "p_beer"
-	})
-	339.SetOrigin(org)
-	339.SetAngles(ang[0], ang[1], ang[2])
-
-	local 340 = SpawnEntityFromTable("", {
-	    Name = "p_brokenstairs_clip"
-	})
-	340.SetOrigin(org)
-	340.SetAngles(ang[0], ang[1], ang[2])
-
-	local 341 = SpawnEntityFromTable("", {
-	    Name = "p_barrel",
-	    Origin = "647 375 189",
-	    Angles = "0 180 0"
-	})
-	341.SetOrigin(org)
-	341.SetAngles(ang[0], ang[1], ang[2])
-
-	local 342 = SpawnEntityFromTable("", {
-	    Name = "p_barrel",
-	    Origin = "660 375 189",
-	    Angles = "0 -180 0"
-	})
-	342.SetOrigin(org)
-	342.SetAngles(ang[0], ang[1], ang[2])
-
-	local 343 = SpawnEntityFromTable("", {
-	    Name = "r_cade_relay_last",
-	    Origin = "720 1280 192",
-	    Angles = "0 0 0"
-	})
-	343.SetOrigin(org)
-	343.SetAngles(ang[0], ang[1], ang[2])
-
-	local 344 = SpawnEntityFromTable("", {
-	    Name = "p_shitcade",
-	    Origin = "0 250 -85",
-	    Angles = "0 180 0"
-	})
-	344.SetOrigin(org)
-	344.SetAngles(ang[0], ang[1], ang[2])
-
-	local 345 = SpawnEntityFromTable("", {
-	    Name = "p_shitcade2",
-	    Origin = "75 250 -85",
-	    Angles = "0 90 0"
-	})
-	345.SetOrigin(org)
-	345.SetAngles(ang[0], ang[1], ang[2])
-
-	local 346 = SpawnEntityFromTable("", {
-	    Name = "p_shitcade2",
-	    Origin = "-75 250 -85",
-	    Angles = "0 90 0"
-	})
-	346.SetOrigin(org)
-	346.SetAngles(ang[0], ang[1], ang[2])
-
-	local 347 = SpawnEntityFromTable("", {
-	    Name = "p_shitcade2",
-	    Origin = "75 240 -85",
-	    Angles = "0 -90 0"
-	})
-	347.SetOrigin(org)
-	347.SetAngles(ang[0], ang[1], ang[2])
-
-	local 348 = SpawnEntityFromTable("", {
-	    Name = "p_shitcade2",
-	    Origin = "-75 240 -85",
-	    Angles = "0 -90 0"
-	})
-	348.SetOrigin(org)
-	348.SetAngles(ang[0], ang[1], ang[2])
-
-	local 349 = SpawnEntityFromTable("", {
-	    Name = "p_box_intro",
-	    Origin = "9 320 -25",
-	    Angles = "0 -15 0"
-	})
-	349.SetOrigin(org)
-	349.SetAngles(ang[0], ang[1], ang[2])
-
-	local 350 = SpawnEntityFromTable("", {
-	    Name = "p_crate_intro",
-	    Origin = "45 380 -65",
-	    Angles = "0 90 0"
-	})
-	350.SetOrigin(org)
-	350.SetAngles(ang[0], ang[1], ang[2])
-
-	local 351 = SpawnEntityFromTable("", {
-	    Name = "p_crate_intro",
-	    Origin = "-30 380 -65",
-	    Angles = "0 110 0"
-	})
-	351.SetOrigin(org)
-	351.SetAngles(ang[0], ang[1], ang[2])
-
-	local 352 = SpawnEntityFromTable("", {
-	    Name = "p_chair_intro",
-	    Origin = "0 300 60",
-	    Angles = "130 0 0"
-	})
-	352.SetOrigin(org)
-	352.SetAngles(ang[0], ang[1], ang[2])
-
-	local 353 = SpawnEntityFromTable("", {
-	    Name = "p_chair_intro",
-	    Origin = "-33 320 64",
-	    Angles = "170 180 0"
-	})
-	353.SetOrigin(org)
-	353.SetAngles(ang[0], ang[1], ang[2])
-
-	local 354 = SpawnEntityFromTable("", {
-	    Name = "p_chair_intro",
-	    Origin = "127 332 -65",
-	    Angles = "-30 90 0"
-	})
-	354.SetOrigin(org)
-	354.SetAngles(ang[0], ang[1], ang[2])
-
-	local 355 = SpawnEntityFromTable("", {
-	    Name = "p_chair_intro",
-	    Origin = "-100 332 -65",
-	    Angles = "-30 90 0"
-	})
-	355.SetOrigin(org)
-	355.SetAngles(ang[0], ang[1], ang[2])
-
-	local 356 = SpawnEntityFromTable("", {
-	    Name = "p_desk_intro",
-	    Origin = "9 320 -65",
-	    Angles = "0 0 0"
-	})
-	356.SetOrigin(org)
-	356.SetAngles(ang[0], ang[1], ang[2])
-
-	local 357 = SpawnEntityFromTable("", {
-	    Name = "p_table2",
-	    Origin = "-184 1000 -65",
-	    Angles = "0 0 0"
-	})
-	357.SetOrigin(org)
-	357.SetAngles(ang[0], ang[1], ang[2])
-
-	local 358 = SpawnEntityFromTable("", {
-	    Name = "p_crate",
-	    Origin = "-164 1007 -17",
-	    Angles = "0 90 0"
-	})
-	358.SetOrigin(org)
-	358.SetAngles(ang[0], ang[1], ang[2])
-
-	local 359 = SpawnEntityFromTable("", {
-	    Name = "p_crate",
-	    Origin = "-197 993 -65",
-	    Angles = "0 90 0"
-	})
-	359.SetOrigin(org)
-	359.SetAngles(ang[0], ang[1], ang[2])
-
-	local 360 = SpawnEntityFromTable("", {
-	    Name = "p_plank2",
-	    Origin = "-223 1600 220",
-	    Angles = "0 90 0"
-	})
-	360.SetOrigin(org)
-	360.SetAngles(ang[0], ang[1], ang[2])
-
-	local 361 = SpawnEntityFromTable("", {
-	    Name = "p_plank2",
-	    Origin = "-287 1600 220",
-	    Angles = "0 90 0"
-	})
-	361.SetOrigin(org)
-	361.SetAngles(ang[0], ang[1], ang[2])
-
-	local 362 = SpawnEntityFromTable("", {
-	    Name = "p_plank",
-	    Origin = "-300 1575 205",
-	    Angles = "45 90 90"
-	})
-	362.SetOrigin(org)
-	362.SetAngles(ang[0], ang[1], ang[2])
-
-	local 363 = SpawnEntityFromTable("", {
-	    Name = "p_plank",
-	    Origin = "-250 1575 205",
-	    Angles = "45 90 90"
-	})
-	363.SetOrigin(org)
-	363.SetAngles(ang[0], ang[1], ang[2])
-
-	local 364 = SpawnEntityFromTable("", {
-	    Name = "p_plank",
-	    Origin = "-350 1575 205",
-	    Angles = "45 90 90"
-	})
-	364.SetOrigin(org)
-	364.SetAngles(ang[0], ang[1], ang[2])
-
-	local 365 = SpawnEntityFromTable("", {
-	    Name = "p_table",
-	    Origin = "462 854 -65",
-	    Angles = "0 90 0"
-	})
-	365.SetOrigin(org)
-	365.SetAngles(ang[0], ang[1], ang[2])
-
-	local 366 = SpawnEntityFromTable("", {
-	    Name = "p_desk_intro",
-	    Origin = "19 315 -25",
-	    Angles = "0 0 90"
-	})
-	366.SetOrigin(org)
-	366.SetAngles(ang[0], ang[1], ang[2])
-
-	local 367 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_nolevel",
-	    Origin = "-650 250 -85",
-	    Angles = "0 180 0"
-	})
-	367.SetOrigin(org)
-	367.SetAngles(ang[0], ang[1], ang[2])
-
-	local 368 = SpawnEntityFromTable("", {
-	    Name = "p_bookcase",
-	    Origin = "555 792 -65",
-	    Angles = "0 -90 0"
-	})
-	368.SetOrigin(org)
-	368.SetAngles(ang[0], ang[1], ang[2])
-
-	local 369 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_nolevel2",
-	    Origin = "390 2050 285",
-	    Angles = "90 90 0"
-	})
-	369.SetOrigin(org)
-	369.SetAngles(ang[0], ang[1], ang[2])
-
-	local 370 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_nolevel3",
-	    Origin = "390 1925 345",
-	    Angles = "-90 90 0"
-	})
-	370.SetOrigin(org)
-	370.SetAngles(ang[0], ang[1], ang[2])
-
-	local 371 = SpawnEntityFromTable("", {
-	    Name = "r_cade_relay",
-	    Origin = "720 1280 192",
-	    Angles = "0 0 0"
-	})
-	371.SetOrigin(org)
-	371.SetAngles(ang[0], ang[1], ang[2])
-
-	local 372 = SpawnEntityFromTable("", {
-	    Name = "r_cade_relay_lower",
-	    Origin = "720 1280 192",
-	    Angles = "0 0 0"
-	})
-	372.SetOrigin(org)
-	372.SetAngles(ang[0], ang[1], ang[2])
-
-	local 373 = SpawnEntityFromTable("", {
-	    Name = "r_cade_relay_window",
-	    Origin = "720 1280 192",
-	    Angles = "0 0 0"
-	})
-	373.SetOrigin(org)
-	373.SetAngles(ang[0], ang[1], ang[2])
-
-	local 374 = SpawnEntityFromTable("", {
-	    Name = "r_respawn_relay",
-	    Origin = "720 1280 192",
-	    Angles = "0 0 0"
-	})
-	374.SetOrigin(org)
-	374.SetAngles(ang[0], ang[1], ang[2])
-
-	local 375 = SpawnEntityFromTable("", {
-	    Name = "p_newlife"
-	})
-	375.SetOrigin(org)
-	375.SetAngles(ang[0], ang[1], ang[2])
-
-	local 376 = SpawnEntityFromTable("", {
-	    Name = "p_cabinet",
-	    Origin = "720 1296 192",
-	    Angles = "0 0 0"
-	})
-	376.SetOrigin(org)
-	376.SetAngles(ang[0], ang[1], ang[2])
-
-	local 377 = SpawnEntityFromTable("", {
-	    Name = "p_shopengi",
-	    Origin = "945 1616 192",
-	    Angles = "0 -90 0"
-	})
-	377.SetOrigin(org)
-	377.SetAngles(ang[0], ang[1], ang[2])
-
-	local 378 = SpawnEntityFromTable("", {
-	    Name = "p_spook",
-	    Origin = "578 235 215",
-	    Angles = "0 90 0"
-	})
-	378.SetOrigin(org)
-	378.SetAngles(ang[0], ang[1], ang[2])
-
-	local 379 = SpawnEntityFromTable("", {
-	    Name = "p_spook2",
-	    Origin = "520 220 225",
-	    Angles = "0 90 0"
-	})
-	379.SetOrigin(org)
-	379.SetAngles(ang[0], ang[1], ang[2])
-
-	local 380 = SpawnEntityFromTable("", {
-	    Name = "p_spook3",
-	    Origin = "570 220 195",
-	    Angles = "0 90 0"
-	})
-	380.SetOrigin(org)
-	380.SetAngles(ang[0], ang[1], ang[2])
-
-	local 381 = SpawnEntityFromTable("", {
-	    Name = "p_cargodoor",
-	    Origin = "636 1435 190",
-	    Angles = "0 -90 0"
-	})
-	381.SetOrigin(org)
-	381.SetAngles(ang[0], ang[1], ang[2])
-
-	local 382 = SpawnEntityFromTable("", {
-	    Name = "p_cargoshop1",
-	    Origin = "936 1603 198",
-	    Angles = "0 180 0"
-	})
-	382.SetOrigin(org)
-	382.SetAngles(ang[0], ang[1], ang[2])
-
-	local 383 = SpawnEntityFromTable("", {
-	    Name = "p_cargoshop2",
-	    Origin = "936 1603 335",
-	    Angles = "0 180 0"
-	})
-	383.SetOrigin(org)
-	383.SetAngles(ang[0], ang[1], ang[2])
-
-	local 384 = SpawnEntityFromTable("", {
-	    Name = "p_cargoshop3",
-	    Origin = "855 1520 255",
-	    Angles = "0 -90 0"
-	})
-	384.SetOrigin(org)
-	384.SetAngles(ang[0], ang[1], ang[2])
-
-	local 385 = SpawnEntityFromTable("", {
-	    Name = "p_desk",
-	    Origin = "0 488 192",
-	    Angles = "0 0 0"
-	})
-	385.SetOrigin(org)
-	385.SetAngles(ang[0], ang[1], ang[2])
-
-	local 386 = SpawnEntityFromTable("", {
-	    Name = "p_rick",
-	    Origin = "0 -35 788",
-	    Angles = "0 -90 0"
-	})
-	386.SetOrigin(org)
-	386.SetAngles(ang[0], ang[1], ang[2])
-
-	local 387 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_level1",
-	    Origin = "575 252 277",
-	    Angles = "0 180 0"
-	})
-	387.SetOrigin(org)
-	387.SetAngles(ang[0], ang[1], ang[2])
-
-	local 388 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_level1",
-	    Origin = "515 252 277",
-	    Angles = "0 0 0"
-	})
-	388.SetOrigin(org)
-	388.SetAngles(ang[0], ang[1], ang[2])
-
-	local 389 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_level2",
-	    Origin = "-698 900 -65",
-	    Angles = "0 90 0"
-	})
-	389.SetOrigin(org)
-	389.SetAngles(ang[0], ang[1], ang[2])
-
-	local 390 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_plate2",
-	    Origin = "-715 810 -65",
-	    Angles = "0 0 0"
-	})
-	390.SetOrigin(org)
-	390.SetAngles(ang[0], ang[1], ang[2])
-
-	local 391 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_level2",
-	    Origin = "-710 350 -50",
-	    Angles = "0 -90 0"
-	})
-	391.SetOrigin(org)
-	391.SetAngles(ang[0], ang[1], ang[2])
-
-	local 392 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_level2",
-	    Origin = "700 415 -65",
-	    Angles = "0 -90 0"
-	})
-	392.SetOrigin(org)
-	392.SetAngles(ang[0], ang[1], ang[2])
-
-	local 393 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_plate2",
-	    Origin = "720 515 -65",
-	    Angles = "0 180 0"
-	})
-	393.SetOrigin(org)
-	393.SetAngles(ang[0], ang[1], ang[2])
-
-	local 394 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_plate2",
-	    Origin = "700 515 -85",
-	    Angles = "0 0 0"
-	})
-	394.SetOrigin(org)
-	394.SetAngles(ang[0], ang[1], ang[2])
-
-	local 395 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_level3a",
-	    Origin = "-475 1610 240",
-	    Angles = "0 0 0"
-	})
-	395.SetOrigin(org)
-	395.SetAngles(ang[0], ang[1], ang[2])
-
-	local 396 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_plate3",
-	    Origin = "-540 1640 185",
-	    Angles = "0 -90 0"
-	})
-	396.SetOrigin(org)
-	396.SetAngles(ang[0], ang[1], ang[2])
-
-	local 397 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_level3a",
-	    Origin = "500 1610 310",
-	    Angles = "0 180 0"
-	})
-	397.SetOrigin(org)
-	397.SetAngles(ang[0], ang[1], ang[2])
-
-	local 398 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_plate3",
-	    Origin = "540 1640 185",
-	    Angles = "0 -90 0"
-	})
-	398.SetOrigin(org)
-	398.SetAngles(ang[0], ang[1], ang[2])
-
-	local 399 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_level3b",
-	    Origin = "-225 1600 350",
-	    Angles = "0 0 0"
-	})
-	399.SetOrigin(org)
-	399.SetAngles(ang[0], ang[1], ang[2])
-
-	local 400 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_level3a",
-	    Origin = "-715 1280 280",
-	    Angles = "0 90 0"
-	})
-	400.SetOrigin(org)
-	400.SetAngles(ang[0], ang[1], ang[2])
-
-	local 401 = SpawnEntityFromTable("", {
-	    Name = "p_barricade_plate3",
-	    Origin = "-735 1150 185",
-	    Angles = "0 0 0"
-	})
-	401.SetOrigin(org)
-	401.SetAngles(ang[0], ang[1], ang[2])
-
-	local 402 = SpawnEntityFromTable("", {
-	    Name = "p_box",
-	    Origin = "-630 550 192",
-	    Angles = "0 -25 0"
-	})
-	402.SetOrigin(org)
-	402.SetAngles(ang[0], ang[1], ang[2])
-
-	local 403 = SpawnEntityFromTable("", {
-	    Name = "p_fullkit",
-	    Origin = "697 617 350",
-	    Angles = "90 180 0"
-	})
-	403.SetOrigin(org)
-	403.SetAngles(ang[0], ang[1], ang[2])
-
-	local 404 = SpawnEntityFromTable("", {
-	    Name = "p_fullammo",
-	    Origin = "-697 895 350",
-	    Angles = "90 0 0"
-	})
-	404.SetOrigin(org)
-	404.SetAngles(ang[0], ang[1], ang[2])
-
-	local 405 = SpawnEntityFromTable("", {
-	    Name = "p_mediumkit",
-	    Origin = "-655 1225 30",
-	    Angles = "0 0 0"
-	})
-	405.SetOrigin(org)
-	405.SetAngles(ang[0], ang[1], ang[2])
-
-	local 406 = SpawnEntityFromTable("", {
-	    Name = "p_mediumammo",
-	    Origin = "-84 1258 80",
-	    Angles = "0 0 0"
-	})
-	406.SetOrigin(org)
-	406.SetAngles(ang[0], ang[1], ang[2])
-
-	local 407 = SpawnEntityFromTable("", {
-	    Name = "p_mediumammo",
-	    Origin = "400 1039 176",
-	    Angles = "0 0 0"
-	})
-	407.SetOrigin(org)
-	407.SetAngles(ang[0], ang[1], ang[2])
-
-	local 408 = SpawnEntityFromTable("", {
-	    Name = "p_smallammo",
-	    Origin = "20 498 230",
-	    Angles = "0 0 0"
-	})
-	408.SetOrigin(org)
-	408.SetAngles(ang[0], ang[1], ang[2])
-
-	local 409 = SpawnEntityFromTable("", {
-	    Name = "p_smallammo",
-	    Origin = "-20 498 230",
-	    Angles = "0 0 0"
-	})
-	409.SetOrigin(org)
-	409.SetAngles(ang[0], ang[1], ang[2])
-
-	local 410 = SpawnEntityFromTable("", {
-	    Name = "p_smallammo",
-	    Origin = "0 474 230",
-	    Angles = "0 0 0"
-	})
-	410.SetOrigin(org)
-	410.SetAngles(ang[0], ang[1], ang[2])
-
-	local 411 = SpawnEntityFromTable("", {
-	    Name = "p_smallammo",
-	    Origin = "-671 1436 192",
-	    Angles = "0 0 0"
-	})
-	411.SetOrigin(org)
-	411.SetAngles(ang[0], ang[1], ang[2])
-
-	local 412 = SpawnEntityFromTable("", {
-	    Name = "p_smallammo",
-	    Origin = "-671 1462 192",
-	    Angles = "0 0 0"
-	})
-	412.SetOrigin(org)
-	412.SetAngles(ang[0], ang[1], ang[2])
-
-	local 413 = SpawnEntityFromTable("", {
-	    Name = "p_smallammo",
-	    Origin = "-671 1410 192",
-	    Angles = "0 0 0"
-	})
-	413.SetOrigin(org)
-	413.SetAngles(ang[0], ang[1], ang[2])
-
-	local 414 = SpawnEntityFromTable("", {
-	    Name = "p_fullammo",
-	    Origin = "444 262 93",
-	    Angles = "90 90 0"
-	})
-	414.SetOrigin(org)
-	414.SetAngles(ang[0], ang[1], ang[2])
-
-	local 415 = SpawnEntityFromTable("", {
-	    Name = "p_smallammoskin",
-	    Origin = "1130 2525 212",
-	    Angles = "-90 0 0"
-	})
-	415.SetOrigin(org)
-	415.SetAngles(ang[0], ang[1], ang[2])
-
-	local 416 = SpawnEntityFromTable("", {
-	    Name = "p_smallammoskin",
-	    Origin = "1130 2505 212",
-	    Angles = "-90 0 0"
-	})
-	416.SetOrigin(org)
-	416.SetAngles(ang[0], ang[1], ang[2])
-
-	local 417 = SpawnEntityFromTable("", {
-	    Name = "p_smallammoskin",
-	    Origin = "1130 2545 212",
-	    Angles = "-90 0 0"
-	})
-	417.SetOrigin(org)
-	417.SetAngles(ang[0], ang[1], ang[2])
-
-	local 418 = SpawnEntityFromTable("", {
-	    Name = "p_smallmedkitskin",
-	    Origin = "1115 2525 192",
-	    Angles = "0 0 0"
-	})
-	418.SetOrigin(org)
-	418.SetAngles(ang[0], ang[1], ang[2])
-
-	local 419 = SpawnEntityFromTable("", {
-	    Name = "p_smallmedkitskin",
-	    Origin = "1115 2505 192",
-	    Angles = "0 0 0"
-	})
-	419.SetOrigin(org)
-	419.SetAngles(ang[0], ang[1], ang[2])
-
-	local 420 = SpawnEntityFromTable("", {
-	    Name = "p_smallmedkitskin",
-	    Origin = "1115 2545 192",
-	    Angles = "0 0 0"
-	})
-	420.SetOrigin(org)
-	420.SetAngles(ang[0], ang[1], ang[2])
-
-	local 421 = SpawnEntityFromTable("", {
-	    Name = "p_fullkit",
-	    Origin = "554 793 93",
-	    Angles = "90 -90 0"
-	})
-	421.SetOrigin(org)
-	421.SetAngles(ang[0], ang[1], ang[2])
-
-	local 422 = SpawnEntityFromTable("", {
-	    Name = "p_smallmedkit",
-	    Origin = "20 298 192",
-	    Angles = "0 0 0"
-	})
-	422.SetOrigin(org)
-	422.SetAngles(ang[0], ang[1], ang[2])
-
-	local 423 = SpawnEntityFromTable("", {
-	    Name = "p_smallmedkit",
-	    Origin = "-20 298 192",
-	    Angles = "0 0 0"
-	})
-	423.SetOrigin(org)
-	423.SetAngles(ang[0], ang[1], ang[2])
-
-	local 424 = SpawnEntityFromTable("", {
-	    Name = "p_smallmedkit",
-	    Origin = "0 325 192",
-	    Angles = "0 0 0"
-	})
-	424.SetOrigin(org)
-	424.SetAngles(ang[0], ang[1], ang[2])
-
-	local 425 = SpawnEntityFromTable("", {
-	    Name = "p_smallmedkit",
-	    Origin = "671 971 -65",
-	    Angles = "0 0 0"
-	})
-	425.SetOrigin(org)
-	425.SetAngles(ang[0], ang[1], ang[2])
-
-	local 426 = SpawnEntityFromTable("", {
-	    Name = "p_smallmedkit",
-	    Origin = "671 945 -65",
-	    Angles = "0 0 0"
-	})
-	426.SetOrigin(org)
-	426.SetAngles(ang[0], ang[1], ang[2])
-
-	local 427 = SpawnEntityFromTable("", {
-	    Name = "p_smallmedkit",
-	    Origin = "671 919 -65",
-	    Angles = "0 0 0"
-	})
-	427.SetOrigin(org)
-	427.SetAngles(ang[0], ang[1], ang[2])
-
-	local 428 = SpawnEntityFromTable("", {
-	    Name = "p_smallammo",
-	    Origin = "671 893 -65",
-	    Angles = "0 0 0"
-	})
-	428.SetOrigin(org)
-	428.SetAngles(ang[0], ang[1], ang[2])
-
-	local 429 = SpawnEntityFromTable("", {
-	    Name = "p_smallammo",
-	    Origin = "671 867 -65",
-	    Angles = "0 0 0"
-	})
-	429.SetOrigin(org)
-	429.SetAngles(ang[0], ang[1], ang[2])
-
-	local 430 = SpawnEntityFromTable("", {
-	    Name = "p_smallammo",
-	    Origin = "671 841 -65",
-	    Angles = "0 0 0"
-	})
-	430.SetOrigin(org)
-	430.SetAngles(ang[0], ang[1], ang[2])
-
-	local 431 = SpawnEntityFromTable("", {
-	    Name = "p_chair",
-	    Origin = "0 450 192",
-	    Angles = "0 90 0"
-	})
-	431.SetOrigin(org)
-	431.SetAngles(ang[0], ang[1], ang[2])
-
-	local 432 = SpawnEntityFromTable("", {
-	    Name = "p_bookcase3",
-	    Origin = "339 1270 -45",
-	    Angles = "0 -90 -25"
-	})
-	432.SetOrigin(org)
-	432.SetAngles(ang[0], ang[1], ang[2])
-
-	local 433 = SpawnEntityFromTable("", {
-	    Name = "p_bookcase",
-	    Origin = "447 265 -65",
-	    Angles = "0 90 0"
-	})
-	433.SetOrigin(org)
-	433.SetAngles(ang[0], ang[1], ang[2])
-
-	local 434 = SpawnEntityFromTable("", {
-	    Name = "p_bookcase",
-	    Origin = "-696 895 192",
-	    Angles = "0 0 0"
-	})
-	434.SetOrigin(org)
-	434.SetAngles(ang[0], ang[1], ang[2])
-
-	local 435 = SpawnEntityFromTable("", {
-	    Name = "p_bookcase",
-	    Origin = "696 620 192",
-	    Angles = "0 180 0"
-	})
-	435.SetOrigin(org)
-	435.SetAngles(ang[0], ang[1], ang[2])
-
-	local 436 = SpawnEntityFromTable("", {
-	    Name = "p_stair",
-	    Origin = "710 250 105",
-	    Angles = "0 90 0"
-	})
-	436.SetOrigin(org)
-	436.SetAngles(ang[0], ang[1], ang[2])
-
-	local 437 = SpawnEntityFromTable("", {
-	    Name = "p_monstercage",
-	    Origin = "-655 1225 -65",
-	    Angles = "0 90 0"
-	})
-	437.SetOrigin(org)
-	437.SetAngles(ang[0], ang[1], ang[2])
-
-	local 438 = SpawnEntityFromTable("", {
-	    Name = "p_crate",
-	    Origin = "-597 1245 -65",
-	    Angles = "0 180 0"
-	})
-	438.SetOrigin(org)
-	438.SetAngles(ang[0], ang[1], ang[2])
-
-	local 439 = SpawnEntityFromTable("", {
-	    Name = "p_crate",
-	    Origin = "-660 1146 -65",
-	    Angles = "0 90 0"
-	})
-	439.SetOrigin(org)
-	439.SetAngles(ang[0], ang[1], ang[2])
-
-	local 440 = SpawnEntityFromTable("", {
-	    Name = "p_heli",
-	    Origin = "1200 3200 500",
-	    Angles = "36 90 0"
-	})
-	440.SetOrigin(org)
-	440.SetAngles(ang[0], ang[1], ang[2])
-
-	local 441 = SpawnEntityFromTable("", {
-	    Name = "p_crash",
-	    Origin = "1200 3500 500",
-	    Name = "p_crate",
-	    Origin = "275 2350 100",
-	    Angles = "5 90 -5"
-	})
-	441.SetOrigin(org)
-	441.SetAngles(ang[0], ang[1], ang[2])
-
-	local 442 = SpawnEntityFromTable("", {
-	    Name = "p_zombie",
-	    Origin = "562 1600 -140",
-	    Angles = "0 -90 0"
-	})
-	442.SetOrigin(org)
-	442.SetAngles(ang[0], ang[1], ang[2])
-
-	local 443 = SpawnEntityFromTable("", {
-	    Name = "p_beam",
-	    Origin = "562 1500 -50",
-	    Angles = "0 -90 0"
-	})
-	443.SetOrigin(org)
-	443.SetAngles(ang[0], ang[1], ang[2])
-
-	local 444 = SpawnEntityFromTable("", {
-	    Name = "p_beam",
-	    Origin = "562 1500 -25",
-	    Angles = "0 90 0"
-	})
-	444.SetOrigin(org)
-	444.SetAngles(ang[0], ang[1], ang[2])
-
-	local 445 = SpawnEntityFromTable("", {
-	    Name = "p_slower0"
-	})
-	445.SetOrigin(org)
-	445.SetAngles(ang[0], ang[1], ang[2])
-
-	local 446 = SpawnEntityFromTable("", {
-	    Name = "p_slower1"
-	})
-	446.SetOrigin(org)
-	446.SetAngles(ang[0], ang[1], ang[2])
-
-	local 447 = SpawnEntityFromTable("", {
-	    Name = "p_slower2"
-	})
-	447.SetOrigin(org)
-	447.SetAngles(ang[0], ang[1], ang[2])
-
-	local 448 = SpawnEntityFromTable("", {
-	    Name = "p_slower3"
-	})
-	448.SetOrigin(org)
-	448.SetAngles(ang[0], ang[1], ang[2])
-
-	local 449 = SpawnEntityFromTable("", {
-	    Name = "p_slower4"
-	})
-	449.SetOrigin(org)
-	449.SetAngles(ang[0], ang[1], ang[2])
-
-	local 450 = SpawnEntityFromTable("", {
-	    Name = "p_slower5"
-	})
-	450.SetOrigin(org)
-	450.SetAngles(ang[0], ang[1], ang[2])
-
-	local 451 = SpawnEntityFromTable("", {
-	    Name = "p_slower6"
-	})
-	451.SetOrigin(org)
-	451.SetAngles(ang[0], ang[1], ang[2])
-
-	local 452 = SpawnEntityFromTable("", {
-	    Name = "p_slower7"
-	})
-	452.SetOrigin(org)
-	452.SetAngles(ang[0], ang[1], ang[2])
-
-	local 453 = SpawnEntityFromTable("", {
-	    Name = "p_slower8"
-	})
-	453.SetOrigin(org)
-	453.SetAngles(ang[0], ang[1], ang[2])
-
-	local 454 = SpawnEntityFromTable("", {
-	    Name = "p_slower9"
-	})
-	454.SetOrigin(org)
-	454.SetAngles(ang[0], ang[1], ang[2])
-
-	local 455 = SpawnEntityFromTable("", {
-	    Name = "p_leet",
-	    Origin = "-152 1255 -65",
-	    Angles = "0 45 0"
-	})
-	455.SetOrigin(org)
-	455.SetAngles(ang[0], ang[1], ang[2])
-
-	local 456 = SpawnEntityFromTable("", {
-	    Name = "p_leet",
-	    Origin = "345 1662 187",
-	    Angles = "0 180 0"
-	})
-	456.SetOrigin(org)
-	456.SetAngles(ang[0], ang[1], ang[2])
-
-	local 457 = SpawnEntityFromTable("", {
-	    Name = "p_crate2",
-	    Origin = "345 1640 150",
-	    Angles = "0 0 0"
-	})
-	457.SetOrigin(org)
-	457.SetAngles(ang[0], ang[1], ang[2])
-
-}
+overlay_stuff(Vector(0, 0, 0), [0, 0, 0])
+ModelandScale_FailSafe_Scout(Vector(0, 0, 0), [0, 0, 0])
+ModelandScale_FailSafe_Soldier(Vector(0, 0, 0), [0, 0, 0])
+ModelandScale_FailSafe_Pyro(Vector(0, 0, 0), [0, 0, 0])
+ModelandScale_FailSafe_Demo(Vector(0, 0, 0), [0, 0, 0])
+ModelandScale_FailSafe_Heavy(Vector(0, 0, 0), [0, 0, 0])
+ModelandScale_FailSafe_Engie(Vector(0, 0, 0), [0, 0, 0])
+ModelandScale_FailSafe_Medic(Vector(0, 0, 0), [0, 0, 0])
+ModelandScale_FailSafe_Sniper(Vector(0, 0, 0), [0, 0, 0])
+ModelandScale_FailSafe_Spy(Vector(0, 0, 0), [0, 0, 0])
+reviveredasblu_player(Vector(0, 0, 0), [0, 0, 0])
+reviveredasblu(Vector(0, 0, 0), [0, 0, 0])
+p_tankcolored(Vector(0, 0, 0), [0, 0, 0])
+p_money(Vector(0, 0, 0), [0, 0, 0])
+p_kaboom(Vector(852, 1445, 200), [0, 180, 0])
+p_crash(Vector(0, 0, 0), [0, 0, 0])
+p_barnaclehead(Vector(0, 0, 5), [0, 0, -180])
+sentry_collision_template(Vector(0, 0, 0), [0, 0, 0])
+p_skullhead(Vector(10, 0, 100), [0, 90, 45])
+p_fade1(Vector(0, 0, 0), [0, 0, 0])
+p_fade2(Vector(0, 0, 0), [0, 0, 0])
+p_fade3(Vector(0, 0, 0), [0, 0, 0])
+p_fade4(Vector(0, 0, 0), [0, 0, 0])
+p_fade5(Vector(0, 0, 0), [0, 0, 0])
+p_teleporter(Vector(550, 292, 250), [0, 90, 0])
+p_teleporterfinale(Vector(628, -752, 1165), [90, 90, 0])
+p_newlife(Vector(0, 0, 0), [0, 0, 0])
+p_chat1(Vector(945, 1600, 275), [0, 0, 0])
+p_signbomb(Vector(-1180, -486, 203), [0, 0, 0])
+p_badsign(Vector(727, 1300, 310), [0, 0, 0])
+p_sign666(Vector(10, 1235, 165), [0, 0, 0])
+p_sign0(Vector(10, 1235, 165), [0, 0, 0])
+p_sign1(Vector(-680, -139, 66), [0, 0, 0])
+p_sign2(Vector(0, 121, 53), [0, 0, 0])
+p_sign3(Vector(856, 1530, 360), [0, 0, 0])
+p_sign4(Vector(856, 1530, 360), [0, 0, 0])
+p_sign5(Vector(856, 1530, 360), [0, 0, 0])
+p_sign6(Vector(856, 1530, 360), [0, 0, 0])
+p_sign7(Vector(856, 1530, 360), [0, 0, 0])
+p_sign8(Vector(856, 1530, 360), [0, 0, 0])
+p_sign9(Vector(622, -942, 151), [0, 0, 0])
+p_sign10(Vector(685, -685, 925), [0, 0, 0])
+p_survrelay1(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_survrelay2(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_survrelay3(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_introcam(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_beginrelay(Vector(0, 0, 0), [0, 0, 0])
+p_cabinet(Vector(720, 1296, 192), [0, 0, 0])
+p_spawnremover1(Vector(0, 0, 0), [0, 0, 0])
+p_spawnremover2(Vector(0, 0, 0), [0, 0, 0])
+p_spawnremover3(Vector(0, 0, 0), [0, 0, 0])
+p_leet(Vector(345, 1662, 187), [0, 180, 0])
+p_leet2(Vector(345, 1662, 187), [0, 180, 0])
+p_mvm_beat(Vector(440, 48, 128), [0, 0, 0])
+viro_music(Vector(440, 48, 128), [0, 0, 0])
+lose_music(Vector(440, 48, 128), [0, 0, 0])
+lose_music2(Vector(440, 48, 128), [0, 0, 0])
+r_virobeat(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+r_virobeatoff(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+r_beatson(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+r_beatsoff(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+r_cade_relay(Vector(720, 1280, 192), [0, 0, 0])
+r_cade_relay_lower(Vector(720, 1280, 192), [0, 0, 0])
+r_cade_relay_window(Vector(720, 1280, 192), [0, 0, 0])
+r_cade_relay_last(Vector(720, 1280, 192), [0, 0, 0])
+r_respawn_relay(Vector(720, 1280, 192), [0, 0, 0])
+p_shake(Vector(-189.888, 17.0933, 65), [0, 0, 0])
+p_shakelong(Vector(-189.888, 17.0933, 65), [0, 0, 0])
+p_rick(Vector(0, -35, 788), [0, -90, 0])
+p_shopengi(Vector(945, 1616, 192), [0, -90, 0])
+p_shopitem1(Vector(0, 0, 0), [0, 0, 0])
+p_shopitem2(Vector(0, 0, 0), [0, 0, 0])
+p_shopitem3(Vector(0, 0, 0), [0, 0, 0])
+p_shopitem4(Vector(0, 0, 0), [0, 0, 0])
+p_shopitem5(Vector(0, 0, 0), [0, 0, 0])
+p_spook(Vector(578, 235, 215), [0, 90, 0])
+p_spook2(Vector(520, 220, 225), [0, 90, 0])
+p_spook3(Vector(570, 220, 195), [0, 90, 0])
+p_plane(Vector(1900, -745, -109), [0, -5, 0])
+p_musicmaker1(Vector(0, 0, 0), [0, 0, 0])
+p_musicmaker2(Vector(0, 0, 0), [0, 0, 0])
+p_planemaker(Vector(0, 0, 0), [0, 0, 0])
+p_cargodoor(Vector(636, 1435, 190), [0, -90, 0])
+p_cargoshop1(Vector(936, 1603, 198), [0, 180, 0])
+p_cargoshop2(Vector(936, 1603, 335), [0, 180, 0])
+p_cargoshop3(Vector(855, 1520, 255), [0, -90, 0])
+p_table(Vector(462, 854, -65), [0, 90, 0])
+p_table2(Vector(462, 854, -65), [0, 90, 0])
+p_desk(Vector(0, 488, 192), [0, 0, 0])
+p_desk_intro(Vector(0, 488, 192), [0, 0, 0])
+p_chair_intro(Vector(0, 450, 192), [0, 90, 0])
+p_urn(Vector(0, 0, 0), [0, 0, 0])
+p_smallammo(Vector(671, 841, -65), [0, 0, 0])
+p_smallammoskin(Vector(671, 841, -65), [0, 0, 0])
+p_mediumammo(Vector(400, 1039, 176), [0, 0, 0])
+p_fullammo(Vector(444, 262, 93), [90, 90, 0])
+p_smallmedkit(Vector(671, 919, -65), [0, 0, 0])
+p_smallmedkitskin(Vector(671, 919, -65), [0, 0, 0])
+p_mediumkit(Vector(-655, 1225, 30), [0, 0, 0])
+p_fullkit(Vector(554, 793, 93), [90, -90, 0])
+p_beam(Vector(562, 1500, -25), [0, 90, 0])
+p_stair(Vector(710, 250, 105), [0, 90, 0])
+p_chair(Vector(0, 450, 192), [0, 90, 0])
+p_box_intro(Vector(-630, 550, 192), [0, -25, 0])
+p_box(Vector(-630, 550, 192), [0, -25, 0])
+p_bookcase(Vector(696, 620, 192), [0, 180, 0])
+p_bookcase3(Vector(696, 620, 192), [0, 180, 0])
+p_monstercage(Vector(-655, 1225, -65), [0, 90, 0])
+p_barrel(Vector(660, 375, 189), [0, -180, 0])
+p_crate(Vector(-660, 1146, -65), [0, 90, 0])
+p_crate2(Vector(-660, 1146, -65), [0, 90, 0])
+p_tomb(Vector(0, 0, 0), [0, 0, 0])
+p_heli(Vector(1200, 3200, 500), [36, 90, 0])
+p_cratesmall(Vector(-660, 1146, -65), [0, 90, 0])
+p_crate_intro(Vector(-660, 1146, -65), [0, 90, 0])
+p_shitcade(Vector(0, 250, -85), [0, 180, 0])
+p_shitcade2(Vector(-75, 240, -85), [0, -90, 0])
+p_barricade_level1(Vector(515, 252, 277), [0, 0, 0])
+p_barricade_nolevel(Vector(-650, 250, -85), [0, 180, 0])
+p_barricade_nolevel2(Vector(390, 2050, 285), [90, 90, 0])
+p_barricade_nolevel3(Vector(390, 1925, 345), [-90, 90, 0])
+p_barricade_level2(Vector(700, 415, -65), [0, -90, 0])
+p_barricade_level3a(Vector(-715, 1280, 280), [0, 90, 0])
+p_barricade_level3b(Vector(-225, 1600, 350), [0, 0, 0])
+p_barricade_plate2(Vector(700, 515, -85), [0, 0, 0])
+p_barricade_plate3(Vector(-735, 1150, 185), [0, 0, 0])
+p_zombie(Vector(562, 1600, -140), [0, -90, 0])
+p_controlpoint(Vector(0, 0, 0), [0, 0, 0])
+p_cover(Vector(0, 0, 0), [0, 0, 0])
+p_pointmaker(Vector(626, -942, -85), [0, 0, 0])
+p_pointmaker2(Vector(500, -985, -80), [0, 25, 0])
+p_bonus(Vector(0, 0, 0), [0, 0, 0])
+p_fog(Vector(0, 0, 0), [0, 0, 0])
+p_survmoveup(Vector(0, 380, 267), [0, 0, 0])
+p_survmoveup2(Vector(-647, 465, 267), [0, 0, 0])
+p_survmoveup3(Vector(626, -942, -90), [0, 0, 0])
+p_survshop1(Vector(800, 1514, 267), [0, 0, 0])
+p_survshop2(Vector(870, 1514, 267), [0, 0, 0])
+p_survshop3(Vector(940, 1514, 267), [0, 0, 0])
+p_keepertarget(Vector(620, 1430, 267), [0, 0, 0])
+p_marketgardener(Vector(0, 676, 10), [0, 0, 0])
+p_marketgardener2(Vector(-5, 1113, 139), [0, 0, 0])
+p_marketgardener3(Vector(0, 1432, 267), [0, 0, 0])
+p_marketgardener4(Vector(0, 676, 10), [0, 0, 0])
+p_tank(Vector(0, 0, 0), [0, 0, 0])
+p_tankgo(Vector(706, -700, 0), [0, 0, 0])
+p_threaten(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_threaten2(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_fogold(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_nohud1(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_nohud2(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_screen(Vector(0, 0, 0), [0, 0, 0])
+p_screenblu(Vector(0, 0, 0), [0, 0, 0])
+p_plank(Vector(-350, 1575, 205), [45, 90, 90])
+p_plank2(Vector(-350, 1575, 205), [45, 90, 90])
+p_camera(Vector(-1619, -580, 988), [23.32, 39.84, 0])
+p_camera2(Vector(800, 1056, 267), [0, 90, 0])
+p_camera3(Vector(253, -196, 59), [5.98, -53.51, 0])
+p_camera4(Vector(-257, 402, 430), [22, 60, 0])
+p_nuke(Vector(-1611.31, 4748.55, 169.35), [0, 0, 0])
+p_switcharoo1(Vector(0, 0, 0), [0, 0, 0])
+p_switcharoo2(Vector(0, 0, 0), [0, 0, 0])
+p_switcharoo3(Vector(0, 0, 0), [0, 0, 0])
