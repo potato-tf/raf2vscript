@@ -2071,3 +2071,12 @@
 		}
 	}
 	
+SpawnTemplate grand_finale_sounds
+SpawnTemplate resetbossstatues
+SpawnTemplate w6intro
+SpawnTemplate CarrierLaunch_cloak
+SpawnTemplate MissionName
+SpawnTemplate scrapped_spawns
+SpawnTemplate Foreshadowing
+SpawnTemplate bombthesub
+SpawnTemplate timerbot_logic

@@ -73,7 +73,7 @@
 	    "OnMapSpawn#22": "fog_controller,AddOutput,spawnflags 1:0:-1",
 	    "OnMapSpawn#23": "fog_controller,AddOutput,farz -1:0:-1",
 	    "OnMapSpawn#24": "player,$ResetExtraItems,,0,-1",
-	    "OnMapSpawn#25": "tf_objective_resourceRunScriptCodeNetProps.SetPropINVALID(self, `m_iszMvMPopfileName`, Bauernhof Der Toten)0-1",
+	    "OnMapSpawn#25": "tf_objective_resourceRunScriptCodeNetProps.SetPropString(self, `m_iszMvMPopfileName`, `Bauernhof Der Toten`)0-1",
 	    "OnMapSpawn#26": "wave_start_relay,AddOutput,OnTrigger LMA:Enable:0:-1",
 	    "OnMapSpawn#27": "func_flagdetectionzone,AddOutput,alarm 0",
 	    "OnMapSpawn#28": "wave_start_relay,AddOutput,OnTrigger DUMMY_*:Kill:0:-1",
@@ -5496,55 +5496,57 @@
 
 	local logic_case324 = SpawnEntityFromTable("logic_case", {
 	    targetname = "dumpster_picker_scout",
-	    "OnCase01#1": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase01#2": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase01#3": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Shortstop!`)0-1",
-	    "OnCase02#4": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase02#5": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase02#6": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Shortstop!`)0-1",
-	    "OnCase03#7": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_smg`,15153, null)-1",
-	    "OnCase03#8": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase03#9": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase03#10": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The SMG!`)0-1",
-	    "OnCase04#11": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_smg`,15153, null)-1",
-	    "OnCase04#12": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase04#13": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase04#14": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The SMG!`)0-1",
-	    "OnCase05#15": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_pipebomblauncher`,15155, null)-1",
-	    "OnCase05#16": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase05#17": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase05#18": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Stickybomb Launcher!`)0-1",
-	    "OnCase06#19": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_pipebomblauncher`,15155, null)-1",
-	    "OnCase06#20": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase06#21": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase06#22": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Stickybomb Launcher!`)0-1",
-	    "OnCase07#23": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase07#24": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase07#25": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Force-a-Nature!`)0-1",
-	    "OnCase08#26": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase08#27": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase08#28": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Force-a-Nature!`)0-1",
-	    "OnCase09#29": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_scattergun`,15157, null)-1",
-	    "OnCase09#30": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase09#31": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase09#32": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Scattergun`)0-1",
-	    "OnCase10#33": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_scattergun`,15157, null)-1",
-	    "OnCase10#34": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase10#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase10#36": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Scattergun`)0-1",
-	    "OnCase11#37": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
-	    "OnCase11#38": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase11#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
-	    "OnCase11#40": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Punch Packer!`)0-1",
-	    "OnCase12#41": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
-	    "OnCase12#42": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase12#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
-	    "OnCase12#44": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Punch Packer!`)0-1",
-	    "OnCase13#45": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
-	    "OnCase13#46": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase13#47": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
-	    "OnCase13#48": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Ray Gun!`)0-1",
-	    "OnCase14#49": "dumpster_dud,Trigger,-1"
+	    "OnCase01#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_handgun_scout_primary`,220, null)-1",
+	    "OnCase01#2": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase01#3": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase01#4": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Shortstop!`)0-1",
+	    "OnCase02#5": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_handgun_scout_primary`,220, null)-1",
+	    "OnCase02#6": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase02#7": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase02#8": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Shortstop!`)0-1",
+	    "OnCase03#9": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_smg`,15153, null)-1",
+	    "OnCase03#10": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase03#11": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase03#12": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The SMG!`)0-1",
+	    "OnCase04#13": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_smg`,15153, null)-1",
+	    "OnCase04#14": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase04#15": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase04#16": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The SMG!`)0-1",
+	    "OnCase05#17": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_pipebomblauncher`,15155, null)-1",
+	    "OnCase05#18": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase05#19": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase05#20": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Stickybomb Launcher!`)0-1",
+	    "OnCase06#21": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_pipebomblauncher`,15155, null)-1",
+	    "OnCase06#22": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase06#23": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase06#24": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Stickybomb Launcher!`)0-1",
+	    "OnCase07#25": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase07#26": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase07#27": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Force-a-Nature!`)0-1",
+	    "OnCase08#28": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase08#29": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase08#30": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Force-a-Nature!`)0-1",
+	    "OnCase09#31": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_scattergun`,15157, null)-1",
+	    "OnCase09#32": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase09#33": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase09#34": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Scattergun`)0-1",
+	    "OnCase10#35": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_scattergun`,15157, null)-1",
+	    "OnCase10#36": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase10#37": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase10#38": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Scattergun`)0-1",
+	    "OnCase11#39": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
+	    "OnCase11#40": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase11#41": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase11#42": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Punch Packer!`)0-1",
+	    "OnCase12#43": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
+	    "OnCase12#44": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase12#45": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase12#46": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Punch Packer!`)0-1",
+	    "OnCase13#47": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
+	    "OnCase13#48": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase13#49": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase13#50": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Ray Gun!`)0-1",
+	    "OnCase14#51": "dumpster_dud,Trigger,-1"
 	})
 	logic_case324.SetOrigin(org)
 	logic_case324.SetAngles(ang[0], ang[1], ang[2])
@@ -5601,10 +5603,11 @@
 	    "OnCase13#48": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
 	    "OnCase13#49": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
 	    "OnCase13#50": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Punch Packer!`)0-1",
-	    "OnCase14#51": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase14#52": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase14#53": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Cleaner's Carbine!`)0-1",
-	    "OnCase15#54": "dumpster_dud,Trigger,-1"
+	    "OnCase14#51": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_charged_smg`,751, null)-1",
+	    "OnCase14#52": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase14#53": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase14#54": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Cleaner's Carbine!`)0-1",
+	    "OnCase15#55": "dumpster_dud,Trigger,-1"
 	})
 	logic_case325.SetOrigin(org)
 	logic_case325.SetAngles(ang[0], ang[1], ang[2])
@@ -5647,14 +5650,16 @@
 	    "OnCase09#34": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
 	    "OnCase09#35": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
 	    "OnCase09#36": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Beam Rifle!`)0-1",
-	    "OnCase10#37": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase10#38": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase10#39": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Cleaner's Carbine!`)0-1",
-	    "OnCase11#40": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase11#41": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase11#42": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Cleaner's Carbine!`)0-1",
-	    "OnCase12#43": "tgun_check,Test,,-1",
-	    "OnCase13#44": "dumpster_dud,Trigger,-1"
+	    "OnCase10#37": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_charged_smg`,751, null)-1",
+	    "OnCase10#38": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase10#40": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Cleaner's Carbine!`)0-1",
+	    "OnCase11#41": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_charged_smg`,751, null)-1",
+	    "OnCase11#42": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase11#44": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Cleaner's Carbine!`)0-1",
+	    "OnCase12#45": "tgun_check,Test,,-1",
+	    "OnCase13#46": "dumpster_dud,Trigger,-1"
 	})
 	logic_case326.SetOrigin(org)
 	logic_case326.SetAngles(ang[0], ang[1], ang[2])
@@ -5750,14 +5755,15 @@
 	    "OnCase10#36": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
 	    "OnCase10#37": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
 	    "OnCase10#38": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Crusader's Crossbow!`)0-1",
-	    "OnCase11#39": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase11#40": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
-	    "OnCase11#41": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Black Box!`)0-1",
-	    "OnCase12#42": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
-	    "OnCase12#43": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase12#44": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
-	    "OnCase12#45": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: Das Maschinenpistole!`)0-1",
-	    "OnCase13#46": "dumpster_dud,Trigger,-1"
+	    "OnCase11#39": "!activatorRunScriptCodeGiveWeapon(self,`the black box`,228, null)-1",
+	    "OnCase11#40": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase11#41": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase11#42": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Black Box!`)0-1",
+	    "OnCase12#43": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
+	    "OnCase12#44": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase12#45": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase12#46": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: Das Maschinenpistole!`)0-1",
+	    "OnCase13#47": "dumpster_dud,Trigger,-1"
 	})
 	logic_case328.SetOrigin(org)
 	logic_case328.SetAngles(ang[0], ang[1], ang[2])
@@ -5910,17 +5916,19 @@
 	    "OnCase10#38": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
 	    "OnCase10#39": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
 	    "OnCase10#40": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Shotgun!`)0-1",
-	    "OnCase11#41": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase11#42": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase11#43": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Winger!`)0-1",
-	    "OnCase12#44": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase12#45": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
-	    "OnCase12#46": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Winger!`)0-1",
-	    "OnCase13#47": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
-	    "OnCase13#48": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
-	    "OnCase13#49": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
-	    "OnCase13#50": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Ray Gun!`)0-1",
-	    "OnCase14#51": "dumpster_dud,Trigger,-1"
+	    "OnCase11#41": "!activatorRunScriptCodeGiveWeapon(self,`the winger`,449, null)-1",
+	    "OnCase11#42": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase11#43": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase11#44": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Winger!`)0-1",
+	    "OnCase12#45": "!activatorRunScriptCodeGiveWeapon(self,`the winger`,449, null)-1",
+	    "OnCase12#46": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase12#47": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_COMMON,0.6,-1",
+	    "OnCase12#48": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Winger!`)0-1",
+	    "OnCase13#49": "!activatorRunScriptCodeGiveWeapon(self,`INVALID`,-1,null)-1",
+	    "OnCase13#50": "!activatorRunScriptCodeEmitSoundEx({sound_name = `items/gunpickup2.wav`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 })-1",
+	    "OnCase13#51": "!activator,SpeakResponseConcept,TLK_MVM_LOOT_RARE,0.6,-1",
+	    "OnCase13#52": "!activatorRunScriptCodeClientPrint(self, 4, `You've received: The Ray Gun!`)0-1",
+	    "OnCase14#53": "dumpster_dud,Trigger,-1"
 	})
 	logic_case331.SetOrigin(org)
 	logic_case331.SetAngles(ang[0], ang[1], ang[2])
@@ -6594,16 +6602,16 @@
 }
 ::MedicbagPT <- function(org, ang)
 {
-	local _brush136 = SpawnEntityFromTable("", {
+	local trigger_hurt_brush136 = SpawnEntityFromTable("trigger_hurt", {
 	    spawnflags = 1,
 	    targetname = "medicbag_aoe",
 	    origin = Vector("0, 0, 0"),
 	    mins = "-128 -128 -36",
 	    maxs = "128 128 36"
 	})
-	_brush136.KeyValueFromInt("solid", 2)
-	_brush136.KeyValueFromString("mins", "-128 -128 -36")
-	_brush136.KeyValueFromString("maxs", "128 128 36")
+	trigger_hurt_brush136.KeyValueFromInt("solid", 2)
+	trigger_hurt_brush136.KeyValueFromString("mins", "-128 -128 -36")
+	trigger_hurt_brush136.KeyValueFromString("maxs", "128 128 36")
 
 	local mapobj_cart_dispenser381 = SpawnEntityFromTable("mapobj_cart_dispenser", {
 	    spawnflags = 12,

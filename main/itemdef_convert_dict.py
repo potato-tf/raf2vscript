@@ -22,6 +22,9 @@ for i in range(len(lines)):
 
             constant_value = int(value_match.group(1))  # Convert to integer for sorting
 
+            if 'claidheamh' in additional_string.lower():
+                additional_string = 'tf_weapon_sword'
+            # constants.append((constant_value, f'"{constant_name}" : "{additional_string.lower()}",\n'))  # Store as tuple for sorting
             constants.append((constant_value, f'"{constant_name}" : {constant_value},\n'))  # Store as tuple for sorting
             constants.append((constant_value, f'"{additional_string.lower()}" : {constant_value + offset},\n'))  # Offset the weapon name index by + 100000
 
@@ -37,5 +40,5 @@ with open(output_file, "w") as file:
     file.write(f'offset = {offset}\n')
     file.write(f'{varname} = {{\n')
     file.writelines(constants)
-    file.write('\n}')
+    file.write('}')
 

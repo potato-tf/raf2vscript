@@ -263,7 +263,7 @@ itemdefs = {
 "tf_weapon_fireaxe" : 326,
 "the back scratcher" : 200326,
 "tf_weapon_sword" : 327,
-"the claidheamh mor" : 200327,
+"tf_weapon_sword" : 200327,
 "tf_weapon_wrench" : 329,
 "the jag" : 200329,
 "tf_weapon_fists" : 331,
@@ -1042,5 +1042,4 @@ itemdefs = {
 "batsaber" : 230667,
 "tf_weapon_laser_pointer" : 30668,
 "the gigar counter" : 230668,
-
 }

@@ -5632,23 +5632,23 @@
 	SpawnTemplate "Camera_Crew_Death"
 	SpawnTemplate "DumpsterSpawner"
 	
-	//PlayerSpawnTemplate
-	//{
-	//	Name MedicbagPT
-	//	Class Medic
-	//	Bone "prp_backpack" //Player bone where the template would be positioned
-	//}
-	//PlayerShootTemplate
-	//{
+	// PlayerSpawnTemplate
+	// {
+	// 	Name MedicbagPT
+	// 	Class Medic
+	// 	Bone "prp_backpack" //Player bone where the template would be positioned
+	// }
+	// PlayerShootTemplate
+	// {
 	//  Name ThundergunPT
-	//	OverrideShoot 1
-	//	Offset "36 0 0"
-	//	ItemName "Thunder Gun"
-	//}
-	//PlayerShootTemplate
-	//{
-	//	Name Thundergun_2PT
-	//	OverrideShoot 1
-	//	Offset "36 0 0"
-	//	ItemName "Zeus Cannon"
-	//}
+	// 	OverrideShoot 1
+	// 	Offset "36 0 0"
+	// 	ItemName "Thunder Gun"
+	// }
+	// PlayerShootTemplate
+	// {
+	// 	Name Thundergun_2PT
+	// 	OverrideShoot 1
+	// 	Offset "36 0 0"
+	// 	ItemName "Zeus Cannon"
+	// }

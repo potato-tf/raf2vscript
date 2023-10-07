@@ -15,7 +15,7 @@ COLOR = {
     "ENDC": '\033[0m',
 }
 
-newcolors = {
+textcolors = {
 	'blue': '99ccff',
 	'red': 'ff3f3f',
 	'green': '99ff99',
@@ -25,7 +25,7 @@ newcolors = {
 	'newline': '\\n'
 }
 
-lumpchars = ['','ø','','','ß','','�']
+# lumpchars = ['','ø','','','ß','','�']
 
 path = os.getcwd()
 
@@ -45,6 +45,7 @@ properties = {}
 
 formatted_properties, entity_list, name_list, extralines, log, func_list = [], [], [], [], [], []
 giveitem, switchslot, changeattribs, lumpfile, vmffile, stripweps =  False, False, False, False, False, False
+mins, maxs = None, None
 funcname = ''
 
 #TODO: Implement some actual list of entity names instead of doing this
@@ -107,6 +108,18 @@ outputs = [
 
 blacklisted = [
 	'onlyvelocitycheck',
+]
+
+blacklistedents = [
+	'prop_static',
+	'func_detail',
+	'func_areaportal',
+	'func_occluder',
+	'func_viscluster',
+	'light',
+	'light_spot',
+	'point_spotlight',
+	'func_instance'
 ]
 
 convertedkeys = [
@@ -293,7 +306,7 @@ def convert_raf_keyvalues(value):
 		if splitval[2].startswith('{') and '$displaytextchat' in entinput:
 			splitcolor = splitval[2].split('{')
 			removebracket = splitcolor[1].split('}')
-			removebracket[0] = newcolors[removebracket[0]]
+			removebracket[0] = textcolors[removebracket[0]]
 			color = r'\x07' + ''.join(removebracket)
 			splitval[1] = 'RunScriptCode'
 			splitval[2] = f'ClientPrint(self, 3, `{color}`)'
@@ -333,7 +346,7 @@ def convert_raf_keyvalues(value):
 	elif '$teleporttoentity' in entinput:
 		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
 		splitval[1] = 'RunScriptCode'
-		splitval[2] = f'self.SetOrigin({splitval[2]}.GetOrigin())'
+		splitval[2] = f'self.Teleport(true, {splitval[2]}.GetOrigin(), true,  {splitval[2]}.GetAbsAngles, true, {splitval[2]}.GetAbsVelocity())'
 	# 	print(splitval)
 
 	elif '$setmodeloverride' in entinput:
@@ -348,23 +361,29 @@ def convert_raf_keyvalues(value):
 	elif '$giveitem' in entinput or '$awardandgiveextraitem' in entinput:
 		giveitem = True
 		stringval = splitval[2].strip().lower()
-		# debug testing
-		# formatval = 'a ? a ? null'
+		
 		if stringval != 'tf_wearable' and (stringval in itemdefs or stringval.removeprefix('the ') in itemdefs):
 			formatval = f'{stringval} ? {itemdefs[stringval]} ? null'
 
 			if not stringval.startswith('tf_'):
-				for k,v in itemdefs:
-					input(k)
-					if v == k - offset:
-						stringval = k - offset
-				formatval = f'{stringval} ? {itemdefs[stringval]} ? null'
+				index = itemdefs[stringval] - offset
+				for k, v in itemdefs.items():
+					# print(v, index, '\n', stringval, k)
+
+					if v == index:
+						stringval = k
+						break
+
+				formatval = f'{stringval} ? {index} ? null'
+
+				# input(stringval)
 
 		else:
 			print(COLOR['CYAN'], 'Enter The item classname and definiton index for',COLOR['ENDC'],COLOR['HEADER'],f'{splitval[2].strip()}',COLOR['ENDC'])
 			print(COLOR['CYAN'],'Find them here:',COLOR['ENDC'],COLOR['GREEN'],'https://wiki.alliedmods.net/Team_fortress_2_item_definition_indexes',COLOR['ENDC'])
 			print(COLOR['CYAN'],'Enter null for wearable model if you are not creating a tf_wearable weapon',COLOR['ENDC'])
 			print(COLOR['HEADER'], 'Enter ? for an example input',COLOR['ENDC'])
+			# formatval = 'a ? a ? null'
 			formatval = input('Format: Classname ? Index ? Wearable Model: ')
 
 			if formatval == '?':
@@ -373,9 +392,11 @@ def convert_raf_keyvalues(value):
 				formatval = input('Format: Classname ? Index ? Wearable Model: ')
 
 		formatval = formatval.split('?')
+
 		if len(formatval) == 2:
 			formatval.append('null')
-		if len(formatval) < 2 or len(formatval) > 3:
+
+		if len(formatval) != 3:
 			print(COLOR['RED'], 'Invalid input, search for `INVALID` in the generated .nut file')
 			print(COLOR['RED'], 'Press enter to continue')
 			input('')
@@ -439,20 +460,21 @@ j, b, g, t = 1, 1, 1, 1
 oldname = ''
 #format rafmod to spawnentityfromtable
 def format_entities(lines, entity_name):
+	# input(lines)
 	brushent = False
 	minmaxfound = False
 	minmaxindex = 0
 	global j, b, g, t
 	org, ang = 'Vector(0, 0, 0)', [0, 0, 0]
 
-	if len(entity_name) < 1 and 'spawntemplate' in lines[0].lower(): return
+	if 'spawntemplate' in lines[0].lower(): return
 
 	for line in lines:
 
 		# find key/value pairs
-		if lumpfile:
+		if lumpfile or vmffile:
 			for h in lines:
-				if 'hammerid' in h:
+				if 'hammerid' in h or 'id' in h:
 					h = h.split('"')[3].strip()
 					break
 		try:
@@ -461,7 +483,7 @@ def format_entities(lines, entity_name):
 				minmaxindex = 1
 				parts = line.split('"')
 				key, value = parts[1::2]
-				if 'classname' in key and lumpfile:
+				if 'classname' in key and (lumpfile or vmffile):
 					entity_name = value
 			#line split without quotes
 			else:
@@ -524,9 +546,15 @@ def format_entities(lines, entity_name):
 							# 	minmaxfound = True
 
 						if not minmaxfound:
-							lines.append('"mins" "-1 -1 -1"')
-							lines.append('"maxs" "1 1 1"')
-
+							if not vmffile:
+								lines.append('"mins" "-1 -1 -1"')
+								lines.append('"maxs" "1 1 1"')
+							else:
+								if mins is not None:
+									lines.append(f'"mins" "{mins}"')
+								if maxs is not None:
+									lines.append(f'"maxs" "{maxs}"')
+								
 				if key.startswith('origin'):
 					splitval = value.split(' ')
 					value = f'Vector({splitval[0]}, {splitval[1]}, {splitval[2]})'
@@ -558,7 +586,7 @@ def format_entities(lines, entity_name):
 	if not brushent:
 
 		#lumpfile appends the hammerid to the variable name
-		if lumpfile:
+		if lumpfile or vmffile:
 
 			output_text = f'::{entity_name}{h} <- SpawnEntityFromTable("{entity_name}", {{\n    {",\n    ".join(formatted_properties)}\n}})\n'
 
@@ -615,17 +643,104 @@ def format_entities(lines, entity_name):
 	name_list.append(entity_name)
 	formatted_properties.clear()
 
+def cube_to_aabb(vertices):
+	min_x, min_y, min_z = 2147483647, 2147483647, 2147483647
+	max_x, max_y, max_z = -2147483647, -2147483647, -2147483647
+
+	for vertex in vertices:
+		x, y, z = vertex
+		x, y, z = float(x), float(y), float(z)
+		min_x = min(min_x, x)
+		min_y = min(min_y, y)
+		min_z = min(min_z, z)
+
+		max_x = max(max_x, x)
+		max_y = max(max_y, y)
+		max_z = max(max_z, z)
+
+	# input(f'MINMAX: {(min_x, min_y, min_z)} {(max_x, max_y,max_z)}')
+	return (min_x, min_y, min_z), (max_x, max_y, max_z)
+
+
 #convert OnSpawnOutput/OnParentKilledOutput to relays
 def convert_entities():
 	o, p = 1, 1
-	global extralines, lumpfile, vmffile
+	global extralines, lumpfile, vmffile, mins, maxs
 
 	try:
-		# backwards search for SpawnTemplates
-		if not lumpfile and not vmffile:
+		# backwards search for SpawnTemplates and VMF files (most entities are near the bottom of the VMF file anyway)
+		if not lumpfile:
+			if vmffile: 
+				vertices = []
 			for r in reversed(text_list):
 				lines = r.split('\n')
 				lines = [line.strip() for line in lines if line.strip()]
+				
+				lower = [l.lower() for l in lines]
+								
+				if len(lines) < 1: continue
+
+				if 'spawntemplate' in lower and len(lower) < 6:
+					for i, func in enumerate(func_list):
+						if func.startswith(lines[2].split('"')[1]):
+							if len(lines) > 3:
+								# input(f'origin for {func}: {lines[3].split('"')[1]}')
+								org = lines[3].split('"')[1].split()
+								# print(x, y, z)
+								# input('')
+								newfunc = f'{func.split('(')[0]}(Vector({org[0]}, {org[1]}, {org[2]}), [0, 0, 0])'
+								func_list[i] = newfunc
+								# input(func_list[i])
+
+							if len(lines) > 4:
+								# input(f'angles for {func}: {lines[4].split('"')[1]}')
+								pitch, yaw, roll = lines[4].split('"')[1].split()[0], lines[4].split('"')[1].split()[1], lines[4].split('"')[1].split()[2]
+								newfunc = f'{func.split('(')[0]}(Vector({org[0]}, {org[1]}, {org[2]}), [{pitch}, {yaw}, {roll}])'
+								func_list[i] = newfunc
+
+				#grab entitity name
+				if vmffile:
+					xyz = []
+					j = 0
+					if lines[0] == 'entity' and vmffile:
+						entity_name = lines[3].split('"')[3]
+						hammerid = lines[2].split('"')[3]
+						# input(f'{entity_name} {entity_id}')
+					
+					elif lines[0] == 'solid' and vmffile:
+
+						#grab vertex data for mins/maxs
+						if lines[3] == 'side':
+							string = lines[6].split('"')[3].split(')')
+
+							a = (string[0].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+							b = (string[1].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+							c = (string[2].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+
+							vertices.append(a)
+							vertices.append(b)
+							vertices.append(c)
+						
+							vertices = list(set(vertices))
+
+						if len(vertices) >= 6:
+							mins, maxs = cube_to_aabb(vertices)
+							vertices.clear()
+
+					#grab vertex data for mins/maxs
+					elif lines[0] == 'side' and vmffile:
+						string = lines[3].split('"')[3].split(')')
+						a = (string[0].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+						vertices.append(a)
+
+						b = (string[1].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+						vertices.append(b)
+
+						c = (string[2].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+						vertices.append(c)
+						
+						vertices = list(set(vertices))
+
 
 		# Split the input into lines
 		for i in text_list:
@@ -633,10 +748,8 @@ def convert_entities():
 			# Remove empty lines
 			lines = [line.strip() for line in lines if line.strip()]
 
-
 			# print([line.split('//') for line in lines if line.split('//')])
-			if len(lines) < 1:
-				continue
+			if len(lines) < 1: continue
 
 			#goofy ass
 			else:
@@ -661,35 +774,13 @@ def convert_entities():
 
 				remove = ['keepalive', 'nofixup']
 				lines = [l for l in lines if l.split()[0].lower() not in remove]
-
-				l = [l.lower() for l in lines]
-				if 'spawntemplate' in l and len(l) < 6:
-					for i, func in enumerate(func_list):
-						if func.startswith(lines[2].split('"')[1]):
-							if len(lines) > 3:
-								# input(f'origin for {func}: {lines[3].split('"')[1]}')
-								org = lines[3].split('"')[1].split()
-								# print(x, y, z)
-								# input('')
-								newfunc = f'{func.split('(')[0]}(Vector({org[0]}, {org[1]}, {org[2]}), [0, 0, 0])'
-								func_list[i] = newfunc
 								# input(func_list[i])
-
-							if len(lines) > 4:
-								# input(f'angles for {func}: {lines[4].split('"')[1]}')
-								pitch, yaw, roll = lines[4].split('"')[1].split()[0], lines[4].split('"')[1].split()[1], lines[4].split('"')[1].split()[2]
-								newfunc = f'{func.split('(')[0]}(Vector({org[0]}, {org[1]}, {org[2]}), [{pitch}, {yaw}, {roll}])'
-								func_list[i] = newfunc
-								# input(func_list[i])
-
 				# print(lines)
 
 				# Get the entity name
 				# do not remove the space
 				if lines[0].endswith(' {'):
 					lines[0] = lines[0].removesuffix('{')
-
-				entity_name = ''
 
 				# convert OnSpawnOutput to logic_relay
 
@@ -775,7 +866,9 @@ def convert_entities():
 					format_entities(lines, entity_name)
 
 	except Exception as IndexError:
+		print(IndexError)
 		print(COLOR['CYAN'],f'Writing entities to file...',COLOR['ENDC'])
+		print(lines)
 		# done elsewhere now
 		# entity_list.append(f'\n}}\n')
 		name_list.append('END OF FILE')
