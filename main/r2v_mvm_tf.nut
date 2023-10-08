@@ -176,6 +176,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	game_text16.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_hurt_brush2 = SpawnEntityFromTable("trigger_hurt", {
+	    targetname = "haha_boom",
 	    origin = Vector(0, 0, 0),
 	    angles = QAngle(0, 0, 0),
 	    mins = "-600 -600 -8000",
@@ -229,6 +230,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	prop_dynamic19.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_hurt_brush3 = SpawnEntityFromTable("trigger_hurt", {
+	    targetname = "vortexdamage",
 	    origin = Vector(0, 0, 0),
 	    angles = QAngle(0, 0, 0),
 	    mins = "-250 -250 -8000",
@@ -326,30 +328,30 @@ __CollectGameEventCallbacks(::r2v_events)
 
 	local logic_relay29 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "boss_attack_incoming_anti_bodyblock",
-	    "OnTrigger#1": "tf_gamerules,PlayVORed,=150|weapons/rescue_ranger_teleport_send_01.wav,0.5,-1",
+	    "OnTrigger#1": "tf_gamerules,PlayVORed,weapons/rescue_ranger_teleport_send_01.wav,0.5,-1",
 	    "OnTrigger#2": "warning_boss_attack_blue,start,,0.5,-1",
 	    "OnTrigger#3": "warning_boss_attack_blue,stop,,1.5,-1",
-	    "Ontrigger#4": "tf_gamerules,PlayVORed,=150|vo\mvm\mght\taunts\soldier_mvm_m_taunts13.mp3,0,-1"
+	    "Ontrigger#4": "tf_gamerules,PlayVORed,vo/mvm/mght/taunts/soldier_mvm_m_taunts13.mp3,0,-1"
 	})
 	logic_relay29.SetOrigin(org)
 	logic_relay29.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay30 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "boss_attack_incoming_suck",
-	    "OnTrigger#1": "tf_gamerules,PlayVORed,=150|weapons\cow_mangler_over_charge_shot.wav,0.5,-1",
+	    "OnTrigger#1": "tf_gamerules,PlayVORed,weapons/cow_mangler_over_charge_shot.wav,0.5,-1",
 	    "OnTrigger#2": "warning_boss_attack_red,start,,0.5,-1",
 	    "OnTrigger#3": "warning_boss_attack_red,stop,,1.5,-1",
-	    "Ontrigger#4": "tf_gamerules,PlayVORed,=150|vo\mvm\mght\taunts\soldier_mvm_m_taunts03.mp3,0,-1"
+	    "Ontrigger#4": "tf_gamerules,PlayVORed,vo/mvm/mght/taunts/soldier_mvm_m_taunts03.mp3,0,-1"
 	})
 	logic_relay30.SetOrigin(org)
 	logic_relay30.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay31 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "boss_attack_incoming_ground",
-	    "OnTrigger#1": "tf_gamerules,PlayVORed,=150|weapons\rescue_ranger_teleport_receive_02.wav,0.5,-1",
+	    "OnTrigger#1": "tf_gamerules,PlayVORed,weapons/rescue_ranger_teleport_receive_02.wav,0.5,-1",
 	    "OnTrigger#2": "warning_boss_attack_blue,start,,0.5,-1",
 	    "OnTrigger#3": "warning_boss_attack_blue,stop,,1.5,-1",
-	    "Ontrigger#4": "tf_gamerules,PlayVORed,=150|vo\mvm\mght\taunts\soldier_mvm_m_taunts17.mp3,0,-1"
+	    "Ontrigger#4": "tf_gamerules,PlayVORed,vo/mvm/mght/taunts/soldier_mvm_m_taunts17.mp3,0,-1"
 	})
 	logic_relay31.SetOrigin(org)
 	logic_relay31.SetAngles(ang[0], ang[1], ang[2])
@@ -367,10 +369,10 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#9": "judgement*,Enable,,0,-1",
 	    "OnTrigger#10": "judgement*,disable,,7,-1",
 	    "OnTrigger#11": "@p@boss_thingy,$Taunt,,0,-1",
-	    "OnTrigger#12": "@p@boss_thingyRunScriptCodeself.AddCustomAttribute(`no_attack`, 1, -1)0-1",
-	    "OnTrigger#13": "@p@boss_thingyRunScriptCodeself.AddCustomAttribute(`gesture speed increase`, 0.5, -1)0-1",
-	    "OnTrigger#14": "tf_gamerules,PlayVORed,ambient\halloween\windgust_10.wav,0,-1",
-	    "OnTrigger#15": "tf_gamerules,PlayVORed,ambient\halloween\thunder_01.wav,7,-1",
+	    "OnTrigger#12": "boss_thingyRunScriptCodeself.GetMoveParent().AddCustomAttribute(`no_attack`, 1, -1)0-1",
+	    "OnTrigger#13": "boss_thingyRunScriptCodeself.GetMoveParent().AddCustomAttribute(`gesture speed increase`, 0.5, -1)0-1",
+	    "OnTrigger#14": "tf_gamerules,PlayVORed,ambient/halloween/windgust_10.wav,0,-1",
+	    "OnTrigger#15": "tf_gamerules,PlayVORed,ambient/halloween/thunder_01.wav,7,-1",
 	    "OnTrigger#16": "vortexlightning*,Start,,7,-1",
 	    "OnTrigger#17": "vortexlightning*,Stop,,7.3,-1"
 	})
@@ -383,8 +385,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#2": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///NOW PLAYING: SUPERCHARGED BY SNUPERBOB///`)5-1",
 	    "OnTrigger#3": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///ACTIVATING REMAING SCRAPPED BOTS///`)15-1",
 	    "OnTrigger#4": "letsgow6,Fade,,0,-1",
-	    "OnTrigger#5": "tf_gamerules,PlayVORed,items\powerup_pickup_crits.wav,0,-1",
-	    "OnTrigger#6": "tf_gamerules,PlayVORed,misc\doomsday_missile_explosion.wav,15,-1",
+	    "OnTrigger#5": "tf_gamerules,PlayVORed,items/powerup_pickup_crits.wav,0,-1",
+	    "OnTrigger#6": "tf_gamerules,PlayVORed,misc/doomsday_missile_explosion.wav,15,-1",
 	    "Ontrigger#7": "boss_attack_incoming_ground,trigger,,8.5,-1",
 	    "OnTrigger#8": "die,Start,,15,-1",
 	    "OnTrigger#9": "haha_boom,enable,,15,-1",
@@ -408,7 +410,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "Ontrigger#2": "boss_attack_incoming_ground,trigger,,0,-1",
 	    "OnTrigger#3": "haha_boom,enable,,6,-1",
 	    "OnTrigger#4": "haha_boom,disable,,6.1,-1",
-	    "OnTrigger#5": "tf_gamerules,PlayVORed,misc\doomsday_missile_explosion.wav,6,-1",
+	    "OnTrigger#5": "tf_gamerules,PlayVORed,misc/doomsday_missile_explosion.wav,6,-1",
 	    "onTrigger#6": "die,Start,,6,-1",
 	    "onTrigger#7": "die,Stop,,6.1,-1",
 	    "OnTrigger#8": "attack_explosion,start,,6,-1",
@@ -421,7 +423,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#15": "tf_taunt_prop*,kill,,2.3,-1",
 	    "OnTrigger#16": "abrawlissurelybrewing,StartShake,,6,-1",
 	    "OnTrigger#17": "popscript,$CreateShockwave,,6,-1",
-	    "OnTrigger#18": "@p@boss_thingyRunScriptCodeself.AddCustomAttribute(`gesture speed increase`, 1.35, -1)0-1"
+	    "OnTrigger#18": "boss_thingyRunScriptCodeself.GetMoveParent().AddCustomAttribute(`gesture speed increase`, 1.35, -1)0-1"
 	})
 	logic_relay34.SetOrigin(org)
 	logic_relay34.SetAngles(ang[0], ang[1], ang[2])
@@ -478,11 +480,11 @@ __CollectGameEventCallbacks(::r2v_events)
 
 	local logic_relay39 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "bossintermission",
-	    "OnTrigger#1": "@p@boss_thingy,RunScriptCode,self.AddCond(52),0,-1",
-	    "OnTrigger#2": "@p@boss_thingyRunScriptCodeself.AddCustomAttribute(`move speed penalty`, 0.001, -1)0-1",
-	    "OnTrigger#3": "@p@boss_thingyRunScriptCodeself.AddCustomAttribute(`no_attack`, 1, -1)0-1",
-	    "OnTrigger#4": "@p@boss_thingyRunScriptCodeself.AddCustomAttribute(`no_jump`, 1, -1)0-1",
-	    "OnTrigger#5": "@p@boss_thingyRunScriptCodeself.AddCustomAttribute(`no_duck`, 1, -1)0-1",
+	    "OnTrigger#1": "boss_thingy,RunScriptCode,self.GetMoveParent().AddCond(52),0,-1",
+	    "OnTrigger#2": "boss_thingyRunScriptCodeself.GetMoveParent().AddCustomAttribute(`move speed penalty`, 0.001, -1)0-1",
+	    "OnTrigger#3": "boss_thingyRunScriptCodeself.GetMoveParent().AddCustomAttribute(`no_attack`, 1, -1)0-1",
+	    "OnTrigger#4": "boss_thingyRunScriptCodeself.GetMoveParent().AddCustomAttribute(`no_jump`, 1, -1)0-1",
+	    "OnTrigger#5": "boss_thingyRunScriptCodeself.GetMoveParent().AddCustomAttribute(`no_duck`, 1, -1)0-1",
 	    "OnTrigger#6": "spawnbot_emp*,Enable,,3,-1",
 	    "OnTrigger#7": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///DROP THE EMPS TO DROP THE BOSS' UBER PROTECTION///`)-1"
 	})
@@ -502,11 +504,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    targetname = "dropbossuber",
 	    "OnTrigger#1": "first_phase*,kill,0.5,0,-1",
 	    "OnTrigger#2": "inbetweenphases,PlaySound,0,0.25,-1",
-	    "OnTrigger#3": "@p@boss_thingy,RunScriptCode,self.RemoveCond(52),10,-1",
-	    "OnTrigger#4": "@p@boss_thingy,RunScriptCode,self.RemoveCustomAttribute(`move speed penalty`),10,-1",
-	    "OnTrigger#5": "@p@boss_thingy,RunScriptCode,self.RemoveCustomAttribute(`no_attack`),10,-1",
-	    "OnTrigger#6": "@p@boss_thingy,RunScriptCode,self.RemoveCustomAttribute(`no_jump`),10,-1",
-	    "OnTrigger#7": "@p@boss_thingy,RunScriptCode,self.RemoveCustomAttribute(`no_duck`),10,-1",
+	    "OnTrigger#3": "boss_thingy,RunScriptCode,self.GetMoveParent().RemoveCond(52),10,-1",
+	    "OnTrigger#4": "boss_thingy,RunScriptCode,self.GetMoveParent().RemoveCustomAttribute(`move speed penalty`),10,-1",
+	    "OnTrigger#5": "boss_thingy,RunScriptCode,self.GetMoveParent().RemoveCustomAttribute(`no_attack`),10,-1",
+	    "OnTrigger#6": "boss_thingy,RunScriptCode,self.GetMoveParent().RemoveCustomAttribute(`no_jump`),10,-1",
+	    "OnTrigger#7": "boss_thingy,RunScriptCode,self.GetMoveParent().RemoveCustomAttribute(`no_duck`),10,-1",
 	    "OnTrigger#8": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///THE FALLEN CHIEFS HAVE AWOKEN///`)9-1",
 	    "OnTrigger#9": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///THE FALLEN CHIEFS HAVE AWOKEN///`)9-1",
 	    "OnTrigger#10": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///THE FALLEN CHIEFS HAVE AWOKEN///`)9-1",
@@ -517,7 +519,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#15": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///THE FALLEN CHIEFS HAVE AWOKEN///`)9-1",
 	    "OnTrigger#16": "abrawlissurelybrewing,StartShake,,9.2,-1",
 	    "OnTrigger#17": "diethesecond,Start,,9.2,-1",
-	    "OnTrigger#18": "tf_gamerules,PlayVORed,misc\doomsday_missile_explosion.wav,9.2,-1",
+	    "OnTrigger#18": "tf_gamerules,PlayVORed,misc/doomsday_missile_explosion.wav,9.2,-1",
 	    "OnTrigger#19": "haha_boom,enable,,9.2,-1",
 	    "OnTrigger#20": "haha_boom,disable,,9.3,-1",
 	    "OnTrigger#21": "attack_explosion,start,,9.2,-1",
@@ -525,17 +527,17 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#23": "getthefuckaway,enable,,4.3,-1",
 	    "OnTrigger#24": "getthefuckaway,disable,,9.2,-1",
 	    "OnTrigger#25": "spawnbot_chief*,Enable,,9.2",
-	    "OnTrigger#26": "tf_gamerules,PlayVORed,vo\mvm\mght\soldier_mvm_m_cheers01.mp3,10,-1",
-	    "OnTrigger#27": "tf_gamerules,PlayVORed,vo\mvm\mght\soldier_mvm_m_directhittaunt02.mp3,7.5,-1",
-	    "OnTrigger#28": "tf_gamerules,PlayVORed,vo\mvm\mght\vo\mvm\mght\soldier_mvm_m_hatoverhearttaunt01.mp3,6,-1",
-	    "OnTrigger#29": "tf_gamerules,PlayVORed,vo\mvm\mght\soldier_mvm_m_painsharp05.mp3,1,-1",
-	    "OnTrigger#30": "tf_gamerules,PlayVORed,vo\mvm\mght\soldier_mvm_m_painsharp06.mp3,2.5,-1",
-	    "OnTrigger#31": "tf_gamerules,PlayVORed,vo\mvm\mght\soldier_mvm_m_painsharp06.mp3,4,-1",
-	    "OnTrigger#32": "tf_gamerules,PlayVORed,vo\mvm\mght\pyro_mvm_m_laughevil04.mp3,9,-1",
-	    "OnTrigger#33": "tf_gamerules,PlayVORed,vo\mvm\mght\heavy_mvm_m_yell12.mp3,9,-1",
-	    "OnTrigger#34": "tf_gamerules,PlayVORed,vo\mvm\mght\demoman_mvm_m_yes02.mp3,9,-1",
+	    "OnTrigger#26": "tf_gamerules,PlayVORed,vo/mvm/mght/soldier_mvm_m_cheers01.mp3,10,-1",
+	    "OnTrigger#27": "tf_gamerules,PlayVORed,vo/mvm/mght/soldier_mvm_m_directhittaunt02.mp3,7.5,-1",
+	    "OnTrigger#28": "tf_gamerules,PlayVORed,vo/mvm/mght/vo/mvm/mght/soldier_mvm_m_hatoverhearttaunt01.mp3,6,-1",
+	    "OnTrigger#29": "tf_gamerules,PlayVORed,vo/mvm/mght/soldier_mvm_m_painsharp05.mp3,1,-1",
+	    "OnTrigger#30": "tf_gamerules,PlayVORed,vo/mvm/mght/soldier_mvm_m_painsharp06.mp3,2.5,-1",
+	    "OnTrigger#31": "tf_gamerules,PlayVORed,vo/mvm/mght/soldier_mvm_m_painsharp06.mp3,4,-1",
+	    "OnTrigger#32": "tf_gamerules,PlayVORed,vo/mvm/mght/pyro_mvm_m_laughevil04.mp3,9,-1",
+	    "OnTrigger#33": "tf_gamerules,PlayVORed,vo/mvm/mght/heavy_mvm_m_yell12.mp3,9,-1",
+	    "OnTrigger#34": "tf_gamerules,PlayVORed,vo/mvm/mght/demoman_mvm_m_yes02.mp3,9,-1",
 	    "OnTrigger#35": "@p@boss_thingy,$TauntFromItem,Taunt: Yeti Smash,4.3,-1",
-	    "OnTrigger#36": "tf_gamerules,PlayVORed,ambient\explosions\explode_1.wav,9.2,-1",
+	    "OnTrigger#36": "tf_gamerules,PlayVORed,ambient/explosions/explode_1.wav,9.2,-1",
 	    "OnTrigger#37": "popscript,$CreateShockwave,,9.2,-1",
 	    "OnTrigger#38": "second_phase,PlaySound,,9.2,-1",
 	    "OnTrigger#39": "second_phase,StopSound,,144.1,-1",
@@ -660,11 +662,11 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#12": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///ESTABLISHING CONNECTION WITH THE CARRIER TANK... PLEASE WAIT///`)18-1",
 	    "OnTrigger#13": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///PATROL BOTS SQUAD LEADER: MAJOR SHOCKS ONLINE///`)24-1",
 	    "OnTrigger#14": "playerRunScriptCodeClientPrint(self, 3, `\x07ffb200///SECURITY SYSTEM ACTIVATED. PATROL BOTS ONLINE.///`)30-1",
-	    "OnTrigger#15": "tf_gamerules,PlayVORed,misc\hologram_start.wav,12,-1",
-	    "OnTrigger#16": "tf_gamerules,PlayVORed,ambient\halloween\thunder_08.wav,16,-1",
-	    "OnTrigger#17": "tf_gamerules,PlayVORed,misc\ks_tier_04_death.wav,28,-1",
-	    "OnTrigger#18": "tf_gamerules,PlayVORed,vo\mvm\mght\soldier_mvm_m_cheers04.mp3,31,-1",
-	    "OnTrigger#19": "tf_gamerules,PlayVORed,vo\mvm\mght\soldier_mvm_m_laughevil01.mp3,33.2,-1",
+	    "OnTrigger#15": "tf_gamerules,PlayVORed,misc/hologram_start.wav,12,-1",
+	    "OnTrigger#16": "tf_gamerules,PlayVORed,ambient/halloween/thunder_08.wav,16,-1",
+	    "OnTrigger#17": "tf_gamerules,PlayVORed,misc/ks_tier_04_death.wav,28,-1",
+	    "OnTrigger#18": "tf_gamerules,PlayVORed,vo/mvm/mght/soldier_mvm_m_cheers04.mp3,31,-1",
+	    "OnTrigger#19": "tf_gamerules,PlayVORed,vo/mvm/mght/soldier_mvm_m_laughevil01.mp3,33.2,-1",
 	    "OnTrigger#20": "KILLYOURSELF,Start,,12,-1",
 	    "OnTrigger#21": "KILLYOURSELF1,Start,,16,-1",
 	    "OnTrigger#22": "KILLYOURSELF2,Start,,20,-1",
@@ -716,6 +718,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	filter_activator_tfteam54.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_hurt_brush4 = SpawnEntityFromTable("trigger_hurt", {
+	    targetname = "cleanupbots",
 	    origin = Vector(0, 0, 0),
 	    mins = "-10000 -10000 -10000",
 	    maxs = "15000 15000 15000",
@@ -733,6 +736,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_hurt_brush4.KeyValueFromString("maxs", "15000 15000 15000")
 
 	local trigger_stun_brush5 = SpawnEntityFromTable("trigger_stun", {
+	    stun_duration = 9.5,
 	    stun_type = 1,
 	    stun_effects = 0,
 	    filtername = "blueteam",
@@ -1014,7 +1018,7 @@ __CollectGameEventCallbacks(::r2v_events)
 {
 	local logic_relay81 = SpawnEntityFromTable("logic_relay", {
 	    targetname = "name",
-	    "OnTrigger#1": "tf_objective_resourceRunScriptCodeNetProps.SetPropString(self, `m_iszMvMPopfileName`, `EXP Waters of a robot regime`)0-1"
+	    "OnTrigger#1": "tf_objective_resourceRunScriptCodeNetProps.SetPropString(self, `m_iszMvMPopfileName`, EXP Waters of a robot regime)0-1"
 	})
 	logic_relay81.SetOrigin(org)
 	logic_relay81.SetAngles(ang[0], ang[1], ang[2])
@@ -1465,7 +1469,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#14": "player*,SetHUDVisibility,1,12,-1",
 	    "ontrigger#15": "tf_gamerules,PlayVORed,vo/mvm/mght/soldier_mvm_m_paincrticialdeath01.mp3,5,-1",
 	    "ontrigger#16": "tf_gamerules,PlayVORed,vo/mvm/mght/soldier_mvm_m_paincrticialdeath01.mp3,5,-1",
-	    "OnTrigger#17": "tf_gamerules,PlayVORed,ambient\explosions\explode_1.wav,3.3,-1"
+	    "OnTrigger#17": "tf_gamerules,PlayVORed,ambient/explosions/explode_1.wav,3.3,-1"
 	})
 	logic_relay116.SetOrigin(org)
 	logic_relay116.SetAngles(ang[0], ang[1], ang[2])
@@ -1639,8 +1643,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#4": "boss_is_dead1,Stop,,2.5,-1",
 	    "OnTrigger#5": "shake_boss,StartShake,,0,-1",
 	    "ontrigger#6": "tf_gamerules,PlayVORed,npc/turret_floor/die.wav,0,-1",
-	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm\mvm_tank_end.wav,0,-1",
-	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm\mvm_tank_explode.wav,0,-1"
+	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm/mvm_tank_end.wav,0,-1",
+	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm/mvm_tank_explode.wav,0,-1"
 	})
 	logic_relay133.SetOrigin(org)
 	logic_relay133.SetAngles(ang[0], ang[1], ang[2])
@@ -1766,8 +1770,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#4": "boss_is_dead1,Stop,,2.5,-1",
 	    "OnTrigger#5": "shake_boss,StartShake,,0,-1",
 	    "ontrigger#6": "tf_gamerules,PlayVORed,npc/turret_floor/die.wav,0,-1",
-	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm\mvm_tank_end.wav,0,-1",
-	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm\mvm_tank_explode.wav,0,-1"
+	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm/mvm_tank_end.wav,0,-1",
+	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm/mvm_tank_explode.wav,0,-1"
 	})
 	logic_relay144.SetOrigin(org)
 	logic_relay144.SetAngles(ang[0], ang[1], ang[2])
@@ -1846,8 +1850,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#4": "boss_is_dead1,Stop,,2.5,-1",
 	    "OnTrigger#5": "shake_boss,StartShake,,0,-1",
 	    "ontrigger#6": "tf_gamerules,PlayVORed,npc/turret_floor/die.wav,0,-1",
-	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm\mvm_tank_end.wav,0,-1",
-	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm\mvm_tank_explode.wav,0,-1"
+	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm/mvm_tank_end.wav,0,-1",
+	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm/mvm_tank_explode.wav,0,-1"
 	})
 	logic_relay151.SetOrigin(org)
 	logic_relay151.SetAngles(ang[0], ang[1], ang[2])
@@ -1926,8 +1930,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#4": "boss_is_dead1,Stop,,2.5,-1",
 	    "OnTrigger#5": "shake_boss,StartShake,,0,-1",
 	    "ontrigger#6": "tf_gamerules,PlayVORed,npc/turret_floor/die.wav,0,-1",
-	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm\mvm_tank_end.wav,0,-1",
-	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm\mvm_tank_explode.wav,0,-1"
+	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm/mvm_tank_end.wav,0,-1",
+	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm/mvm_tank_explode.wav,0,-1"
 	})
 	logic_relay158.SetOrigin(org)
 	logic_relay158.SetAngles(ang[0], ang[1], ang[2])
@@ -2006,8 +2010,8 @@ __CollectGameEventCallbacks(::r2v_events)
 	    "OnTrigger#4": "boss_is_dead1,Stop,,2.5,-1",
 	    "OnTrigger#5": "shake_boss,StartShake,,0,-1",
 	    "ontrigger#6": "tf_gamerules,PlayVORed,npc/turret_floor/die.wav,0,-1",
-	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm\mvm_tank_end.wav,0,-1",
-	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm\mvm_tank_explode.wav,0,-1"
+	    "ontrigger#7": "tf_gamerules,PlayVORed,mvm/mvm_tank_end.wav,0,-1",
+	    "ontrigger#8": "tf_gamerules,PlayVORed,mvm/mvm_tank_explode.wav,0,-1"
 	})
 	logic_relay165.SetOrigin(org)
 	logic_relay165.SetAngles(ang[0], ang[1], ang[2])
@@ -2333,6 +2337,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	logic_relay200.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_ignite_brush6 = SpawnEntityFromTable("trigger_ignite", {
+	    StartDisabled = 1,
 	    targetname = "dont_touch_that",
 	    origin = Vector(-3069.812012, 4731.641602, 177.03131),
 	    filtername = "redteam",
@@ -2456,4 +2461,3 @@ boss_dead_heavy(Vector(0, 0, 0), [0, 0, 0])
 boss_dead_demo(Vector(0, 0, 0), [0, 0, 0])
 bombthesub(Vector(0, 0, 0), [0, 0, 0])
 w4transition(Vector(0, 0, 0), [0, 0, 0])
-grand_finale_sounds(Vector(0, 0, 0), [0, 0, 0])

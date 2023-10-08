@@ -1,7 +1,5 @@
 import os
-import time
-from itemdef_dict import itemdefs, offset
-# import itemdef_dict
+from r2v_dicts import itemdefs, propdict, offset
 
 os.system('')  # enables ansi escape characters in terminal
 
@@ -221,32 +219,31 @@ text_list = [text.replace('\t', '') for text in text_list]
 #TODO: dump all netprops and their prop type into a table or something to do this automatically
 
 def convert_proptype(prop, propval, arrayval):
+	manualset = False
+	if (len(propval) < 1) or (not prop in propdict) or (prop in propdict and propdict[prop].startswith('a')):
+		print(COLOR['CYAN'], 'Enter Property Type for', COLOR['ENDC'], COLOR['GREEN'], f'{prop}',COLOR['ENDC'])
+		print(COLOR['CYAN'],'Acceptable values:',COLOR['ENDC'],COLOR['GREEN'], 'str, int, fl, ent, bool, vec', COLOR['ENDC'])
+		print(COLOR['CYAN'],'Alternatively:',COLOR['ENDC'],COLOR['GREEN'], 's, i, f, e, b, v', COLOR['ENDC'])
+		proptype = input('Property Type: ')
+		manualset = True
+	else: proptype = propdict[prop]
 
-	print(COLOR['CYAN'], 'Enter Property Type for', COLOR['ENDC'], COLOR['GREEN'], f'{prop}',COLOR['ENDC'])
-	print(COLOR['CYAN'],'Acceptable values:',COLOR['ENDC'],COLOR['GREEN'], 'str, int, fl, ent, bool, vec', COLOR['ENDC'])
-	print(COLOR['CYAN'],'Alternatively:',COLOR['ENDC'],COLOR['GREEN'], 's, i, f, e, b, v', COLOR['ENDC'])
-	proptype = input('Property Type: ')
+	if proptype.startswith('i'):
+		if manualset: proptype = 'Int'
+		else:
+			try:
+				test = int(propval)
+				proptype = 'Int'
+			except Exception as e:
+				proptype = 'Entity'
 
-	if proptype.startswith('s'):
-		proptype = 'String'
-
-	elif proptype.startswith('i'):
-		proptype = 'Int'
-
-	elif proptype.startswith('f'):
-		proptype = 'Float'
-
-	elif proptype.startswith('e'):
-		proptype = 'Entity'
-
-	elif proptype.startswith('b'):
-		proptype = 'Bool'
-
-	elif proptype.startswith('v'):
-		proptype = 'Vector'
-
+	elif proptype.startswith('s'):proptype = 'String'
+	elif proptype.startswith('f'): proptype = 'Float'
+	elif proptype.startswith('e'): proptype = 'Entity'
+	elif proptype.startswith('b'): proptype = 'Bool'
+	elif proptype.startswith('v'): proptype = 'Vector'
 	else:
-		print(COLOR['RED'], 'Invalid Property Type! Search for SetPropINVALID in generated .nut', COLOR['ENDC'])
+		log.append('ERROR: Invalid Property Type! Search for SetPropINVALID in generated .nut')
 		proptype = 'INVALID'
 
 	print(COLOR['CYAN'],f'Proptype for {prop} set to',COLOR['ENDC'],COLOR['GREEN'],proptype,COLOR['ENDC'])
@@ -258,16 +255,22 @@ def convert_proptype(prop, propval, arrayval):
 		else:
 			return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval}, {arrayval})'
 	else:
+
 		if proptype == 'String':
-			if prop == "m_iszMvMPopfileName":
-				print(COLOR['YELLOW'],'WARNING! Changing m_iszMvMPopfileName can break map rotation! Change back to default on mission complete',COLOR['ENDC'])
+			if prop == 'm_iszMvMPopfileName':
+				log.append('ALERT: Changing m_iszMvMPopfileName can break map rotation! Change back to default on mission complete')
+
+		if proptype == 'Int':
+			if prop == 'm_iTeamNum':
+				log.append('ALERT: Changing m_iTeamNum directly can lead to crashes! use ForceChangeTeam or SetTeam instead')
+
 			return f'NetProps.SetProp{proptype}(self, `{prop}`, `{propval}`)'
 		else:
 			return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval})'
-
+customweapons = {}
 def convert_raf_keyvalues(value):
 	# print(value.split(','))
-	global giveitem, switchslot, changeattribs, stripweps
+	global giveitem, switchslot, changeattribs, stripweps, customweapons
 	if 'addoutput' in value.lower():
 		splitval = value.split(':')
 	else:
@@ -276,9 +279,12 @@ def convert_raf_keyvalues(value):
 	entinput = splitval[1].lower().strip()
 	# convert global $PlaySoundToSelf inputs to tf_gamerules PlayVORed
 	if 'player' in splitval[0].lower() and '$playsoundtoself' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} input to PlayVORed', COLOR['ENDC'])
+		log.append(f'SUCCESS: converted {splitval[1]} input to PlayVORed')
 		splitval[0] = 'tf_gamerules'
 		splitval[1] = 'PlayVORed'
+		splitval[2] = splitval[2].replace('\\', '/')
+		if '|' in splitval[2]:
+			splitval[2] = splitval[2].split('|')[1]
 
 	# use emitsoundex vscript function instead
 
@@ -288,21 +294,19 @@ def convert_raf_keyvalues(value):
 
 	# convert $SetProp and $SetClientProp to vscript alternative
 	elif '$setclientprop' in entinput or '$setprop' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
+		log.append(f'SUCCESS: converted {splitval[1]} to vscript alternative')
 		splitprop = splitval[1].split('$')
 		if len(splitprop) == 4:
 			arrayval = splitprop[3]
-			splitval[2] = convert_proptype(splitprop[2], splitval[2], arrayval)
-			splitval[1] = 'RunScriptCode'
 		else:
 			arrayval = -1
-			splitval[2] = convert_proptype(splitprop[2], splitval[2], arrayval)
-			splitval[1] = 'RunScriptCode'
+		splitval[1] = 'RunScriptCode'
+		splitval[2] = convert_proptype(splitprop[2], splitval[2], arrayval)
 		# print(f'NetProps.SetProp{convert_proptype(splitprop[3])}(self, {splitprop[3]}, {splitval[2]})')
 
 	#convert $DisplayText to ClientPrint
 	elif '$displaytextchat' in entinput or '$displaytextcenter' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} to ClientPrint', COLOR['ENDC'])
+		log.append(f'SUCCESS: converted {splitval[1]} to ClientPrint')
 		if splitval[2].startswith('{') and '$displaytextchat' in entinput:
 			splitcolor = splitval[2].split('{')
 			removebracket = splitcolor[1].split('}')
@@ -317,14 +321,15 @@ def convert_raf_keyvalues(value):
 		# input('')
 
 	#convert $SetKey to AddOutput (probably won't work everywhere)
+	#TODO: use KeyValueFromInt/String/Etc instead of AddOutput
 	elif '$setkey' in entinput:
 		splitkey = splitval[1].split('$')
-		print(COLOR['HEADER'], f'Converted {splitval[1]} to AddOutput {splitkey[2]}.  This may not work for certain entinputs!', COLOR['ENDC'])
-		splitval[1] = 'AddOutput'
+		log.append(f'ALERT: Converted {splitval[1]} to AddOutput {splitkey[2]}.  This may not work in some cases!')
+		splitval[1] = 'RunScriptCode'
 		splitval[2] = f'{splitkey[2]} {splitval[2]}'
 
 	elif '$addcond' in entinput or '$removecond' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
+		log.append(f'SUCCESS: converted {splitval[1]} to vscript alternative')
 		if '$addcond' in entinput:
 			splitval[1] = 'RunScriptCode'
 			splitval[2] = f'self.AddCond({splitval[2]})'
@@ -333,7 +338,7 @@ def convert_raf_keyvalues(value):
 			splitval[2] = f'self.RemoveCond({splitval[2]})'
 
 	elif '$addplayerattribute' in entinput or '$removeplayerattribute' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
+		log.append(f'SUCCESS: converted {splitval[1]} to vscript alternative')
 		if '$addplayerattribute' in entinput:
 			splitattrib = splitval[2].split('|')
 			# print(splitattrib)
@@ -344,29 +349,35 @@ def convert_raf_keyvalues(value):
 			splitval[2] = f'self.RemoveCustomAttribute(`{splitval[2]}`)'
 
 	elif '$teleporttoentity' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
+		log.append(f'SUCCESS: converted {splitval[1]} to vscript alternative')
 		splitval[1] = 'RunScriptCode'
 		splitval[2] = f'self.Teleport(true, {splitval[2]}.GetOrigin(), true,  {splitval[2]}.GetAbsAngles, true, {splitval[2]}.GetAbsVelocity())'
 	# 	print(splitval)
 
 	elif '$setmodeloverride' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} to SetCustomModelWithClassAnimations', COLOR['ENDC'])
+		log.append(f'SUCCESS: converted {splitval[1]} to SetCustomModelWithClassAnimations')
 		splitval[1] = 'SetCustomModelWithClassAnimations'
 
 	# elif '$removeoutput' in entinput:
-	# 	print(COLOR['HEADER'], f'converted {splitval[1]} to SetCustomModelWithClassAnimations', COLOR['ENDC'])
+	# 	log.append(f'SUCCESS: converted {splitval[1]} to SetCustomModelWithClassAnimations', COLOR['ENDC'])
 	# 	splitval[1] = 'RunScriptCode'
 	# 	splitval[2] = 'EntityOutputs.RemoveOutput(self,``,`effects`,)'
 
 	elif '$giveitem' in entinput or '$awardandgiveextraitem' in entinput:
 		giveitem = True
 		stringval = splitval[2].strip().lower()
-		
-		if stringval != 'tf_wearable' and (stringval in itemdefs or stringval.removeprefix('the ') in itemdefs):
-			formatval = f'{stringval} ? {itemdefs[stringval]} ? null'
 
-			if not stringval.startswith('tf_'):
-				index = itemdefs[stringval] - offset
+		if stringval != 'tf_wearable' and (stringval in itemdefs or stringval.removeprefix('the ') in itemdefs):
+
+			if stringval.startswith('tf_'):
+				if stringval in itemdefs:
+					formatval = f'{stringval} ? {itemdefs[stringval]} ? null'
+
+			else:
+				try:
+					index = itemdefs[stringval] - offset
+				except Exception as KeyError:
+					index = itemdefs[stringval.removeprefix('the ')] - offset
 				for k, v in itemdefs.items():
 					# print(v, index, '\n', stringval, k)
 
@@ -379,34 +390,44 @@ def convert_raf_keyvalues(value):
 				# input(stringval)
 
 		else:
-			print(COLOR['CYAN'], 'Enter The item classname and definiton index for',COLOR['ENDC'],COLOR['HEADER'],f'{splitval[2].strip()}',COLOR['ENDC'])
-			print(COLOR['CYAN'],'Find them here:',COLOR['ENDC'],COLOR['GREEN'],'https://wiki.alliedmods.net/Team_fortress_2_item_definition_indexes',COLOR['ENDC'])
-			print(COLOR['CYAN'],'Enter null for wearable model if you are not creating a tf_wearable weapon',COLOR['ENDC'])
-			print(COLOR['HEADER'], 'Enter ? for an example input',COLOR['ENDC'])
-			# formatval = 'a ? a ? null'
-			formatval = input('Format: Classname ? Index ? Wearable Model: ')
 
-			if formatval == '?':
-				print(COLOR['CYAN'],'Example input (the bat outta hell for demo):',COLOR['ENDC'],COLOR['GREEN'], 'tf_weapon_bottle ? 939 ? null', COLOR['ENDC'])
-				print(COLOR['CYAN'],'Example tf_wearable input (cozy camper):',COLOR['ENDC'],COLOR['GREEN'], 'tf_wearable ? 642 ? models/workshop/player/items/sniper/xms_sniper_commandobackpack/xms_sniper_commandobackpack.mdl', COLOR['ENDC'])
+			if splitval[2] in customweapons:
+				try:
+					formatval = f'{customweapons[splitval[2]][0] } ? {customweapons[splitval[2]][1]} ? {customweapons[splitval[2]][2]}'
+				except Exception as IndexError:
+					formatval = 'INVALID ? -1 ? null'
+			else:
+				print(COLOR['CYAN'], 'Enter The item classname and definiton index for',COLOR['ENDC'],COLOR['HEADER'],f'{splitval[2].strip()}',COLOR['ENDC'])
+				print(COLOR['CYAN'],'Find them here:',COLOR['ENDC'],COLOR['GREEN'],'https://wiki.alliedmods.net/Team_fortress_2_item_definition_indexes',COLOR['ENDC'])
+				print(COLOR['CYAN'],'Enter null for wearable model if you are not creating a tf_wearable weapon',COLOR['ENDC'])
+				print(COLOR['HEADER'], 'Enter ? for an example input',COLOR['ENDC'])
+				# formatval = 'a ? a ? null'
 				formatval = input('Format: Classname ? Index ? Wearable Model: ')
 
-		formatval = formatval.split('?')
+				if formatval == '?':
+					print(COLOR['CYAN'],'Example input (the bat outta hell for demo):',COLOR['ENDC'],COLOR['GREEN'], 'tf_weapon_bottle ? 939 ? null', COLOR['ENDC'])
+					print(COLOR['CYAN'],'Example tf_wearable input (cozy camper):',COLOR['ENDC'],COLOR['GREEN'], 'tf_wearable ? 642 ? models/workshop/player/items/sniper/xms_sniper_commandobackpack/xms_sniper_commandobackpack.mdl', COLOR['ENDC'])
+					formatval = input('Format: Classname ? Index ? Wearable Model: ')
 
-		if len(formatval) == 2:
-			formatval.append('null')
+		customweapons.update({splitval[2] : formatval})
+		formatsplit = formatval.split('?')
 
-		if len(formatval) != 3:
-			print(COLOR['RED'], 'Invalid input, search for `INVALID` in the generated .nut file')
-			print(COLOR['RED'], 'Press enter to continue')
-			input('')
-			formatval = ['INVALID', '-1', 'null']
+		if len(formatsplit) == 2:
+			formatsplit.append('null')
+
+		if len(formatsplit) != 3:
+			log.append('ERROR: Invalid GiveWeapon input, search for `INVALID` in the generated .nut file')
+			formatsplit = ['INVALID', '-1', 'null']
 
 		splitval[1] = 'RunScriptCode'
-		splitval[2] = f'GiveWeapon(self,`{formatval[0].strip()}`,{int(formatval[1])},{formatval[2]})'
+		try:
+			splitval[2] = f'GiveWeapon(self,`{formatsplit[0].strip()}`,{int(formatsplit[1])},{formatsplit[2].strip()})'
+		except Exception as ValueError:
+			log.append('ERROR: Invalid GiveWeapon input, search for `INVALID` in the generated .nut file')
+			splitval[2] = f'GiveWeapon(self,`{formatsplit[0].strip()}`,{-1},{formatsplit[2].strip()})'
 
 	elif '$addcurrency' in entinput or '$removecurrency' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
+		log.append(f'SUCCESS: converted {splitval[1]} to vscript alternative')
 
 		if '$addcurrency' in entinput:
 			splitval[1] = 'RunScriptCode'
@@ -416,13 +437,13 @@ def convert_raf_keyvalues(value):
 			splitval[2] = f'self.RemoveCurrency({splitval[2]})'
 
 	elif '$weaponswitchslot' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} to vscript alternative', COLOR['ENDC'])
+		log.append(f'SUCCESS: converted {splitval[1]} to vscript alternative')
 		switchslot = True
 		splitval[1] = 'RunScriptCode'
 		splitval[2] = f'WeaponSwitchSlot({splitval[2]}, self)'
 
 	elif '$changeattributes' in entinput:
-		print(COLOR['HEADER'], f'converted {splitval[1]} to ChangeBotAttributes.  This will cause issues with multiple events under the same name!', COLOR['ENDC'])
+		log.append(f'ALERT: converted {splitval[1]} to ChangeBotAttributes.  This will cause issues with multiple events under the same name!')
 		changeattribs = True
 		splitval[0] = 'point_populator_interface'
 		splitval[1] = 'ChangeBotAttributes'
@@ -436,6 +457,9 @@ def convert_raf_keyvalues(value):
 		splitval[1] = 'RunScriptCode'
 		splitval[2] = f'StripWeapon(self, {splitval[2]})'
 
+	if splitval[0].startswith('@p@') and 'self' in splitval[2]:
+		splitval[2] = splitval[2].replace('self', 'self.GetMoveParent()')
+		splitval[0] = splitval[0].removeprefix('@p@')
 
 	# print(splitval)
 	# input('')
@@ -477,108 +501,117 @@ def format_entities(lines, entity_name):
 				if 'hammerid' in h or 'id' in h:
 					h = h.split('"')[3].strip()
 					break
-		try:
+		# try:
 			#line split with quotes
-			if line.count('"') == 4:
-				minmaxindex = 1
-				parts = line.split('"')
-				key, value = parts[1::2]
-				if 'classname' in key and (lumpfile or vmffile):
-					entity_name = value
-			#line split without quotes
-			else:
-				minmaxindex = 0
-				parts = line.split(maxsplit=1)
-				if len(parts) > 0 and not any(lines[2].startswith(prefix) for prefix in entprefixes):
+		if line.count('"') == 4:
+			minmaxindex = 1
+			parts = line.split('"')
+			key, value = parts[1::2]
+			if 'classname' in key and (lumpfile or vmffile):
+				entity_name = value
+		#line split without quotes
+		else:
+			minmaxindex = 0
+			parts = line.split(maxsplit=1)
+			if len(parts) > 0 and not any(lines[2].startswith(prefix) for prefix in entprefixes):
+				try:
 					key, value = parts[0], parts[1]
-
+				except: continue
+		try:
 			if key == '}': continue
-			properties[key] = value
-			lowerkey = key.lower()
+		except: continue
 
-			if '\\' in value: value.replace('\\','/')
+		properties[key] = value
+		lowerkey = key.lower()
 
-			# there's bound to be more kv's that start with 'on' that will fuck this up, just blacklist them as they appear
-			if (lowerkey.startswith('on') or lowerkey.startswith('outvalue')) and not any(lowerkey.startswith(blacklist) for blacklist in blacklisted):
-				if any(k in value.lower() for k in convertedkeys):
-					# print(value)
-					value = convert_raf_keyvalues(value)
-					# print(value)
+		if '\\' in value: value.replace('\\','/')
 
-				formatted_properties.append(f'"{key}#{j}": "{value.strip('"')}"')
+		# there's bound to be more kv's that start with 'on' that will fuck this up, just blacklist them as they appear
+		if (lowerkey.startswith('on') or lowerkey.startswith('outvalue')) and not any(lowerkey.startswith(blacklist) for blacklist in blacklisted):
+			if any(k in value.lower() for k in convertedkeys):
+				# print(value)
+				value = convert_raf_keyvalues(value)
+				# print(value)
 
-				j += 1
+			formatted_properties.append(f'"{key}#{j}": "{value.strip('"')}"')
 
-			else:
-				namestripped = entity_name.strip()
-				brushname = f'{entity_name}_brush'
-				if 'mins' in key:
-					brushent = True
-					if lumpfile:
-						brushsizemin = f'{entity_name}{h}.KeyValueFromString("{key}", "{value.strip('"')}")'
-					else:
-						brushsizemin = f'{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
-				elif 'maxs' in key:
-					brushent = True
-					if lumpfile:
-						brushsizemax = f'{entity_name}{h}.KeyValueFromString("{key}", "{value.strip('"')}")'
-					else:
-						brushsizemax = f'{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
+			j += 1
 
-				#Brush ents with no mins/maxs can fuck things up.
-				#Some entities probably aren't covered in this.
-				#If templates suddenly stop being written, this is why.
-				elif (
-					entity_name.startswith('trigger_') or entity_name.startswith('func_') or
-					'volume' in entity_name or 'brush' in entity_name or 'zone' in entity_name or
-					namestripped == 'env_bubbles' or namestripped == 'env_embers' or
-					namestripped == 'dispenser_touch_trigger' or namestripped == 'momentary_rot_button'
-				):
-					if not brushent:
-						brushent = True
-						for line in lines:
-							splitline = line.split('"')[minmaxindex].strip()
-							if splitline == 'mins' or splitline == 'maxs':
-								minmaxfound = True
-								break
-
-							# if not minmaxfound and (line.split('"')[1].strip() == 'mins' or line.split('"')[1].strip() == 'maxs'):
-							# 	minmaxfound = True
-
-						if not minmaxfound:
-							if not vmffile:
-								lines.append('"mins" "-1 -1 -1"')
-								lines.append('"maxs" "1 1 1"')
-							else:
-								if mins is not None:
-									lines.append(f'"mins" "{mins}"')
-								if maxs is not None:
-									lines.append(f'"maxs" "{maxs}"')
-								
-				if key.startswith('origin'):
-					splitval = value.split(' ')
-					value = f'Vector({splitval[0]}, {splitval[1]}, {splitval[2]})'
-					org = value
-
-				if key.startswith('angles'):
-					splitval = value.split(' ')
-					value = f'QAngle({splitval[0]}, {splitval[1]}, {splitval[2]})'
-					ang = [splitval[0], splitval[1], splitval[2]]
-
-				if '"' in key:
-					key = key.replace('"','').strip()
-
-				if value.isdigit() or 'Vector' in value or 'QAngle' in value:
-					formatted_properties.append(f'{key} = {value}')
+		else:
+			namestripped = entity_name.strip()
+			brushname = f'{entity_name}_brush'
+			if 'mins' in key:
+				brushent = True
+				if lumpfile:
+					brushsizemin = f'{entity_name}{h}.KeyValueFromString("{key}", "{value.strip('"')}")'
 				else:
-					try:
-						formatted_properties.append(f'{key} = {float(value)}')
-					except ValueError:
-						if '"' in value:
-							formatted_properties.append(f'{key} = {value}')
+					brushsizemin = f'{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
+			elif 'maxs' in key:
+				brushent = True
+				if lumpfile:
+					brushsizemax = f'{entity_name}{h}.KeyValueFromString("{key}", "{value.strip('"')}")'
+				else:
+					brushsizemax = f'{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
+
+			#Brush ents with no mins/maxs can fuck things up.
+			#Some entities probably aren't covered in this.
+			#If templates suddenly stop being written, this is why.
+			elif (
+				entity_name.startswith('trigger_') or entity_name.startswith('func_') or
+				'volume' in entity_name or 'brush' in entity_name or 'zone' in entity_name or
+				namestripped == 'env_bubbles' or namestripped == 'env_embers' or
+				namestripped == 'dispenser_touch_trigger' or namestripped == 'momentary_rot_button'
+			):
+				if not brushent:
+					brushent = True
+					for line in lines:
+
+						if len(line.split('"')) > 1:
+							splitline = line.split('"')[minmaxindex].strip()
 						else:
-							formatted_properties.append(f'{key} = "{value}"')
-		except: pass
+							splitline = line.split('"')[0].strip()
+
+						if splitline == 'mins' or splitline == 'maxs':
+							minmaxfound = True
+							break
+
+						# if not minmaxfound and (line.split('"')[1].strip() == 'mins' or line.split('"')[1].strip() == 'maxs'):
+						# 	minmaxfound = True
+
+					if not minmaxfound:
+						if not vmffile:
+							lines.append('"mins" "-1 -1 -1"')
+							lines.append('"maxs" "1 1 1"')
+						else:
+							if mins is not None:
+								lines.append(f'"mins" "{mins}"')
+							if maxs is not None:
+								lines.append(f'"maxs" "{maxs}"')
+
+			if key.startswith('origin'):
+				splitval = value.split(' ')
+				value = f'Vector({splitval[0]}, {splitval[1]}, {splitval[2]})'
+				org = value
+
+			if key.startswith('angles'):
+				splitval = value.split(' ')
+				value = f'QAngle({splitval[0]}, {splitval[1]}, {splitval[2]})'
+				ang = [splitval[0], splitval[1], splitval[2]]
+
+			if '"' in key:
+				key = key.replace('"','').strip()
+
+			if value.isdigit() or 'Vector' in value or 'QAngle' in value:
+				formatted_properties.append(f'{key} = {value}')
+			else:
+				try:
+					formatted_properties.append(f'{key} = {float(value)}')
+				except ValueError:
+					if '"' in value:
+						formatted_properties.append(f'{key} = {value}')
+					else:
+						formatted_properties.append(f'{key} = "{value}"')
+		# except Exception as e:
 	j = 1
 	# if len(entity_name) < 1: continue
 
@@ -667,215 +700,215 @@ def convert_entities():
 	o, p = 1, 1
 	global extralines, lumpfile, vmffile, mins, maxs
 
-	try:
+	# try:
 		# backwards search for SpawnTemplates and VMF files (most entities are near the bottom of the VMF file anyway)
-		if not lumpfile:
-			if vmffile: 
-				vertices = []
-			for r in reversed(text_list):
-				lines = r.split('\n')
-				lines = [line.strip() for line in lines if line.strip()]
-				
-				lower = [l.lower() for l in lines]
-								
-				if len(lines) < 1: continue
-
-				if 'spawntemplate' in lower and len(lower) < 6:
-					for i, func in enumerate(func_list):
-						if func.startswith(lines[2].split('"')[1]):
-							if len(lines) > 3:
-								# input(f'origin for {func}: {lines[3].split('"')[1]}')
-								org = lines[3].split('"')[1].split()
-								# print(x, y, z)
-								# input('')
-								newfunc = f'{func.split('(')[0]}(Vector({org[0]}, {org[1]}, {org[2]}), [0, 0, 0])'
-								func_list[i] = newfunc
-								# input(func_list[i])
-
-							if len(lines) > 4:
-								# input(f'angles for {func}: {lines[4].split('"')[1]}')
-								pitch, yaw, roll = lines[4].split('"')[1].split()[0], lines[4].split('"')[1].split()[1], lines[4].split('"')[1].split()[2]
-								newfunc = f'{func.split('(')[0]}(Vector({org[0]}, {org[1]}, {org[2]}), [{pitch}, {yaw}, {roll}])'
-								func_list[i] = newfunc
-
-				#grab entitity name
-				if vmffile:
-					xyz = []
-					j = 0
-					if lines[0] == 'entity' and vmffile:
-						entity_name = lines[3].split('"')[3]
-						hammerid = lines[2].split('"')[3]
-						# input(f'{entity_name} {entity_id}')
-					
-					elif lines[0] == 'solid' and vmffile:
-
-						#grab vertex data for mins/maxs
-						if lines[3] == 'side':
-							string = lines[6].split('"')[3].split(')')
-
-							a = (string[0].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
-							b = (string[1].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
-							c = (string[2].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
-
-							vertices.append(a)
-							vertices.append(b)
-							vertices.append(c)
-						
-							vertices = list(set(vertices))
-
-						if len(vertices) >= 6:
-							mins, maxs = cube_to_aabb(vertices)
-							vertices.clear()
-
-					#grab vertex data for mins/maxs
-					elif lines[0] == 'side' and vmffile:
-						string = lines[3].split('"')[3].split(')')
-						a = (string[0].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
-						vertices.append(a)
-
-						b = (string[1].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
-						vertices.append(b)
-
-						c = (string[2].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
-						vertices.append(c)
-						
-						vertices = list(set(vertices))
-
-
-		# Split the input into lines
-		for i in text_list:
-			lines = i.split('\n')
-			# Remove empty lines
+	if not lumpfile:
+		if vmffile:
+			vertices = []
+		for r in reversed(text_list):
+			lines = r.split('\n')
 			lines = [line.strip() for line in lines if line.strip()]
 
-			# print([line.split('//') for line in lines if line.split('//')])
+			lower = [l.lower() for l in lines]
+
 			if len(lines) < 1: continue
 
-			#goofy ass
-			else:
-				lower = [line.lower() for line in lines if line.lower()]
+			if 'spawntemplate' in lower and len(lower) < 6:
+				for i, func in enumerate(func_list):
+					if func.startswith(lines[2].split('"')[1]):
+						if len(lines) > 3:
+							# input(f'origin for {func}: {lines[3].split('"')[1]}')
+							org = lines[3].split('"')[1].split()
+							# print(x, y, z)
+							# input('')
+							newfunc = f'{func.split('(')[0]}(Vector({org[0]}, {org[1]}, {org[2]}), [0, 0, 0])'
+							func_list[i] = newfunc
+							# input(func_list[i])
 
-				if lines[0] == '}':
-					lines = lines[1:]
+						if len(lines) > 4:
+							# input(f'angles for {func}: {lines[4].split('"')[1]}')
+							pitch, yaw, roll = lines[4].split('"')[1].split()[0], lines[4].split('"')[1].split()[1], lines[4].split('"')[1].split()[2]
+							newfunc = f'{func.split('(')[0]}(Vector({org[0]}, {org[1]}, {org[2]}), [{pitch}, {yaw}, {roll}])'
+							func_list[i] = newfunc
 
-				if lower[0].startswith('pointtemplates'):
-					lines = lines[2:]
+			#grab entitity name
+			if vmffile:
+				xyz = []
+				j = 0
+				if lines[0] == 'entity' and vmffile:
+					entity_name = lines[3].split('"')[3]
+					hammerid = lines[2].split('"')[3]
+					# input(f'{entity_name} {entity_id}')
 
-				if lines[0].startswith('{'):
-					lines = lines[1:]
+				elif lines[0] == 'solid' and vmffile:
 
-				if not any(lines[0].startswith(prefix) for prefix in entprefixes) and not lower[0] in outputs:
+					#grab vertex data for mins/maxs
+					if lines[3] == 'side':
+						string = lines[6].split('"')[3].split(')')
 
-					global funcname
-					funcname = lines[0]
+						a = (string[0].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+						b = (string[1].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+						c = (string[2].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
 
-				if any(lines[2].startswith(prefix) for prefix in entprefixes):
-					lines = lines[2:]
+						vertices.append(a)
+						vertices.append(b)
+						vertices.append(c)
 
-				remove = ['keepalive', 'nofixup']
-				lines = [l for l in lines if l.split()[0].lower() not in remove]
-								# input(func_list[i])
-				# print(lines)
+						vertices = list(set(vertices))
 
-				# Get the entity name
-				# do not remove the space
-				if lines[0].endswith(' {'):
-					lines[0] = lines[0].removesuffix('{')
+					if len(vertices) >= 6:
+						mins, maxs = cube_to_aabb(vertices)
+						vertices.clear()
 
-				# convert OnSpawnOutput to logic_relay
+				#grab vertex data for mins/maxs
+				elif lines[0] == 'side' and vmffile:
+					string = lines[3].split('"')[3].split(')')
+					a = (string[0].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+					vertices.append(a)
 
-				if lines[2].startswith('OnSpawnOutput') or lines[2].startswith('OnParentKilledOutput'):
-					lines = lines[2:]
+					b = (string[1].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+					vertices.append(b)
 
-				if lines[0].startswith('OnSpawnOutput') or lines[0].startswith('OnParentKilledOutput'):
-					for index, item in enumerate(lines):
-						if item == '}':
-							extralines = lines[index:]
-							extralines = extralines[1:]
-							lines = lines[:index]
-							# print(lines)
-							# print(f'EXTRA {extralines}')
-							break
-					if len(lines) < 2: continue
+					c = (string[2].strip('()').split()[0].removeprefix('('), string[0].strip('()').split()[1], string[0].strip('()').split()[2])
+					vertices.append(c)
 
-					lines = [line.replace('"','').strip() for line in lines]
-					if lines[0].startswith('OnSpawnOutput'):
-						relayline = ['logic_relay','{','','"spawnflags" "1"',f'"targetname" "SPAWNOUTPUT_CONVERSION{o}"']
-						print(COLOR['HEADER'], f'converted OnSpawnOutput to logic_relay named SPAWNOUTPUT_CONVERSION{o}.', COLOR['ENDC'])
-						o += 1
-					elif lines[0].startswith('OnParentKilledOutput'):
-						relayline = ['logic_relay','{','','"spawnflags" "1"',f'"targetname" "PARENTKILLEDOUTPUT_CONVERSION{p}"']
-						print(COLOR['HEADER'], f'converted OnSpawnOutput to logic_relay named PARENTKILLEDOUTPUT_CONVERSION{p}.', COLOR['ENDC'])
-						p += 1
-					if lines[2].startswith('Target'):
+					vertices = list(set(vertices))
 
-						lines[3] = lines[3].removeprefix('Action ')
-						lines[2] = lines[2].split('Target')
 
-					if len(lines) == 4:
-						relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},,0.0,-1"'
+	# Split the input into lines
+	for i in text_list:
+		lines = i.split('\n')
+		# Remove empty lines
+		lines = [line.strip() for line in lines if line.strip()]
 
-					if len(lines) == 5:
-						if lines[4].startswith('Delay'):
-							lines[4] = lines[4].removeprefix('Delay').strip()
-							relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},,{lines[4]},-1"'
+		# print([line.split('//') for line in lines if line.split('//')])
+		if len(lines) < 1: continue
 
-						elif lines[4].startswith('Param'):
-							lines[4] = lines[4].removeprefix('Param').strip()
-							relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},{lines[4]},0.0,-1"'
+		#goofy ass
+		else:
+			lower = [line.lower() for line in lines if line.lower()]
 
-					if len(lines) >= 6:
-						lines[4] = lines[4].removeprefix('Param').strip()
-						lines[5] = lines[5].removeprefix('Delay').strip()
-						if len(lines[2]) > 1:
-							lines[2] = lines[2][1:]
-							relayline[2] = f'"OnTrigger" "{lines[2][0].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
-						else:
-							relayline[2] = f'"OnTrigger" "{lines[2].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
+			if lines[0] == '}':
+				lines = lines[1:]
 
-					lines = relayline
+			if lower[0].startswith('pointtemplates'):
+				lines = lines[2:]
 
-				for i, v in enumerate(lower):
+			if lines[0].startswith('{'):
+				lines = lines[1:]
 
-					if 'keepalive' in v:
+			if not any(lines[0].startswith(prefix) for prefix in entprefixes) and not lower[0] in outputs:
+
+				global funcname
+				funcname = lines[0]
+
+			if any(lines[2].startswith(prefix) for prefix in entprefixes):
+				lines = lines[2:]
+
+			remove = ['keepalive', 'nofixup']
+			lines = [l for l in lines if l.split()[0].lower() not in remove]
+							# input(func_list[i])
+			# print(lines)
+
+			# Get the entity name
+			# do not remove the space
+			if lines[0].endswith(' {'):
+				lines[0] = lines[0].removesuffix('{')
+
+			# convert OnSpawnOutput to logic_relay
+
+			if lines[2].startswith('OnSpawnOutput') or lines[2].startswith('OnParentKilledOutput'):
+				lines = lines[2:]
+
+			if lines[0].startswith('OnSpawnOutput') or lines[0].startswith('OnParentKilledOutput'):
+				for index, item in enumerate(lines):
+					if item == '}':
+						extralines = lines[index:]
+						extralines = extralines[1:]
+						lines = lines[:index]
 						# print(lines)
-						templine = lines[i + 1:]
-						while not any(templine[0].lower().startswith(prefix) for prefix in entprefixes):
-							templine = lines[i:]
-							i -= 1
-						lines = templine
+						# print(f'EXTRA {extralines}')
+						break
+				if len(lines) < 2: continue
 
-					if 'nofixup' in v:
-						templine = lines[i + 1:]
-						while not any(templine[0].lower().startswith(prefix) for prefix in entprefixes):
-							templine = lines[i:]
-							i -= 1
-						lines = templine
+				lines = [line.replace('"','').strip() for line in lines]
+				if lines[0].startswith('OnSpawnOutput'):
+					relayline = ['logic_relay','{','','"spawnflags" "1"',f'"targetname" "SPAWNOUTPUT_CONVERSION{o}"']
+					log.append(f'SUCCESS: converted OnSpawnOutput to logic_relay named SPAWNOUTPUT_CONVERSION{o}.')
+					o += 1
+				elif lines[0].startswith('OnParentKilledOutput'):
+					relayline = ['logic_relay','{','','"spawnflags" "1"',f'"targetname" "PARENTKILLEDOUTPUT_CONVERSION{p}"']
+					log.append(f'SUCCESS: converted OnSpawnOutput to logic_relay named PARENTKILLEDOUTPUT_CONVERSION{p}.')
+					p += 1
+				if lines[2].startswith('Target'):
+
+					lines[3] = lines[3].removeprefix('Action ')
+					lines[2] = lines[2].split('Target')
+
+				if len(lines) == 4:
+					relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},,0.0,-1"'
+
+				if len(lines) == 5:
+					if lines[4].startswith('Delay'):
+						lines[4] = lines[4].removeprefix('Delay').strip()
+						relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},,{lines[4]},-1"'
+
+					elif lines[4].startswith('Param'):
+						lines[4] = lines[4].removeprefix('Param').strip()
+						relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},{lines[4]},0.0,-1"'
+
+				if len(lines) >= 6:
+					lines[4] = lines[4].removeprefix('Param').strip()
+					lines[5] = lines[5].removeprefix('Delay').strip()
+					if len(lines[2]) > 1:
+						lines[2] = lines[2][1:]
+						relayline[2] = f'"OnTrigger" "{lines[2][0].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
+					else:
+						relayline[2] = f'"OnTrigger" "{lines[2].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
+
+				lines = relayline
+
+			for i, v in enumerate(lower):
+
+				if 'keepalive' in v:
+					# print(lines)
+					templine = lines[i + 1:]
+					while not any(templine[0].lower().startswith(prefix) for prefix in entprefixes):
+						templine = lines[i:]
+						i -= 1
+					lines = templine
+
+				if 'nofixup' in v:
+					templine = lines[i + 1:]
+					while not any(templine[0].lower().startswith(prefix) for prefix in entprefixes):
+						templine = lines[i:]
+						i -= 1
+					lines = templine
 
 
-				if any(lines[0].startswith(prefix) for prefix in entprefixes):
-					entity_name = lines[0]
+			if any(lines[0].startswith(prefix) for prefix in entprefixes):
+				entity_name = lines[0]
 
-				if len(extralines) > 0:
-					entity_name = extralines[0]
-					format_entities(extralines, entity_name)
-					extralines.clear()
-					entity_name = lines[0]
-					format_entities(lines, entity_name)
-				else:
-					format_entities(lines, entity_name)
+			if len(extralines) > 0:
+				entity_name = extralines[0]
+				format_entities(extralines, entity_name)
+				extralines.clear()
+				entity_name = lines[0]
+				format_entities(lines, entity_name)
+			else:
+				format_entities(lines, entity_name)
 
-	except Exception as IndexError:
-		print(IndexError)
-		print(COLOR['CYAN'],f'Writing entities to file...',COLOR['ENDC'])
-		print(lines)
-		# done elsewhere now
-		# entity_list.append(f'\n}}\n')
-		name_list.append('END OF FILE')
-		time.sleep(1)
-	except:
-		print(COLOR['RED'],f'An error has occured. Press enter to continue',COLOR['ENDC'])
-		input('')
+	# except Exception as IndexError:
+	# 	print(IndexError)
+	# 	print(COLOR['CYAN'],f'Writing entities to file...',COLOR['ENDC'])
+	# 	print(lines)
+	# 	# done elsewhere now
+	# 	# entity_list.append(f'\n}}\n')
+	# 	name_list.append('END OF FILE')
+	# 	time.sleep(1)
+	# except:
+		# print(COLOR['RED'],f'An error has occured. Press enter to continue',COLOR['ENDC'])
+		# input('')
 
 def write_ents_to_file():
 	global giveitem, switchslot, changeattribs, stripweps
@@ -905,7 +938,6 @@ def write_ents_to_file():
 		print(COLOR['GREEN'],'Writing',COLOR['ENDC'],COLOR['CYAN'],name_list[i],COLOR['ENDC'],COLOR['GREEN'],'to file...',COLOR['ENDC'])
 		script.write(e)
 		i += 1
-		if 'INVALID' in e: invalidprop = True
 
 	if not lumpfile and not vmffile:
 		script.write('}\n')
@@ -923,11 +955,21 @@ def write_ents_to_file():
 	script.close()
 	print(COLOR['GREEN'],'File written!',COLOR['ENDC'],COLOR['YELLOW'],len(name_list) - 1,COLOR['ENDC'],COLOR['GREEN'],'Entities Converted',COLOR['ENDC'])
 
-	if invalidprop:
-		print(COLOR['RED'],f'invalid property type entered, search for SetPropINVALID in the provided .nut file',COLOR['ENDC'])
-
 if __name__ == '__main__':
 
 		convert_entities()
 		write_ents_to_file()
+		if len(log) > 0:
+			input('Press Enter To View Log...')
+			for l in reversed(sorted(log)):
+
+				if l.startswith('SUCCESS'):
+					print(COLOR['GREEN'], l, COLOR['ENDC'])
+
+				elif l.startswith('ERROR'):
+					print(COLOR['RED'], l, COLOR['ENDC'])
+
+				elif l.startswith('ALERT'):
+					print(COLOR['YELLOW'], l, COLOR['ENDC'])
+
 		input('Press Enter To Close...')

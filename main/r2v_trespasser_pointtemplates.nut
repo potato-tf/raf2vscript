@@ -93,6 +93,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	point_clientcommand3.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_multiple_brush1 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "clear_overlay_brush",
 	    spawnflags = 1,
 	    StartDisabled = 1,
 	    mins = "-1 -1 -1",
@@ -311,6 +312,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	filter_activator_name24.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_multiple_brush2 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "redtargetname",
 	    mins = "-152 -368 -160",
 	    maxs = "152 368 160",
 	    origin = Vector(856, 1280, 352),
@@ -323,6 +325,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_multiple_brush2.KeyValueFromString("maxs", "152 368 160")
 
 	local trigger_teleport_brush3 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "deadredtele",
 	    mins = "-152 -368 -160",
 	    maxs = "152 368 160",
 	    origin = Vector(856, 1280, 352),
@@ -343,6 +346,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	info_teleport_destination25.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_multiple_brush4 = SpawnEntityFromTable("trigger_multiple", {
+	    filtername = "filter_deadred",
 	    origin = Vector(-1885, -561, 60),
 	    mins = "-64 -64 -64",
 	    maxs = "64 64 64",
@@ -368,6 +372,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_multiple_brush4.KeyValueFromString("maxs", "64 64 64")
 
 	local trigger_stun_brush5 = SpawnEntityFromTable("trigger_stun", {
+	    filtername = "filter_aliveblu",
 	    origin = Vector(0, 1440, 228),
 	    mins = "-9999 -9999 -9999",
 	    maxs = "9999 9999 9999",
@@ -419,6 +424,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_rock_pusher <- function(org, ang)
 {
 	local trigger_push_brush6 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    origin = Vector(-1088, 984, 48),
 	    mins = "-112 -40 -144",
 	    maxs = "112 40 144",
@@ -463,6 +469,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_virofix <- function(org, ang)
 {
 	local trigger_push_brush7 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    filtername = "filter_virophage",
 	    origin = Vector(641, 304, -49),
 	    mins = "-50 -42 -124",
@@ -478,6 +485,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush7.KeyValueFromString("maxs", "50 42 124")
 
 	local trigger_catapult_brush8 = SpawnEntityFromTable("trigger_catapult", {
+	    targetname = "jump_barrel",
 	    useThresholdCheck = 0,
 	    useExactVelocity = 0,
 	    upperThreshold = 0.3,
@@ -533,6 +541,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_virofix2 <- function(org, ang)
 {
 	local trigger_multiple_brush9 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "jump_generator_fix",
 	    spawnflags = 1,
 	    StartDisabled = 0,
 	    filtername = "filter_red",
@@ -548,6 +557,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_multiple_brush9.KeyValueFromString("maxs", "66 45 96")
 
 	local trigger_catapult_brush10 = SpawnEntityFromTable("trigger_catapult", {
+	    targetname = "jump_generator",
 	    useThresholdCheck = 0,
 	    useExactVelocity = 0,
 	    upperThreshold = 0.3,
@@ -593,6 +603,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_spawnfix <- function(org, ang)
 {
 	local func_brush_brush11 = SpawnEntityFromTable("func_brush", {
+	    origin = Vector(992, 3072, 832),
 	    mins = "-32 -64 -398",
 	    maxs = "32 64 398"
 	})
@@ -605,7 +616,7 @@ __CollectGameEventCallbacks(::r2v_events)
 {
 	local logic_timer36 = SpawnEntityFromTable("logic_timer", {
 	    refiretime = 3,
-	    "ontimer#1": "obj_sentrygunRunScriptCodeNetProps.SetPropInt(self, `m_CollisionGroup`, 3)0-1"
+	    "ontimer#1": "obj_sentrygunRunScriptCodeNetProps.SetPropInt(self, `m_CollisionGroup`, `3`)0-1"
 	})
 	logic_timer36.SetOrigin(org)
 	logic_timer36.SetAngles(ang[0], ang[1], ang[2])
@@ -696,6 +707,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_finale_facer <- function(org, ang)
 {
 	local trigger_teleport_brush12 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "cheese",
 	    mins = "-3392 -3392 -704",
 	    maxs = "3392 3392 704",
 	    origin = Vector(768, 768, 576),
@@ -721,6 +733,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_finale_facerblu <- function(org, ang)
 {
 	local trigger_teleport_brush13 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "cheese2",
 	    mins = "-3392 -3392 -704",
 	    maxs = "3392 3392 704",
 	    origin = Vector(768, 768, 576),
@@ -746,6 +759,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_teleporter_brush <- function(org, ang)
 {
 	local trigger_teleport_brush14 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "teleporter",
 	    mins = "-224 -452 -576",
 	    maxs = "224 452 576",
 	    origin = Vector(-160, 3132, 704),
@@ -761,6 +775,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_teleporter_brush_finale <- function(org, ang)
 {
 	local trigger_teleport_brush15 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "teleporterfinale",
 	    mins = "-224 -452 -576",
 	    maxs = "224 452 576",
 	    origin = Vector(-160, 3132, 704),
@@ -798,6 +813,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_lastbot <- function(org, ang)
 {
 	local trigger_multiple_brush16 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "lastbotnamer",
 	    mins = "-224 -452 -576",
 	    maxs = "224 452 576",
 	    origin = Vector(-160, 3132, 704),
@@ -813,6 +829,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_voice <- function(org, ang)
 {
 	local trigger_multiple_brush17 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "gogogo",
 	    mins = "-8000 -8000 -1000",
 	    maxs = "8000 8000 1000",
 	    StartDisabled = 1,
@@ -1027,6 +1044,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_leap <- function(org, ang)
 {
 	local trigger_catapult_brush18 = SpawnEntityFromTable("trigger_catapult", {
+	    targetname = "jump_column",
 	    useThresholdCheck = 0,
 	    useExactVelocity = 0,
 	    upperThreshold = 0.3,
@@ -1061,6 +1079,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	info_target64.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_catapult_brush19 = SpawnEntityFromTable("trigger_catapult", {
+	    targetname = "jump_stairs",
 	    origin = Vector(-178, 974, -28),
 	    mins = "-50 -50 -100",
 	    maxs = "50 50 100",
@@ -1098,6 +1117,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_leap_tele <- function(org, ang)
 {
 	local trigger_teleport_brush20 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "leap_tele",
 	    mins = "-134.5 -0.5 -217.5",
 	    maxs = "134.5 0.5 217.5",
 	    origin = Vector(231.5, 1279.5, 147.5),
@@ -1121,6 +1141,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	info_target66.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_teleport_brush21 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "leap_tele2",
 	    mins = "-134.5 -0.5 -217.5",
 	    maxs = "134.5 0.5 217.5",
 	    origin = Vector(233.5, 1288.5, 147.5),
@@ -1283,6 +1304,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	filter_tf_bot_has_tag75.SetAngles(ang[0], ang[1], ang[2])
 
 	local func_regenerate_brush24 = SpawnEntityFromTable("func_regenerate", {
+	    targetname = "cab",
 	    associatedmodel = "locker_model",
 	    TeamNum = 2,
 	    origin = Vector(136, 112, 160),
@@ -1934,6 +1956,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_viewblocker_window <- function(org, ang)
 {
 	local func_brush_brush25 = SpawnEntityFromTable("func_brush", {
+	    origin = Vector(-1, 260, 368),
 	    mins = "-320.5 -4 -144",
 	    maxs = "320.5 4 144"
 	})
@@ -2024,6 +2047,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_brushbug_fix <- function(org, ang)
 {
 	local trigger_multiple_brush26 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "brushbug_fix",
 	    origin = Vector(136, 112, 160),
 	    mins = "-152 -468 -160",
 	    maxs = "152 468 160",
@@ -2098,6 +2122,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_pusher <- function(org, ang)
 {
 	local trigger_push_brush27 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    filtername = "filter_leaper",
 	    origin = Vector(-192, 1072, 0),
 	    mins = "-53 -29 -64",
@@ -2125,6 +2150,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_pusher2 <- function(org, ang)
 {
 	local trigger_push_brush28 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    filtername = "filter_virophage",
 	    origin = Vector(-1224, 2167, 736),
 	    mins = "-74 -62 -544",
@@ -2474,6 +2500,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_beer <- function(org, ang)
 {
 	local func_wall_brush29 = SpawnEntityFromTable("func_wall", {
+	    origin = Vector(654, 328, 456),
 	    mins = "-49 -65 -224",
 	    maxs = "49 65 224"
 	})
@@ -2485,6 +2512,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_brokenstairs_clip <- function(org, ang)
 {
 	local func_wall_brush30 = SpawnEntityFromTable("func_wall", {
+	    origin = Vector(188, 1248, 5),
 	    mins = "-36 -32 -77",
 	    maxs = "36 32 77"
 	})
@@ -2493,6 +2521,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_wall_brush30.KeyValueFromString("maxs", "36 32 77")
 
 	local func_wall_brush31 = SpawnEntityFromTable("func_wall", {
+	    origin = Vector(256, 1248, 23),
 	    mins = "-32 -32 -95",
 	    maxs = "32 32 95"
 	})
@@ -2501,6 +2530,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_wall_brush31.KeyValueFromString("maxs", "32 32 95")
 
 	local func_wall_brush32 = SpawnEntityFromTable("func_wall", {
+	    origin = Vector(326, 1248, 39),
 	    mins = "-38 -32 -111",
 	    maxs = "38 32 111"
 	})
@@ -2509,6 +2539,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_wall_brush32.KeyValueFromString("maxs", "38 32 111")
 
 	local func_wall_brush33 = SpawnEntityFromTable("func_wall", {
+	    origin = Vector(365, 1248, 52),
 	    mins = "-19 -32 -124",
 	    maxs = "19 32 124"
 	})
@@ -2517,6 +2548,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_wall_brush33.KeyValueFromString("maxs", "19 32 124")
 
 	local func_wall_brush34 = SpawnEntityFromTable("func_wall", {
+	    origin = Vector(388, 1256, 48),
 	    mins = "-4 -24 -112",
 	    maxs = "4 24 112"
 	})
@@ -2525,6 +2557,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_wall_brush34.KeyValueFromString("maxs", "4 24 112")
 
 	local func_wall_brush35 = SpawnEntityFromTable("func_wall", {
+	    origin = Vector(396, 1264, 48),
 	    mins = "-4 -16 -112",
 	    maxs = "4 16 112"
 	})
@@ -2533,6 +2566,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_wall_brush35.KeyValueFromString("maxs", "4 16 112")
 
 	local func_wall_brush36 = SpawnEntityFromTable("func_wall", {
+	    origin = Vector(404, 1272, 48),
 	    mins = "-4 -8 -112",
 	    maxs = "4 8 112"
 	})
@@ -2562,6 +2596,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_ledgefix_left <- function(org, ang)
 {
 	local func_brush_brush37 = SpawnEntityFromTable("func_brush", {
+	    origin = Vector(-544, 1596, 536),
 	    mins = "-112 -8 -104",
 	    maxs = "112 8 104"
 	})
@@ -2570,6 +2605,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_brush_brush37.KeyValueFromString("maxs", "112 8 104")
 
 	local func_brush_brush38 = SpawnEntityFromTable("func_brush", {
+	    origin = Vector(-380, 1440, 520),
 	    mins = "-8 -112 -120",
 	    maxs = "8 112 120"
 	})
@@ -2578,6 +2614,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_brush_brush38.KeyValueFromString("maxs", "8 112 120")
 
 	local func_brush_brush39 = SpawnEntityFromTable("func_brush", {
+	    origin = Vector(-544, 1284, 536),
 	    mins = "-112 -8 -104",
 	    maxs = "112 8 104"
 	})
@@ -2589,6 +2626,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_ledgefix_right <- function(org, ang)
 {
 	local func_brush_brush40 = SpawnEntityFromTable("func_brush", {
+	    origin = Vector(544, 1284, 536),
 	    mins = "-112 -8 -104",
 	    maxs = "112 8 104"
 	})
@@ -2597,6 +2635,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_brush_brush40.KeyValueFromString("maxs", "112 8 104")
 
 	local func_brush_brush41 = SpawnEntityFromTable("func_brush", {
+	    origin = Vector(380, 1440, 520),
 	    mins = "-8 -112 -120",
 	    maxs = "8 112 120"
 	})
@@ -2605,6 +2644,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_brush_brush41.KeyValueFromString("maxs", "8 112 120")
 
 	local func_brush_brush42 = SpawnEntityFromTable("func_brush", {
+	    origin = Vector(544, 1596, 536),
 	    mins = "-112 -8 -104",
 	    maxs = "112 8 104"
 	})
@@ -2909,6 +2949,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_hhhteleporter <- function(org, ang)
 {
 	local trigger_teleport_brush43 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "hhhtele1",
 	    origin = Vector(0, 2176, 48),
 	    filtername = "filter_headless",
 	    mins = "-384 -160 -80",
@@ -2942,6 +2983,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower0 <- function(org, ang)
 {
 	local trigger_stun_brush44 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower0",
 	    stun_type = 0,
@@ -2965,6 +3007,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower1 <- function(org, ang)
 {
 	local trigger_stun_brush45 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower1",
 	    stun_type = 0,
@@ -2988,6 +3031,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower2 <- function(org, ang)
 {
 	local trigger_stun_brush46 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower2",
 	    stun_type = 0,
@@ -3011,6 +3055,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower3 <- function(org, ang)
 {
 	local trigger_stun_brush47 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower3",
 	    stun_type = 0,
@@ -3034,6 +3079,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower4 <- function(org, ang)
 {
 	local trigger_stun_brush48 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower4",
 	    stun_type = 0,
@@ -3057,6 +3103,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower5 <- function(org, ang)
 {
 	local trigger_stun_brush49 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower5",
 	    stun_type = 0,
@@ -3080,6 +3127,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower6 <- function(org, ang)
 {
 	local trigger_stun_brush50 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower6",
 	    stun_type = 0,
@@ -3103,6 +3151,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower7 <- function(org, ang)
 {
 	local trigger_stun_brush51 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower7",
 	    stun_type = 0,
@@ -3126,6 +3175,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower8 <- function(org, ang)
 {
 	local trigger_stun_brush52 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower8",
 	    stun_type = 0,
@@ -3149,6 +3199,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_slower9 <- function(org, ang)
 {
 	local trigger_stun_brush53 = SpawnEntityFromTable("trigger_stun", {
+	    trigger_delay = 0,
 	    TeamNum = 0,
 	    targetname = "slower9",
 	    stun_type = 0,
@@ -3181,6 +3232,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	prop_dynamic164.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_capture_area_brush54 = SpawnEntityFromTable("trigger_capture_area", {
+	    classname = "trigger_capture_area",
 	    area_cap_point = "cap_point",
 	    area_time_to_cap = 60,
 	    StartDisabled = 0,
@@ -3337,6 +3389,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_shutter_pusher <- function(org, ang)
 {
 	local trigger_push_brush55 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    origin = Vector(232, 249, 521),
 	    mins = "-456 -7 -7.5",
 	    maxs = "456 7 7.5",
@@ -3353,6 +3406,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_shutter_pusher2 <- function(org, ang)
 {
 	local trigger_push_brush56 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    origin = Vector(125, 244, 345),
 	    mins = "-349 -12.5 -168.5",
 	    maxs = "349 12.5 168.5",
@@ -3369,6 +3423,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_brokenwall_pusher <- function(org, ang)
 {
 	local trigger_push_brush57 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    origin = Vector(388, 2182, 587),
 	    mins = "-4 -5.5 -85",
 	    maxs = "4 5.5 85",
@@ -3385,6 +3440,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_brokenwall_pusher2 <- function(org, ang)
 {
 	local trigger_push_brush58 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    origin = Vector(-388, 1761, 365),
 	    mins = "-4 -163.5 -57.5",
 	    maxs = "4 163.5 57.5",
@@ -3398,6 +3454,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush58.KeyValueFromString("maxs", "4 163.5 57.5")
 
 	local trigger_push_brush59 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    origin = Vector(-408, 1616, 430),
 	    mins = "-24 -15.5 -40.5",
 	    maxs = "24 15.5 40.5",
@@ -3414,6 +3471,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_yeet_failsafe <- function(org, ang)
 {
 	local trigger_teleport_brush60 = SpawnEntityFromTable("trigger_teleport", {
+	    targetname = "yeet_failsafe",
 	    mins = "-82.5 -41 -20",
 	    maxs = "82.5 41 20",
 	    origin = Vector(0, 488, 212),
@@ -3437,6 +3495,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_yeet <- function(org, ang)
 {
 	local func_forcefield_brush61 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(0, 488, 212),
 	    mins = "-82.5 -41 -20.5",
 	    maxs = "82.5 41 20.5",
 	    TeamNum = 3,
@@ -3451,6 +3510,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_yeet2 <- function(org, ang)
 {
 	local trigger_push_brush62 = SpawnEntityFromTable("trigger_push", {
+	    origin = Vector(400, 1040, 191),
 	    mins = "-16 -156 -16",
 	    maxs = "16 156 16",
 	    pushdir = "0 0 0",
@@ -3465,6 +3525,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	trigger_push_brush62.KeyValueFromString("maxs", "16 156 16")
 
 	local func_rotating_brush63 = SpawnEntityFromTable("func_rotating", {
+	    targetname = "yeetrotate",
 	    origin = Vector(400, 1040, 191),
 	    mins = "-8 -8 -8",
 	    maxs = "8 8 8",
@@ -3481,6 +3542,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_yeet3 <- function(org, ang)
 {
 	local trigger_catapult_brush64 = SpawnEntityFromTable("trigger_catapult", {
+	    targetname = "jump_lonepillar",
 	    useThresholdCheck = 0,
 	    useExactVelocity = 0,
 	    upperThreshold = 0.3,
@@ -3518,6 +3580,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_yeet4 <- function(org, ang)
 {
 	local trigger_push_brush65 = SpawnEntityFromTable("trigger_push", {
+	    alternateticksfix = 0,
 	    origin = Vector(416, -1056, 576),
 	    mins = "-32 -32 -704",
 	    maxs = "32 32 704",
@@ -3536,6 +3599,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_mapblock <- function(org, ang)
 {
 	local func_forcefield_brush66 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(-992, 997, 576),
 	    mins = "-288 -62 -704",
 	    maxs = "288 62 704",
 	    TeamNum = 3,
@@ -3567,6 +3631,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	filter_multi177.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_add_tf_player_condition_brush67 = SpawnEntityFromTable("trigger_add_tf_player_condition", {
+	    targetname = "lastcrits",
 	    condition = 40,
 	    duration = 2,
 	    filtername = "filter_redplayer",
@@ -3690,6 +3755,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	sky_camera185.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_multiple_brush68 = SpawnEntityFromTable("trigger_multiple", {
+	    targetname = "fog_system",
 	    origin = Vector(1847, -4007, 71),
 	    mins = "-9999 -9999 -9999",
 	    maxs = "9999 9999 9999",
@@ -3705,6 +3771,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_navblocker <- function(org, ang)
 {
 	local func_nav_blocker_brush69 = SpawnEntityFromTable("func_nav_blocker", {
+	    targetname = "nav_blocker",
 	    start_disabled = 0,
 	    mins = "-224 -222 -650",
 	    maxs = "224 222 650",
@@ -3914,6 +3981,7 @@ __CollectGameEventCallbacks(::r2v_events)
 ::p_spawns <- function(org, ang)
 {
 	local func_forcefield_brush71 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(-160, 2700, 736),
 	    mins = "-224 -20 -464",
 	    maxs = "224 20 464",
 	    TeamNum = 3,
@@ -3925,6 +3993,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush71.KeyValueFromString("maxs", "224 20 464")
 
 	local func_forcefield_brush72 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(1148, 2844, 672),
 	    mins = "-4 -156 -448",
 	    maxs = "4 156 448",
 	    TeamNum = 3,
@@ -3936,6 +4005,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush72.KeyValueFromString("maxs", "4 156 448")
 
 	local func_forcefield_brush73 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(1072, 3004, 672),
 	    mins = "-80 -4 -448",
 	    maxs = "80 4 448",
 	    TeamNum = 3,
@@ -3947,6 +4017,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush73.KeyValueFromString("maxs", "80 4 448")
 
 	local func_forcefield_brush74 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(-1136, -448, 672),
 	    mins = "-16 -320 -704",
 	    maxs = "16 320 704",
 	    TeamNum = 3,
@@ -3958,6 +4029,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush74.KeyValueFromString("maxs", "16 320 704")
 
 	local func_forcefield_brush75 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(-1200, 576, 576),
 	    mins = "-16 -192 -704",
 	    maxs = "16 192 704",
 	    TeamNum = 3,
@@ -3969,6 +4041,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush75.KeyValueFromString("maxs", "16 192 704")
 
 	local func_forcefield_brush76 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(1085, 492, 576),
 	    mins = "-56 -113 -704",
 	    maxs = "56 113 704",
 	    TeamNum = 3,
@@ -3980,6 +4053,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush76.KeyValueFromString("maxs", "56 113 704")
 
 	local func_forcefield_brush77 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(1109, 386, 576),
 	    mins = "-56 -84 -704",
 	    maxs = "56 84 704",
 	    TeamNum = 3,
@@ -3991,6 +4065,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush77.KeyValueFromString("maxs", "56 84 704")
 
 	local func_forcefield_brush78 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(1148, 216, 576),
 	    mins = "-56 -86 -704",
 	    maxs = "56 86 704",
 	    TeamNum = 3,
@@ -4002,6 +4077,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush78.KeyValueFromString("maxs", "56 86 704")
 
 	local func_forcefield_brush79 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(-1307, 1992, 650),
 	    mins = "-47 -222 -632",
 	    maxs = "47 222 632",
 	    TeamNum = 3,
@@ -4013,6 +4089,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	func_forcefield_brush79.KeyValueFromString("maxs", "47 222 632")
 
 	local func_forcefield_brush80 = SpawnEntityFromTable("func_forcefield", {
+	    origin = Vector(-1260, 2121, 650),
 	    mins = "-75 -46 -632",
 	    maxs = "75 46 632",
 	    TeamNum = 3,
@@ -4247,6 +4324,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	env_viewpunch216.SetAngles(ang[0], ang[1], ang[2])
 
 	local trigger_hurt_brush81 = SpawnEntityFromTable("trigger_hurt", {
+	    targetname = "ded",
 	    origin = Vector(0, 0, 0),
 	    angles = QAngle(-45, -90, 0),
 	    mins = "-8000 -8000 -1000",
@@ -4453,7 +4531,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	logic_relay225.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay226 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152, null)0-1",
+	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152,null)0-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION26"
 	})
@@ -4472,7 +4550,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	logic_relay227.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay228 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152, null)0-1",
+	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152,null)0-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION28"
 	})
@@ -4491,7 +4569,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	logic_relay229.SetAngles(ang[0], ang[1], ang[2])
 
 	local logic_relay230 = SpawnEntityFromTable("logic_relay", {
-	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152, null)0-1",
+	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152,null)0-1",
 	    spawnflags = 1,
 	    targetname = "SPAWNOUTPUT_CONVERSION30"
 	})
