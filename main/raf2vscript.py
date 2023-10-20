@@ -142,6 +142,7 @@ convertedkeys = [
 	'$setowner',
 	'$weaponstripslot'
 ]
+
 # Define a regular expression pattern to match key-value pairs
 # nvm regex scares me
 # pattern = r'(\S+)\s+([^\n]+)'
@@ -259,12 +260,13 @@ def convert_proptype(prop, propval, arrayval):
 		if proptype == 'String':
 			if prop == 'm_iszMvMPopfileName':
 				log.append('ALERT: Changing m_iszMvMPopfileName can break map rotation! Change back to default on mission complete')
+			return f'NetProps.SetProp{proptype}(self, `{prop}`, `{propval}`)'
 
-		if proptype == 'Int':
+		elif proptype == 'Int':
 			if prop == 'm_iTeamNum':
 				log.append('ALERT: Changing m_iTeamNum directly can lead to crashes! use ForceChangeTeam or SetTeam instead')
+			return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval})'
 
-			return f'NetProps.SetProp{proptype}(self, `{prop}`, `{propval}`)'
 		else:
 			return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval})'
 customweapons = {}
@@ -277,6 +279,7 @@ def convert_raf_keyvalues(value):
 		splitval = value.split(',')
 
 	entinput = splitval[1].lower().strip()
+
 	# convert global $PlaySoundToSelf inputs to tf_gamerules PlayVORed
 	if 'player' in splitval[0].lower() and '$playsoundtoself' in entinput:
 		log.append(f'SUCCESS: converted {splitval[1]} input to PlayVORed')
@@ -287,7 +290,6 @@ def convert_raf_keyvalues(value):
 			splitval[2] = splitval[2].split('|')[1]
 
 	# use emitsoundex vscript function instead
-
 	elif not 'player' in splitval[0].lower() and '$playsoundtoself' in entinput:
 		splitval[1] = 'RunScriptCode'
 		splitval[2] = f'EmitSoundEx({{sound_name = `{splitval[2]}`, channel = 0, volume = 1, pitch = 1, entity = self, filter_type = 4 }})'
@@ -313,11 +315,19 @@ def convert_raf_keyvalues(value):
 			removebracket[0] = textcolors[removebracket[0]]
 			color = r'\x07' + ''.join(removebracket)
 			splitval[1] = 'RunScriptCode'
-			splitval[2] = f'ClientPrint(self, 3, `{color}`)'
+			if splitval[0] == 'player':
+				splitval[0] = 'tf_gamerules'
+				splitval[2] = f'ClientPrint(null, 3, `{color}`)'
+			else:
+				splitval[2] = f'ClientPrint(self, 3, `{color}`)'
 
 		else:
 			splitval[1] = 'RunScriptCode'
-			splitval[2] = f'ClientPrint(self, 4, `{splitval[2]}`)'
+			if splitval[0] == 'player':
+				splitval[0] = 'tf_gamerules'
+				splitval[2] = f'ClientPrint(null, 4, `{splitval[2]}`)'
+			else:
+				splitval[2] = f'ClientPrint(self, 4, `{splitval[2]}`)'
 		# input('')
 
 	#convert $SetKey to AddOutput (probably won't work everywhere)

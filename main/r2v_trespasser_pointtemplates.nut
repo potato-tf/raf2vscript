@@ -51,6 +51,7 @@
 		break;
 	}
 }
+
 ::r2v_events <- {}
 ::r2v_events.OnGameEvent_teamplay_round_start <- function(params)
 {
@@ -68,6 +69,7 @@ __CollectGameEventCallbacks(::r2v_events)
 		break;
 	}
 }
+
 ::overlay_stuff <- function(org, ang)
 {
 	local logic_relay1 = SpawnEntityFromTable("logic_relay", {
@@ -616,7 +618,7 @@ __CollectGameEventCallbacks(::r2v_events)
 {
 	local logic_timer36 = SpawnEntityFromTable("logic_timer", {
 	    refiretime = 3,
-	    "ontimer#1": "obj_sentrygunRunScriptCodeNetProps.SetPropInt(self, `m_CollisionGroup`, `3`)0-1"
+	    "ontimer#1": "obj_sentrygunRunScriptCodeNetProps.SetPropInt(self, `m_CollisionGroup`, 3)0-1"
 	})
 	logic_timer36.SetOrigin(org)
 	logic_timer36.SetAngles(ang[0], ang[1], ang[2])
@@ -2337,12 +2339,12 @@ __CollectGameEventCallbacks(::r2v_events)
 }
 ::p_fullkit <- function(org, ang)
 {
-	local item_healthpack_medium134 = SpawnEntityFromTable("item_healthpack_medium", {
+	local item_healthkit_medium134 = SpawnEntityFromTable("item_healthkit_medium", {
 	    classname = "item_healthkit_full",
 	    disableshadows = 0
 	})
-	item_healthpack_medium134.SetOrigin(org)
-	item_healthpack_medium134.SetAngles(ang[0], ang[1], ang[2])
+	item_healthkit_medium134.SetOrigin(org)
+	item_healthkit_medium134.SetAngles(ang[0], ang[1], ang[2])
 
 }
 ::p_beam <- function(org, ang)
