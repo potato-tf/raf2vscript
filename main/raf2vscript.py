@@ -39,6 +39,20 @@ print(COLOR['RED'],'(DO NOT ENTER THE UNMODIFIED POPFILE)',COLOR['ENDC'])
 
 filename = input('').strip()
 
+print(COLOR['CYAN'],'OnSpawnOutput/OnParentKilledOutput will be replaced with logic_relays',COLOR['ENDC'])
+print(COLOR['CYAN'],'Make these logic_relays OnTrigger or OnSpawn?',COLOR['ENDC'])
+
+spawnoutput = ['OnTrigger', 'OnSpawn']
+
+try:
+	choice = int(input('0 = OnTrigger.  1 = OnSpawn: '))
+	if choice > len(spawnoutput) - 1:
+		print(COLOR['RED'],'Invalid Entry! Defaulting to OnTrigger',COLOR['ENDC'])
+		choice = 0
+except:
+	print(COLOR['RED'],'Invalid Entry! Defaulting to OnTrigger',COLOR['ENDC'])
+	choice = 0
+
 properties = {}
 
 formatted_properties, entity_list, name_list, extralines, log, func_list = [], [], [], [], [], []
@@ -788,13 +802,15 @@ def convert_entities():
 	# Split the input into lines
 	for i in text_list:
 		lines = i.split('\n')
+
 		# Remove empty lines
 		lines = [line.strip() for line in lines if line.strip()]
 
 		# print([line.split('//') for line in lines if line.split('//')])
 		if len(lines) < 1: continue
 
-		#goofy ass
+		# goofy ass
+		
 		else:
 			lower = [line.lower() for line in lines if line.lower()]
 
@@ -827,10 +843,10 @@ def convert_entities():
 
 			# convert OnSpawnOutput to logic_relay
 
-			if lines[2].startswith('OnSpawnOutput') or lines[2].startswith('OnParentKilledOutput'):
+			if lines[2].lower().endswith('output'):
 				lines = lines[2:]
 
-			if lines[0].startswith('OnSpawnOutput') or lines[0].startswith('OnParentKilledOutput'):
+			if lines[0].lower().endswith('output'):
 				for index, item in enumerate(lines):
 					if item == '}':
 						extralines = lines[index:]
@@ -842,39 +858,36 @@ def convert_entities():
 				if len(lines) < 2: continue
 
 				lines = [line.replace('"','').strip() for line in lines]
-				if lines[0].startswith('OnSpawnOutput'):
-					relayline = ['logic_relay','{','','"spawnflags" "1"',f'"targetname" "SPAWNOUTPUT_CONVERSION{o}"']
-					log.append(f'SUCCESS: converted OnSpawnOutput to logic_relay named SPAWNOUTPUT_CONVERSION{o}.')
+				
+				if lines[0].lower().endswith('output'):
+					relayline = ['logic_relay','{','','"spawnflags" "1"',f'"targetname" "{lines[0]}_CONVERSION{o}"']
+					log.append(f'SUCCESS: converted {lines[0]} to logic_relay named {lines[0]}_CONVERSION{o}.')
 					o += 1
-				elif lines[0].startswith('OnParentKilledOutput'):
-					relayline = ['logic_relay','{','','"spawnflags" "1"',f'"targetname" "PARENTKILLEDOUTPUT_CONVERSION{p}"']
-					log.append(f'SUCCESS: converted OnSpawnOutput to logic_relay named PARENTKILLEDOUTPUT_CONVERSION{p}.')
-					p += 1
 				if lines[2].startswith('Target'):
 
 					lines[3] = lines[3].removeprefix('Action ')
 					lines[2] = lines[2].split('Target')
 
 				if len(lines) == 4:
-					relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},,0.0,-1"'
+					relayline[2] = f'"{spawnoutput[choice]}" "{lines[2][1].strip()},{lines[3]},,0.0,-1"'
 
 				if len(lines) == 5:
 					if lines[4].startswith('Delay'):
 						lines[4] = lines[4].removeprefix('Delay').strip()
-						relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},,{lines[4]},-1"'
+						relayline[2] = f'"{spawnoutput[choice]}" "{lines[2][1].strip()},{lines[3]},,{lines[4]},-1"'
 
 					elif lines[4].startswith('Param'):
 						lines[4] = lines[4].removeprefix('Param').strip()
-						relayline[2] = f'"OnTrigger" "{lines[2][1].strip()},{lines[3]},{lines[4]},0.0,-1"'
+						relayline[2] = f'"{spawnoutput[choice]}" "{lines[2][1].strip()},{lines[3]},{lines[4]},0.0,-1"'
 
 				if len(lines) >= 6:
 					lines[4] = lines[4].removeprefix('Param').strip()
 					lines[5] = lines[5].removeprefix('Delay').strip()
 					if len(lines[2]) > 1:
 						lines[2] = lines[2][1:]
-						relayline[2] = f'"OnTrigger" "{lines[2][0].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
+						relayline[2] = f'"{spawnoutput[choice]}" "{lines[2][0].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
 					else:
-						relayline[2] = f'"OnTrigger" "{lines[2].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
+						relayline[2] = f'"{spawnoutput[choice]}" "{lines[2].strip()},{lines[3]},{lines[4]},{lines[5]},-1"'
 
 				lines = relayline
 

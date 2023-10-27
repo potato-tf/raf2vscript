@@ -2163,7 +2163,7 @@
 		p_fullkit
 		{
 			NoFixup 1
-			item_healthpack_medium
+			item_healthkit_medium
 			{
 				"classname" "item_healthkit_full"
 				"disableshadows" "0"

@@ -75,7 +75,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay1 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "aliveblu_checker,Trigger,,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION1"
+	    targetname = "OnSpawnOutput_CONVERSION1"
 	})
 	logic_relay1.SetOrigin(org)
 	logic_relay1.SetAngles(ang[0], ang[1], ang[2])
@@ -83,7 +83,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay2 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "overlay_command_relay,Trigger,,0.21,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION2"
+	    targetname = "OnSpawnOutput_CONVERSION2"
 	})
 	logic_relay2.SetOrigin(org)
 	logic_relay2.SetAngles(ang[0], ang[1], ang[2])
@@ -141,7 +141,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay7 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/scout.mdl,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION3"
+	    targetname = "OnSpawnOutput_CONVERSION3"
 	})
 	logic_relay7.SetOrigin(org)
 	logic_relay7.SetAngles(ang[0], ang[1], ang[2])
@@ -152,7 +152,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay8 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/soldier.mdl,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION4"
+	    targetname = "OnSpawnOutput_CONVERSION4"
 	})
 	logic_relay8.SetOrigin(org)
 	logic_relay8.SetAngles(ang[0], ang[1], ang[2])
@@ -163,7 +163,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay9 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/pyro.mdl,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION5"
+	    targetname = "OnSpawnOutput_CONVERSION5"
 	})
 	logic_relay9.SetOrigin(org)
 	logic_relay9.SetAngles(ang[0], ang[1], ang[2])
@@ -174,7 +174,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay10 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/demo.mdl,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION6"
+	    targetname = "OnSpawnOutput_CONVERSION6"
 	})
 	logic_relay10.SetOrigin(org)
 	logic_relay10.SetAngles(ang[0], ang[1], ang[2])
@@ -185,7 +185,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay11 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/heavy.mdl,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION7"
+	    targetname = "OnSpawnOutput_CONVERSION7"
 	})
 	logic_relay11.SetOrigin(org)
 	logic_relay11.SetAngles(ang[0], ang[1], ang[2])
@@ -196,7 +196,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay12 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/engineer.mdl,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION8"
+	    targetname = "OnSpawnOutput_CONVERSION8"
 	})
 	logic_relay12.SetOrigin(org)
 	logic_relay12.SetAngles(ang[0], ang[1], ang[2])
@@ -207,7 +207,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay13 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/medic.mdl,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION9"
+	    targetname = "OnSpawnOutput_CONVERSION9"
 	})
 	logic_relay13.SetOrigin(org)
 	logic_relay13.SetAngles(ang[0], ang[1], ang[2])
@@ -218,7 +218,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay14 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/sniper.mdl,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION10"
+	    targetname = "OnSpawnOutput_CONVERSION10"
 	})
 	logic_relay14.SetOrigin(org)
 	logic_relay14.SetAngles(ang[0], ang[1], ang[2])
@@ -229,7 +229,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay15 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,SetCustomModelWithClassAnimations,models/player/spy.mdl,0.1,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION11"
+	    targetname = "OnSpawnOutput_CONVERSION11"
 	})
 	logic_relay15.SetOrigin(org)
 	logic_relay15.SetAngles(ang[0], ang[1], ang[2])
@@ -240,7 +240,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay16 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "lastcounter,subtract,1,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "PARENTKILLEDOUTPUT_CONVERSION1"
+	    targetname = "OnParentKilledOutput_CONVERSION12"
 	})
 	logic_relay16.SetOrigin(org)
 	logic_relay16.SetAngles(ang[0], ang[1], ang[2])
@@ -248,7 +248,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay17 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "lastcounter,add,1,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION12"
+	    targetname = "OnSpawnOutput_CONVERSION13"
 	})
 	logic_relay17.SetOrigin(org)
 	logic_relay17.SetAngles(ang[0], ang[1], ang[2])
@@ -256,7 +256,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay18 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "users,trigger,,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION13"
+	    targetname = "OnSpawnOutput_CONVERSION14"
 	})
 	logic_relay18.SetOrigin(org)
 	logic_relay18.SetAngles(ang[0], ang[1], ang[2])
@@ -264,7 +264,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay19 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,addoutput,targetname deadred,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "PARENTKILLEDOUTPUT_CONVERSION2"
+	    targetname = "OnParentKilledOutput_CONVERSION15"
 	})
 	logic_relay19.SetOrigin(org)
 	logic_relay19.SetAngles(ang[0], ang[1], ang[2])
@@ -393,7 +393,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay26 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,color,0 0 0,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION14"
+	    targetname = "OnSpawnOutput_CONVERSION16"
 	})
 	logic_relay26.SetOrigin(org)
 	logic_relay26.SetAngles(ang[0], ang[1], ang[2])
@@ -857,7 +857,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay48 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "bots_win,Kill,,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION15"
+	    targetname = "OnSpawnOutput_CONVERSION17"
 	})
 	logic_relay48.SetOrigin(org)
 	logic_relay48.SetAngles(ang[0], ang[1], ang[2])
@@ -1325,7 +1325,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay76 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "door_1,kill,,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION16"
+	    targetname = "OnSpawnOutput_CONVERSION18"
 	})
 	logic_relay76.SetOrigin(org)
 	logic_relay76.SetAngles(ang[0], ang[1], ang[2])
@@ -1336,7 +1336,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay77 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "spawn_red,kill,,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION17"
+	    targetname = "OnSpawnOutput_CONVERSION19"
 	})
 	logic_relay77.SetOrigin(org)
 	logic_relay77.SetAngles(ang[0], ang[1], ang[2])
@@ -1347,7 +1347,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay78 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "func_respawnroomvisualizer,kill,,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION18"
+	    targetname = "OnSpawnOutput_CONVERSION20"
 	})
 	logic_relay78.SetOrigin(org)
 	logic_relay78.SetAngles(ang[0], ang[1], ang[2])
@@ -1369,7 +1369,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay80 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "superdisp,skin,1,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION19"
+	    targetname = "OnSpawnOutput_CONVERSION21"
 	})
 	logic_relay80.SetOrigin(org)
 	logic_relay80.SetAngles(ang[0], ang[1], ang[2])
@@ -1390,7 +1390,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay82 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "superdisp2,skin,1,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION20"
+	    targetname = "OnSpawnOutput_CONVERSION22"
 	})
 	logic_relay82.SetOrigin(org)
 	logic_relay82.SetAngles(ang[0], ang[1], ang[2])
@@ -3319,7 +3319,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay168 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "cap_area,SetControlPoint,cap_point,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION21"
+	    targetname = "OnSpawnOutput_CONVERSION23"
 	})
 	logic_relay168.SetOrigin(org)
 	logic_relay168.SetAngles(ang[0], ang[1], ang[2])
@@ -3327,7 +3327,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay169 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "cap_master,RoundSpawn,,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION22"
+	    targetname = "OnSpawnOutput_CONVERSION24"
 	})
 	logic_relay169.SetOrigin(org)
 	logic_relay169.SetAngles(ang[0], ang[1], ang[2])
@@ -3787,7 +3787,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay186 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "nav_blocker,BlockNav,,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION23"
+	    targetname = "OnSpawnOutput_CONVERSION25"
 	})
 	logic_relay186.SetOrigin(org)
 	logic_relay186.SetAngles(ang[0], ang[1], ang[2])
@@ -4516,7 +4516,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay224 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "capturezone_blu,AddOutput,OnCapture nuke_relay:Trigger:0:-1,0.0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION24"
+	    targetname = "OnSpawnOutput_CONVERSION26"
 	})
 	logic_relay224.SetOrigin(org)
 	logic_relay224.SetAngles(ang[0], ang[1], ang[2])
@@ -4527,7 +4527,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay225 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,$RemoveItem,Darwin's Danger Shield,0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION25"
+	    targetname = "OnSpawnOutput_CONVERSION27"
 	})
 	logic_relay225.SetOrigin(org)
 	logic_relay225.SetAngles(ang[0], ang[1], ang[2])
@@ -4535,7 +4535,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay226 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152,null)0-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION26"
+	    targetname = "OnSpawnOutput_CONVERSION28"
 	})
 	logic_relay226.SetOrigin(org)
 	logic_relay226.SetAngles(ang[0], ang[1], ang[2])
@@ -4546,7 +4546,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay227 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,$RemoveItem,The Razorback,0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION27"
+	    targetname = "OnSpawnOutput_CONVERSION29"
 	})
 	logic_relay227.SetOrigin(org)
 	logic_relay227.SetAngles(ang[0], ang[1], ang[2])
@@ -4554,7 +4554,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay228 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152,null)0-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION28"
+	    targetname = "OnSpawnOutput_CONVERSION30"
 	})
 	logic_relay228.SetOrigin(org)
 	logic_relay228.SetAngles(ang[0], ang[1], ang[2])
@@ -4565,7 +4565,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay229 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activator,$RemoveItem,The Cozy Camper,0,-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION29"
+	    targetname = "OnSpawnOutput_CONVERSION31"
 	})
 	logic_relay229.SetOrigin(org)
 	logic_relay229.SetAngles(ang[0], ang[1], ang[2])
@@ -4573,7 +4573,7 @@ __CollectGameEventCallbacks(::r2v_events)
 	local logic_relay230 = SpawnEntityFromTable("logic_relay", {
 	    "OnTrigger#1": "!activatorRunScriptCodeGiveWeapon(self,`tf_weapon_grapplinghook`,1152,null)0-1",
 	    spawnflags = 1,
-	    targetname = "SPAWNOUTPUT_CONVERSION30"
+	    targetname = "OnSpawnOutput_CONVERSION32"
 	})
 	logic_relay230.SetOrigin(org)
 	logic_relay230.SetAngles(ang[0], ang[1], ang[2])
