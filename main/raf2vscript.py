@@ -1,5 +1,7 @@
 import os
 from r2v_dicts import itemdefs, propdict, offset
+from random import randint
+from shutil import copyfile
 
 os.system('')  # enables ansi escape characters in terminal
 
@@ -39,27 +41,13 @@ print(COLOR['RED'],'(DO NOT ENTER THE UNMODIFIED POPFILE)',COLOR['ENDC'])
 
 filename = input('').strip()
 
-print(COLOR['CYAN'],'OnSpawnOutput/OnParentKilledOutput will be replaced with logic_relays',COLOR['ENDC'])
-print(COLOR['CYAN'],'Make these logic_relays OnTrigger or OnSpawn?',COLOR['ENDC'])
-
-spawnoutput = ['OnTrigger', 'OnSpawn']
-
-try:
-	choice = int(input('0 = OnTrigger.  1 = OnSpawn: '))
-	if choice > len(spawnoutput) - 1:
-		print(COLOR['RED'],'Invalid Entry! Defaulting to OnTrigger',COLOR['ENDC'])
-		choice = 0
-except:
-	print(COLOR['RED'],'Invalid Entry! Defaulting to OnTrigger',COLOR['ENDC'])
-	choice = 0
-
 properties = {}
 
 formatted_properties, entity_list, name_list, extralines, log, func_list = [], [], [], [], [], []
 giveitem, switchslot, changeattribs, lumpfile, vmffile, stripweps, refill =  False, False, False, False, False, False, False
 mins, maxs = None, None
-funcname = ''
-
+funcname, namewhitelist = '', ''
+spawnoutput, choice = ['OnTrigger', 'OnSpawn'], 0
 #TODO: Implement some actual list of entity names instead of doing this
 # also make ent name check stop after finding the first match to avoid targetnames with similar names.
 entprefixes = [
@@ -162,7 +150,7 @@ convertedkeys = [
 # pattern = r'(\S+)\s+([^\n]+)'
 
 def read_file(filename):
-	global lumpfile, vmffile
+	global lumpfile, vmffile, namewhitelist, spawnoutput
 	file_path = os.path.join(os.getcwd(), filename)
 
 
@@ -175,11 +163,29 @@ def read_file(filename):
 		elif os.path.exists(f'{file_path}.lmp'):
 				file_path = f'{file_path}.lmp'
 				lumpfile = True
+				vmffile = False
 
 		elif os.path.exists(f'{file_path}.vmf'):
 				file_path = f'{file_path}.vmf'
 				vmffile = True
+				lumpfile = False
 
+		if not lumpfile and not vmffile:
+			print(COLOR['CYAN'],'OnSpawnOutput/OnParentKilledOutput will be replaced with logic_relays',COLOR['ENDC'])
+			print(COLOR['CYAN'],'Make these logic_relays OnTrigger or OnSpawn?',COLOR['ENDC'])
+
+			try:
+				choice = int(input('0 = OnTrigger.  1 = OnSpawn: '))
+				if choice > len(spawnoutput) - 1:
+					print(COLOR['RED'],'Invalid Entry! Defaulting to OnTrigger',COLOR['ENDC'])
+					choice = 0
+			except:
+				print(COLOR['RED'],'Invalid Entry! Defaulting to OnTrigger',COLOR['ENDC'])
+				choice = 0
+		
+		# print(COLOR['CYAN'],'Only look for certain targetname prefixes?',COLOR['ENDC'])
+		# print(COLOR['CYAN'],'Example: "VS" would only target entities with targetnames starting with "VS", like "VSButton" or "VSTrigger"',COLOR['ENDC'])
+		# namewhitelist = input("Targetname prefix: ")
 		with open(file_path, 'r') as file:
 			lines = file.readlines()
 			content = ''.join(process_line(line) for line in lines)
@@ -545,6 +551,9 @@ def format_entities(lines, entity_name):
 			if key == '}': continue
 		except: continue
 
+		# if any(b in value.lower() for b in blacklistedents) or (namewhitelist != "" and ("targetname" in parts and value.startswith(namewhitelist) in parts)): 
+		if any(b in value.lower() for b in blacklistedents): return
+
 		properties[key] = value
 		lowerkey = key.lower()
 
@@ -828,7 +837,7 @@ def convert_entities():
 				global funcname
 				funcname = lines[0]
 
-			if any(lines[2].startswith(prefix) for prefix in entprefixes):
+			if len(lines) > 2 and any(lines[2].startswith(prefix) for prefix in entprefixes):
 				lines = lines[2:]
 
 			remove = ['keepalive', 'nofixup']
@@ -843,7 +852,7 @@ def convert_entities():
 
 			# convert OnSpawnOutput to logic_relay
 
-			if lines[2].lower().endswith('output'):
+			if len(lines) > 2 and lines[2].lower().endswith('output'):
 				lines = lines[2:]
 
 			if lines[0].lower().endswith('output'):
@@ -908,7 +917,6 @@ def convert_entities():
 						i -= 1
 					lines = templine
 
-
 			if any(lines[0].startswith(prefix) for prefix in entprefixes):
 				entity_name = lines[0]
 
@@ -919,7 +927,20 @@ def convert_entities():
 				entity_name = lines[0]
 				format_entities(lines, entity_name)
 			else:
-				format_entities(lines, entity_name)
+				try:
+
+					for l in lines:
+						if l.startswith("targetname") and not "classname" in lines:
+							entity_name = l.split()[1]
+							break
+						elif l.startswith("classname"):
+							entity_name = l.split()[1]
+							break
+						else:
+							entity_name = f"R2V_SPAWN{randint(0, 100000)}"
+					format_entities(lines, entity_name)
+				except Exception as e: 
+					print(e)
 
 	# except Exception as IndexError:
 	# 	print(IndexError)
