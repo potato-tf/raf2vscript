@@ -515,6 +515,7 @@ oldname = ''
 #format rafmod to spawnentityfromtable
 def format_entities(lines, entity_name):
 	# input(lines)
+
 	brushent = False
 	minmaxfound = False
 	minmaxindex = 0
@@ -528,7 +529,7 @@ def format_entities(lines, entity_name):
 		# find key/value pairs
 		if lumpfile or vmffile:
 			for h in lines:
-				if 'hammerid' in h or 'id' in h:
+				if 'hammerid' in h:
 					h = h.split('"')[3].strip()
 					break
 		# try:
@@ -552,7 +553,6 @@ def format_entities(lines, entity_name):
 		except: continue
 
 		# if any(b in value.lower() for b in blacklistedents) or (namewhitelist != "" and ("targetname" in parts and value.startswith(namewhitelist) in parts)): 
-		if any(b in value.lower() for b in blacklistedents): return
 
 		properties[key] = value
 		lowerkey = key.lower()
@@ -652,7 +652,7 @@ def format_entities(lines, entity_name):
 	if not brushent:
 
 		#lumpfile appends the hammerid to the variable name
-		if lumpfile or vmffile:
+		if lumpfile or vmffile and not entity_name in blacklistedents:
 
 			output_text = f'::{entity_name}{h} <- SpawnEntityFromTable("{entity_name}", {{\n    {",\n    ".join(formatted_properties)}\n}})\n'
 
@@ -680,7 +680,6 @@ def format_entities(lines, entity_name):
 
 		#lumpfile appends the hammerid to the variable name
 		if lumpfile:
-
 			output_text = f'::{entity_name}{h} <- SpawnEntityFromTable("{entity_name}", {{\n    {",\n    ".join(formatted_properties)}\n}})\n{entity_name}{h}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n'
 
 		elif funcname != oldname and funcname != '':
@@ -926,18 +925,10 @@ def convert_entities():
 				extralines.clear()
 				entity_name = lines[0]
 				format_entities(lines, entity_name)
-			else:
+			else: #lump/vmf file
 				try:
-
-					for l in lines:
-						if l.startswith("targetname") and not "classname" in lines:
-							entity_name = l.split()[1]
-							break
-						elif l.startswith("classname"):
-							entity_name = l.split()[1]
-							break
-						else:
-							entity_name = f"R2V_SPAWN{randint(0, 100000)}"
+					if lumpfile:
+						entity_name = '' #lumpfile entity_names are determined in format_entities
 					format_entities(lines, entity_name)
 				except Exception as e: 
 					print(e)
