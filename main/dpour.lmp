@@ -1,4 +1,987 @@
 {
+"world_maxs" "3840 2080 4832"
+"world_mins" "-4880 -8721 -4344"
+"startdark" "1"
+"skyname" "sky_downpour_heavy_storm"
+"minoccluderarea" "0.0"
+"message" "Downpour - Category Five"
+"maxpropscreenwidth" "-1"
+"maxoccludeearea" "0.0"
+"detailvbsp" "detail.vbsp"
+"detailmaterial" "detail/detailsprites"
+"comment" "Decompiled by BSPSource v1.4.0 from mvm_downpour_rc3a_brain2 | Decompiled by BSPSource v1.4.1 from mvm_downpour_rc3a_brain"
+"author" "Tindall, Braindawg"
+"_minlight" "0.0"
+"classname" "worldspawn"
+"mapversion" "238"
+"hammerid" "1"
+}
+{
+"origin" "-251.182 -256.545 96"
+"targetname" "storm_relay"
+"spawnflags" "1"
+"classname" "logic_relay"
+"hammerid" "2836568"
+"OnTrigger" "downpour_thunder_timerEnable1-1"
+"OnTrigger" "snd_downpour_heavyrainPlaySound1-1"
+"OnTrigger" "downpour_thunder_rand_casePickRandom0-1"
+"OnTrigger" "particle_storm_ripples1Start0.1-1"
+"OnTrigger" "ccspawnEnable3-1"
+"OnTrigger" "playerSetFogControllermist3-1"
+"OnTrigger" "stormshakeStartShake3-1"
+"OnTrigger" "particle_storm_rain1Start3-1"
+"OnTrigger" "particle_lightning*Kill3-1"
+"OnTrigger" "gamerulesRunScriptCodeSetSkyboxTexture(`sky_downpour_heavy_storm`)3-1"
+}
+{
+"model" "*1"
+"vrad_brush_cast_shadows" "0"
+"texframeindex" "0"
+"targetname" "PT_MINEBLOCKER"
+"StartDisabled" "1"
+"spawnflags" "2"
+"Solidity" "0"
+"solidbsp" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "1615.34 -1408 102.01"
+"invert_exclusion" "0"
+"effects" "0"
+"disablereceiveshadows" "0"
+"angles" "0 0 0"
+"classname" "func_brush"
+"hammerid" "2836249"
+}
+{
+"model" "*2"
+"vrad_brush_cast_shadows" "0"
+"texframeindex" "0"
+"targetname" "PT_MINEBLOCKER"
+"StartDisabled" "1"
+"spawnflags" "2"
+"Solidity" "0"
+"solidbsp" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "1730.12 50.85 -19.36"
+"invert_exclusion" "0"
+"effects" "0"
+"disablereceiveshadows" "0"
+"angles" "0 0 0"
+"classname" "func_brush"
+"hammerid" "2822370"
+}
+{
+"model" "*3"
+"vrad_brush_cast_shadows" "0"
+"texframeindex" "0"
+"targetname" "PT_MINEBLOCKER"
+"StartDisabled" "1"
+"spawnflags" "2"
+"Solidity" "0"
+"solidbsp" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "1990.04 34.86 31.18"
+"invert_exclusion" "0"
+"effects" "0"
+"disablereceiveshadows" "0"
+"angles" "0 0 0"
+"classname" "func_brush"
+"hammerid" "2822168"
+}
+{
+"model" "*4"
+"vrad_brush_cast_shadows" "0"
+"texframeindex" "0"
+"targetname" "PT_MINEBLOCKER"
+"StartDisabled" "1"
+"spawnflags" "2"
+"Solidity" "0"
+"solidbsp" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "2038.48 -1555.98 50.32"
+"invert_exclusion" "0"
+"effects" "0"
+"disablereceiveshadows" "0"
+"angles" "0 0 0"
+"classname" "func_brush"
+"hammerid" "2822234"
+}
+{
+"origin" "1779.11 -1166.02 -271.398"
+"targetname" "PT_PITDEBRIS"
+"start_active" "1"
+"flag_as_weather" "0"
+"effect_name" "lava_fireball_01"
+"cpoint7_parent" "0"
+"cpoint6_parent" "0"
+"cpoint5_parent" "0"
+"cpoint4_parent" "0"
+"cpoint3_parent" "0"
+"cpoint2_parent" "0"
+"cpoint1_parent" "0"
+"angles" "0 0 0"
+"classname" "info_particle_system"
+"hammerid" "2808447"
+}
+{
+"model" "*5"
+"vrad_brush_cast_shadows" "0"
+"texframeindex" "0"
+"targetname" "PT_MINEBLOCKER"
+"StartDisabled" "1"
+"spawnflags" "2"
+"Solidity" "0"
+"solidbsp" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "1783.35 -1692.01 102.01"
+"invert_exclusion" "0"
+"effects" "0"
+"disablereceiveshadows" "0"
+"angles" "0 0 0"
+"classname" "func_brush"
+"hammerid" "2780739"
+}
+{
+"origin" "1785 -1163 -331.017"
+"targetname" "PT_PITDEBRIS"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/bots/boss_bot/boss_tank_damage3.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "56.7741 238.187 -65.8539"
+"classname" "prop_dynamic"
+"hammerid" "2766974"
+}
+{
+"model" "*6"
+"vrad_brush_cast_shadows" "1"
+"targetname" "PT_W2BLOCKER"
+"StartDisabled" "1"
+"spawnflags" "2"
+"Solidity" "0"
+"solidbsp" "1"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "14.24 -22 292.41"
+"invert_exclusion" "0"
+"InputFilter" "0"
+"disablereceiveshadows" "0"
+"classname" "func_brush"
+"hammerid" "2766921"
+"OnBreak" "func_capturezoneEnable0-1"
+"OnBreak" "fourthspawn*Enable0-1"
+"OnBreak" "red_spawnp_1Enable0-1"
+"OnBreak" "hatchoccluderDeactivate0-1"
+"OnBreak" "hatchoccluderKill1-1"
+}
+{
+"model" "*7"
+"vrad_brush_cast_shadows" "1"
+"targetname" "PT_W2BLOCKER"
+"StartDisabled" "1"
+"spawnflags" "2"
+"Solidity" "0"
+"solidbsp" "1"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "-504.76 -458.25 83.38"
+"invert_exclusion" "0"
+"InputFilter" "0"
+"disablereceiveshadows" "0"
+"classname" "func_brush"
+"hammerid" "2766832"
+}
+{
+"origin" "1831.97 -1200.93 -151.481"
+"targetname" "PT_PITDEBRIS"
+"spawnflags" "13"
+"ignitionpoint" "32"
+"health" "9999999"
+"firetype" "0"
+"firesize" "64"
+"fireattack" "1"
+"damagescale" "10"
+"classname" "env_fire"
+"hammerid" "2766814"
+}
+{
+"model" "*8"
+"targetname" "PT_PITDEBRIS"
+"StartDisabled" "0"
+"spawnflags" "1"
+"origin" "1784 -1168 -136"
+"nodmgforce" "0"
+"damagetype" "8"
+"damagemodel" "1"
+"damagecap" "25"
+"damage" "10"
+"classname" "trigger_hurt"
+"hammerid" "2808237"
+}
+{
+"origin" "1869.62 -1458.25 243.754"
+"targetname" "PT_TUNNELCOLLAPSE"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.3"
+"model" "models/props_forest/rock001.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 195 180"
+"classname" "prop_dynamic"
+"hammerid" "2752402"
+}
+{
+"origin" "1766.29 -1439.54 -113.835"
+"targetname" "PT_TUNNELCOLLAPSE"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.3"
+"model" "models/props_forest/rock001.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 30 0"
+"classname" "prop_dynamic"
+"hammerid" "2752484"
+}
+{
+"origin" "2054.19 -1716.24 -100.246"
+"targetname" "PT_TUNNELCOLLAPSE"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.3"
+"model" "models/props_forest/rock001.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 30 0"
+"classname" "prop_dynamic"
+"hammerid" "2752406"
+}
+{
+"origin" "1784.13 -83.5665 176.25"
+"targetname" "PT_TUNNELCOLLAPSE"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.3"
+"model" "models/props_forest/rock001.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 180 -180"
+"classname" "prop_dynamic"
+"hammerid" "2752367"
+}
+{
+"origin" "1848.13 172.433 -111.75"
+"targetname" "PT_TUNNELCOLLAPSE"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.3"
+"model" "models/props_forest/rock001.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 180 0"
+"classname" "prop_dynamic"
+"hammerid" "2752213"
+}
+{
+"origin" "1725 -1135 -371.017"
+"targetname" "PT_PITDEBRIS"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/bots/boss_bot/boss_tank_damage3.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "56.7741 298.187 -65.8539"
+"classname" "prop_dynamic"
+"hammerid" "2751666"
+}
+{
+"origin" "1573.04 362.868 280"
+"TeamNum" "0"
+"targetname" "thirdspawn"
+"StartDisabled" "1"
+"spawnflags" "511"
+"angles" "0 0 0"
+"classname" "info_player_teamspawn"
+"hammerid" "2738040"
+}
+{
+"origin" "1449.47 -2248.78 -104"
+"targetname" "boxspawner"
+"spawnflags" "0"
+"PostSpawnSpeed" "0"
+"PostSpawnInheritAngles" "0"
+"PostSpawnDirectionVariance" "0.15"
+"PostSpawnDirection" "0 0 0"
+"model" "models/props_island/mannco_case_large.mdl"
+"EntityTemplate" "gunboxes"
+"angles" "0 0 0"
+"classname" "env_entity_maker"
+"hammerid" "2724428"
+}
+{
+"origin" "1566.42 532.417 288"
+"targetname" "boxspawner"
+"spawnflags" "0"
+"PostSpawnSpeed" "0"
+"PostSpawnInheritAngles" "0"
+"PostSpawnDirectionVariance" "0.15"
+"PostSpawnDirection" "0 0 0"
+"model" "models/props_island/mannco_case_large.mdl"
+"EntityTemplate" "gunboxes"
+"angles" "0 270 0"
+"classname" "env_entity_maker"
+"hammerid" "2724404"
+}
+{
+"origin" "1937.59 -71.56 -88"
+"targetname" "boxspawner"
+"spawnflags" "0"
+"PostSpawnSpeed" "0"
+"PostSpawnInheritAngles" "0"
+"PostSpawnDirectionVariance" "0.15"
+"PostSpawnDirection" "0 0 0"
+"model" "models/props_island/mannco_case_large.mdl"
+"EntityTemplate" "gunboxes"
+"angles" "0 0 0"
+"classname" "env_entity_maker"
+"hammerid" "2724383"
+}
+{
+"origin" "2331.51 -1607.67 -34.7701"
+"targetname" "boxspawner"
+"spawnflags" "0"
+"PostSpawnSpeed" "0"
+"PostSpawnInheritAngles" "0"
+"PostSpawnDirectionVariance" "0.15"
+"PostSpawnDirection" "0 0 0"
+"model" "models/props_island/mannco_case_large.mdl"
+"EntityTemplate" "gunboxes"
+"angles" "0 45 0"
+"classname" "env_entity_maker"
+"hammerid" "2724344"
+}
+{
+"origin" "1724.85 -1207.68 -233.061"
+"targetname" "PT_PITDEBRIS"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/bots/boss_bot/boss_tank_damage3.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "28.879 132.808 81.501"
+"classname" "prop_dynamic"
+"hammerid" "2751776"
+}
+{
+"model" "*9"
+"targetname" "spawntele"
+"target" "playerspawn"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"origin" "2105.45 -979.27 -0.01"
+"angles" "0 0 0"
+"classname" "trigger_teleport"
+"hammerid" "2710615"
+}
+{
+"origin" "-5291.02 -2492.21 303.478"
+"targetname" "skybox_terrain"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "0"
+"skin" "6"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/props_skybox/skycards_forest512bump.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "1"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 303.5 0"
+"classname" "prop_dynamic"
+"hammerid" "2709432"
+}
+{
+"origin" "-4402.02 -2494.21 306.478"
+"targetname" "skybox_terrain"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "0"
+"skin" "6"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/props_skybox/skycards_forest512bump.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "1"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 245.5 0"
+"classname" "prop_dynamic"
+"hammerid" "2709424"
+}
+{
+"origin" "-4479.02 -2530.21 253.478"
+"targetname" "skybox_terrain"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "0"
+"skin" "5"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/props_skybox/skycards_forest512bump.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "1"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 245.5 0"
+"classname" "prop_dynamic"
+"hammerid" "2709420"
+}
+{
+"origin" "-4859.02 -2395.21 286.478"
+"targetname" "skybox_terrain"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "0"
+"skin" "6"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/props_skybox/skycards_forest512bump.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "1"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 266.5 0"
+"classname" "prop_dynamic"
+"hammerid" "2709416"
+}
+{
+"origin" "-4933.02 -2424.21 254.478"
+"targetname" "skybox_terrain"
+"StartDisabled" "1"
+"spawnflags" "0"
+"solid" "0"
+"skin" "5"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/props_skybox/skycards_forest512bump.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "1"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 267 0"
+"classname" "prop_dynamic"
+"hammerid" "2709412"
+}
+{
+"origin" "417.233 -1628.3 0.300003"
+"targetname" "truckbarrel"
+"StartDisabled" "1"
+"spawnflags" "256"
+"solid" "6"
+"skin" "1"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"physdamagescale" "1.0"
+"PerformanceMode" "0"
+"modelscale" "1"
+"model" "models/props_hydro/water_barrel_cluster3.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "1"
+"disablereceiveshadows" "1"
+"DisableBoneFollowers" "0"
+"angles" "0 315 0"
+"classname" "prop_dynamic"
+"hammerid" "2695758"
+}
+{
+"model" "*10"
+"targetname" "spawntele1"
+"target" "playerspawn2"
+"StartDisabled" "0"
+"spawnflags" "1"
+"origin" "-2274.47 -4638.18 41.32"
+"angles" "0 0 0"
+"classname" "trigger_teleport"
+"hammerid" "2682126"
+}
+{
+"origin" "3176 -8657 4737"
+"targetname" "jail"
+"angles" "0 0 0"
+"classname" "info_teleport_destination"
+"hammerid" "2681731"
+}
+{
+"origin" "3176 -8337 4737"
+"targetname" "jail"
+"angles" "0 0 0"
+"classname" "info_teleport_destination"
+"hammerid" "2681586"
+}
+{
+"origin" "3176 -8049 4737"
+"targetname" "jail"
+"angles" "0 0 0"
+"classname" "info_teleport_destination"
+"hammerid" "2681425"
+}
+{
+"origin" "3176 -7761 4737"
+"targetname" "jail"
+"angles" "0 0 0"
+"classname" "info_teleport_destination"
+"hammerid" "2681296"
+}
+{
+"origin" "3176 -7505 4737"
+"targetname" "jail"
+"angles" "0 0 0"
+"classname" "info_teleport_destination"
+"hammerid" "2681167"
+}
+{
+"origin" "3176 -7249 4737"
+"targetname" "jail"
+"angles" "0 0 0"
+"classname" "info_teleport_destination"
+"hammerid" "2681129"
+}
+{
+"origin" "-2794.71 -451.532 0.159912"
+"targetname" "PT_LOCKER"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/props_gameplay/resupply_locker.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "0 270 0"
+"classname" "prop_dynamic"
+"hammerid" "2680821"
+}
+{
+"model" "*11"
+"wait" "2.5"
+"targetname" "PT_SWITCHGUNBUTTON"
+"speed" "2000"
+"spawnflags" "1057"
+"sounds" "21"
+"rendermode" "10"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "-2805.47 -468.35 69.99"
+"distance" "0"
+"angles" "0 0 0"
+"classname" "func_rot_button"
+"hammerid" "2680818"
+"OnPressed" "PT_LOCKERSetAnimationopen0-1"
+"OnPressed" "PT_LOCKERSetAnimationclose3-1"
+}
+{
+"model" "*12"
+"wait" "2.5"
+"targetname" "PT_SWITCHGUNBUTTON"
+"speed" "2000"
+"spawnflags" "1057"
+"sounds" "21"
+"rendermode" "10"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "-3192.64 -457.62 58.8"
+"distance" "0"
+"angles" "0 0 0"
+"classname" "func_rot_button"
+"hammerid" "2680737"
+"OnPressed" "PT_LOCKER2SetAnimationopen0-1"
+"OnPressed" "PT_LOCKER2SetAnimationclose3-1"
+}
+{
+"origin" "-3196.05 -436.892 2.05688"
+"targetname" "PT_LOCKER2"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/props_gameplay/resupply_locker.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "3.1732 278.552 1.71079"
+"classname" "prop_dynamic"
+"hammerid" "2680722"
+}
+{
+"model" "*13"
+"targetname" "botpush"
+"StartDisabled" "0"
+"speed" "35"
+"spawnflags" "1032"
+"pushdir" "0 90 0"
+"origin" "343.99 -5503.98 316"
+"alternateticksfix" "0"
+"classname" "trigger_push"
+"hammerid" "2666803"
+}
+{
+"origin" "103.115 -3103.43 22.6568"
+"TeamNum" "0"
+"targetname" "extrafrontspawnjumper"
+"StartDisabled" "1"
+"spawnflags" "511"
+"angles" "0 0 0"
+"classname" "info_player_teamspawn"
+"hammerid" "2666744"
+}
+{
+"portalnumber" "1"
+"TranslucencyLimit" "0.0"
+"target" "doorbrush3"
+"PortalVersion" "1"
+"FadeStartDist" "1024"
+"FadeDist" "4096"
+"classname" "func_areaportalwindow"
+"hammerid" "2666458"
+}
+{
+"occludernumber" "0"
+"model" ""
+"StartActive" "1"
+"classname" "func_occluder"
+"hammerid" "2666070"
+}
+{
+"portalnumber" "2"
+"TranslucencyLimit" "0.0"
+"target" "doorbrush3"
+"PortalVersion" "1"
+"FadeStartDist" "1024"
+"FadeDist" "4096"
+"classname" "func_areaportalwindow"
+"hammerid" "2666570"
+}
+{
+"origin" "-320 -256 64"
+"targetname" "storm_case"
+"Case02" "2"
+"Case01" "1"
+"classname" "logic_case"
+"hammerid" "2652283"
+"OnCase02" "tornado_relayTrigger20-1"
+"OnCase02" "storm_relayTrigger0-1"
+}
+{
+"occludernumber" "1"
+"model" ""
+"StartActive" "1"
+"classname" "func_occluder"
+"hammerid" "2665864"
+}
+{
 "origin" "-3008 -824 184"
 "targetname" "soundscape_spawn2"
 "StartDisabled" "0"
@@ -40,7 +1023,7 @@
 "hammerid" "2502294"
 }
 {
-"model" "*1"
+"model" "*14"
 "TeamNum" "2"
 "targetname" "tunnelforcefield"
 "StartDisabled" "0"
@@ -52,16 +1035,6 @@
 "disablereceiveshadows" "0"
 "classname" "func_forcefield"
 "hammerid" "2583247"
-}
-{
-"origin" "1564.4 545.065 272"
-"TeamNum" "0"
-"targetname" "thirdspawn"
-"StartDisabled" "1"
-"spawnflags" "511"
-"angles" "0 0 0"
-"classname" "info_player_teamspawn"
-"hammerid" "2583287"
 }
 {
 "origin" "480 -1712 545"
@@ -135,7 +1108,7 @@
 "hammerid" "2461663"
 }
 {
-"model" "*2"
+"model" "*15"
 "targetname" "spawntele2"
 "target" "playerspawn"
 "StartDisabled" "0"
@@ -146,7 +1119,7 @@
 "hammerid" "2542757"
 }
 {
-"model" "*3"
+"model" "*16"
 "targetname" "PT_WATERHURT"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -217,7 +1190,7 @@
 "hammerid" "2515765"
 }
 {
-"model" "*4"
+"model" "*17"
 "targetname" "PT_WINTRIGGER"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -282,7 +1255,7 @@
 "hammerid" "2475606"
 }
 {
-"model" "*5"
+"model" "*18"
 "spawnobject" "0"
 "spawnflags" "0"
 "rendermode" "0"
@@ -326,7 +1299,7 @@
 "hammerid" "2386342"
 }
 {
-"model" "*6"
+"model" "*19"
 "wait" "-1"
 "targetname" "w2computerbutton"
 "speed" "2000"
@@ -350,7 +1323,7 @@
 "OnPressed" "door_red*Open0.01-1"
 }
 {
-"origin" "-4670 -3138 201"
+"origin" "-4726 -3138 209"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -393,20 +1366,7 @@
 "hammerid" "1736718"
 }
 {
-"origin" "183.444 -2800 215.174"
-"targetname" "globalcc"
-"StartDisabled" "0"
-"minfalloff" "-1"
-"maxweight" "0.4"
-"maxfalloff" "-1"
-"filename" "materials/colorcorrection/downpour.raw"
-"fadeOutDuration" "0"
-"fadeInDuration" "0"
-"classname" "color_correction"
-"hammerid" "2319749"
-}
-{
-"model" "*7"
+"model" "*20"
 "targetname" "upgradestation"
 "StartDisabled" "0"
 "classname" "func_upgradestation"
@@ -434,7 +1394,7 @@
 "hammerid" "2155390"
 }
 {
-"model" "*8"
+"model" "*21"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "TeamNum" "3"
@@ -518,7 +1478,7 @@
 "hammerid" "477364"
 }
 {
-"model" "*9"
+"model" "*22"
 "wait" "0"
 "targetname" "lighttrigger"
 "StartDisabled" "1"
@@ -1082,7 +2042,7 @@
 "hammerid" "585272"
 }
 {
-"model" "*10"
+"model" "*23"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -1095,7 +2055,7 @@
 "hammerid" "573011"
 }
 {
-"model" "*11"
+"model" "*24"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -1114,7 +2074,7 @@
 "hammerid" "1040689"
 }
 {
-"model" "*12"
+"model" "*25"
 "team" "3"
 "tags" "bomb_carrier mission_sentry_buster common flank_front flank_mid1 flank_mid2 flank_back"
 "start_disabled" "0"
@@ -1531,7 +2491,7 @@
 "hammerid" "1635453"
 }
 {
-"model" "*13"
+"model" "*26"
 "targetname" "bucketpush"
 "StartDisabled" "0"
 "SpeedNoise" "40"
@@ -1608,7 +2568,7 @@
 "hammerid" "560037"
 }
 {
-"model" "*14"
+"model" "*27"
 "targetname" "afkslay"
 "StartDisabled" "1"
 "spawnflags" "1"
@@ -1699,21 +2659,21 @@
 "hammerid" "599170"
 }
 {
-"portalnumber" "1"
+"portalnumber" "3"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "598718"
 }
 {
-"portalnumber" "2"
+"portalnumber" "4"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "598710"
 }
 {
-"portalnumber" "3"
+"portalnumber" "5"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
@@ -1729,7 +2689,7 @@
 "hammerid" "598524"
 }
 {
-"portalnumber" "4"
+"portalnumber" "6"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
@@ -1846,7 +2806,7 @@
 "OnEntitySpawned" "crystallight*TurnOff1-1"
 }
 {
-"model" "*15"
+"model" "*28"
 "team" "3"
 "tags" "bomb_carrier"
 "start_disabled" "0"
@@ -1940,10 +2900,41 @@
 "OnTrigger" "playerSetFogControllerfog_storm0-1"
 }
 {
+"model" "*29"
+"vrad_brush_cast_shadows" "0"
+"targetname" "PT_PITDEBRIS"
+"StartDisabled" "0"
+"spawnflags" "2"
+"Solidity" "0"
+"solidbsp" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"origin" "1760 -1165.79 -152.16"
+"invert_exclusion" "0"
+"InputFilter" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"classname" "func_brush"
+"hammerid" "2836452"
+}
+{
 "origin" "-272 -256 96"
 "targetname" "storm_end_relay"
+"spawnflags" "0"
 "classname" "logic_relay"
 "hammerid" "3230"
+"OnTrigger" "playerSetFogControllerfog_default0-1"
+"OnTrigger" "gamerulesRunScriptCodeSetSkyboxTexture(`sky_alpinestorm_01`)0-1"
+"OnTrigger" "snd_downpour_strongwindVolume20-1"
+"OnTrigger" "snd_downpour_strongwindVolume11-1"
+"OnTrigger" "snd_downpour_strongwindStopSound2-1"
+"OnTrigger" "shakeit2StopShake0-1"
+"OnTrigger" "ccspawnDisable0-1"
+"OnTrigger" "particle_storm_rain1Stop0-1"
+"OnTrigger" "rain_angledstormStart0-1"
+"OnTrigger" "fog_defaultTurnOn0-1"
 }
 {
 "origin" "-197.5 -204.783 63.3574"
@@ -2046,7 +3037,7 @@
 "hammerid" "677170"
 }
 {
-"portalnumber" "5"
+"portalnumber" "7"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
@@ -2068,16 +3059,6 @@
 "angles" "13.1705 1.862 1.66164"
 "classname" "info_observer_point"
 "hammerid" "654775"
-}
-{
-"model" "*16"
-"targetname" "respawnoverride"
-"StartDisabled" "0"
-"spawnflags" "1"
-"RespawnTime" "99999"
-"origin" "2316.1 412 -5.81"
-"classname" "trigger_player_respawn_override"
-"hammerid" "2625027"
 }
 {
 "origin" "-3400 -1300 68"
@@ -2821,14 +3802,14 @@
 "hammerid" "649078"
 }
 {
-"occludernumber" "0"
+"occludernumber" "2"
 "model" ""
 "StartActive" "1"
 "classname" "func_occluder"
 "hammerid" "2075659"
 }
 {
-"model" "*17"
+"model" "*30"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2841,7 +3822,7 @@
 "hammerid" "648588"
 }
 {
-"model" "*18"
+"model" "*31"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2854,7 +3835,7 @@
 "hammerid" "734917"
 }
 {
-"model" "*19"
+"model" "*32"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2867,7 +3848,7 @@
 "hammerid" "734907"
 }
 {
-"model" "*20"
+"model" "*33"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2880,7 +3861,7 @@
 "hammerid" "734901"
 }
 {
-"model" "*21"
+"model" "*34"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2893,7 +3874,7 @@
 "hammerid" "734895"
 }
 {
-"model" "*22"
+"model" "*35"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2906,7 +3887,7 @@
 "hammerid" "734889"
 }
 {
-"model" "*23"
+"model" "*36"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2919,7 +3900,7 @@
 "hammerid" "734881"
 }
 {
-"model" "*24"
+"model" "*37"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2932,7 +3913,7 @@
 "hammerid" "734875"
 }
 {
-"model" "*25"
+"model" "*38"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2945,7 +3926,7 @@
 "hammerid" "734865"
 }
 {
-"model" "*26"
+"model" "*39"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2958,7 +3939,7 @@
 "hammerid" "734855"
 }
 {
-"model" "*27"
+"model" "*40"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -2971,7 +3952,7 @@
 "hammerid" "734843"
 }
 {
-"model" "*28"
+"model" "*41"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -3211,7 +4192,7 @@
 "hammerid" "729455"
 }
 {
-"model" "*29"
+"model" "*42"
 "team" "3"
 "StartDisabled" "0"
 "origin" "784 -1152 280"
@@ -3221,7 +4202,7 @@
 "hammerid" "729407"
 }
 {
-"model" "*30"
+"model" "*43"
 "team" "3"
 "StartDisabled" "0"
 "origin" "944 -1032 280"
@@ -3231,7 +4212,7 @@
 "hammerid" "729399"
 }
 {
-"model" "*31"
+"model" "*44"
 "team" "3"
 "StartDisabled" "0"
 "origin" "1176 -3048 288"
@@ -3336,7 +4317,7 @@
 "hammerid" "727909"
 }
 {
-"portalnumber" "6"
+"portalnumber" "8"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
@@ -3550,7 +4531,7 @@
 "hammerid" "764519"
 }
 {
-"model" "*32"
+"model" "*45"
 "team" "3"
 "tags" "bomb_carrier common flank_front flank_mid1 flank_mid2 flank_back"
 "start_disabled" "0"
@@ -3560,7 +4541,7 @@
 "hammerid" "763885"
 }
 {
-"model" "*33"
+"model" "*46"
 "wait" "1"
 "targetname" "bomb_kill_linger"
 "StartDisabled" "1"
@@ -3594,13 +4575,10 @@
 "OnTrigger" "rain_normal*Stop0-1"
 "OnTrigger" "particle_storm_rain1Stop0-1"
 "OnTrigger" "drip_storm*Start0.1-1"
-"OnTrigger" "ccvolumeEnable0-1"
 "OnTrigger" "ccspawnEnable0.1-1"
 "OnTrigger" "stormshakeStartShake3-1"
-"OnTrigger" "skybox_fogToggle0-1"
 "OnTrigger" "drip_normal*Stop0-1"
 "OnTrigger" "chimney_smoke*Stop0-1"
-"OnTrigger" "playerSetFogControllerfog_heavy_storm0-1"
 "OnTrigger" "red_door_triggerAddOutputOnStartTouchAll !activator:SetFogController:fog_heavy_storm:0:-10.15-1"
 "OnTrigger" "downpour_lightning_rand_casePickRandom0.01-1"
 "OnTrigger" "rain_angledstormStart1-1"
@@ -3637,7 +4615,7 @@
 "hammerid" "4155"
 }
 {
-"model" "*34"
+"model" "*47"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -3650,14 +4628,14 @@
 "hammerid" "736115"
 }
 {
-"portalnumber" "7"
+"portalnumber" "9"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "727888"
 }
 {
-"portalnumber" "8"
+"portalnumber" "10"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
@@ -3686,7 +4664,7 @@
 "hammerid" "719028"
 }
 {
-"origin" "-3976 -800 -121.316"
+"origin" "-3976 -800 -106.316"
 "TeamNum" "0"
 "targetname" "ccspawn"
 "StartDisabled" "1"
@@ -3885,14 +4863,14 @@
 "hammerid" "709525"
 }
 {
-"model" "*35"
+"model" "*48"
 "targetname" "flagreset"
 "StartDisabled" "0"
 "classname" "func_respawnflag"
 "hammerid" "2234993"
 }
 {
-"portalnumber" "9"
+"portalnumber" "11"
 "TranslucencyLimit" "0.0"
 "target" "windowbrush"
 "PortalVersion" "1"
@@ -3902,7 +4880,7 @@
 "hammerid" "1100038"
 }
 {
-"model" "*36"
+"model" "*49"
 "team" "3"
 "targetname" "nav_prefer_flank_mid1"
 "tags" "flank_mid1"
@@ -3913,7 +4891,7 @@
 "hammerid" "850253"
 }
 {
-"model" "*37"
+"model" "*50"
 "team" "3"
 "targetname" "nav_prefer_flank_front"
 "tags" "flank_front"
@@ -5468,7 +6446,7 @@
 "hammerid" "797168"
 }
 {
-"model" "*38"
+"model" "*51"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -5481,7 +6459,7 @@
 "hammerid" "787693"
 }
 {
-"model" "*39"
+"model" "*52"
 "team" "3"
 "tags" "bomb_carrier"
 "start_disabled" "0"
@@ -5722,10 +6700,12 @@
 "hammerid" "878801"
 }
 {
+"style" "33"
 "origin" "1569 -1364 183"
+"targetname" "tunnel_light"
 "spawnflags" "0"
 "pitch" "-86"
-"angles" "-86 300 150"
+"angles" "0 0 0"
 "_quadratic_attn" "1"
 "_linear_attn" "0"
 "_lightscaleHDR" "1"
@@ -6317,7 +7297,7 @@
 "hammerid" "861327"
 }
 {
-"model" "*40"
+"model" "*53"
 "targetname" "end_wave"
 "StartDisabled" "1"
 "spawnflags" "1"
@@ -7234,6 +8214,7 @@
 }
 {
 "origin" "1569 -1363 191"
+"targetname" "tunnel_light"
 "spotlightwidth" "80"
 "spotlightlength" "180"
 "spawnflags" "3"
@@ -7246,12 +8227,13 @@
 "IgnoreSolid" "0"
 "HDRColorScale" "1.0"
 "disablereceiveshadows" "0"
-"angles" "86 300 -150"
+"angles" "0 0 0"
 "classname" "point_spotlight"
 "hammerid" "864089"
 }
 {
 "origin" "2057 -1363 191"
+"targetname" "tunnel_light"
 "spotlightwidth" "80"
 "spotlightlength" "180"
 "spawnflags" "3"
@@ -7270,6 +8252,7 @@
 }
 {
 "origin" "2187 -1159 183"
+"targetname" "tunnel_light"
 "spotlightwidth" "80"
 "spotlightlength" "180"
 "spawnflags" "3"
@@ -7288,6 +8271,7 @@
 }
 {
 "origin" "2373 -337 183"
+"targetname" "tunnel_light"
 "spotlightwidth" "80"
 "spotlightlength" "180"
 "spawnflags" "3"
@@ -8133,7 +9117,7 @@
 "hammerid" "879283"
 }
 {
-"portalnumber" "10"
+"portalnumber" "12"
 "targetname" "dropportal"
 "StartOpen" "1"
 "PortalVersion" "1"
@@ -8141,18 +9125,18 @@
 "hammerid" "1990704"
 }
 {
-"model" "*41"
+"model" "*54"
 "targetname" "spawntele"
 "target" "playerspawn"
 "StartDisabled" "0"
 "spawnflags" "4097"
-"origin" "-1016.46 -3517.53 302.96"
+"origin" "-1014.46 -3518.53 301.96"
 "angles" "0 0 0"
 "classname" "trigger_teleport"
 "hammerid" "1990662"
 }
 {
-"portalnumber" "11"
+"portalnumber" "13"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
@@ -8221,7 +9205,7 @@
 "hammerid" "940283"
 }
 {
-"model" "*42"
+"model" "*55"
 "team" "3"
 "targetname" "avoid_path2"
 "tags" "bomb_carrier"
@@ -8232,7 +9216,7 @@
 "hammerid" "940187"
 }
 {
-"model" "*43"
+"model" "*56"
 "team" "3"
 "targetname" "avoid_path1"
 "tags" "bomb_carrier"
@@ -8243,7 +9227,7 @@
 "hammerid" "940173"
 }
 {
-"model" "*44"
+"model" "*57"
 "team" "3"
 "tags" "bomb_carrier common flank_front flank_mid1 flank_mid2 flank_back"
 "start_disabled" "0"
@@ -8730,35 +9714,35 @@
 "hammerid" "915631"
 }
 {
-"portalnumber" "12"
+"portalnumber" "14"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "905368"
 }
 {
-"portalnumber" "13"
+"portalnumber" "15"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "905361"
 }
 {
-"portalnumber" "14"
+"portalnumber" "16"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "905354"
 }
 {
-"portalnumber" "15"
+"portalnumber" "17"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "905347"
 }
 {
-"portalnumber" "16"
+"portalnumber" "18"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
@@ -8817,7 +9801,7 @@
 "hammerid" "1040715"
 }
 {
-"model" "*45"
+"model" "*58"
 "wait" "-1"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
@@ -8847,11 +9831,11 @@
 "OnOpen" "midroofToggle0-1"
 }
 {
-"model" "*46"
+"model" "*59"
 "wait" "-1"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
-"targetname" "midblockerdoor"
+"targetname" "midblockerdoor1"
 "speed" "3000"
 "spawnpos" "1"
 "spawnflags" "0"
@@ -8958,7 +9942,7 @@
 "hammerid" "2155490"
 }
 {
-"model" "*47"
+"model" "*60"
 "vrad_brush_cast_shadows" "0"
 "TeamNum" "3"
 "StartDisabled" "0"
@@ -8979,7 +9963,7 @@
 "hammerid" "1029233"
 }
 {
-"model" "*48"
+"model" "*61"
 "vrad_brush_cast_shadows" "0"
 "StartDisabled" "0"
 "spawnflags" "2"
@@ -8999,7 +9983,7 @@
 "hammerid" "1029221"
 }
 {
-"portalnumber" "17"
+"portalnumber" "19"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
@@ -9026,12 +10010,13 @@
 "classname" "logic_relay"
 "hammerid" "986625"
 "OnTrigger" "bombpath_arrows_clear_relayTrigger0-1"
-"OnTrigger" "upgradestation_frontlineDisable0-1"
+"OnTrigger" "func_upgradestationDisable0-1"
 "OnTrigger" "door_upgradeClose0-1"
 "OnTrigger" "particle_steam_whistle_redStop7-1"
 "OnTrigger" "particle_steam_whistle_redStart0-1"
 "OnTrigger" "sound_steam_whistle_redPlaySound0-1"
 "OnTrigger" "sound_steam_whistle_redStopSound10-1"
+"OnTrigger" "ccspawnEnable0-1"
 }
 {
 "origin" "472 -2720 88"
@@ -9453,7 +10438,7 @@
 "hammerid" "920699"
 }
 {
-"model" "*49"
+"model" "*62"
 "vrad_brush_cast_shadows" "0"
 "StartDisabled" "0"
 "spawnflags" "2"
@@ -9473,7 +10458,7 @@
 "hammerid" "920015"
 }
 {
-"model" "*50"
+"model" "*63"
 "vrad_brush_cast_shadows" "0"
 "StartDisabled" "0"
 "spawnflags" "2"
@@ -9493,7 +10478,7 @@
 "hammerid" "919993"
 }
 {
-"model" "*51"
+"model" "*64"
 "vrad_brush_cast_shadows" "0"
 "StartDisabled" "0"
 "spawnflags" "2"
@@ -9706,13 +10691,15 @@
 "OnTrigger" "afkslayEnable0-1"
 "OnTrigger" "gamerulesRunScriptCodeClientPrint(null, 4 , `Respawn crystals spawned!`)20-1"
 "OnTrigger" "gamerulesRunScriptCodeClientPrintSafe(null, `^1337ADRespawn crystals spawned! ^`)20-1"
+"OnTrigger" "gamerulesCallScriptFunctionFuncRotateFix20-1"
 "OnTrigger" "gamerulesPlayVOBluehl1/fvox/bell.wav20-1"
 "OnTrigger" "func_rotatingStart20-1"
 "OnTrigger" "crystal*Enable20-1"
 "OnTrigger" "lighttrigger*Enable20-1"
+"OnTrigger" "!selfRunScriptCodecrystalsactive = true20-1"
 }
 {
-"model" "*52"
+"model" "*65"
 "TeamNum" "3"
 "targetname" "respawn_bot"
 "StartDisabled" "0"
@@ -9751,7 +10738,7 @@
 "OnPickupTeam1" "!selfSetTeam30-1"
 }
 {
-"model" "*53"
+"model" "*66"
 "TeamNum" "2"
 "targetname" "respawn_red"
 "StartDisabled" "0"
@@ -9885,7 +10872,7 @@
 "targetname" "commandhint"
 "rainbow" "0"
 "orientation" "0"
-"message" "glow_outline_effect_enable 1: heavily used effect in this mission"
+"message" "glow_outline_effect_enable 1: heavily used effect in this mission
 r_dynamic 0: Disables crystal lighting
 cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 +use_action_slot_item - Bind this to a better key, used to interact with buttons."
@@ -9939,7 +10926,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1695755"
 }
 {
-"model" "*54"
+"model" "*67"
 "targetname" "PT_ROCKBREAKABLE"
 "spawnflags" "3072"
 "rendercolor" "255 255 255"
@@ -10230,7 +11217,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1062527"
 }
 {
-"model" "*55"
+"model" "*68"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "midblockerwall"
@@ -10271,7 +11258,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1942117"
 }
 {
-"model" "*56"
+"model" "*69"
 "targetname" "dustclouds"
 "SpeedMax" "1"
 "SpawnRate" "50"
@@ -10282,9 +11269,9 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "Frozen" "0"
 "FallSpeed" "50"
 "DistMax" "1024"
-"Color" "42 21 11"
+"Color" "106 106 106"
 "angles" "0 0 0"
-"Alpha" "250"
+"Alpha" "100"
 "classname" "func_dustcloud"
 "hammerid" "1961208"
 }
@@ -10518,7 +11505,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1942189"
 }
 {
-"model" "*57"
+"model" "*70"
 "TeamNum" "0"
 "StartDisabled" "0"
 "origin" "-2535.98 896 -4240"
@@ -10773,7 +11760,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "475975"
 }
 {
-"model" "*58"
+"model" "*71"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "doorbrush3"
@@ -10794,7 +11781,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1860326"
 }
 {
-"portalnumber" "18"
+"portalnumber" "20"
 "TranslucencyLimit" "0.0"
 "target" "doorbrush3"
 "PortalVersion" "1"
@@ -10804,7 +11791,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1860322"
 }
 {
-"model" "*59"
+"model" "*72"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "doorbrush2"
@@ -10825,7 +11812,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1860207"
 }
 {
-"portalnumber" "19"
+"portalnumber" "21"
 "TranslucencyLimit" "0.0"
 "target" "doorbrush2"
 "PortalVersion" "1"
@@ -10835,7 +11822,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1860203"
 }
 {
-"portalnumber" "20"
+"portalnumber" "22"
 "TranslucencyLimit" "0.0"
 "target" "doorbrush"
 "PortalVersion" "1"
@@ -10845,7 +11832,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1860142"
 }
 {
-"model" "*60"
+"model" "*73"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "doorbrush"
@@ -11139,7 +12126,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1960371"
 }
 {
-"model" "*61"
+"model" "*74"
 "StartDisabled" "0"
 "spawnflags" "1"
 "origin" "-2791.98 640 -4244"
@@ -11153,7 +12140,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1961171"
 }
 {
-"model" "*62"
+"model" "*75"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "hatch_cover"
@@ -11174,7 +12161,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1920151"
 }
 {
-"model" "*63"
+"model" "*76"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "hatchdrop"
@@ -11214,21 +12201,21 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1920118"
 }
 {
-"portalnumber" "21"
+"portalnumber" "23"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "1890842"
 }
 {
-"occludernumber" "1"
+"occludernumber" "3"
 "model" ""
 "StartActive" "1"
 "classname" "func_occluder"
 "hammerid" "1875205"
 }
 {
-"portalnumber" "22"
+"portalnumber" "24"
 "targetname" "spawnportal"
 "StartOpen" "0"
 "PortalVersion" "1"
@@ -11236,14 +12223,14 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1875128"
 }
 {
-"occludernumber" "2"
+"occludernumber" "4"
 "model" ""
 "StartActive" "1"
 "classname" "func_occluder"
 "hammerid" "1876831"
 }
 {
-"occludernumber" "3"
+"occludernumber" "5"
 "model" ""
 "targetname" "frontoccluder"
 "StartActive" "1"
@@ -11251,7 +12238,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1876533"
 }
 {
-"occludernumber" "4"
+"occludernumber" "6"
 "model" ""
 "targetname" "frontoccluder"
 "StartActive" "1"
@@ -11259,7 +12246,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1875969"
 }
 {
-"model" "*64"
+"model" "*77"
 "TeamNum" "3"
 "targetname" "respawn_bot"
 "StartDisabled" "0"
@@ -11283,7 +12270,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "2128858"
 }
 {
-"origin" "1954 -4800 353"
+"origin" "1954 -4800 311"
 "TeamNum" "3"
 "targetname" "playerspawn"
 "StartDisabled" "0"
@@ -11303,7 +12290,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1234137"
 }
 {
-"model" "*65"
+"model" "*78"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "mineblocker"
@@ -11315,7 +12302,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "renderfx" "0"
 "rendercolor" "255 255 255"
 "renderamt" "255"
-"origin" "2972 -1168 -12"
+"origin" "2972 -1168 -8"
 "invert_exclusion" "0"
 "effects" "0"
 "disablereceiveshadows" "0"
@@ -11363,7 +12350,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1298732"
 }
 {
-"model" "*66"
+"model" "*79"
 "value" "1.0"
 "targetname" "nofall"
 "StartDisabled" "0"
@@ -11558,20 +12545,20 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1620303"
 }
 {
-"model" "*67"
+"model" "*80"
 "targetname" "dustclouds"
-"SpeedMax" "300"
+"SpeedMax" "1500"
 "SpawnRate" "10"
 "SizeMin" "100"
 "SizeMax" "200"
 "LifetimeMin" "3"
-"LifetimeMax" "8"
+"LifetimeMax" "4"
 "Frozen" "0"
 "FallSpeed" "0"
 "DistMax" "1024"
-"Color" "54 54 54"
+"Color" "106 106 106"
 "angles" "0 0 0"
-"Alpha" "255"
+"Alpha" "100"
 "classname" "func_dustcloud"
 "hammerid" "1588038"
 }
@@ -11629,9 +12616,9 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1603134"
 }
 {
-"model" "*68"
+"model" "*81"
 "targetname" "dustclouds"
-"SpeedMax" "300"
+"SpeedMax" "1500"
 "SpawnRate" "20"
 "SizeMin" "100"
 "SizeMax" "150"
@@ -11640,9 +12627,9 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "Frozen" "0"
 "FallSpeed" "0"
 "DistMax" "1024"
-"Color" "54 54 54"
+"Color" "106 106 106"
 "angles" "0 0 0"
-"Alpha" "200"
+"Alpha" "100"
 "classname" "func_dustcloud"
 "hammerid" "1588123"
 }
@@ -11656,20 +12643,20 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1682175"
 }
 {
-"model" "*69"
+"model" "*82"
 "targetname" "dustclouds"
-"SpeedMax" "300"
+"SpeedMax" "1500"
 "SpawnRate" "10"
 "SizeMin" "150"
 "SizeMax" "150"
 "LifetimeMin" "3"
-"LifetimeMax" "8"
+"LifetimeMax" "4"
 "Frozen" "0"
 "FallSpeed" "0"
-"DistMax" "1024"
-"Color" "54 54 54"
+"DistMax" "2048"
+"Color" "106 106 106"
 "angles" "0 0 0"
-"Alpha" "255"
+"Alpha" "100"
 "classname" "func_dustcloud"
 "hammerid" "1587851"
 }
@@ -11683,7 +12670,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1602527"
 }
 {
-"model" "*70"
+"model" "*83"
 "targetname" "dustclouds"
 "SpeedMax" "1200"
 "SpawnRate" "10"
@@ -11694,14 +12681,14 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "Frozen" "0"
 "FallSpeed" "0"
 "DistMax" "1024"
-"Color" "54 54 54"
+"Color" "106 106 106"
 "angles" "0 0 0"
-"Alpha" "250"
+"Alpha" "100"
 "classname" "func_dustcloud"
 "hammerid" "1588507"
 }
 {
-"model" "*71"
+"model" "*84"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "midblockerroof"
@@ -11897,18 +12884,11 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "4160"
 }
 {
-"origin" "-2879.61 -457.434 26.1368"
-"targetname" "boxspawner"
-"spawnflags" "0"
-"PostSpawnSpeed" "0"
-"PostSpawnInheritAngles" "0"
-"PostSpawnDirectionVariance" "0.15"
-"PostSpawnDirection" "0 0 0"
-"model" "models/props_island/mannco_case_large.mdl"
-"EntityTemplate" "gunboxes"
-"angles" "0 100 0"
-"classname" "env_entity_maker"
-"hammerid" "4159"
+"occludernumber" "7"
+"model" ""
+"StartActive" "1"
+"classname" "func_occluder"
+"hammerid" "2680463"
 }
 {
 "origin" "1064.51 -2174.57 198.532"
@@ -12075,7 +13055,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1517935"
 }
 {
-"model" "*72"
+"model" "*85"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "TeamNum" "2"
@@ -12095,7 +13075,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1517877"
 }
 {
-"model" "*73"
+"model" "*86"
 "team" "3"
 "tags" "bomb_carrier common flank_front flank_mid1 flank_mid2 flank_back"
 "start_disabled" "0"
@@ -12205,7 +13185,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "4163"
 }
 {
-"model" "*74"
+"model" "*87"
 "volume" "8"
 "targetname" "crystal_spin"
 "spawnflags" "64"
@@ -12222,7 +13202,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1518289"
 }
 {
-"model" "*75"
+"model" "*88"
 "wait" "1"
 "targetname" "crystaltrigger"
 "StartDisabled" "1"
@@ -12236,7 +13216,6 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnStartTouchAll" "!activatorRunScriptCodeCrystalBuff(self)0.15-1"
 "OnStartTouchAll" "gamerulesPlayVOnpc/roller/mine/rmine_explode_shock1.wav0-1"
 "OnStartTouchAll" "PT_SHAKEStartShake0-1"
-"OnStartTouchAll" "crystal_counterSubtract10-1"
 "OnStartTouchAll" "spawntele1AddOutputtarget !self0-1"
 "OnStartTouchAll" "afkslayDisable0-1"
 "OnStartTouchAll" "spawntele1Enable0.1-1"
@@ -12250,6 +13229,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnStartTouchAll" "spawncrystalsTrigger40-1"
 "OnStartTouchAll" "!selfKillHierarchy40.2-1"
 "OnStartTouchAll" "spawntele1AddOutputtarget afkslay5-1"
+"OnStartTouchAll" "!selfRunScriptCodecrystalsactive = false0-1"
 }
 {
 "origin" "2905.2 -1092.15 -102.165"
@@ -12355,7 +13335,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnHealthChanged" "PT_ROCKBREAKABLERemoveHealth500-1"
 }
 {
-"model" "*76"
+"model" "*89"
 "wait" "2.5"
 "targetname" "PT_SWITCHGUNBUTTON2"
 "speed" "2000"
@@ -12379,7 +13359,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "targetname" "playerspawn3"
 "StartDisabled" "1"
 "spawnflags" "511"
-"angles" "0 0 0"
+"angles" "0 180 0"
 "classname" "info_player_teamspawn"
 "hammerid" "1413095"
 }
@@ -12462,7 +13442,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnEntitySpawned" "crystallight*TurnOff1-1"
 }
 {
-"model" "*77"
+"model" "*90"
 "value" "1.0"
 "targetname" "nofall"
 "StartDisabled" "0"
@@ -12571,7 +13551,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnHitMin" "PT_SWITCHGUNBUTTON2KillHierarchy0-1"
 }
 {
-"origin" "-2017.75 -1260.01 62.5653"
+"origin" "-2081.75 -1260.01 62.5653"
 "targetname" "crystalspawner"
 "spawnflags" "0"
 "PostSpawnSpeed" "0"
@@ -12589,7 +13569,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "origin" "560.003 -3080.81 55.2512"
 "targetname" "glow1b"
 "target" "PT_WEAPONCASE2"
-"Mode" "2"
+"Mode" "0"
 "GlowColor" "3 128 0 255"
 "classname" "tf_glow"
 "hammerid" "1510"
@@ -12651,7 +13631,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1234572"
 }
 {
-"model" "*78"
+"model" "*91"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "windowbrush"
@@ -12672,7 +13652,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1100054"
 }
 {
-"portalnumber" "23"
+"portalnumber" "25"
 "TranslucencyLimit" "0.0"
 "target" "windowbrush2"
 "PortalVersion" "1"
@@ -12688,7 +13668,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "classname" "logic_relay"
 "hammerid" "1500"
 "OnTrigger" "boxspawner*ForceSpawn0-1"
-"OnTrigger" "tf_objective_resourceCallScriptFunctionCFive-1-1"
+"OnTrigger" "gamerulesCallScriptFunctionCFive-1-1"
 "OnTrigger" "sound_steam_whistle_red*Kill0-1"
 "OnTrigger" "env_shakeStopShake0-1"
 "OnTrigger" "func_nav_preferKill0-1"
@@ -12708,7 +13688,6 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "crystalspawner*ForceSpawn0-1"
 "OnTrigger" "PT_WEAPONCASE2*Enable0-1"
 "OnTrigger" "spawnteleEnable0-1"
-"OnTrigger" "tunnelforcefieldmidEnable0-1"
 "OnTrigger" "mid_close_relayTrigger0-1"
 }
 {
@@ -12725,7 +13704,6 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "bomb_kill_playersEnable0.01-1"
 "OnTrigger" "bomb_kill_playersDisable0.5-1"
 "OnTrigger" "red_spawnp_1*Disable2-1"
-"OnTrigger" "upgradehintShow2-1"
 "OnTrigger" "upgradestation_frontlineKill0.01-1"
 "OnTrigger" "func_upgradestationEnable2-1"
 "OnTrigger" "soundscape_spawnAddOutputOnPlay end_wave:Enable::0.1:-10-1"
@@ -12740,7 +13718,6 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "func_capturezoneKill0-1"
 "OnTrigger" "filter_red_teamKill0-1"
 "OnTrigger" "red_spawnp_1*Disable2-1"
-"OnTrigger" "upgradehintShow2-1"
 "OnTrigger" "upgradestation_frontlineKill0-1"
 "OnTrigger" "func_upgradestationEnable2-1"
 "OnTrigger" "soundscape_spawnAddOutputOnPlay end_wave:Enable::0.1:-10-1"
@@ -12757,16 +13734,14 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1234162"
 }
 {
-"origin" "384 -6344 670"
-"targetname" "botspawnpush"
-"spawnflags" "14"
-"radius" "1024"
-"magnitude" "100"
-"inner_radius" "0"
-"enabled" "1"
-"angles" "0 90 0"
-"classname" "point_push"
-"hammerid" "1507"
+"origin" "1529.33 -2818.42 88"
+"TeamNum" "0"
+"targetname" "extrafrontspawnjumper"
+"StartDisabled" "1"
+"spawnflags" "511"
+"angles" "0 0 0"
+"classname" "info_player_teamspawn"
+"hammerid" "2666759"
 }
 {
 "origin" "-615.661 -993.178 -31"
@@ -12779,7 +13754,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1234706"
 }
 {
-"model" "*79"
+"model" "*92"
 "wait" "-1"
 "targetname" "PT_SWITCHBUTTON"
 "speed" "2000"
@@ -12794,7 +13769,6 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1209625"
 "OnPressed" "trucksparkStart0-1"
 "OnPressed" "glow2Kill0-1"
-"OnPressed" "pathhintKill0-1"
 "OnPressed" "gamerulesPlayVOambient/energy/zap6.wav0-1"
 "OnPressed" "truckexplodeKill0-1"
 "OnPressed" "gamerulesPlayVOmvm/mvm_warning.wav02"
@@ -12864,7 +13838,6 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1514"
 "OnTrigger" "breakablekillerKill0-1"
 "OnTrigger" "shakeit2StopShake0-1"
-"OnTrigger" "spawntele1RunScriptCodeself.SetOrigin(Vector(2192.000000 -4520.000000 332.031311))0-1"
 "OnTrigger" "tutorialhintEnable3-1"
 "OnTrigger" "spawnbot*Kill0-1"
 "OnTrigger" "PT_ROCKEnableCollision1-1"
@@ -12916,7 +13889,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1521"
 }
 {
-"portalnumber" "24"
+"portalnumber" "26"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
@@ -12952,7 +13925,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1518358"
 }
 {
-"model" "*80"
+"model" "*93"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "bucketrope"
@@ -12989,7 +13962,6 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "spawnflags" "0"
 "classname" "logic_relay"
 "hammerid" "1515"
-"OnTrigger" "spawntele1RunScriptCodeself.SetOrigin(Vector(-2802.876221, -442.674469, 68.031319))1-1"
 "OnTrigger" "spawnbot*Kill0-1"
 "OnTrigger" "PT_ROCK*KillHierarchy0-1"
 "OnTrigger" "playerspawn2Enable0-1"
@@ -13019,19 +13991,18 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "game_round_winAddOutputtargetname win_bots0-1"
 "OnTrigger" "wave_start_relayAddOutputOnTrigger w2computerbutton:Press::0.01:-10-1"
 "OnTrigger" "hinttriggerKill0-1"
-"OnTrigger" "spawnteleAddOutputtarget playerspawn20-1"
+"OnTrigger" "spawnteleRunScriptCodeself.KeyValueFromString(`target`, `playerspawn2`)0-1"
 "OnTrigger" "spawnteleDisable0.2-1"
 "OnTrigger" "wave_start_relayAddOutputOnTrigger !self:RunScriptCode:HideAnnotation(65432):0.01:-10-1"
 "OnTrigger" "red_door_triggerDisable0-1"
 "OnTrigger" "gamerulesRunScriptCodeSetSkyboxTexture(`sky_alpinestorm_01`)0-1"
 "OnTrigger" "spawntele2Kill0-1"
 "OnTrigger" "spawntele1Enable0-1"
-"OnTrigger" "spawntele1Disable1-1"
 "OnTrigger" "PT_WINTRIGGERKill0-1"
 "OnTrigger" "door_red*Close0-1"
 "OnTrigger" "door_red*Lock0.01-1"
-"OnTrigger" "?UnlitGeneric0-1"
 "OnTrigger" "spawncrystalsCancelPending0-1"
+"OnTrigger" "extrafrontspawn*Disable0-1"
 }
 {
 "origin" "-272 -256 0"
@@ -13039,18 +14010,24 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "spawnflags" "1"
 "classname" "logic_relay"
 "hammerid" "1516"
-"OnTrigger" "spawntele1AddOutputtarget tunnelboss0-1"
+"OnTrigger" "spawntele1AddOutputtarget playerspawn30-1"
 "OnTrigger" "spawntele1Enable0.01-1"
-"OnTrigger" "color_correction_volumeEnable1-1"
 "OnTrigger" "trigger_fog*Kill0-1"
 "OnTrigger" "spawnbot*Kill0-1"
 "OnTrigger" "fogbox*Disable0-1"
 "OnTrigger" "cfive_relayTrigger0-1"
 "OnTrigger" "wave_start_relayAddOutputOnTrigger !self:RunScriptCode:HideAnnotation(65432):0.01:-10-1"
 "OnTrigger" "spawntele2Kill0-1"
+"OnTrigger" "tunnel_light*TurnOff0-1"
+"OnTrigger" "PT_TUNNELCOLLAPSEEnable0-1"
+"OnTrigger" "minesignDisable0-1"
+"OnTrigger" "gamerulesRunScriptCodeSetSkyboxTexture(`sky_alpinestorm_01`)0-1"
+"OnTrigger" "tunnel_light*LightOff0-1"
+"OnTrigger" "PT_AMMO1Kill0-1"
+"OnTrigger" "pt_mineblockerEnable0-1"
 }
 {
-"model" "*81"
+"model" "*94"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "PT_WOODBREAKABLE"
@@ -13099,7 +14076,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "!selfKill0.01-1"
 }
 {
-"model" "*82"
+"model" "*95"
 "Task" "2"
 "targetname" "tunnelprereq2"
 "spawnflags" "1"
@@ -13164,7 +14141,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "targetname" "glow3"
 "target" "PT_SWITCH2"
 "StartDisabled" "1"
-"Mode" "2"
+"Mode" "0"
 "GlowColor" "0 191 185 255"
 "classname" "tf_glow"
 "hammerid" "1524"
@@ -13207,7 +14184,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "targetname" "glow4"
 "target" "PT_SWITCH4"
 "StartDisabled" "1"
-"Mode" "2"
+"Mode" "0"
 "GlowColor" "0 191 185 255"
 "classname" "tf_glow"
 "hammerid" "1526"
@@ -13246,7 +14223,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1527"
 }
 {
-"occludernumber" "5"
+"occludernumber" "8"
 "model" ""
 "targetname" "midblockeroccluder"
 "StartActive" "0"
@@ -13256,18 +14233,16 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 {
 "origin" "-288 -256 48"
 "targetname" "fftoggle"
+"spawnflags" "0"
 "classname" "logic_relay"
 "hammerid" "1530"
 "OnTrigger" "tunnelforcefieldbluDisable0-1"
 "OnTrigger" "PT_WIRESPARK2Stop0-1"
-"OnTrigger" "gamerulesRunScriptCodeClientPrintSafe(null, `^FFDF29Forcefield disabled for 20 seconds!^`)0-1"
 "OnTrigger" "tunnelforcefieldbluEnable20-1"
 "OnTrigger" "gamerulesPlayVOweapons/physcannon/superphys_small_zap1.wav20-1"
 "OnTrigger" "PT_WIRESPARK2Start20-1"
 "OnTrigger" "gamerulesRunScriptCodeSetTurretState(1)0-1"
 "OnTrigger" "gamerulesRunScriptCodeSetTurretState(0)20-1"
-"OnTrigger" "glow4Disable0-1"
-"OnTrigger" "glow4Enable45-1"
 }
 {
 "origin" "-288 -256 32"
@@ -13277,19 +14252,10 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1531"
 "OnTrigger" "gamerulesPlayVObuttons/button9.wav0-1"
 "OnTrigger" "tunnelforce*Kill0-1"
-"OnTrigger" "glow4Kill0-1"
+"OnTrigger" "glow4Disable0-1"
 "OnTrigger" "glow3Kill0-1"
 "OnTrigger" "PT_WIRESPARK2Kill0-1"
 "OnTrigger" "PT_GENERATORGLOW2Enable1-1"
-}
-{
-"origin" "-1999.53 -331.519 83.4383"
-"targetname" "stormhint"
-"lifetime" "20"
-"display_text" "A storm is coming! Enable the generators to prepare"
-"angles" "0 0 0"
-"classname" "training_annotation"
-"hammerid" "1612"
 }
 {
 "origin" "-256 -256 16"
@@ -13306,24 +14272,32 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "gamerulesRunScriptCodeClientPrintSafe(null, `^ff0000MAJOR STORM APPROACHING! GET TO THE CAVE!^`)0-1"
 "OnTrigger" "gamerulesRunScriptCodeClientPrintSafe(null, `^ff0000MAJOR STORM APPROACHING! GET TO THE CAVE!^`)0-1"
 "OnTrigger" "gamerulesRunScriptCodeClientPrintSafe(null, `^ff0000MAJOR STORM APPROACHING! GET TO THE CAVE!^`)0-1"
-"OnTrigger" "gamerulesCallScriptFunctionStormSlow0-1"
-"OnTrigger" "env_soundscape*AddOutputOnPlay gamerules:CallScriptFunction:StormSlow:0:-10-1"
-"OnTrigger" "gamerulesPlayVOstorm_siren.mp30-1"
-"OnTrigger" "gamerulesPlayVOstorm_siren.mp30-1"
-"OnTrigger" "gamerulesPlayVOstorm_siren.mp30-1"
+"OnTrigger" "gamerulesCallScriptFunctionStormSlow11-1"
+"OnTrigger" "env_soundscape*AddOutputOnPlay gamerules:CallScriptFunction:StormSlow:0:-120-1"
+"OnTrigger" "gamerulesPlayVOmvm/ambient_mp3/mvm_siren.mp30-1"
 "OnTrigger" "gamerulesRunScriptCodeClientPrint(null, 4 , `MAJOR STORM APPROACHING! GET TO THE CAVE!`)10-1"
 "OnTrigger" "playerSetFogControllermist210-1"
-"OnTrigger" "obj_*RemoveHealth999910-1"
+"OnTrigger" "obj_dispenserRemoveHealth999910-1"
+"OnTrigger" "gamerulesRunScriptCodeSetTurretState(2)10-1"
 "OnTrigger" "snd_downpour_strongwindPlaySound10-1"
 "OnTrigger" "snd_downpour_strongwindVolume210.2-1"
 "OnTrigger" "snd_downpour_strongwindVolume410.4-1"
-"OnTrigger" "gamerulesPlayVOstorm_siren.mp320-1"
+"OnTrigger" "gamerulesPlayVOmvm/ambient_mp3/mvm_siren.mp314-1"
 "OnTrigger" "restartgensTrigger30-1"
 "OnTrigger" "playerspawnredEnable30-1"
 "OnTrigger" "downpour_start_heavy_relayTrigger0-1"
 "OnTrigger" "mist2TurnOn10-1"
 "OnTrigger" "snd_downpour_strongwindVolume721-1"
 "OnTrigger" "gamerulesRunScriptCodeSetSkyboxTexture(`sky_downpour_heavy_storm`)10-1"
+"OnTrigger" "mist2SetFarZ999990-1"
+"OnTrigger" "mist2SetFarZ80012-1"
+"OnTrigger" "glow4Kill10-1"
+"OnTrigger" "gamerulesPlayVOmvm/ambient_mp3/mvm_siren.mp328-1"
+"OnTrigger" "gamerulesPlayVOmvm/ambient_mp3/mvm_siren.mp360-1"
+"OnTrigger" "playerRunScriptCodeself.RemoveCustomAttribute(`health drain`)0-1"
+"OnTrigger" "playerSetFogControllermist0-1"
+"OnTrigger" "mistTurnOn0-1"
+"OnTrigger" "playerRunScriptCodeScreenShake(self.GetOrigin(), 1.3, 64, 0-1"
 }
 {
 "origin" "-240 -256 16"
@@ -13331,28 +14305,30 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "spawnflags" "1"
 "classname" "logic_relay"
 "hammerid" "1614"
-"OnTrigger" "PT_GENERATORBUTTON*Unlock0.11-1"
+"OnTrigger" "PT_GENERATORBUTTON*Unlock1.1-1"
 "OnTrigger" "PT_GENERATORSOUND*StopSound0-1"
-"OnTrigger" "stormhintAddOutputdisplay_text Generators are down! Restart them...0-1"
 "OnTrigger" "PT_GENERATORMESSAGE*AddOutputmessage Generator Disabled!0-1"
-"OnTrigger" "PT_GENERATORMESSAGE*Display0.1-1"
-"OnTrigger" "PT_GENERATORBUTTON*RunScriptCodeRemoveOutputAll(!self, `OnPressed`)0-1"
+"OnTrigger" "PT_GENERATORMESSAGE*Display1-1"
 "OnTrigger" "PT_GENERATORGLOW*Enable1-1"
-"OnTrigger" "stormhintShow1-1"
-"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed gamerules:PlayVO:weapons/flaregun_tube_closestart.wav:0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed PT_GENERATORSOUND:PlaySound::0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed PT_GENERATORGLOW:Disable::0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed PT_GENERATORSPARK:SparkOnce::0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed PT_GENERATORMESSAGE*:Display::1:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed genspawn:Enable:0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed genspawn:Disable:0.1:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed !self:Kill:1:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTONAddOutputOnPressed PT_GENERATORGLOW:Kill::0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON2AddOutputOnPressed PT_GENERATORGLOW2:Kill::0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON3AddOutputOnPressed PT_GENERATORGLOW3:Kill::0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTONAddOutputOnPressed PT_GENERATORMESSAGE1:AddOutput:message Generator 1 Active:0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON2AddOutputOnPressed PT_GENERATORMESSAGE2:AddOutput:message Generator 2 Active:0:-10.1-1"
-"OnTrigger" "PT_GENERATORBUTTON3AddOutputOnPressed PT_GENERATORMESSAGE3:AddOutput:message Generator 3 Active:0:-10.1-1"
+"OnTrigger" "gamerulesRunScriptCodeAnnotations(10)3-1"
+"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed gamerules:PlayVO:weapons/flaregun_tube_closestart.wav:0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed PT_GENERATORSOUND:PlaySound::0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed PT_GENERATORGLOW:Disable::0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed PT_GENERATORSPARK:SparkOnce::0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed PT_GENERATORMESSAGE*:Display::1:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed genspawn:Enable:0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed genspawn:Disable:0.1:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed !self:Kill:1:-11-1"
+"OnTrigger" "PT_GENERATORBUTTONAddOutputOnPressed PT_GENERATORGLOW:Kill::0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON2AddOutputOnPressed PT_GENERATORGLOW2:Kill::0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON3AddOutputOnPressed PT_GENERATORGLOW3:Kill::0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON2AddOutputOnPressed PT_GENERATORMESSAGE2:AddOutput:message Generator 2 Active:0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON3AddOutputOnPressed PT_GENERATORMESSAGE3:AddOutput:message Generator 3 Active:0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTONAddOutputOnPressed !self:RunScriptCode:HideAnnotation(111):0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON2AddOutputOnPressed !self:RunScriptCode:HideAnnotation(112):0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON3AddOutputOnPressed !self:RunScriptCode:HideAnnotation(113):0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTONAddOutputOnPressed PT_GENERATORMESSAGE1:AddOutput:message Generator 1 Active:0:-11-1"
+"OnTrigger" "PT_GENERATORBUTTON*AddOutputOnPressed !self:CallScriptFunction:RestartGens:0:-11-1"
 }
 {
 "origin" "-256 -256 32"
@@ -13360,12 +14336,10 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "spawnflags" "1"
 "classname" "logic_relay"
 "hammerid" "1617"
-"OnTrigger" "stormhintRunScriptCodeself.SetLocalOrigin(Vector(2396.07 -588.743 -118.727))0-1"
-"OnTrigger" "stormhintAddOutputdisplay_text Take???shelter???in???the???cave!0-1"
-"OnTrigger" "PT_GENERATORMESSAGE*AddOutputmessage Take???shelter???in???the???cave!0-1"
+"OnTrigger" "PT_GENERATORMESSAGE*RunScriptCodeSetPropString(self, `m_iszMessage`, `Take shelter in the cave!`)0-1"
 "OnTrigger" "PT_GENERATORMESSAGE*Display1-1"
-"OnTrigger" "stormhintShow1-1"
-"OnTrigger" "soundscape_tunnel*AddOutputOnPlay win_bots:RoundWin::10:-10-1"
+"OnTrigger" "soundscape_tunnel*AddOutputOnPlay !self:CallScriptFunction:EndWaveChangeTeam:10:-10-1"
+"OnTrigger" "gamerulesRunScriptCodeAnnotations(9)0-1"
 }
 {
 "origin" "126 -2799.22 216.22"
@@ -13421,7 +14395,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "origin" "2140.07 -844.743 -118.727"
 "texframeindex" "0"
 "targetname" "PT_GENERATOR2"
-"StartDisabled" "1"
+"StartDisabled" "0"
 "spawnflags" "256"
 "solid" "6"
 "skin" "0"
@@ -13584,7 +14558,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 }
 {
 "origin" "-1991.77 -346.041 85.7429"
-"y" "0.1"
+"y" "0.3"
 "x" "1"
 "targetname" "PT_GENERATORMESSAGE1"
 "spawnflags" "1"
@@ -13601,8 +14575,8 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1233035"
 }
 {
-"origin" "2112 -803.483 -16.8417"
-"y" "0.2"
+"origin" "2144 -811.483 -24.8417"
+"y" "0.4"
 "x" "1"
 "targetname" "PT_GENERATORMESSAGE2"
 "spawnflags" "1"
@@ -13619,8 +14593,8 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1233270"
 }
 {
-"origin" "-432.68 -3210.11 92.0678"
-"y" "0.3"
+"origin" "-440.68 -3234.11 92.0678"
+"y" "0.5"
 "x" "1"
 "targetname" "PT_GENERATORMESSAGE3"
 "spawnflags" "1"
@@ -13680,7 +14654,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1492239"
 }
 {
-"model" "*83"
+"model" "*96"
 "wait" "30"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
@@ -13703,23 +14677,24 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnPressed" "PT_GENERATORSOUNDPlaySound0-1"
 "OnPressed" "PT_GENERATORGLOWDisable0-1"
 "OnPressed" "PT_GENERATORSPARKSparkOnce0-1"
-"OnPressed" "!selfLock0-1"
 "OnPressed" "genspawnEnable0-1"
 "OnPressed" "genspawnDisable1-1"
 "OnPressed" "PT_GENERATORMESSAGE1Display0-1"
 "OnPressed" "midspawnforcefieldEnable0-1"
 "OnPressed" "frontspawnbarricadeEnable0-1"
-"OnPressed" "PT_SWITCHBUTTON4RunScriptCodeRemoveOutputAll(self, `OnPressed`)0-1"
 "OnPressed" "PT_SWITCHBUTTON4AddOutputOnPressed fftogglered:Trigger::0:-10.1-1"
 "OnPressed" "PT_SWITCHBUTTON4Unlock0.1-1"
 "OnPressed" "glow4Enable0.1-1"
 "OnPressed" "glow3Enable0.1-1"
-"OnPressed" "PT_SWITCHBUTTON2RunScriptCodeRemoveOutputAll(self, `OnPressed`)0-1"
 "OnPressed" "PT_SWITCHBUTTON2AddOutputOnPressed fftogglered:Trigger::0:-10.1-1"
 "OnPressed" "PT_SWITCHBUTTON2Unlock0.1-1"
+"OnPressed" "!selfRunScriptCodeRemoveOutputAll(self, `OnPressed`)0-1"
+"OnPressed" "PT_DISPENSERRunScriptCodeself.SetTeam(3)0-1"
+"OnPressed" "PT_DISPENSERRunScriptCodeself.SetSkin(1)0-1"
+"OnPressed" "PT_W2BLOCKER*Kill0-1"
 }
 {
-"model" "*84"
+"model" "*97"
 "wait" "30"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
@@ -13742,12 +14717,14 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnPressed" "!selfLock30.01-1"
 "OnPressed" "genspawnEnable0-1"
 "OnPressed" "genspawnDisable1-1"
-"OnPressed" "storm_casePickRandomShuffle0-1"
+"OnPressed" "storm_relayTrigger0-1"
 "OnPressed" "PT_GENERATORSOUND2PlaySound0-1"
 "OnPressed" "PT_GENERATORGLOW2Disable0-1"
 "OnPressed" "PT_GENERATORSPARK2SparkOnce0-1"
 "OnPressed" "PT_GENERATORMESSAGE2Display0-1"
 "OnPressed" "extrafrontspawn*Enable0-1"
+"OnPressed" "!selfRunScriptCodeRemoveOutputAll(self, `OnPressed`)0-1"
+"OnPressed" "extrafrontspawnjumperDisable1-1"
 }
 {
 "origin" "-1998.39 -331.38 46.87"
@@ -13846,7 +14823,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1233575"
 }
 {
-"model" "*85"
+"model" "*98"
 "wait" "30"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
@@ -13869,16 +14846,14 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnPressed" "!selfLock30.01-1"
 "OnPressed" "genspawnEnable0-1"
 "OnPressed" "genspawnDisable1-1"
-"OnPressed" "storm_casePickRandomShuffle0-1"
+"OnPressed" "tornado_relayTrigger20-1"
 "OnPressed" "PT_GENERATORBUTTON2Lock0-1"
 "OnPressed" "PT_GENERATORGLOW3Disable0-1"
 "OnPressed" "PT_GENERATORSPARK3SparkOnce0-1"
 "OnPressed" "PT_GENERATORMESSAGE3Display0-1"
 "OnPressed" "PT_GENERATORSOUND3PlaySound0-1"
-"OnPressed" "PT_GENERATORTIMER2RunScriptCodeRemoveOutputAll(!self, `OnPressed`)0-1"
-"OnPressed" "PT_GENERATORTIMER2AddOutputOnTrigger PT_GENERATORTIMER:Trigger::1:-11-1"
-"OnPressed" "PT_GENERATORTIMER2Trigger2-1"
 "OnPressed" "playerspawnredEnable0-1"
+"OnPressed" "!selfRunScriptCodeRemoveOutputAll(self, `OnPressed`)0-1"
 }
 {
 "origin" "-448 -3244 58.6891"
@@ -13915,7 +14890,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "!selfRunScriptCodeAnnotations(4)3-1"
 }
 {
-"model" "*86"
+"model" "*99"
 "wait" "45"
 "targetname" "PT_SWITCHBUTTON4"
 "speed" "2000"
@@ -13928,11 +14903,19 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "angles" "0 0 0"
 "classname" "func_rot_button"
 "hammerid" "1196938"
-"OnPressed" "fftoggleTrigger0-1"
 "OnPressed" "!selfLock0-1"
 "OnPressed" "!selfUnlock45-1"
 "OnPressed" "glow4Disable0-1"
 "OnPressed" "glow4Enable45-1"
+"OnPressed" "gamerulesRunScriptCodeSetTurretState(0)20-1"
+"OnPressed" "PT_WIRESPARK2Start20-1"
+"OnPressed" "gamerulesPlayVOweapons/physcannon/superphys_small_zap1.wav20-1"
+"OnPressed" "tunnelforcefieldbluEnable20-1"
+"OnPressed" "gamerulesRunScriptCodeSetTurretState(1)0-1"
+"OnPressed" "PT_WIRESPARK2Stop0-1"
+"OnPressed" "tunnelforcefieldbluDisable0-1"
+"OnPressed" "!selfRunScriptCodeself.SetOrigin(self.GetOrigin() - Vector(0, 0, 1000))0-1"
+"OnPressed" "!selfRunScriptCodeself.SetOrigin(self.GetOrigin() + Vector(0, 0, 1000))45-1"
 }
 {
 "origin" "368 -2304 0"
@@ -13954,7 +14937,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1234514"
 }
 {
-"model" "*87"
+"model" "*100"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "TeamNum" "2"
@@ -13975,7 +14958,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 }
 {
 "origin" "1967.53 -1316.75 -107.073"
-"targetname" "PT_AMMO"
+"targetname" "PT_AMMO1"
 "rendercolor" "255 255 255"
 "renderamt" "255"
 "modelscale" "1.0"
@@ -13989,7 +14972,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 }
 {
 "origin" "1999.53 -1316.75 -107.073"
-"targetname" "PT_AMMO"
+"targetname" "PT_AMMO1"
 "rendercolor" "255 255 255"
 "renderamt" "255"
 "modelscale" "1.0"
@@ -14400,7 +15383,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "2625084"
 }
 {
-"model" "*88"
+"model" "*101"
 "targetname" "yardtrigger"
 "StartDisabled" "1"
 "spawnflags" "1"
@@ -14666,7 +15649,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "4094"
 }
 {
-"model" "*89"
+"model" "*102"
 "wait" "10"
 "unlocked_sound" "0"
 "unlocked_sentence" "0"
@@ -14723,7 +15706,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "2386383"
 }
 {
-"model" "*90"
+"model" "*103"
 "wait" "8"
 "targetname" "PT_SWITCHBUTTON3"
 "speed" "2000"
@@ -14739,7 +15722,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnPressed" "PT_SHAKEStartShake0.15-1"
 "OnPressed" "PT_WOODEXPLODEExplode0.15-1"
 "OnPressed" "PT_WOODFXStart-1-1"
-"OnPressed" "PT_WOODCARTKill0.5-1-1"
+"OnPressed" "PT_WOODCARTKill-1-1"
 "OnPressed" "PT_WOODSetAnimationmannworksL0.15-1"
 "OnPressed" "PT_WOODKill4-1"
 "OnPressed" "gamerulesPlayVOambient/explosions/explode_3.wav0-1"
@@ -14747,9 +15730,10 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnPressed" "PT_SHAKEStartShake0.1-1"
 "OnPressed" "PT_WOODBREAKABLE*Break0-1"
 "OnPressed" "!selfKill5-1"
+"OnPressed" "PT_WOOD2Kill0-1"
 }
 {
-"model" "*91"
+"model" "*104"
 "wait" "67"
 "targetname" "PT_SWITCHBUTTON2"
 "speed" "2000"
@@ -14763,7 +15747,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "angles" "0 0 0"
 "classname" "func_rot_button"
 "hammerid" "1135370"
-"OnUseLocked" "glow4Disable0-1"
+"OnPressed" "glow2Disable0-1"
 "OnPressed" "gamerulesCallScriptFunctionBeginCount0-1"
 "OnPressed" "gamerulesRunScriptCodeClientPrintSafe(null, `^038000The forcefield will disable in 60 seconds...^`)0-1"
 "OnPressed" "gamerulesRunScriptCodeClientPrint(null, 4 , `The forcefield will disable in 60 seconds...`)0-1"
@@ -14954,7 +15938,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1500"
 }
 {
-"model" "*92"
+"model" "*105"
 "volume" "8"
 "targetname" "tutorialspin"
 "spawnflags" "65"
@@ -14971,7 +15955,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1111765"
 }
 {
-"model" "*93"
+"model" "*106"
 "wait" "3"
 "targetname" "tutorialbutton"
 "speed" "2000"
@@ -14991,7 +15975,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnPressed" "tutorialdisplayEnable0-1"
 }
 {
-"model" "*94"
+"model" "*107"
 "targetname" "truckexplode"
 "StartDisabled" "1"
 "origin" "1007.99 -1944 64"
@@ -15004,28 +15988,21 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnDroppedFlag" "glow2Disable0-1"
 "OnDroppedFlag" "bomb1_timedSetTeam20-1"
 "OnDroppedFlag" "fourthspawnDisable0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!^`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!^`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!^`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!^`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!^`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!^`)0-1"
 "OnDroppedFlag" "bomb1_timedAddOutputOnReturn bombbeep*:CancelPending::0:-11-1"
 "OnDroppedFlag" "bomb1_timedAddOutputOnReturn bigexplosion:Trigger::0:-10-1"
 "OnDroppedFlag" "!selfKill2-1"
 "OnDroppedFlag" "bomb1_timedSetReturnTime150-1"
 "OnDroppedFlag" "tunnelbossDisable0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrint(null, 4 , `GET AWAY FROM THE BARRICADE!`)0-1"
 "OnDroppedFlag" "gamerulesCallScriptFunctionStartBomb0-1"
-"OnDroppedFlag" "bomb1_timedAddOutputOnReturn !self:RunScriptCode:NavMesh.GetNavAreaByID(4364).UnblockArea():10:-10-1"
-"OnDroppedFlag" "bomb1_timedAddOutputOnReturn !self:RunScriptCode:NavMesh.GetNavAreaByID(847).UnblockArea():10:-10-1"
+"OnDroppedFlag" "bomb1_timedAddOutputOnReturn !self:RunScriptCode:NavMesh.GetNavAreaByID(4364).UnblockArea():3:-10-1"
+"OnDroppedFlag" "bomb1_timedAddOutputOnReturn !self:RunScriptCode:NavMesh.GetNavAreaByID(847).UnblockArea():3:-10-1"
 }
 {
 "origin" "-336 -256 48"
 "targetname" "glow2"
 "target" "PT_SWITCH"
 "StartDisabled" "1"
-"Mode" "2"
+"Mode" "0"
 "GlowColor" "0 191 185 255"
 "classname" "tf_glow"
 "hammerid" "1607"
@@ -15105,7 +16082,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "PT_SWITCHBUTTON2Unlock0-1"
 }
 {
-"model" "*95"
+"model" "*108"
 "targetname" "hinttrigger"
 "spawnflags" "1"
 "origin" "384 -2784 144"
@@ -15118,7 +16095,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnStartTouch" "PT_SWITCHBUTTONUnlock25-1"
 }
 {
-"model" "*96"
+"model" "*109"
 "targetname" "spawntele1"
 "target" "playerspawn2"
 "StartDisabled" "1"
@@ -15362,7 +16339,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1039381"
 }
 {
-"model" "*97"
+"model" "*110"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "TeamNum" "2"
@@ -15382,7 +16359,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1273179"
 }
 {
-"model" "*98"
+"model" "*111"
 "vrad_brush_cast_shadows" "0"
 "targetname" "PT_BLOCKER"
 "StartDisabled" "0"
@@ -15401,7 +16378,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1297987"
 }
 {
-"model" "*99"
+"model" "*112"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "spawnflags" "0"
@@ -15490,7 +16467,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1040040"
 }
 {
-"origin" "361.233 -1684.3 0.300003"
+"origin" "385.233 -1700.3 0.300003"
 "targetname" "truckbarrel"
 "StartDisabled" "1"
 "spawnflags" "256"
@@ -15519,7 +16496,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "disableshadows" "1"
 "disablereceiveshadows" "1"
 "DisableBoneFollowers" "0"
-"angles" "0 0 0"
+"angles" "0 315 0"
 "classname" "prop_dynamic"
 "hammerid" "1040217"
 }
@@ -15645,7 +16622,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1096348"
 }
 {
-"model" "*100"
+"model" "*113"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "PT_WOODBREAKABLE2"
@@ -15707,7 +16684,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1096356"
 }
 {
-"model" "*101"
+"model" "*114"
 "wait" "12"
 "targetname" "PT_SWITCHBUTTON5"
 "speed" "2000"
@@ -15730,10 +16707,11 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnPressed" "gamerulesRunScriptCodeClientPrintSafe(null, `^ff0000Turrets permanently disabled!`)0-1"
 "OnPressed" "gamerulesRunScriptCodeSetTurretState(2)0-1"
 "OnPressed" "gamerulesRunScriptCodeStunBots(7)0-1"
+"OnPressed" "glow4Kill0-1"
 "OnPressed" "PT_WATERSPARK*StopSound0-1"
 }
 {
-"model" "*102"
+"model" "*115"
 "targetname" "explodecapture"
 "StartDisabled" "0"
 "origin" "110.7 -268 43"
@@ -15743,12 +16721,6 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1273228"
 "OnStartTouchFlag" "bomb1_timedForceDrop0-1"
 "OnDroppedFlag" "playerspawnredDisable0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrintSafe(null, `^FF0000GET AWAY FROM THE BARRICADE!`)0-1"
-"OnDroppedFlag" "gamerulesRunScriptCodeClientPrint(null, 4 , `GET AWAY FROM THE BARRICADE!`)0-1"
 "OnDroppedFlag" "bomb1_timedAddOutputOnReturn PT_SWITCHBUTTON3:Unlock::0:-10-1"
 "OnDroppedFlag" "bomb1_timedAddOutputOnReturn PT_SWITCHBUTTON3:Press::0.01:-11-1"
 "OnDroppedFlag" "!selfKill2-1"
@@ -15825,7 +16797,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1234884"
 }
 {
-"model" "*103"
+"model" "*116"
 "vrad_brush_cast_shadows" "0"
 "texframeindex" "0"
 "targetname" "windowbrush2"
@@ -15846,7 +16818,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1100115"
 }
 {
-"occludernumber" "6"
+"occludernumber" "9"
 "model" ""
 "targetname" "midblockeroccluder"
 "StartActive" "0"
@@ -16497,7 +17469,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1075485"
 }
 {
-"model" "*104"
+"model" "*117"
 "wait" "0"
 "targetname" "red_door_trigger"
 "StartDisabled" "0"
@@ -16513,7 +17485,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnEndTouchAll" "door_red_1_2Close0-1"
 }
 {
-"model" "*105"
+"model" "*118"
 "wait" "-1"
 "unlocked_sentence" "0"
 "targetname" "door_red_1_1"
@@ -16999,7 +17971,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "36013"
 }
 {
-"model" "*106"
+"model" "*119"
 "TeamNum" "2"
 "targetname" "respawn_red"
 "StartDisabled" "0"
@@ -17010,7 +17982,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "47901"
 }
 {
-"model" "*107"
+"model" "*120"
 "vrad_brush_cast_shadows" "0"
 "StartDisabled" "0"
 "spawnflags" "2"
@@ -18062,8 +19034,9 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "113962"
 }
 {
-"origin" "1568 -1369.95 156.06"
-"style" "0"
+"origin" "1568 -1365.95 156.06"
+"targetname" "tunnel_light"
+"style" "33"
 "spawnflags" "0"
 "_zero_percent_distance" "0"
 "_quadratic_attn" "1"
@@ -18112,7 +19085,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "130111"
 }
 {
-"model" "*108"
+"model" "*121"
 "vrad_brush_cast_shadows" "0"
 "StartDisabled" "0"
 "spawnflags" "2"
@@ -18140,7 +19113,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "145805"
 }
 {
-"model" "*109"
+"model" "*122"
 "targetname" "pit_kill"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -18362,7 +19335,8 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "153143"
 }
 {
-"origin" "1568 -1368 168"
+"origin" "1568 -1364 168"
+"targetname" "tunnel_light"
 "start_active" "1"
 "flag_as_weather" "0"
 "effect_name" "superrare_flies"
@@ -18811,7 +19785,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "204547"
 }
 {
-"model" "*110"
+"model" "*123"
 "targetname" "respawn_money"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -18941,7 +19915,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "241926"
 }
 {
-"model" "*111"
+"model" "*124"
 "TeamNum" "3"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -19022,7 +19996,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "242551"
 }
 {
-"model" "*112"
+"model" "*125"
 "wait" "1"
 "targetname" "bomb_kill_players"
 "StartDisabled" "1"
@@ -19044,7 +20018,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "tankbossDestroyIfAtCapturePoint10-1"
 }
 {
-"model" "*113"
+"model" "*126"
 "vrad_brush_cast_shadows" "0"
 "StartDisabled" "0"
 "spawnflags" "2"
@@ -19128,40 +20102,36 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "259233"
 }
 {
-"model" "*114"
-"StartDisabled" "0"
-"speed" "500"
-"spawnflags" "1"
-"pushdir" "0 180 0"
-"origin" "1900 -1172 -120"
-"angles" "0 0 0"
-"alternateticksfix" "0"
-"classname" "trigger_push"
-"hammerid" "259454"
-"OnStartTouch" "sound_slipPlaySound0-1"
-}
-{
-"origin" "1920 -1168 -110.417"
-"volstart" "0"
-"targetname" "sound_slip"
-"spinup" "0"
-"spindown" "0"
-"spawnflags" "49"
-"radius" "640"
-"preset" "0"
-"pitchstart" "100"
-"pitch" "100"
-"message" "General.banana_slip"
-"lfotype" "0"
-"lforate" "0"
-"lfomodvol" "0"
-"lfomodpitch" "0"
-"health" "10"
-"fadeoutsecs" "0"
-"fadeinsecs" "0"
-"cspinup" "0"
-"classname" "ambient_generic"
-"hammerid" "259602"
+"origin" "1649 -1163 -331.017"
+"targetname" "PT_PITDEBRIS"
+"spawnflags" "0"
+"solid" "6"
+"skin" "0"
+"SetBodyGroup" "0"
+"rendermode" "0"
+"renderfx" "0"
+"rendercolor" "255 255 255"
+"renderamt" "255"
+"RandomAnimation" "0"
+"pressuredelay" "0"
+"PerformanceMode" "0"
+"modelscale" "1.0"
+"model" "models/bots/boss_bot/boss_tank_damage3.mdl"
+"mindxlevel" "0"
+"MinAnimTime" "5"
+"maxdxlevel" "0"
+"MaxAnimTime" "10"
+"fadescale" "1"
+"fademindist" "-1"
+"fademaxdist" "0"
+"ExplodeRadius" "0"
+"ExplodeDamage" "0"
+"disableshadows" "0"
+"disablereceiveshadows" "0"
+"DisableBoneFollowers" "0"
+"angles" "56.7741 253.187 -65.8539"
+"classname" "prop_dynamic"
+"hammerid" "2767054"
 }
 {
 "origin" "-1872 -656 480"
@@ -19527,7 +20497,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "274886"
 }
 {
-"model" "*115"
+"model" "*127"
 "team" "3"
 "StartDisabled" "0"
 "origin" "928 -3488 24"
@@ -19537,7 +20507,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "275108"
 }
 {
-"model" "*116"
+"model" "*128"
 "team" "3"
 "StartDisabled" "0"
 "origin" "1344 -1672 24"
@@ -19547,7 +20517,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "275117"
 }
 {
-"model" "*117"
+"model" "*129"
 "team" "3"
 "StartDisabled" "0"
 "origin" "2280 -1240 -104"
@@ -19557,7 +20527,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "275123"
 }
 {
-"model" "*118"
+"model" "*130"
 "team" "3"
 "StartDisabled" "0"
 "origin" "1888 144 -88"
@@ -19567,7 +20537,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "275129"
 }
 {
-"model" "*119"
+"model" "*131"
 "team" "3"
 "StartDisabled" "0"
 "origin" "512 -1024 32"
@@ -19577,7 +20547,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "275141"
 }
 {
-"model" "*120"
+"model" "*132"
 "team" "3"
 "StartDisabled" "0"
 "origin" "-704 88 216"
@@ -19667,7 +20637,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "OnTrigger" "nav_prefer_flank_frontDisable0-1"
 }
 {
-"model" "*121"
+"model" "*133"
 "team" "3"
 "targetname" "avoid_path2"
 "tags" "bomb_carrier common flank_front flank_mid1 flank_mid2 flank_back"
@@ -19678,7 +20648,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "290337"
 }
 {
-"model" "*122"
+"model" "*134"
 "team" "3"
 "targetname" "avoid_path1"
 "tags" "bomb_carrier"
@@ -19723,7 +20693,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "298735"
 }
 {
-"model" "*123"
+"model" "*135"
 "targetname" "upgradestation_frontline"
 "StartDisabled" "0"
 "origin" "580 -2912 88"
@@ -19732,7 +20702,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "298704"
 }
 {
-"model" "*124"
+"model" "*136"
 "wait" "4"
 "unlocked_sentence" "0"
 "targetname" "door_upgrade"
@@ -19823,7 +20793,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "53854"
 }
 {
-"model" "*125"
+"model" "*137"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -19836,7 +20806,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "299811"
 }
 {
-"model" "*126"
+"model" "*138"
 "TeamNum" "0"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -19849,7 +20819,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "299830"
 }
 {
-"model" "*127"
+"model" "*139"
 "TeamNum" "3"
 "targetname" "respawn_bot"
 "StartDisabled" "0"
@@ -19860,7 +20830,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "303983"
 }
 {
-"model" "*128"
+"model" "*140"
 "vrad_brush_cast_shadows" "0"
 "StartDisabled" "0"
 "spawnflags" "2"
@@ -19888,7 +20858,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "310902"
 }
 {
-"model" "*129"
+"model" "*141"
 "team" "3"
 "StartDisabled" "0"
 "origin" "-800 -3936 24"
@@ -19898,7 +20868,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "312097"
 }
 {
-"model" "*130"
+"model" "*142"
 "team" "3"
 "StartDisabled" "0"
 "origin" "-808 -2176 24"
@@ -20153,7 +21123,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "335912"
 }
 {
-"model" "*131"
+"model" "*143"
 "wait" "-1"
 "unlocked_sentence" "0"
 "targetname" "door_red_1_2"
@@ -20282,7 +21252,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "353914"
 }
 {
-"model" "*132"
+"model" "*144"
 "team" "3"
 "StartDisabled" "0"
 "origin" "-468 -308 216"
@@ -20292,7 +21262,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "354089"
 }
 {
-"model" "*133"
+"model" "*145"
 "team" "3"
 "tags" "bomb_carrier"
 "start_disabled" "0"
@@ -20353,7 +21323,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "358722"
 }
 {
-"model" "*134"
+"model" "*146"
 "team" "3"
 "tags" "bomb_carrier"
 "start_disabled" "0"
@@ -20579,7 +21549,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "475935"
 }
 {
-"model" "*135"
+"model" "*147"
 "team" "3"
 "StartDisabled" "0"
 "origin" "112 -56 216"
@@ -20589,7 +21559,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "384975"
 }
 {
-"model" "*136"
+"model" "*148"
 "team" "3"
 "StartDisabled" "0"
 "origin" "592 -2976 80"
@@ -20599,7 +21569,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "385002"
 }
 {
-"model" "*137"
+"model" "*149"
 "team" "3"
 "StartDisabled" "0"
 "origin" "992 -1440 24"
@@ -20642,7 +21612,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1040250"
 }
 {
-"model" "*138"
+"model" "*150"
 "team" "3"
 "StartDisabled" "0"
 "origin" "96 -400 -8"
@@ -20652,7 +21622,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "385029"
 }
 {
-"model" "*139"
+"model" "*151"
 "team" "3"
 "StartDisabled" "0"
 "origin" "512 160 96"
@@ -20662,7 +21632,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "385046"
 }
 {
-"model" "*140"
+"model" "*152"
 "TeamNum" "3"
 "StartDisabled" "0"
 "origin" "-1156 -548 448"
@@ -20672,7 +21642,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "242505"
 }
 {
-"model" "*141"
+"model" "*153"
 "TeamNum" "3"
 "StartDisabled" "0"
 "origin" "-1828 -352 448"
@@ -20853,7 +21823,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "422714"
 }
 {
-"model" "*142"
+"model" "*154"
 "wait" "1"
 "StartDisabled" "0"
 "spawnflags" "1"
@@ -20940,7 +21910,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1074112"
 }
 {
-"model" "*143"
+"model" "*155"
 "TeamNum" "3"
 "targetname" "respawn_bot"
 "StartDisabled" "0"
@@ -21075,7 +22045,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "465757"
 }
 {
-"model" "*144"
+"model" "*156"
 "team" "3"
 "targetname" "avoid_path1"
 "tags" "bomb_carrier common flank_front flank_mid1 flank_mid2 flank_back"
@@ -21086,70 +22056,70 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "465832"
 }
 {
-"portalnumber" "25"
+"portalnumber" "27"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "470281"
 }
 {
-"portalnumber" "26"
+"portalnumber" "28"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "470290"
 }
 {
-"portalnumber" "27"
+"portalnumber" "29"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "470300"
 }
 {
-"portalnumber" "28"
+"portalnumber" "30"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "470309"
 }
 {
-"portalnumber" "29"
+"portalnumber" "31"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "470354"
 }
 {
-"portalnumber" "30"
+"portalnumber" "32"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "470361"
 }
 {
-"portalnumber" "31"
+"portalnumber" "33"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "470368"
 }
 {
-"portalnumber" "32"
+"portalnumber" "34"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "470383"
 }
 {
-"portalnumber" "33"
+"portalnumber" "35"
 "StartOpen" "1"
 "PortalVersion" "1"
 "classname" "func_areaportal"
 "hammerid" "471119"
 }
 {
-"model" "*145"
+"model" "*157"
 "team" "3"
 "StartDisabled" "0"
 "origin" "-928 -4768 -48"
@@ -21159,7 +22129,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "474901"
 }
 {
-"model" "*146"
+"model" "*158"
 "team" "3"
 "StartDisabled" "0"
 "origin" "672 -4896 -136"
@@ -21224,9 +22194,9 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1438396"
 }
 {
+"style" "35"
 "origin" "1634.47 -233.57 271.638"
 "targetname" "PT_WATERLIGHT"
-"style" "35"
 "spawnflags" "0"
 "_zero_percent_distance" "0"
 "_quadratic_attn" "1"
@@ -21303,7 +22273,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20118"
 }
 {
-"origin" "-5275.16 -3239 285.912"
+"origin" "-5275.16 -3239 293.912"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21336,7 +22306,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20119"
 }
 {
-"origin" "-5372.42 -2826 341"
+"origin" "-5372.42 -2826 349"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21369,7 +22339,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20120"
 }
 {
-"origin" "-5276.42 -2870.83 287"
+"origin" "-5276.42 -2870.83 295"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21402,7 +22372,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20121"
 }
 {
-"origin" "-5122 -3592 344"
+"origin" "-5122 -3592 352"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21435,7 +22405,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20122"
 }
 {
-"origin" "-5394 -3282 339.139"
+"origin" "-5394 -3282 347.139"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21468,7 +22438,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20123"
 }
 {
-"origin" "-4255 -3462 284"
+"origin" "-4255 -3462 292"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21501,7 +22471,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20124"
 }
 {
-"origin" "-4039 -3248 309.527"
+"origin" "-4039 -3248 317.527"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21567,7 +22537,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20126"
 }
 {
-"origin" "-4233 -3606 313"
+"origin" "-4233 -3606 321"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21600,7 +22570,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20127"
 }
 {
-"origin" "-4114 -2790 313.843"
+"origin" "-4114 -2790 321.843"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21633,7 +22603,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20128"
 }
 {
-"origin" "-4139 -3008 275.364"
+"origin" "-4139 -3008 283.364"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21666,7 +22636,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20129"
 }
 {
-"origin" "-4665 -3691 324"
+"origin" "-4665 -3691 332"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21699,7 +22669,7 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "20130"
 }
 {
-"origin" "-4318 -2622 277.364"
+"origin" "-4318 -2622 285.364"
 "targetname" "skybox_terrain"
 "StartDisabled" "1"
 "spawnflags" "0"
@@ -21766,17 +22736,9 @@ cl_mvm_wave_status_visible_during_wave 1: self-explanatory
 "hammerid" "1577"
 }
 {
-"origin" "-3211.83 -534.514 32"
-"targetname" "boxspawner"
-"spawnflags" "0"
-"PostSpawnSpeed" "0"
-"PostSpawnInheritAngles" "0"
-"PostSpawnDirectionVariance" "0.15"
-"PostSpawnDirection" "0 0 0"
-"model" "models/props_island/mannco_case_large.mdl"
-"EntityTemplate" "gunboxes"
-"angles" "0 100 0"
-"classname" "env_entity_maker"
-"hammerid" "2625183"
+"occludernumber" "10"
+"model" ""
+"StartActive" "1"
+"classname" "func_occluder"
+"hammerid" "2680449"
 }
- 

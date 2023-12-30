@@ -43,7 +43,7 @@ filename = input('').strip()
 
 properties = {}
 
-formatted_properties, entity_list, name_list, extralines, log, func_list = [], [], [], [], [], []
+formatted_properties, entity_list, name_list, extralines, log, func_list, hammerids = [], [], [], [], [], [], []
 giveitem, switchslot, changeattribs, lumpfile, vmffile, stripweps, refill =  False, False, False, False, False, False, False
 mins, maxs = None, None
 funcname, namewhitelist = '', ''
@@ -108,18 +108,30 @@ outputs = [
 
 blacklisted = [
 	'onlyvelocitycheck',
+	'onlyvelocitycheck',
+]
+
+blacklistedkeys = [
+	'hammerid',
+	'classname'
 ]
 
 blacklistedents = [
 	'prop_static',
 	'func_detail',
 	'func_areaportal',
+	'func_areaportalwindow',
 	'func_occluder',
 	'func_viscluster',
 	'light',
 	'light_spot',
 	'point_spotlight',
-	'func_instance'
+	'func_instance',
+	'info_player_teamspawn',
+	'worldspawn',
+	'tf_gamerules',
+	'tf_logic_mann_vs_machine',
+	'path_track'
 ]
 
 convertedkeys = [
@@ -552,7 +564,7 @@ def format_entities(lines, entity_name):
 			if key == '}': continue
 		except: continue
 
-		# if any(b in value.lower() for b in blacklistedents) or (namewhitelist != "" and ("targetname" in parts and value.startswith(namewhitelist) in parts)): 
+		# if any(b in value.lower() for b ents) or (namewhitelist != "" and ("targetname" in parts and value.startswith(namewhitelist) in parts)): 
 
 		properties[key] = value
 		lowerkey = key.lower()
@@ -576,13 +588,13 @@ def format_entities(lines, entity_name):
 			if 'mins' in key:
 				brushent = True
 				if lumpfile:
-					brushsizemin = f'{entity_name}{h}.KeyValueFromString("{key}", "{value.strip('"')}")'
+					brushsizemin = f'HAMMERID_{h}_{entity_name}.KeyValueFromString("{key}", "{value.strip('"')}")'
 				else:
 					brushsizemin = f'{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
 			elif 'maxs' in key:
 				brushent = True
 				if lumpfile:
-					brushsizemax = f'{entity_name}{h}.KeyValueFromString("{key}", "{value.strip('"')}")'
+					brushsizemax = f'HAMMERID_{h}_{entity_name}.KeyValueFromString("{key}", "{value.strip('"')}")'
 				else:
 					brushsizemax = f'{brushname}{b}.KeyValueFromString("{key}", "{value.strip('"')}")'
 
@@ -634,79 +646,85 @@ def format_entities(lines, entity_name):
 			if '"' in key:
 				key = key.replace('"','').strip()
 
-			if value.isdigit() or 'Vector' in value or 'QAngle' in value:
-				formatted_properties.append(f'{key} = {value}')
-			else:
-				try:
-					formatted_properties.append(f'{key} = {float(value)}')
-				except ValueError:
-					if '"' in value:
-						formatted_properties.append(f'{key} = {value}')
-					else:
-						formatted_properties.append(f'{key} = "{value}"')
+			if not any(k in key for k in blacklistedkeys):
+				if value.isdigit() or 'Vector' in value or 'QAngle' in value:
+					formatted_properties.append(f'{key} = {value}')
+				else:
+					try:
+						formatted_properties.append(f'{key} = {float(value)}')
+					except ValueError:
+						if '"' in value:
+							formatted_properties.append(f'{key} = {value}')
+						else:
+							formatted_properties.append(f'{key} = "{value}"')
 		# except Exception as e:
 	j = 1
 	# if len(entity_name) < 1: continue
 
 	global funcname, oldname
-	if not brushent:
+	if not any(entity_name == e for e in blacklistedents):
+		if not brushent:
 
-		#lumpfile appends the hammerid to the variable name
-		if lumpfile or vmffile and not entity_name in blacklistedents:
+			#lumpfile appends the hammerid to the variable name
+			if lumpfile or vmffile:
+				output_text = f'::HAMMERID_{h}_{entity_name} <- SpawnEntityFromTable("{entity_name}", {{\n    {",\n    ".join(formatted_properties)}\n}})\n'
+				hammerids.append(h)
 
-			output_text = f'::{entity_name}{h} <- SpawnEntityFromTable("{entity_name}", {{\n    {",\n    ".join(formatted_properties)}\n}})\n'
+			elif not lumpfile and funcname != oldname and funcname != '':
 
-		elif not lumpfile and funcname != oldname and funcname != '':
+				oldname = funcname
+				if t == 1:
+					spawnfunc = f'\n::{funcname} <- function(org, ang)\n{{\n'
+				else:
+					spawnfunc = f'}}\n::{funcname} <- function(org, ang)\n{{\n'
 
-			oldname = funcname
-			if t == 1:
-				spawnfunc = f'\n::{funcname} <- function(org, ang)\n{{\n'
+				func_list.append(f'{funcname}({org}, [{ang[0]}, {ang[1]}, {ang[2]}])')
+				org, ang = 'Vector(0, 0, 0)', [0, 0, 0]
+				# don't think setang/setorigin is necessary
+				output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{entity_name}{g}.SetOrigin(org)\n\t{entity_name}{g}.SetAngles(ang[0], ang[1], ang[2])\n'
+				# output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
+
 			else:
+				output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{entity_name}{g}.SetOrigin(org)\n\t{entity_name}{g}.SetAngles(ang[0], ang[1], ang[2])\n'
+				# output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
+
+			g += 1
+			t += 1
+		else:
+
+			#lumpfile appends the hammerid to the variable name
+			if lumpfile:
+				output_text = f'::HAMMERID_{h}_{entity_name} <- SpawnEntityFromTable("{entity_name}", {{\n    {",\n    ".join(formatted_properties)}\n}})\nHAMMERID_{h}_{entity_name}.SetSolid(2)\n{brushsizemin}\n{brushsizemax}\n'
+				hammerids.append(h)
+
+			elif funcname != oldname and funcname != '':
+
+				oldname = funcname
 				spawnfunc = f'}}\n::{funcname} <- function(org, ang)\n{{\n'
+				# output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.SetSolid(2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(org != null)\n\t\t{brushname}{b}.SetOrigin(org)\n\tif(ang != null)\n\t\t{brushname}{b}.SetAngles(ang[0], ang[1], ang[2])\n'
+				output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.SetSolid(2)\n\t{brushsizemin}\n\t{brushsizemax}\n'
 
-			func_list.append(f'{funcname}({org}, [{ang[0]}, {ang[1]}, {ang[2]}])')
-			org, ang = 'Vector(0, 0, 0)', [0, 0, 0]
-			# don't think setang/setorigin is necessary
-			output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{entity_name}{g}.SetOrigin(org)\n\t{entity_name}{g}.SetAngles(ang[0], ang[1], ang[2])\n'
-			# output_text = f'{spawnfunc}\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
 
-		else:
-			output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{entity_name}{g}.SetOrigin(org)\n\t{entity_name}{g}.SetAngles(ang[0], ang[1], ang[2])\n'
-			# output_text = f'\tlocal {entity_name}{g} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n'
+			else:
+				# output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.SetSolid(2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(org != null)\n\t\t{brushname}{b}.SetOrigin(org)\n\tif(ang != null)\n\t\t{brushname}{b}.SetAngles(ang[0], ang[1], ang[2])\n'
+				output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.SetSolid(2)\n\t{brushsizemin}\n\t{brushsizemax}\n'
+			brushent = False
+			b += 1
+			t += 1
 
-		g += 1
-		t += 1
+		if lumpfile and ('function()' in output_text or "hammerid = 0" in output_text):
+			output_text = ''
+
+		entity_list.append(f'{output_text}\n')
+		# print(funcname)
+		# print(output_text)
+		# print(lines)
+		# input('')
+		name_list.append(entity_name)
+		formatted_properties.clear()
 	else:
-
-		#lumpfile appends the hammerid to the variable name
-		if lumpfile:
-			output_text = f'::{entity_name}{h} <- SpawnEntityFromTable("{entity_name}", {{\n    {",\n    ".join(formatted_properties)}\n}})\n{entity_name}{h}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n'
-
-		elif funcname != oldname and funcname != '':
-
-			oldname = funcname
-			spawnfunc = f'}}\n::{funcname} <- function(org, ang)\n{{\n'
-			# output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(org != null)\n\t\t{brushname}{b}.SetOrigin(org)\n\tif(ang != null)\n\t\t{brushname}{b}.SetAngles(ang[0], ang[1], ang[2])\n'
-			output_text = f'{spawnfunc}\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n\t{brushsizemin}\n\t{brushsizemax}\n'
-
-
-		else:
-			# output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n{brushsizemin}\n{brushsizemax}\n\n\tif(org != null)\n\t\t{brushname}{b}.SetOrigin(org)\n\tif(ang != null)\n\t\t{brushname}{b}.SetAngles(ang[0], ang[1], ang[2])\n'
-			output_text = f'\tlocal {brushname}{b} = SpawnEntityFromTable("{entity_name}", {{\n\t    {",\n\t    ".join(formatted_properties)}\n\t}})\n\t{brushname}{b}.KeyValueFromInt("solid", 2)\n\t{brushsizemin}\n\t{brushsizemax}\n'
-		brushent = False
-		b += 1
-		t += 1
-
-	if lumpfile and ('function()' in output_text or "hammerid = 0" in output_text):
+		formatted_properties.clear()
 		output_text = ''
-
-	entity_list.append(f'{output_text}\n')
-	# print(funcname)
-	# print(output_text)
-	# print(lines)
-	# input('')
-	name_list.append(entity_name)
-	formatted_properties.clear()
 
 def cube_to_aabb(vertices):
 	min_x, min_y, min_z = 2147483647, 2147483647, 2147483647
@@ -765,11 +783,8 @@ def convert_entities():
 
 			#grab entitity name
 			if vmffile:
-				xyz = []
-				j = 0
 				if lines[0] == 'entity' and vmffile:
 					entity_name = lines[3].split('"')[3]
-					hammerid = lines[2].split('"')[3]
 					# input(f'{entity_name} {entity_id}')
 
 				elif lines[0] == 'solid' and vmffile:
@@ -953,6 +968,7 @@ def write_ents_to_file():
 		newfilename = filename.split('.pop', 1)[0]
 
 	script = open(f'r2v_{newfilename}.nut', 'w')
+
 	helperfuncs = []
 	if giveitem:
 		# func = '::GiveWeapon <- function(player, classname, itemid, model)\n{\n\tif (model != null && (classname == \"tf_wearable\" || classname == \"tf_wearable_demoshield\" || classname == \"tf_wearable_razorback\"))\n\t{\n\t\tlocal wearable = Entities.CreateByClassname(classname);\n\t\tNetProps.SetPropInt(wearable, \"m_nModelIndex\", PrecacheModel(model));\n\t\tNetProps.SetPropBool(wearable, \"m_bValidatedAttachedEntity\", true);\n\t\tNetProps.SetPropBool(wearable, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tNetProps.SetPropEntity(wearable, \"m_hOwnerEntity\", player);\n\t\twearable.SetOwner(player);\n\t\twearable.DispatchSpawn();\n\t\tEntFireByHandle(wearable, \"SetParent\", \"!activator\", 0.0, player, player);\n\t\tNetProps.SetPropInt(wearable, \"m_fEffects\", 129);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != wearable.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", wearable, i);\n\t\t\tbreak;\n\t\t}\n\t\treturn wearable;\n\t} else {\n\t\tlocal weapon = Entities.CreateByClassname(classname);\n\t\tSetPropInt(weapon, \"m_AttributeManager.m_Item.m_iItemDefinitionIndex\", itemid);\n\t\tSetPropBool(weapon, \"m_AttributeManager.m_Item.m_bInitialized\", true);\n\t\tSetPropBool(weapon, \"m_bValidatedAttachedEntity\", true);\n\t\tEntities.DispatchSpawn(weapon);\n\t\tfor (local i = 0; i < 7; i++)\n\t\t{\n\t\t\tlocal heldWeapon = GetPropEntityArray(player, \"m_hMyWeapons\", i);\n\t\t\tif (heldWeapon == null) \n\t\t\t\tcontinue;\n\t\t\tif (heldWeapon.GetSlot() != weapon.GetSlot()) \n\t\t\t\tcontinue;\n\t\t\theldWeapon.Destroy();\n\t\t\tSetPropEntityArray(player, \"m_hMyWeapons\", weapon, i);\n\t\t\tbreak;\n\t\t}\n\t\tplayer.Weapon_Equip(weapon);\n\t}\n\treturn weapon;\n}'
@@ -965,7 +981,12 @@ def write_ents_to_file():
 		helperfuncs.append('::StripWeapon <- function(player, slot)\n{\n\tfor (local i = 0; i < 7; i++)\n\t{\n\t\tlocal weapon = GetPropEntityArray(player, "m_hMyWeapons", i);\n\t\tif (weapon == null || weapon.GetSlot() != slot) continue;\n\t\tweapon.Destroy();\n\t\tbreak;\n\t}\n}\n')
 	if refill:
 		helperfuncs.append('::RefillAmmo <- function(player, givewep)\n{\n\tlocal t = {}\n\tif (givewep)\n\t{\n\t\tfor (local i = 0; i < SLOT_COUNT; i++)\n\t\t{\n\t\t\tlocal w = GetPropEntityArray(player, "m_hMyWeapons", i);\n\t\t\tif (w != null) t.rawset(GetItemIndex(w), w.GetClassname() + "^" + w.GetModelName());\n\t\t}\n\t}\n\n\tlocal h = player.GetHealth();\n\tplayer.Regenerate(true);\n\tplayer.SetHealth(h);\n\n\tif (!givewep) return;\n\tforeach (k, v in t) GiveWeapon(player, split(v, "^")[0], k, split(v, "^")[1], null, false, false);\n}\n')
-
+	if lumpfile:
+		s = 'local hammerids = [\n'
+		for h in set(hammerids):
+			s += f'{h},\n'
+		s += ']\nlocal brushcoords = {}\nfor (local i = MAX_EDICTS; i > MAX_CLIENTS; i--)\n{\n\tlocal ent = EntIndexToHScript(i)\n\n\tif (ent == null || hammerids.find(GetPropInt(ent, "m_iHammerID")) == null) continue;\n\t\n\tif (startswith(ent.GetModelName(), "*"))\n\t\tbrushcoords.rawset(format("HAMMERID_%d_%s",GetPropInt(ent, "m_iHammerID"), ent.GetClassname()), [ent.GetBoundingMinsOriented(), ent.GetBoundingMaxsOriented()])\n\t\n\tent.Kill();\n}\nfunction SpawnLumpEnts()\n{\n'
+		helperfuncs.append(s)
 
 	for func in helperfuncs: script.write(func)
 	# this function does not have tf_wearable compatibility
@@ -975,18 +996,18 @@ def write_ents_to_file():
 		script.write(e)
 		i += 1
 
-	if not lumpfile and not vmffile:
-		script.write('}\n')
-
-	spawnall = input('Write all SpawnTemplate functions? Y/N: ')
-	if 'Y' in spawnall.upper():
-		for spawnfunc in func_list:
-			script.write(f'\n{spawnfunc}')
+	if lumpfile:
+		script.write('}\nSpawnLumpEnts()\nfunction SetBBoxes()\n{\n\tlocal root = getroottable()\n\tforeach (k in root)\n\t{\n\t\tif (k in brushcoords)\n\t\t{\n\t\t\tk.KeyValueFromVector("mins", brushcoords[k][0])\n\t\t\tk.KeyValueFromVector("maxs", brushcoords[k][1])\n\t\t\tk.SetSolid(2)\n\t\t}\n\t}\n}')
 	else:
-		for spawnfunc in func_list:
-			spawn = input(f'Write {spawnfunc} to file? Y/N: ')
-			if not 'Y' in spawn.upper(): continue
-			script.write(f'\n{spawnfunc}')
+		spawnall = input('Write all SpawnTemplate functions? Y/N: ')
+		if 'Y' in spawnall.upper():
+			for spawnfunc in func_list:
+				script.write(f'\n{spawnfunc}')
+		else:
+			for spawnfunc in func_list:
+				spawn = input(f'Write {spawnfunc} to file? Y/N: ')
+				if not 'Y' in spawn.upper(): continue
+				script.write(f'\n{spawnfunc}')
 
 	script.close()
 	print(COLOR['GREEN'],'File written!',COLOR['ENDC'],COLOR['YELLOW'],len(name_list) - 1,COLOR['ENDC'],COLOR['GREEN'],'Entities Converted',COLOR['ENDC'])
