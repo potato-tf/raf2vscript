@@ -1,0 +1,36 @@
+PointTemplates
+{
+	flag
+	{
+		NoFixup 1
+		prop_dynamic
+		{
+			"targetname" "testprop"
+			"model" "models/props_doomsday/australium_container.mdl"
+			"OnCapTeam1" "testflag,Skin,1,0,-1"
+			"OnCapTeam1" "testflag,Skin,0,0,-1"
+			"OnCapTeam1" "testflag,Skin,0,0,-1"
+			"OnCapTeam1" "testflag,Skin,0,0,-1"
+		}
+		prop_dynamic
+		{
+			model "models/props_doomsday/australium_container.mdl"
+			skin 1
+			origin Vector(0, 0, 20)
+		}
+
+		OnSpawnOutput
+		{
+			Target "testprop"
+			Action "Skin"
+			Delay 0
+			Param "2"
+		}
+
+		OnParentKilledOutput
+		{
+			Target "cap_master"
+			Action "RoundSpawn"
+		}
+	}
+}

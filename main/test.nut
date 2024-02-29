@@ -1,40 +1,52 @@
-local brushcoords = {}
-for (local i = MAX_EDICTS; i > MAX_CLIENTS; i--)
+PointTemplates <-
 {
-    local ent = EntIndexToHScript(i)
+	flag =
+	{
+        NoFixup = true,
+		[0] =
+		{
+			prop_dynamic =
+			{
+				targetname = "testprop"
+				model = "models/props_doomsday/australium_container.mdl"
 
-    if (ent == null || hammerids.find(GetPropInt(ent, "m_iHammerID")) == null) continue;
-    
-    if (startswith(ent.GetModelName(), "*"))
-        brushcoords.rawset(format("HAMMERID_%d_%s",GetPropInt(ent, "m_iHammerID"), ent.GetClassname()), [ent.GetBoundingMinsOriented(), ent.GetBoundingMaxsOriented()])
-    
-    ent.Kill();
+				//outputs must be named like this if you have multiple of the same ones
+				"OnCapTeam1#1" : "testflag,Skin,1,0,-1"
+				"OnCapTeam1#2" : "testflag,Skin,0,0,-1"
+				"OnCapTeam1#3" : "testflag,Skin,0,0,-1"
+				"OnCapTeam1#4" : "testflag,Skin,0,0,-1"
+			}
+		},
+		[1] =
+		{
+			prop_dynamic =
+			{
+				model = "models/props_doomsday/australium_container.mdl"
+				skin = 1
+				origin = Vector(0, 0, 20)
+			}
+		},
+		[2] =
+		{
+			OnSpawnOutput =
+			{
+				Target = "testprop"
+				Action = "Skin"
+				Delay = 0
+				Param = "2" //even if this is a number, this must be a string type
+			}
+		},
+		[3] =
+		{
+			//if parented, will fire these outputs after the parent is killed,
+			//can target internal entities ONLY if NoFixup is true
+			//can target external entities regardless of fixup
+
+			OnParentKilledOutput =
+			{
+				Target = "cap_master"
+				Action = "RoundSpawn"
+			}
+		} 
+	}
 }
-
-
-function SetBBoxes() 
-{
-    local root = getroottable()
-    foreach (k in root)
-    {
-        if (k in brushcoords)
-        {
-            k.KeyValueFromVector("mins", brushcoords[k][0])
-            k.KeyValueFromVector("maxs", brushcoords[k][1])
-        }
-    }
-}
-
-DoEntFire("worldspawn", "CallScriptFunction", "SetBBoxes", -1, null, null);
-
-::HAMMERID_1791383_point_worldtext <- SpawnEntityFromTable("point_worldtext", {
-    origin = Vector(1745, -4745.33, 365.999),
-    textspacingy = 14,
-    textsize = 5,
-    targetname = "commandhint",
-    rainbow = 0,
-    orientation = 0,
-    message = "glow_outline_effect_enable 1: heavily used effect in this mission\nr_dynamic = 0: Disables crystal lighting\ncl_mvm_wave_status_visible_during_wave = 1: self-explanatory\n+use_action_slot_item = - Bind this to a better key, used to interact with buttons."
-    font = 11,
-    angles = QAngle(0, 180, 0)
-})
