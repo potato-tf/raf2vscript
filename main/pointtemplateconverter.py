@@ -145,7 +145,7 @@ def convert_proptype(prop, propval, arrayval):
 			except Exception as e:
 				proptype = 'Entity'
 
-	elif proptype.startswith('s'):proptype = 'String'
+	elif proptype.startswith('s'): proptype = 'String'
 	elif proptype.startswith('f'): proptype = 'Float'
 	elif proptype.startswith('e'): proptype = 'Entity'
 	elif proptype.startswith('b'): proptype = 'Bool'
@@ -164,18 +164,19 @@ def convert_proptype(prop, propval, arrayval):
 			return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval}, {arrayval})'
 	else:
 
-		if proptype == 'String':
-			if prop == 'm_iszMvMPopfileName':
-				# log.append('ALERT: Changing m_iszMvMPopfileName can break map rotation! Change back to default on mission complete')
-			return f'NetProps.SetProp{proptype}(self, `{prop}`, `{propval}`)'
+		return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval})'
+		# if proptype == 'String':
+		# 	if prop == 'm_iszMvMPopfileName':
+		# 		# log.append('ALERT: Changing m_iszMvMPopfileName can break map rotation! Change back to default on mission complete')
+		# 	return f'NetProps.SetProp{proptype}(self, `{prop}`, `{propval}`)'
 
-		elif proptype == 'Int':
-			if prop == 'm_iTeamNum':
-				# log.append('ALERT: Changing m_iTeamNum directly can lead to crashes! use ForceChangeTeam or SetTeam instead')
-			return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval})'
+		# elif proptype == 'Int':
+		# 	if prop == 'm_iTeamNum':
+		# 		# log.append('ALERT: Changing m_iTeamNum directly can lead to crashes! use ForceChangeTeam or SetTeam instead')
+		# 	return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval})'
 
-		else:
-			return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval})'
+		# else:
+			# return f'NetProps.SetProp{proptype}(self, `{prop}`, {propval})'
 customweapons = {}
 def convert_raf_keyvalues(value):
 	# print(value.split(','))
@@ -440,7 +441,7 @@ def convertpointtemplates(pop, indentationnumber, depth):
         else:
             if key[0] == '"' and key[-1] == '"':
                 key = key[1:-1]
-            newvalue = value.replace('\\', '\\\\')
+            newvalue = value.replace('\\', '/')
             if (key.lower().startswith('on') or key.lower().startswith('ou')) and (newvalue.count(',') == 2 or newvalue.count(',') == 3 or newvalue.count(',') == 4):
                 if key in uniqueoutputs.keys():
                     uniqueoutputs.update({key : uniqueoutputs[key] + 1})
@@ -484,7 +485,7 @@ from tkinter import filedialog
 root = tk.Tk()
 root.withdraw()
 
-file_path = filedia# log.askopenfilename()
+file_path = filedialog.askopenfilename()
 
 print(file_path)
 if file_path.endswith(".pop"):
