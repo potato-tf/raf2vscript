@@ -2,32 +2,34 @@ import mysql.connector
 
 speedrun_name_and_ids = {}
 
-missionstowipe = [
-    'what_have_i_done',
-    'int_stacked_deck', 
-    'jesty_joker_jamble',
-    'hohohoes_holiday',
-    'mediocre_nonsense',
-    'insomniacs_insanity',
-    'whathaveidone',
-    'chili_sabotage',
-    'welcometomymine',
-    'mediocre_nonsense',
-    'int_there_is_no_meme',
-    'adv_garden_warfare',
-    'shadows',
-    'extended_deadline',
-    'exp_trash',
-    'tf2wood',
-    'int_donacdum',
-    'int_mayfield_heights',
-    'int_pisses_on_the_moon',
-    'pepper_boys',
-    'bison_barrage',
-    'dihydrogen_monoxide',
-    'int_circuit_board_torture',
-    'float_wtf_mk_two_f'
-]
+# missionstowipe = [
+#     'what_have_i_done',
+#     'int_stacked_deck', 
+#     'jesty_joker_jamble',
+#     'hohohoes_holiday',
+#     'mediocre_nonsense',
+#     'insomniacs_insanity',
+#     'whathaveidone',
+#     'chili_sabotage',
+#     'welcometomymine',
+#     'mediocre_nonsense',
+#     'int_there_is_no_meme',
+#     'adv_garden_warfare',
+#     'shadows',
+#     'extended_deadline',
+#     'exp_trash',
+#     'tf2wood',
+#     'int_donacdum',
+#     'int_mayfield_heights',
+#     'int_pisses_on_the_moon',
+#     'pepper_boys',
+#     'bison_barrage',
+#     'dihydrogen_monoxide',
+#     'int_circuit_board_torture',
+#     'float_wtf_mk_two_f'
+# ]
+
+missionstowipe = ['advanced1']
 
 conn = mysql.connector.connect(
     host="",
