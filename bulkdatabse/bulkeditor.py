@@ -1,85 +1,137 @@
 import mysql.connector
+import asyncio
 
-speedrun_name_and_ids = {}
+async def wipe_speedrun(id):
 
-# missionstowipe = [
-#     'what_have_i_done',
-#     'int_stacked_deck', 
-#     'jesty_joker_jamble',
-#     'hohohoes_holiday',
-#     'mediocre_nonsense',
-#     'insomniacs_insanity',
-#     'whathaveidone',
-#     'chili_sabotage',
-#     'welcometomymine',
-#     'mediocre_nonsense',
-#     'int_there_is_no_meme',
-#     'adv_garden_warfare',
-#     'shadows',
-#     'extended_deadline',
-#     'exp_trash',
-#     'tf2wood',
-#     'int_donacdum',
-#     'int_mayfield_heights',
-#     'int_pisses_on_the_moon',
-#     'pepper_boys',
-#     'bison_barrage',
-#     'dihydrogen_monoxide',
-#     'int_circuit_board_torture',
-#     'float_wtf_mk_two_f'
-# ]
+    cursor.execute(f"""
+        UPDATE mission_info mi
+        LEFT JOIN (
+            SELECT mission_name, id, time,
+                   ROW_NUMBER() OVER (PARTITION BY mission_name ORDER BY time ASC) as rank
+            FROM speedrun
+            WHERE id != '{id}'
+        ) s ON mi.name = s.mission_name AND s.rank = 1
+        SET mi.fastest_speedrun_id = s.id
+        WHERE mi.fastest_speedrun_id = '{id}'
+    """)
 
-missionstowipe = ['advanced1']
+    cursor.execute(f"DELETE FROM speedrun_players WHERE speedrun_id = '{id}'")
+    cursor.execute(f"DELETE FROM speedrun WHERE id = '{id}'")
 
-conn = mysql.connector.connect(
-    host="",
-    port="",
-    user="",
-    password="",
-    database=""
-)
+    print(id, f"deleting speedrun ID {id} from 'speedrun_players'")
 
-cursor = conn.cursor()
+async def wipe_speedruns_and_mission(missionstowipe):
+    
+    speedrun_name_and_ids = {}
+    
+    for name in missionstowipe:
 
-cursor.execute("START TRANSACTION")
+        if not name in speedrun_name_and_ids:
+            speedrun_name_and_ids[name] = []
 
-for name in missionstowipe:
+        try:
+            cursor.execute(f"SELECT id FROM speedrun WHERE mission_name = '{name}'")
+            rows = cursor.fetchall()
+            speedrun_name_and_ids[name] = [row[0] for row in rows]
 
-    if not name in speedrun_name_and_ids:
-        speedrun_name_and_ids[name] = []
+        except Exception as e: print(e)
 
-    try:
-        cursor.execute(f"SELECT id FROM speedrun WHERE mission_name = '{name}'")
-        rows = cursor.fetchall()
-        for row in rows:
-            speedrun_name_and_ids[name].append(row[0])
+    for name, ids in speedrun_name_and_ids.items():
 
-    except Exception as e: print(e)
+        for id in ids:
 
-for name, ids in speedrun_name_and_ids.items():
+            try:
+                await wipe_speedrun(id)
 
-    for id in ids:
+            except Exception as e: print(e)
+
+        cursor.execute(f"DELETE FROM speedrun WHERE mission_name = '{name}'")
+        print(id, f"\ndeleting {name} from 'speedrun'\n")
+
+    fulldelete = input("Full delete from database? Y/N: ")
+
+    if fulldelete.lower() == 'y':
+
+        for name, _ in speedrun_name_and_ids.items():
+            cursor.execute(f"DELETE FROM wave_progress WHERE wave_progress_bitmask_key = '{name}'")
+            cursor.execute(f"DELETE FROM feedback WHERE mission_name = '{name}'")
+            cursor.execute(f"DELETE FROM mission_info WHERE name = '{name}'")
+
+async def disqualify_speedrun(id, dq_status):
+    print(f'Disqualifying speedrun ID {id}')
+    # return
+    cursor.execute(f"UPDATE speedrun SET disqualified = {dq_status} WHERE id = '{id}'")
+    cursor.execute(f"UPDATE speedrun_players SET disqualified = {dq_status} WHERE speedrun_id = '{id}'")
+
+
+async def disqualify_speedruns_for_users(steamid_list, dq_status = 1):
+    speedrun_ids = []
+    
+    for steamid in steamid_list:
         
         try:
-            cursor.execute(f"UPDATE mission_info SET fastest_speedrun_id = NULL WHERE fastest_speedrun_id = '{id}'")
-            cursor.execute(f"DELETE FROM speedrun_players WHERE speedrun_id = '{id}'")
-            print(id, f"deleting speedrun ID {id} for {name} from 'speedrun_players'")
+            print(f'Getting speedruns for {steamid}')
+            cursor.execute(f"SELECT speedrun_id from speedrun_players WHERE players = '{steamid}'")
+            result = cursor.fetchall()
+            speedrun_ids += list(set([row[0] for row in result]))
+            # print(speedrun_ids)
             
+            # cursor.execute(f"UPDATE speedrun SET disqualified = 1 WHERE id = '{id}'")
         except Exception as e: print(e)
-    cursor.execute(f"DELETE FROM speedrun WHERE mission_name = '{name}'")
-    print(id, f"\ndeleting {name} from 'speedrun'\n")
+        
+    [await disqualify_speedrun(id, dq_status) for id in speedrun_ids]
 
-fulldelete = input("Full delete from database? Y/N: ")
+if __name__ == "__main__":
+    
+    # memes list
+    # missionstowipe = [
+    #     'what_have_i_done',
+    #     'int_stacked_deck', 
+    #     'jesty_joker_jamble',
+    #     'hohohoes_holiday',
+    #     'mediocre_nonsense',
+    #     'insomniacs_insanity',
+    #     'whathaveidone',
+    #     'chili_sabotage',
+    #     'welcometomymine',
+    #     'mediocre_nonsense',
+    #     'int_there_is_no_meme',
+    #     'adv_garden_warfare',
+    #     'shadows',
+    #     'extended_deadline',
+    #     'exp_trash',
+    #     'tf2wood',
+    #     'int_donacdum',
+    #     'int_mayfield_heights',
+    #     'int_pisses_on_the_moon',
+    #     'pepper_boys',
+    #     'bison_barrage',
+    #     'dihydrogen_monoxide',
+    #     'int_circuit_board_torture',
+    #     'float_wtf_mk_two_f'
+    # ]
 
-if fulldelete.lower() == 'y':
-    for name, _ in speedrun_name_and_ids.items():
-        cursor.execute(f"DELETE FROM wave_progress WHERE wave_progress_bitmask_key = '{name}'")
-        cursor.execute(f"DELETE FROM feedback WHERE mission_name = '{name}'")
-        cursor.execute(f"DELETE FROM mission_info WHERE name = '{name}'")
+    missionstowipe = ['advanced1']
+    
 
+    conn = mysql.connector.connect(
+        host="",
+        port="",
+        user="",
+        password="",
+        database=""
+    )
 
-print("Finished! transaction committed")
-cursor.execute("COMMIT")
+    cursor = conn.cursor()
 
-cursor.close()
-conn.close()
+    cursor.execute("START TRANSACTION")
+    
+    # wipe_speedruns_and_mission(missionstowipe)
+    # asyncio.run(disqualify_speedruns_for_users([76561198060389208], 0))
+    wipe_speedrun()
+
+    print("Finished! transaction committed")
+    cursor.execute("COMMIT")
+
+    cursor.close()
+    conn.close()
