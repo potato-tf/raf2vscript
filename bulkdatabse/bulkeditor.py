@@ -7,16 +7,16 @@ async def wipe_speedrun(id):
         UPDATE mission_info mi
         LEFT JOIN (
             SELECT mission_name, id, time,
-                   ROW_NUMBER() OVER (PARTITION BY mission_name ORDER BY time ASC) as rank
+                   ROW_NUMBER() OVER (PARTITION BY mission_name ORDER BY time ASC) as `rank`
             FROM speedrun
-            WHERE id != '{id}'
-        ) s ON mi.name = s.mission_name AND s.rank = 1
-        SET mi.fastest_speedrun_id = s.id
-        WHERE mi.fastest_speedrun_id = '{id}'
+            WHERE id != {id}
+        ) s ON mi.name = s.mission_name AND s.`rank` = 1
+        SET mi.fastest_speedrun_id = COALESCE(s.id, NULL)
+        WHERE mi.fastest_speedrun_id = {id}
     """)
 
-    cursor.execute(f"DELETE FROM speedrun_players WHERE speedrun_id = '{id}'")
-    cursor.execute(f"DELETE FROM speedrun WHERE id = '{id}'")
+    cursor.execute(f"DELETE FROM speedrun_players WHERE speedrun_id = {id}")
+    cursor.execute(f"DELETE FROM speedrun WHERE id = {id}")
 
     print(id, f"deleting speedrun ID {id} from 'speedrun_players'")
 
@@ -128,9 +128,11 @@ if __name__ == "__main__":
     
     # wipe_speedruns_and_mission(missionstowipe)
     # asyncio.run(disqualify_speedruns_for_users([76561198060389208], 0))
-    wipe_speedrun()
+    # wipe_speedrun()
+    asyncio.run(wipe_speedrun(5499290910066))
 
-    print("Finished! transaction committed")
+    print("Finished! Press enter to commit")
+    input()
     cursor.execute("COMMIT")
 
     cursor.close()
